@@ -1,0 +1,12 @@
+F:\project\net\dev project\HtmlAgilityPack\Client.Common\obj\Debug\ResolveAssemblyReference.cache
+F:\project\net\dev project\HtmlAgilityPack\Client.Common\bin\Debug\Client.Common.dll
+F:\project\net\dev project\HtmlAgilityPack\Client.Common\bin\Debug\Client.Common.pdb
+F:\project\net\dev project\HtmlAgilityPack\Client.Common\bin\Debug\Castle.ActiveRecord.dll
+F:\project\net\dev project\HtmlAgilityPack\Client.Common\bin\Debug\NHibernate.ByteCode.Castle.dll
+F:\project\net\dev project\HtmlAgilityPack\Client.Common\bin\Debug\NHibernate.dll
+F:\project\net\dev project\HtmlAgilityPack\Client.Common\bin\Debug\Castle.Components.Validator.dll
+F:\project\net\dev project\HtmlAgilityPack\Client.Common\bin\Debug\Castle.Core.dll
+F:\project\net\dev project\HtmlAgilityPack\Client.Common\bin\Debug\Iesi.Collections.dll
+F:\project\net\dev project\HtmlAgilityPack\Client.Common\bin\Debug\NHibernate.Search.dll
+F:\project\net\dev project\HtmlAgilityPack\Client.Common\obj\Debug\Client.Common.dll
+F:\project\net\dev project\HtmlAgilityPack\Client.Common\obj\Debug\Client.Common.pdb

@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7366BD63-5908-449B-A70E-145FD64A1AF1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Com.Zengfr.Proj.Common</RootNamespace>
+    <AssemblyName>Com.Zengfr.Proj.Common</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.CryptoExt">
+      <HintPath>..\CommonLib\ChinaPay\BouncyCastle.CryptoExt.dll</HintPath>
+    </Reference>
+    <Reference Include="chinapaysecure">
+      <HintPath>..\CommonLib\ChinaPay\chinapaysecure.dll</HintPath>
+    </Reference>
+    <Reference Include="ExpressionBuilder">
+      <HintPath>..\CommonLib\ExpressionBuilder.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\packages\FluentNHibernate.2.0.1.0\lib\net40\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CommonLib\UnionPay\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\CommonLib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\CommonLib\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\CommonLib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\packages\NHibernate.4.0.4.4000\lib\net40\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.Envers">
+      <HintPath>..\CommonLib\NHibernate.Envers.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.Search">
+      <HintPath>..\CommonLib\NHibernate.Search\NHibernate.Search.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.Shards">
+      <HintPath>..\CommonLib\NHibernate.Shards.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI">
+      <HintPath>..\CommonLib\NPOI\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.2.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CommonLib\NPOI\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net">
+      <HintPath>..\CommonLib\NPOI\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats">
+      <HintPath>..\CommonLib\NPOI\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="NReco.ImageGenerator">
+      <HintPath>..\CommonLib\NReco.ImageGenerator.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\CommonLib\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack">
+      <HintPath>..\CommonLib\ServiceStack.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Common">
+      <HintPath>..\CommonLib\ServiceStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces">
+      <HintPath>..\CommonLib\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.ServiceInterface">
+      <HintPath>..\CommonLib\ServiceStack.ServiceInterface.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text, Version=3.9.71.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CommonLib\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Aop, Version=1.3.2.40943, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CommonLib\Spring.Aop.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Core, Version=1.3.2.40943, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CommonLib\Spring.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data, Version=1.3.2.40943, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CommonLib\Spring.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\ChineseUtils.cs" />
+    <Compile Include="Common\CsvFileHelper.cs" />
+    <Compile Include="Common\EnumerablePagedAdapter.cs" />
+    <Compile Include="Common\GZipUtil.cs" />
+    <Compile Include="Common\IOSerialization.cs" />
+    <Compile Include="Common\ExcelUtils.cs" />
+    <Compile Include="Common\NpoiExport.cs" />
+    <Compile Include="Common\PermissionFilterUtils .cs" />
+    <Compile Include="Common\WebUtils.cs" />
+    <Compile Include="NH\SessionFactoryUtils.cs" />
+    <Compile Include="NH\XFactoriesExtensions.cs" />
+    <Compile Include="Pay\ChinaPay\ChinaPayHelper.cs" />
+    <Compile Include="Pay\ChinaPay\ChinaPayGetway.cs" />
+    <Compile Include="Pay\ChinaPay\ChinaPayMerResv.cs" />
+    <Compile Include="Pay\Unionpay\PayGetwayConfig.cs" />
+    <Compile Include="Pay\Unionpay\PayGetwayUtils.cs" />
+    <Compile Include="Common\AccountAuthorizeAttribute.cs" />
+    <Compile Include="Common\AjaxData.cs" />
+    <Compile Include="Common\ApplicationConfig.cs" />
+    <Compile Include="Common\AppSettingsUtils.cs" />
+    <Compile Include="Common\DecimalModelBinder.cs" />
+    <Compile Include="Common\CommonEqualityComparer.cs" />
+    <Compile Include="Common\CookiesData.cs" />
+    <Compile Include="Common\DESCryptoServiceProviderUtils.cs" />
+    <Compile Include="Common\ExceptionUtils.cs" />
+    <Compile Include="Common\ExpressionHelper.cs" />
+    <Compile Include="Common\FilterHelper.cs" />
+    <Compile Include="Common\FormsAuthenticationUtils.cs" />
+    <Compile Include="Common\GenericLocker.cs" />
+    <Compile Include="Common\HtmlCapture.cs" />
+    <Compile Include="Common\HtmlRenderToImageUtils.cs" />
+    <Compile Include="Common\HtmlToImageConverterUtils.cs" />
+    <Compile Include="Common\HtmlToPdfUtils.cs" />
+    <Compile Include="Common\ImageResult.cs" />
+    <Compile Include="Common\JsonDynamicIgnorableSerializerContractResolver.cs" />
+    <Compile Include="Common\MyControllerBase.cs" />
+    <Compile Include="Common\MyControllerFactory.cs" />
+    <Compile Include="Common\MyServiceClientFactory.cs" />
+    <Compile Include="Common\NewtonJsonResult.cs" />
+    <Compile Include="Common\RestSharpJsonDeserializer.cs" />
+    <Compile Include="Common\RestSharpJsonSerializer.cs" />
+    <Compile Include="Common\ServiceStackCustomAppHost.cs" />
+    <Compile Include="Common\SpringAdapter.cs" />
+    <Compile Include="Common\Statistics.cs" />
+    <Compile Include="Common\ExtensionUtils.cs" />
+    <Compile Include="Common\Thumbnail.cs" />
+    <Compile Include="Common\ValidatedCode.cs" />
+    <Compile Include="Common\WebJobExecutor.cs" />
+    <Compile Include="Common\DecimalConverter.cs" />
+    <Compile Include="Common\UniqueKeyGenerator.cs" />
+    <Compile Include="NH\AuditEventListener.cs" />
+    <Compile Include="NH\AuditMetadataLog.cs" />
+    <Compile Include="NH\AutoDataGenerator.cs" />
+    <Compile Include="NH\AuditMetadataLogMap.cs" />
+    <Compile Include="NH\DeepTransformer.cs" />
+    <Compile Include="NH\HintOptionExtensions.cs" />
+    <Compile Include="NH\HintOptionInterceptor.cs" />
+    <Compile Include="NH\NHSearch.cs" />
+    <Compile Include="NH\NHShards.cs" />
+    <Compile Include="NH\NullableTuplizer.cs" />
+    <Compile Include="NH\Profiled\DbCommandProxy.cs" />
+    <Compile Include="NH\Profiled\ProfiledSql2008ClientDriver.cs" />
+    <Compile Include="NH\SchemaUpdateUtils.cs" />
+    <Compile Include="NH\SessionFactoryManager.cs" />
+    <Compile Include="NH\NullableTuplizer2.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Pay\Unionpay\sdk\BigNum.cs" />
+    <Compile Include="Pay\Unionpay\sdk\CertUtil.cs" />
+    <Compile Include="Pay\Unionpay\sdk\SDKConfig.cs" />
+    <Compile Include="Pay\Unionpay\sdk\SDKUtil.cs" />
+    <Compile Include="Pay\Unionpay\sdk\SecurityUtil.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="PermutationandCombination\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

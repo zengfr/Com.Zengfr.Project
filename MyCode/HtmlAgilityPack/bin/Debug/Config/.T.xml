@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<ArrayOfAreaTemplate xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <AreaTemplate>
+    <Name />
+    <Patterns />
+    <Filters />
+    <RowTemplate>
+      <Name />
+      <Patterns>
+        <Pattern>
+          <Value>
+            <Value>&lt;li id=(.*?)- 新浪微博 -(.*?)&lt;/p&gt;&lt;/li&gt;</Value>
+            <MatchOrder>Asc</MatchOrder>
+            <MatchIndex>-1</MatchIndex>
+          </Value>
+          <Type>Regex</Type>
+        </Pattern>
+      </Patterns>
+      <Filters />
+      <CellTemplates>
+        <CellTemplate>
+          <Name>连接</Name>
+          <Patterns>
+            <Pattern>
+              <Value>
+                <Value>//a[@href]</Value>
+                <MatchOrder>Asc</MatchOrder>
+                <MatchIndex>2</MatchIndex>
+              </Value>
+              <Type>XPath</Type>
+            </Pattern>
+          </Patterns>
+        </CellTemplate>
+        <CellTemplate>
+          <Name>Text</Name>
+          <Patterns>
+            <Pattern>
+              <Value>
+                <Value>(.*)</Value>
+                <MatchOrder>Asc</MatchOrder>
+                <MatchIndex>0</MatchIndex>
+              </Value>
+              <Type>Regex</Type>
+            </Pattern>
+          </Patterns>
+        </CellTemplate>
+      </CellTemplates>
+    </RowTemplate>
+  </AreaTemplate>
+</ArrayOfAreaTemplate>

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<config>
+<param>
+<add key="IsExistUpdate" value="false" />
+<add key="OutputPath" value="E:\Output\" />
+<add key="IsTrue" value="true" /> 
+</param>
+</config>

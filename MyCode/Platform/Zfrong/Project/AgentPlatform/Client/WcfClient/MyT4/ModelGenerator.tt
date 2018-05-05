@@ -1,0 +1,35 @@
+﻿<#@ template language="C#" hostspecific="True" debug="True" #>
+<#@ import namespace="System.Collections" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ include file="Abs\AbsGenerator.ttinclude" #>
+<#@ include file="Abs\inc.ttinclude" #>
+<#@ include file="Template\ModelTemplate.tt" #>
+<# 
+    IEnumerable<Table> tables=MetadataUtils.Current.GetTables(false);
+    ModelGenerator  mc=new  ModelGenerator(tables);
+    mc.Run();
+#>
+
+<#+
+public class ModelGenerator :AbsGenerator
+{
+                public ModelGenerator(IEnumerable<Table> tables):base(tables)
+
+    {
+
+    }
+	
+
+    protected override IEnumerable<AbsTemplate> InitlizeTemplates(IEnumerable<Table> tables)
+
+    {        
+
+        foreach(Table table in tables)
+        {
+                yield return new ModelTemplate(table){FileSuffix=".cs",NamespacePrefix="GeneratedCode"};
+
+        }
+
+    }
+}
+#>

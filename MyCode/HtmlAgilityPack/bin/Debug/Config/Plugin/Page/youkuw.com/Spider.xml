@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<config>
+<param>
+<add key="IsExistUpdate" value="false" />
+<add key="OutputPath" value="E:\Output\" />
+<add key="IsTrue" value="true" /> 
+</param>
+<replace>
+<add key="www.youkuw.com" value="youkuw.wml365.com" />
+<add key="youkuw.com" value="youkuw.wml365.com" />
+</replace>
+</config>

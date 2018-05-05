@@ -1,0 +1,102 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Bootstrap.master.cs" Inherits="DataPlatform.WebSiteB.Views.Shared.Bootstrap" %>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>界面预览</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <script type="text/javascript" src="http://127.0.0.1/jquery/jquery-1.8.0.min.js"></script>
+   <script type="text/javascript" src="http://127.0.0.1/bootstrap/js/bootstrap.js"></script>
+   <script type="text/javascript">
+       function openurl(url) {
+           $('#maincc').attr('src', url);
+           return false;
+       }
+   </script>
+ 
+	 <!-- Le styles -->
+    <link href="http://127.0.0.1/bootstrap/css/bootstrap.css" rel="stylesheet">
+	<link href="http://127.0.0.1/bootstrap/css/docs.css" rel="stylesheet">
+    <link href="http://127.0.0.1/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+  <style type="text/css">
+      body {
+        padding-top: 82px;
+        padding-bottom: 0px;
+      }
+      .sidebar-nav {
+        padding: 5px 0;
+      }
+    </style>
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+     <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+  </head>
+
+  <body>
+<div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+		<div class="container">
+
+		  <div class="nav-collapse">
+            <ul class="nav">
+              <li class="active"><a href="/nav/index">首页</a></li>
+              <li><a href="/nav/config">设置中心</a></li>
+              <li><a href="/nav/data">数据中心</a></li>
+			   <li><a href="/nav/table">表格分析</a></li>
+			    <li><a href="/nav/graph">图表分析</a></li>
+			   <li><a href="/nav/about">关于</a></li>
+			    <li><a href="/nav/contact">联系</a></li>
+				 <li><a href="/nav/help">帮助</a></li>
+				  <li><a href="/nav/spider">爬虫设置</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+          <div class="btn-group pull-right">
+            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+              <i class="icon-user"></i>用户名
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#">用户资料</a></li>
+              <li class="divider"></li>
+              <li><a href="#">用户退出</a></li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+<div class="container">
+    
+<div class="subnav subnav-fixed">
+    <ul class="nav nav-pills">
+      <li><a href="#labels">今日数据</a></li>
+      <li><a href="#badges">昨日数据</a></li>
+      <li><a href="#typography">今日表格</a></li>
+      <li><a href="#thumbnails">昨日表格</a></li>
+	  <li><a href="#typography">今日图表</a></li>
+      <li><a href="#thumbnails">昨日图表</a></li>
+    </ul>
+  </div>
+
+    <div class="container-fluid">
+      <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+    </div><!--/.fluid-container-->
+     <hr>
+     <footer>
+        <p>&copy; Company 2012.08</p>
+      </footer>
+</div>
+
+  </body>
+</html>
+
+  
+        
+    

@@ -1,0 +1,9 @@
+﻿<!--#include file="head.shtml" -->
+<!--main-->
+<div id="main" align="center">
+<!--#include file="listleft.shtml" -->
+<!--#include file="listright.shtml" -->
+<!--#include file="center.shtml" -->
+</div>
+<!--main-->
+<!--#include file="foot.shtml" -->

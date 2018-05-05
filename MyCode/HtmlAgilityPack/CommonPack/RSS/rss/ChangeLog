@@ -1,0 +1,6 @@
+
+2004-04-13  John Luke  <jluke@cfl.rr.com>
+
+	* Collections/RssModulesCollection.cs:
+	* Collections/RssItemCollections.cs: mark [Serializable]
+

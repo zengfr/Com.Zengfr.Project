@@ -1,0 +1,5 @@
+D:\Desktop\平台\Zfrong\Project\Member\Host\WebF\bin\Zfrong.Project.Member.WebF.dll
+D:\Desktop\平台\Zfrong\Project\Member\Host\WebF\bin\Zfrong.Project.Member.WebF.pdb
+D:\Desktop\平台\Zfrong\Project\Member\Host\WebF\obj\Debug\ResolveAssemblyReference.cache
+D:\Desktop\平台\Zfrong\Project\Member\Host\WebF\obj\Debug\Zfrong.Project.Member.WebF.dll
+D:\Desktop\平台\Zfrong\Project\Member\Host\WebF\obj\Debug\Zfrong.Project.Member.WebF.pdb

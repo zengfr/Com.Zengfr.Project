@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DBB44665-71CA-4B5D-8ECF-53B7D327B62A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Zfrong.Framework.Core</RootNamespace>
+    <AssemblyName>Zfrong.Framework.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NHibernate">
+      <HintPath>F:\DevLib\net\NH3.3\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataContract\ExtContract.cs" />
+    <Compile Include="DataContract\ExtDictionary.cs" />
+    <Compile Include="DataContract\ExtRequest.cs" />
+    <Compile Include="DataContract\ExtResponse.cs" />
+    <Compile Include="DataContract\TokenRequest.cs" />
+    <Compile Include="IBussiness\IBussiness.cs" />
+    <Compile Include="IBussiness\IExtBussiness.cs" />
+    <Compile Include="IBussiness\IExtTreeBussines.cs" />
+    <Compile Include="IDataAccess\IDao.cs" />
+    <Compile Include="IDataAccess\IExtDao.cs" />
+    <Compile Include="IDataAccess\IExtTreeDao.cs" />
+    <Compile Include="IDataAccess\Plugin\IDaoPlugin.cs" />
+    <Compile Include="IDataAccess\Plugin\IExtDaoPlugin.cs" />
+    <Compile Include="IDataAccess\Plugin\IExtTreeDaoPlugin.cs" />
+    <Compile Include="IModel\IExtModel.cs" />
+    <Compile Include="IModel\IExtTreeModel.cs" />
+    <Compile Include="IModel\IModel.cs" />
+    <Compile Include="IRepository\IExtRepository.cs" />
+    <Compile Include="IRepository\IExtTreeRepository.cs" />
+    <Compile Include="IRepository\IRepository.cs" />
+    <Compile Include="Model\ModelBase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="IService\IExtService.cs" />
+    <Compile Include="IService\IExtTreeService.cs" />
+    <Compile Include="IService\IService.cs" />
+    <Compile Include="IService\ITokenService.cs" />
+    <Compile Include="IService\Plugin\IExtServicePlugin.cs" />
+    <Compile Include="IService\Plugin\IExtTreeServicePlugin.cs" />
+    <Compile Include="IService\Plugin\IServicePlugin.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

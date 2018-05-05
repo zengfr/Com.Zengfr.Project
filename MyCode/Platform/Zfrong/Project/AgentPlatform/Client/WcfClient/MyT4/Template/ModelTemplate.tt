@@ -1,0 +1,28 @@
+﻿<#@ include file="..\Abs\AbsTemplate.ttinclude" #>
+<#+
+    public class ModelTemplate : AbsTemplate
+    {   
+        public ModelTemplate(Table table):base(table)
+        {
+           
+        }
+        public override string TransformText()
+        {
+            base.TransformText();
+            WriteLine(string.Format("namespace {0}.Model{{",this.NamespacePrefix));
+            PushIndent("\t"); 
+            WriteLine(string.Format("public class {0}:ModelBase",this.Table.TableName));
+            WriteLine("{");
+            PushIndent("\t"); 
+            foreach(KeyValuePair<string,Column> kv in this.Table.Columns)
+            {
+                Column column =kv.Value;
+                WriteLine(string.Format("{0} {1} {2} {{get;set;}}",                                                  "public",column.Type,column.ColumnName));
+            }
+            PopIndent();
+            WriteLine("}");
+            WriteLine("}");
+            return this.GenerationEnvironment.ToString();
+        }
+    }
+#>

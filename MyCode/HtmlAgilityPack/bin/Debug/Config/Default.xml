@@ -1,0 +1,2 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<config><param><add key="QueryBaseUrl" value="http://www.baidu.com/s?rtt=2&amp;tn=baiduwb&amp;cl=2" /></param><QueryParams><add key="word" value="%c5%b7%c0%b3%d1%c5" /></QueryParams></config>

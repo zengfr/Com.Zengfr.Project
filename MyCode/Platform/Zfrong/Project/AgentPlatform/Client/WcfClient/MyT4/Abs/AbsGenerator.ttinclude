@@ -1,0 +1,37 @@
+﻿<#@ include file="T4Toolbox.tt" #>
+<#@ assembly name="MySql.Data" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Data" #>
+<#@ assembly name="System.Xml" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Data" #>
+<#@ import namespace="System.Collections" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="MySql.Data.MySqlClient" #>
+<#+
+    public abstract class AbsGenerator:Generator
+    {
+        IEnumerable<AbsTemplate> Templates{get; set;}
+        public AbsGenerator(IEnumerable<Table> tables)
+{
+ if(null == tables)
+            {
+                throw new ArgumentNullException("tables");
+            }    
+            this.Templates = InitlizeTemplates(tables);
+        }
+        protected override void RunCore()
+        {
+            foreach(AbsTemplate template in this.Templates)
+            {
+                template.RenderToFile(string.Format("..\\GeneratedCode\\{0}\\{1}{2}{3}",
+                    template.GetType().Name.Replace("Template",""),
+                    template.FilePrefix,
+                    template.Table.TableName,
+                    template.FileSuffix));
+            }
+        }
+        protected abstract IEnumerable<AbsTemplate> InitlizeTemplates(IEnumerable<Table> tables);
+    }
+#>

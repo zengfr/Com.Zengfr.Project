@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zfrong.Common", "Com.Zfrong\Zfrong.Common.csproj", "{755CD3CE-17C9-4958-96E8-3EFDA7E3644B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zfrong.Common.Test", "Com.Zfrong.Test\Zfrong.Common.Test.csproj", "{1C311C66-4531-4134-B8AA-3D38C5F90DD3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{755CD3CE-17C9-4958-96E8-3EFDA7E3644B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{755CD3CE-17C9-4958-96E8-3EFDA7E3644B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{755CD3CE-17C9-4958-96E8-3EFDA7E3644B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{755CD3CE-17C9-4958-96E8-3EFDA7E3644B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C311C66-4531-4134-B8AA-3D38C5F90DD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C311C66-4531-4134-B8AA-3D38C5F90DD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C311C66-4531-4134-B8AA-3D38C5F90DD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C311C66-4531-4134-B8AA-3D38C5F90DD3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

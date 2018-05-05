@@ -1,0 +1,13 @@
+D:\Desktop\平台\Zfrong\Platform\Contract\bin\Debug\Zfrong.Platform.Core.dll
+D:\Desktop\平台\Zfrong\Platform\Contract\bin\Debug\Zfrong.Platform.Core.pdb
+D:\Desktop\平台\Zfrong\Platform\Contract\bin\Debug\NHibernate.dll
+D:\Desktop\平台\Zfrong\Platform\Contract\bin\Debug\Spring.Data.dll
+D:\Desktop\平台\Zfrong\Platform\Contract\bin\Debug\Iesi.Collections.dll
+D:\Desktop\平台\Zfrong\Platform\Contract\bin\Debug\Spring.Aop.dll
+D:\Desktop\平台\Zfrong\Platform\Contract\bin\Debug\Spring.Core.dll
+D:\Desktop\平台\Zfrong\Platform\Contract\bin\Debug\Common.Logging.dll
+D:\Desktop\平台\Zfrong\Platform\Contract\obj\Debug\ResolveAssemblyReference.cache
+D:\Desktop\平台\Zfrong\Platform\Contract\obj\Debug\Zfrong.Platform.Core.dll
+D:\Desktop\平台\Zfrong\Platform\Contract\obj\Debug\Zfrong.Platform.Core.pdb
+D:\Desktop\平台\Zfrong\Platform\bin\Debug\Zfrong.Platform.Core.dll
+D:\Desktop\平台\Zfrong\Platform\bin\Debug\Zfrong.Platform.Core.pdb

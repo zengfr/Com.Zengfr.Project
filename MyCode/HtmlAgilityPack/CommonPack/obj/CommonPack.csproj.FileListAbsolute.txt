@@ -1,0 +1,10 @@
+F:\dev project\新建文件夹\HtmlAgilityPack\bin\Debug\CommonPack.dll.config
+F:\dev project\新建文件夹\HtmlAgilityPack\bin\Debug\CommonPack.dll
+F:\dev project\新建文件夹\HtmlAgilityPack\bin\Debug\CommonPack.pdb
+F:\dev project\新建文件夹\HtmlAgilityPack\CommonPack\obj\Debug\ResolveAssemblyReference.cache
+F:\dev project\新建文件夹\HtmlAgilityPack\CommonPack\obj\Debug\WordNet.MainForm.resources
+F:\dev project\新建文件夹\HtmlAgilityPack\CommonPack\obj\Debug\CommonPack.分词.WordNetCommon.Test.Properties.Resources.resources
+F:\dev project\新建文件夹\HtmlAgilityPack\CommonPack\obj\Debug\Sample.Form1.resources
+F:\dev project\新建文件夹\HtmlAgilityPack\CommonPack\obj\Debug\CommonPack.csproj.GenerateResource.Cache
+F:\dev project\新建文件夹\HtmlAgilityPack\CommonPack\obj\Debug\CommonPack.dll
+F:\dev project\新建文件夹\HtmlAgilityPack\CommonPack\obj\Debug\CommonPack.pdb

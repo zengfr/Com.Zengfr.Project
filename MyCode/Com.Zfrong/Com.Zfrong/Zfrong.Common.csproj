@@ -1,0 +1,494 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{755CD3CE-17C9-4958-96E8-3EFDA7E3644B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Zfrong.Common</RootNamespace>
+    <AssemblyName>Zfrong.Common</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <Compile Include="3rd\Nhibernate\Core\HelperBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="3rd\Nhibernate\NHibernate\AbstractNHibernateDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="3rd\Nhibernate\NHibernate\AbstractNHibernateDaoFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="3rd\Nhibernate\NHibernate\Domain\DomainObject.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="3rd\Nhibernate\NHibernate\Domain\IHasAssignedId.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="3rd\Nhibernate\NHibernate\IDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="3rd\Nhibernate\NHibernate\NHibernateSessionMgmt\NHibernateSessionManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="3rd\Nhibernate\NHibernate\NHibernateSessionMgmt\NHibernateSessionModule.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="3rd\Nhibernate\NHibernate\NHibernateSessionMgmt\OpenSessionInViewSection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="3rd\Nhibernate\NHibernate\NHibernateSessionMgmt\SessionFactoriesCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="3rd\Nhibernate\NHibernate\NHibernateSessionMgmt\SessionFactoryElement.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="3rd\Nhibernate\NHibernate\test.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="3rd\Nhibernate\NHibernate\Utils\DesignByContract.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="3rd\Nhibernate\NHibernate\Utils\Web\ErrorModule.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="3rd\Nhibernate\NH\ActiveRecords\ActiveRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="3rd\Nhibernate\NH\ActiveRecords\ActiveRecordException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="3rd\Nhibernate\NH\ActiveRecords\AggregateEnum.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="3rd\Nhibernate\NH\ActiveRecords\NotFoundException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="3rd\Nhibernate\NH\ActiveRecords\QueryParameter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="3rd\Nhibernate\NH\AppSettings.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="3rd\Nhibernate\NH\AppSettingsValues.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="3rd\Nhibernate\NH\DAL\AbstractDAL.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="3rd\Nhibernate\NH\NHHelper\NHHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="3rd\Nhibernate\NH\NHHelper\ParamInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="3rd\Nhibernate\NH\NHibernateSessionStorage\Cfg\Config.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="3rd\Nhibernate\NH\NHibernateSessionStorage\HttpSessionSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="3rd\Nhibernate\NH\NHibernateSessionStorage\ISessionStorage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="3rd\Nhibernate\NH\NHibernateSessionStorage\NHibernateDatabaseFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="3rd\Nhibernate\NH\NHibernateSessionStorage\SessionObject.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="3rd\Nhibernate\NH\NHibernateSessionStorage\SessionStorageFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="3rd\Nhibernate\NH\NHibernateSessionStorage\ThreadSessionSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="3rd\Nhibernate\NH\Page\HqlPage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="3rd\Nhibernate\NH\Page\Page.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="3rd\Nhibernate\NH\Page\PageHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="3rd\Nhibernate\NH\test.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="3rd\Nhibernate\NH\test2.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Collections\MultimapBK.cs" />
+    <Compile Include="Common\Collections\MultiMapBKException.cs" />
+    <Compile Include="Common\Configuration\KeyValues\KeyValues.cs" />
+    <Compile Include="Common\Configuration\KeyValues\KeyValues_Data.cs" />
+    <Compile Include="Common\Configuration\KeyValues\Utils.cs" />
+    <Compile Include="3rd\Dotnetskin\DotnetSkinClass.cs" />
+    <Compile Include="3rd\Dotnetskin\DotNetSkinRes.Designer.cs" />
+    <Compile Include="3rd\Algorithms\CRC.cs" />
+    <Compile Include="3rd\Algorithms\LCS_src\Diff.cs" />
+    <Compile Include="3rd\Algorithms\LCS_src\LCSFinder.cs" />
+    <Compile Include="3rd\Algorithms\LCS_src\PorterStemmer.cs" />
+    <Compile Include="3rd\Algorithms\LCS_src\StopWordsHandler.cs" />
+    <Compile Include="3rd\Algorithms\LCS_src\Test.cs" />
+    <Compile Include="3rd\Algorithms\LCS_src\Tokeniser.cs" />
+    <Compile Include="3rd\Algorithms\tfidf_src\Levenshtein.cs" />
+    <Compile Include="3rd\Algorithms\tfidf_src\NGram.cs" />
+    <Compile Include="3rd\Algorithms\tfidf_src\PorterStemmer.cs" />
+    <Compile Include="3rd\Algorithms\PowerComparer.cs" />
+    <Compile Include="3rd\Algorithms\tfidf_src\StopWordsHandler.cs" />
+    <Compile Include="3rd\Algorithms\tfidf_src\test.cs" />
+    <Compile Include="3rd\Algorithms\tfidf_src\TFIDFMeasure.cs" />
+    <Compile Include="3rd\Algorithms\tfidf_src\Tokeniser.cs" />
+    <Compile Include="3rd\Algorithms\URLTFIDFMeasure.cs" />
+    <Compile Include="Common\Collections\EnumHelper.cs" />
+    <Compile Include="Common\Collections\ZDictionary.cs" />
+    <Compile Include="Common\ComponentModel\SortableBindingList.cs" />
+    <Compile Include="Common\Configuration\ConfigX.cs" />
+    <Compile Include="Common\Configuration\Settings.cs" />
+    <Compile Include="Common\Data\SQL\SqlHelper.cs" />
+    <Compile Include="Common\Data\SQL\SqlHelperParameterCache.cs" />
+    <Compile Include="Common\Drawing\BitmapConverter.cs" />
+    <Compile Include="Common\Extensions\MatchCollectionExtensions.cs" />
+    <Compile Include="Common\Extensions\MatchExtensions.cs" />
+    <Compile Include="Common\Extensions\StringExtensions.cs" />
+    <Compile Include="Common\Helper\ConfigHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Helper\ConvertHelper.cs" />
+    <Compile Include="Common\Helper\CookieHelper.cs" />
+    <Compile Include="Common\Helper\DataCache.cs" />
+    <Compile Include="Common\Helper\DirFileHelper.cs" />
+    <Compile Include="Common\Helper\DownLoadHelper.cs" />
+    <Compile Include="Common\Helper\FTPHelper.cs" />
+    <Compile Include="Common\Helper\HtmlHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Helper\INIHelper.cs" />
+    <Compile Include="Common\Helper\IpHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Helper\JavaScriptHelper.cs" />
+    <Compile Include="Common\Helper\MailHelper.cs" />
+    <Compile Include="Common\Helper\MediaHandlerHelper.cs" />
+    <Compile Include="Common\Helper\PagerHelper.cs" />
+    <Compile Include="Common\Helper\PageValidate.cs" />
+    <Compile Include="Common\Helper\PicDealHelper.cs" />
+    <Compile Include="Common\Helper\PopupMessageHelper.cs" />
+    <Compile Include="Common\Helper\RandomHelper.cs" />
+    <Compile Include="Common\Helper\RegexHelper.cs" />
+    <Compile Include="Common\Helper\RmbHelper.cs" />
+    <Compile Include="Common\Helper\SessionHelper.cs" />
+    <Compile Include="Common\Helper\StringHelper.cs" />
+    <Compile Include="Common\Helper\SysHelper.cs" />
+    <Compile Include="Common\Helper\TimeHelper.cs" />
+    <Compile Include="Common\Helper\UrlOper.cs" />
+    <Compile Include="Common\Helper\WebSitePathHelper.cs" />
+    <Compile Include="Common\Helper\XmlHelper.cs" />
+    <Compile Include="Common\IO\FileOperate.cs" />
+    <Compile Include="Common\IO\IOHelper.cs" />
+    <Compile Include="Common\IO\Kelvin.cs" />
+    <Compile Include="Common\IO\Serializable.cs" />
+    <Compile Include="3rd\Jayrock\GenericImporter.cs" />
+    <Compile Include="3rd\Jayrock\GenericListImporter.cs" />
+    <Compile Include="3rd\Jayrock\ListImporter.cs" />
+    <Compile Include="3rd\Jayrock\MyJsonRpcHelp.cs" />
+    <Compile Include="Common\Net\Http\AsyncHttpRequest.cs" />
+    <Compile Include="Common\Net\Http\SyncHttpRequest.cs" />
+    <Compile Include="Common\Net\MyWebRequest.cs" />
+    <Compile Include="Common\Security\DESCrypt.cs" />
+    <Compile Include="Common\Security\EncryptionThread.cs" />
+    <Compile Include="3rd\Spring\Aspects\ConsoleLoggingAfterAdvice.cs" />
+    <Compile Include="3rd\Spring\Aspects\ConsoleLoggingAroundAdvice.cs" />
+    <Compile Include="3rd\Spring\Aspects\ConsoleLoggingBeforeAdvice.cs" />
+    <Compile Include="3rd\Spring\Aspects\ConsoleLoggingThrowsAdvice.cs" />
+    <Compile Include="3rd\Spring\Rest\MockHttpInputMessage.cs" />
+    <Compile Include="3rd\Spring\Rest\MockHttpOuputMessage.cs" />
+    <Compile Include="3rd\Spring\Rest\RestTemplateHelper.cs" />
+    <Compile Include="Common\Text\StringZipper.cs" />
+    <Compile Include="Common\Net\UriUtils.cs" />
+    <Compile Include="Common\Times\HighResolutionTimer.cs" />
+    <Compile Include="Common\Web\WebServiceHelper.cs" />
+    <Compile Include="Common\Win32\API\Shudown.cs" />
+    <Compile Include="Common\Win32\API\ComHelper.cs" />
+    <Compile Include="Common\Win32\Console\ConsoleColour.cs" />
+    <Compile Include="Common\Win32\Console\ConsoleProgram.cs" />
+    <Compile Include="3rd\CodeSimth\EntityHelper.cs" />
+    <Compile Include="3rd\CodeSimth\EntityTemplate.cs" />
+    <Compile Include="3rd\CodeSimth\TemplatesBuilder.cs" />
+    <Compile Include="3rd\Command\AppCommand.cs" />
+    <Compile Include="3rd\Command\CommandBase.cs" />
+    <Compile Include="3rd\Command\CommandManager.cs" />
+    <Compile Include="3rd\Command\CoreData.cs" />
+    <Compile Include="3rd\Command\Enums.cs" />
+    <Compile Include="3rd\Command\NotifiedDictionary.cs" />
+    <Compile Include="Common\Drawing\JPGToTIF.cs" />
+    <Compile Include="Common\IO\INI.cs" />
+    <Compile Include="Common\IO\SerializeHelper.cs" />
+    <Compile Include="Common\IO\StreamHelper.cs" />
+    <Compile Include="3rd\Log\Log4netFactory.cs" />
+    <Compile Include="3rd\Memcached\MemCachedBench.cs" />
+    <Compile Include="Common\Security\DataCrypto.cs" />
+    <Compile Include="Common\Text\ChineseCode.cs" />
+    <Compile Include="Common\Disposable.cs" />
+    <Compile Include="3rd\Log\MyLayout.cs" />
+    <Compile Include="3rd\Log\MyMessagePatternConverter.cs" />
+    <Compile Include="3rd\Log\MyRollingFileAppender.cs" />
+    <Compile Include="Common\Text\Escape.cs" />
+    <Compile Include="Common\Drawing\UnCodeBase.cs" />
+    <Compile Include="Common\Text\Unicode.cs" />
+    <Compile Include="Common\Text\UnicodeToGB2312.cs" />
+    <Compile Include="Common\Net\Http\HttpRequest.cs" />
+    <Compile Include="Common\Net\Http\Router.cs" />
+    <Compile Include="Common\IO\ObjectSerialize.cs" />
+    <Compile Include="Common\Json\JsonHelper.cs" />
+    <Compile Include="Common\Math\RandomUtil.cs" />
+    <Compile Include="Common\Win32\API\APIWindows.cs" />
+    <Compile Include="Common\Win32\API\AppbarHelper.cs" />
+    <Compile Include="Common\Win32\API\Time.cs" />
+    <Compile Include="Common\Win32\API\RegHelper.cs" />
+    <Compile Include="Common\Xml\MyXml.cs" />
+    <Compile Include="Common\Xml\Serialization\XmlSerializableT.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="CodeSmith.Engine">
+      <HintPath>..\LIB\CodeSmith.Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetSkin">
+      <HintPath>..\..\..\..\..\DevLib\net\DotNetSkin.dll</HintPath>
+    </Reference>
+    <Reference Include="IBatisNet.Common">
+      <HintPath>..\LIB\IBatisNet.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="IBatisNet.DataAccess">
+      <HintPath>..\LIB\IBatisNet.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="IBatisNet.DataMapper">
+      <HintPath>..\LIB\IBatisNet.DataMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.85.5.452, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\LIB\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Jayrock">
+      <HintPath>..\LIB\Jayrock.dll</HintPath>
+    </Reference>
+    <Reference Include="Jayrock.Json">
+      <HintPath>..\LIB\Jayrock.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\LIB\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Memcached.ClientLibrary">
+      <HintPath>..\..\..\..\..\DevLib\net\memcached\Memcached.ClientLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.JScript" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\..\DevLib\net\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\..\..\..\..\DevLib\net\NH3.3\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.2.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\LIB\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="PostSharp.Core">
+      <HintPath>..\LIB\PostSharp.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="PostSharp.Core.XmlSerializers">
+      <HintPath>..\LIB\PostSharp.Core.XmlSerializers.dll</HintPath>
+    </Reference>
+    <Reference Include="PostSharp.Laos">
+      <HintPath>..\LIB\PostSharp.Laos.dll</HintPath>
+    </Reference>
+    <Reference Include="PostSharp.Laos.Weaver">
+      <HintPath>..\LIB\PostSharp.Laos.Weaver.dll</HintPath>
+    </Reference>
+    <Reference Include="PostSharp.MSBuild">
+      <HintPath>..\LIB\PostSharp.MSBuild.dll</HintPath>
+    </Reference>
+    <Reference Include="PostSharp.Public">
+      <HintPath>..\LIB\PostSharp.Public.dll</HintPath>
+    </Reference>
+    <Reference Include="SgmlReaderDll, Version=1.8.0.37190, Culture=neutral, PublicKeyToken=46b2db9ca481831b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\LIB\SgmlReaderDll.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Aop">
+      <HintPath>..\..\..\..\..\DevLib\net\spring.net 1.3.2\Spring.Aop.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Core">
+      <HintPath>..\..\..\..\..\DevLib\net\spring.net 1.3.2\Spring.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data">
+      <HintPath>..\..\..\..\..\DevLib\net\spring.net 1.3.2\Spring.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Rest">
+      <HintPath>..\..\..\..\..\DevLib\net\spring.net 1.3.2\ext\Spring.Rest.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="3rd\Lucene\" />
+    <Folder Include="3rd\Quartz\" />
+    <Folder Include="CommonBIZ\" />
+    <Folder Include="Common\CodeDom\" />
+    <Folder Include="Common\Diagnostics\" />
+    <Folder Include="Common\Globalization\" />
+    <Folder Include="Common\Management\" />
+    <Folder Include="Common\Media\" />
+    <Folder Include="Common\Net\Socket\" />
+    <Folder Include="Common\Reflection\" />
+    <Folder Include="Common\Resources\" />
+    <Folder Include="Common\Runtime\" />
+    <Folder Include="Common\Text\RegularExpressions\" />
+    <Folder Include="Common\Threading\" />
+    <Folder Include="Common\WCF\" />
+    <Folder Include="Common\Win32\Windows\" />
+    <Folder Include="Common\Win32\WMI\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="chars.bmp" />
+    <EmbeddedResource Include="hibernate.cfg.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="App.config" />
+    <EmbeddedResource Include="App1.config" />
+    <None Include="3rd\Dotnetskin\skin\MacOS_BLUE.skn" />
+    <None Include="3rd\Dotnetskin\skin\MacOS_TGRB2.skn" />
+    <None Include="3rd\Dotnetskin\skin\Office2007.skn" />
+    <None Include="3rd\Dotnetskin\skin\Royale_INDIGOT.skn" />
+    <None Include="3rd\Dotnetskin\skin\VISTAXPB2.skn" />
+    <None Include="3rd\Dotnetskin\skin\Wmpx-XMP2.skn" />
+    <None Include="3rd\Dotnetskin\skin\XP_BLUE.skn" />
+    <None Include="3rd\Dotnetskin\skin\XP_HOMESTEAD.skn" />
+    <None Include="3rd\Dotnetskin\skin\XP_METALLIC.skn" />
+    <None Include="3rd\Algorithms\tfidf_src\TF_IDFWeighting.suo" />
+    <EmbeddedResource Include="DaoConfig.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Default.psproj" />
+    <EmbeddedResource Include="log4net.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="log4net.xsx">
+      <DependentUpon>log4net.xsd</DependentUpon>
+    </None>
+    <EmbeddedResource Include="nhibernate.config" />
+    <EmbeddedResource Include="PostSharp-1.5.targets" />
+    <EmbeddedResource Include="PostSharp-Platform.config" />
+    <EmbeddedResource Include="PostSharp.Laos.psplugin" />
+    <EmbeddedResource Include="provider.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="provider.xsx">
+      <DependentUpon>provider.xsd</DependentUpon>
+    </None>
+    <EmbeddedResource Include="SqlMap.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SqlMapConfig.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="3rd\Dotnetskin\DotNetSkinRes.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="3rd\Nhibernate\NH\NHibernateSessionStorage\TextFile1.txt" />
+  </ItemGroup>
+</Project>

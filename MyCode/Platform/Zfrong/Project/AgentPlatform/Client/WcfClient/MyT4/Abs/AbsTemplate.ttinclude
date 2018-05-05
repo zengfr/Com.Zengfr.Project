@@ -1,0 +1,23 @@
+﻿
+<#+
+    public class AbsTemplate : Template
+    {
+        public string NamespacePrefix{get; set;}
+        public string FileSuffix{get; set;}
+        public string FilePrefix{get; set;}
+        public Table Table {get; set;}
+        public AbsTemplate(Table table)
+        {
+             this.Table=table;
+        }
+        public override string TransformText()
+        {
+            WriteLine("using System;");
+            WriteLine("using System.Data;");
+            WriteLine("using System.Collections;");
+            WriteLine("using System.Collections.Generic;");
+            WriteLine("using Zfrong.Framework.Core.Model.Base;");
+            return this.GenerationEnvironment.ToString();
+        }
+    }
+#>

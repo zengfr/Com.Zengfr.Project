@@ -1,0 +1,5 @@
+D:\Desktop\平台\Zfrong\Platform\Zfrong.Framework.Interfaces\bin\Debug\Zfrong.Framework.Interfaces.dll
+D:\Desktop\平台\Zfrong\Platform\Zfrong.Framework.Interfaces\bin\Debug\Zfrong.Framework.Interfaces.pdb
+D:\Desktop\平台\Zfrong\Platform\Zfrong.Framework.Interfaces\obj\Debug\ResolveAssemblyReference.cache
+D:\Desktop\平台\Zfrong\Platform\Zfrong.Framework.Interfaces\obj\Debug\Zfrong.Framework.Interfaces.dll
+D:\Desktop\平台\Zfrong\Platform\Zfrong.Framework.Interfaces\obj\Debug\Zfrong.Framework.Interfaces.pdb

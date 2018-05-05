@@ -1,0 +1,25 @@
+﻿<!--<html>
+<head>
+<title>{Title}</title>-->
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+<link rel="stylesheet" type="text/css" href="/css/css.css" />
+<!--<base target="_blank" />-->
+<script language="JavaScript" type="text/javascript" src="/js/Comm.js"></script>
+<script language="JavaScript" type="text/javascript" src="/js/VipComm.js"></script>
+<style type="text/css">
+<!--
+-->
+</style>
+<script language="JavaScript">
+</script>
+</head>
+<body bottomMargin="1" topmargin="1" leftMargin="1" rightMargin="1">
+<!--head-->
+<div id="head">
+	<div class="t3 bcg bgg"></div>
+	<div class="b3 bcg mb3">
+		<a href="/"><img src="http://www.baidu.com/img/logo.gif"></a>
+		<div id="usrbar"><a href="/">网站首页</a>|<a href="">用户登陆</a>|<a href="">用户注册</a>|<a href="">帮助指南</a></div>
+	</div>
+</div>
+<!--head-->

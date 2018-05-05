@@ -1,0 +1,1 @@
+<%@ ServiceHost Language="C#" Debug="true" Service="accountsService" Factory="Spring.ServiceModel.Activation.ServiceHostFactory" %>

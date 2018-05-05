@@ -1,0 +1,19 @@
+﻿<!--center-->
+<div id="center">
+
+<div class="t3 bcb bgb">问题分类</div>
+<div class="b3 bcb mb6">item</div>
+
+<div class="t3 bcg bgg"><a href="">精彩推荐</a></div>
+<div class="b3 bcg mb6">item</div>
+
+<div class="t3 bcy bgy"><a href="">主题知识</a></div>
+<div class="b3 bcy mb6">item</div>
+<div class="t3 bc2 bg2"><a href="">主题知识2</a></div>
+<div class="b3 bc2 mb6">item</div>
+
+<div class="t3 bc1 bg1"><a href="">精彩推荐1</a></div>
+<div class="b3 bc1 mb6">item</div>
+
+</div>
+<!--center-->

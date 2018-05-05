@@ -1,0 +1,16 @@
+D:\Desktop\平台\Zfrong.Platform\Platform\Common\System.My.Commom.Service\obj\Debug\ResolveAssemblyReference.cache
+D:\Desktop\平台\Zfrong.Platform\Platform\Common\System.My.Commom.Service\obj\Debug\MyPlatform.Core.Service.pdb
+D:\Desktop\平台\Zfrong.Platform\Platform\Common\System.My.Commom.Service\bin\Debug\MyPlatform.Core.Service.dll
+D:\Desktop\平台\Zfrong.Platform\Platform\Common\System.My.Commom.Service\bin\Debug\MyPlatform.Core.Service.pdb
+D:\Desktop\平台\Zfrong.Platform\Platform\Common\System.My.Commom.Service\bin\Debug\MyPlatform.Core.Contract.dll
+D:\Desktop\平台\Zfrong.Platform\Platform\Common\System.My.Commom.Service\bin\Debug\MyPlatform.Core.Dao.dll
+D:\Desktop\平台\Zfrong.Platform\Platform\Common\System.My.Commom.Service\bin\Debug\NHibernate.dll
+D:\Desktop\平台\Zfrong.Platform\Platform\Common\System.My.Commom.Service\bin\Debug\MyPlatform.Core.Utils.dll
+D:\Desktop\平台\Zfrong.Platform\Platform\Common\System.My.Commom.Service\bin\Debug\Iesi.Collections.dll
+D:\Desktop\平台\Zfrong.Platform\Platform\Common\System.My.Commom.Service\bin\Debug\Spring.Aop.dll
+D:\Desktop\平台\Zfrong.Platform\Platform\Common\System.My.Commom.Service\bin\Debug\Common.Logging.dll
+D:\Desktop\平台\Zfrong.Platform\Platform\Common\System.My.Commom.Service\bin\Debug\Spring.Core.dll
+D:\Desktop\平台\Zfrong.Platform\Platform\Common\System.My.Commom.Service\bin\Debug\MyPlatform.Core.Contract.pdb
+D:\Desktop\平台\Zfrong.Platform\Platform\Common\System.My.Commom.Service\bin\Debug\MyPlatform.Core.Dao.pdb
+D:\Desktop\平台\Zfrong.Platform\Platform\Common\System.My.Commom.Service\bin\Debug\MyPlatform.Core.Utils.pdb
+D:\Desktop\平台\Zfrong.Platform\Platform\Common\System.My.Commom.Service\obj\Debug\MyPlatform.Core.Service.dll

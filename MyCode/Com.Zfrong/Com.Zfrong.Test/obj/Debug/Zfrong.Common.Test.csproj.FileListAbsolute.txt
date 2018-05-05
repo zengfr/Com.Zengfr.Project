@@ -1,0 +1,4 @@
+E:\csharpproject\Com.Zengfr.Project\MyCode\Com.Zfrong\Com.Zfrong.Test\obj\Debug\Zfrong.Common.Test.csprojResolveAssemblyReference.cache
+E:\csharpproject\Com.Zengfr.Project\MyCode\Com.Zfrong\Com.Zfrong.Test\obj\Debug\Test.Form1.resources
+E:\csharpproject\Com.Zengfr.Project\MyCode\Com.Zfrong\Com.Zfrong.Test\obj\Debug\Zfrong.Common.Test.Properties.Resources.resources
+E:\csharpproject\Com.Zengfr.Project\MyCode\Com.Zfrong\Com.Zfrong.Test\obj\Debug\Zfrong.Common.Test.csproj.GenerateResource.Cache

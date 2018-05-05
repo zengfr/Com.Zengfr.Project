@@ -1,0 +1,24 @@
+﻿<#@ include file="..\Abs\AbsTemplate.ttinclude" #>
+<#+
+    public class ConfigTemplate : AbsTemplate
+    {   
+        public ConfigTemplate(Table table):base(table)
+        {
+           
+        }
+        public override string TransformText()
+        {
+            base.TransformText();
+            WriteLine("using System.ServiceModel;");
+            WriteLine("using NHibernate.Criterion;");
+             WriteLine(string.Format("namespace {0}.Config{{",this.NamespacePrefix));
+            WriteLine(string.Format("public class {0}Config",this.Table.TableName));
+            WriteLine("{");
+            PushIndent("\t"); 
+            WriteLine("");
+            PopIndent();
+            WriteLine("}");WriteLine("}");
+            return this.GenerationEnvironment.ToString();
+        }
+    }
+#>

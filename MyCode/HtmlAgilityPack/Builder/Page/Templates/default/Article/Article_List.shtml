@@ -1,0 +1,22 @@
+﻿<html><head>
+<title>{Title}</title>
+<!--#include file="/template/head.shtml"-->
+<!--main-->
+<div id="main" align="center">
+<!--#include file="/template/Listleft.shtml"-->
+<!--#include file="/template/Listright.shtml"-->
+<!--center-->
+<div id="center">
+	<div class="t3 ListT">列表</div>
+	<div class="b3 ListC">
+		<script language="JavaScript" type="text/javascript" src="/js/ListTop.js"></script>
+		{ListItems}
+		<script language="JavaScript" type="text/javascript" src="/js/ListButtom.js"></script>
+	</div>
+</div>
+<!--center-->
+</div>
+<!--main-->
+<script language="JavaScript" type="text/javascript" src="/js/ListComm.js"></script>
+<script language="JavaScript" type="text/javascript" src="/js/List/{PageIndex}.js"></script>
+<!--#include file="/template/foot.shtml"-->

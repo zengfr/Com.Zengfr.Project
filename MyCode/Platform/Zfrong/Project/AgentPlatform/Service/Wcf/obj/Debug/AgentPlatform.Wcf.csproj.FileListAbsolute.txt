@@ -1,0 +1,11 @@
+D:\Desktop\平台\Zfrong\Project\AgentPlatform\Service\Wcf\bin\AgentPlatform.WCF.dll
+D:\Desktop\平台\Zfrong\Project\AgentPlatform\Service\Wcf\bin\AgentPlatform.WCF.pdb
+D:\Desktop\平台\Zfrong\Project\AgentPlatform\Service\Wcf\bin\Spring.Aop.dll
+D:\Desktop\平台\Zfrong\Project\AgentPlatform\Service\Wcf\bin\Spring.Core.dll
+D:\Desktop\平台\Zfrong\Project\AgentPlatform\Service\Wcf\bin\Spring.Data.dll
+D:\Desktop\平台\Zfrong\Project\AgentPlatform\Service\Wcf\bin\Common.Logging.dll
+D:\Desktop\平台\Zfrong\Project\AgentPlatform\Service\Wcf\obj\Debug\ResolveAssemblyReference.cache
+D:\Desktop\平台\Zfrong\Project\AgentPlatform\Service\Wcf\obj\Debug\AgentPlatform.WCF.dll
+D:\Desktop\平台\Zfrong\Project\AgentPlatform\Service\Wcf\obj\Debug\AgentPlatform.WCF.pdb
+D:\Desktop\平台\Zfrong\Project\AgentPlatform\Service\Wcf\bin\Spring.Services.dll
+D:\Desktop\平台\Zfrong\Project\AgentPlatform\Service\Wcf\bin\common.logging.log4net.dll

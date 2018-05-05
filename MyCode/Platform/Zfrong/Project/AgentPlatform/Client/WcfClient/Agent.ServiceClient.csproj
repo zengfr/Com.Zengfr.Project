@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{40FBA81A-CBA8-4B20-9A50-26931CA13418}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Member.ServiceClient</RootNamespace>
+    <AssemblyName>Member.ServiceClient</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MySql.Data, Version=6.5.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>F:\DevLib\net\MySQL Connector Net 6.5.4\Assemblies\v4.0\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate, Version=3.2.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>F:\DevLib\net\NH3.2\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GeneratedCode\Contract\IaccountsService.cs" />
+    <Compile Include="GeneratedCode\Contract\IactionsService.cs" />
+    <Compile Include="GeneratedCode\Contract\IdepartmentsService.cs" />
+    <Compile Include="GeneratedCode\Contract\ImenuactionsService.cs" />
+    <Compile Include="GeneratedCode\Contract\IproductcategoriesService.cs" />
+    <Compile Include="GeneratedCode\Contract\IproductordersService.cs" />
+    <Compile Include="GeneratedCode\Contract\IproductsService.cs" />
+    <Compile Include="GeneratedCode\Contract\IrolesService.cs" />
+    <Compile Include="GeneratedCode\Dao\accountsDao.cs" />
+    <Compile Include="GeneratedCode\Dao\actionsDao.cs" />
+    <Compile Include="GeneratedCode\Dao\departmentsDao.cs" />
+    <Compile Include="GeneratedCode\Dao\menuactionsDao.cs" />
+    <Compile Include="GeneratedCode\Dao\productcategoriesDao.cs" />
+    <Compile Include="GeneratedCode\Dao\productordersDao.cs" />
+    <Compile Include="GeneratedCode\Dao\productsDao.cs" />
+    <Compile Include="GeneratedCode\Dao\rolesDao.cs" />
+    <Compile Include="GeneratedCode\Model\accounts.cs" />
+    <Compile Include="GeneratedCode\Model\actions.cs" />
+    <Compile Include="GeneratedCode\Model\departments.cs" />
+    <Compile Include="GeneratedCode\Model\menuactions.cs" />
+    <Compile Include="GeneratedCode\Model\productcategories.cs" />
+    <Compile Include="GeneratedCode\Model\productorders.cs" />
+    <Compile Include="GeneratedCode\Model\products.cs" />
+    <Compile Include="GeneratedCode\Model\roles.cs" />
+    <Compile Include="GeneratedCode\Service\accountsService.cs" />
+    <Compile Include="GeneratedCode\Service\actionsService.cs" />
+    <Compile Include="GeneratedCode\Service\departmentsService.cs" />
+    <Compile Include="GeneratedCode\Service\menuactionsService.cs" />
+    <Compile Include="GeneratedCode\Service\productcategoriesService.cs" />
+    <Compile Include="GeneratedCode\Service\productordersService.cs" />
+    <Compile Include="GeneratedCode\Service\productsService.cs" />
+    <Compile Include="GeneratedCode\Service\rolesService.cs" />
+    <Compile Include="MyT4\Abs\inc.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>inc.ttinclude</DependentUpon>
+    </Compile>
+    <Compile Include="MyT4\ConfigGenerator.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConfigGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MyT4\ModelGenerator1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MyT4\ServiceGenerator.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MyT4\ContractGenerator.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ContractGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MyT4\DaoGenerator.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DaoGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MyT4\SvcGenerator.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SvcGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MyT4\Template\ModelTemplate1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="GeneratedCode\Svc\accountsService.svc" />
+    <Content Include="GeneratedCode\Svc\actionsService.svc" />
+    <Content Include="GeneratedCode\Svc\departmentsService.svc" />
+    <Content Include="GeneratedCode\Svc\menuactionsService.svc" />
+    <Content Include="GeneratedCode\Svc\productcategoriesService.svc" />
+    <Content Include="GeneratedCode\Svc\productordersService.svc" />
+    <Content Include="GeneratedCode\Svc\productsService.svc" />
+    <Content Include="GeneratedCode\Svc\rolesService.svc" />
+    <None Include="App.config" />
+    <Content Include="Config\Wcf\behaviors.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Config\Wcf\bindings.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Config\Wcf\extensions.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="GeneratedCode\Config\accounts.config" />
+    <None Include="GeneratedCode\Config\actions.config" />
+    <None Include="GeneratedCode\Config\departments.config" />
+    <None Include="GeneratedCode\Config\menuactions.config" />
+    <None Include="GeneratedCode\Config\productcategories.config" />
+    <None Include="GeneratedCode\Config\productorders.config" />
+    <None Include="GeneratedCode\Config\products.config" />
+    <None Include="GeneratedCode\Config\roles.config" />
+    <None Include="MyT4\Abs\inc.ttinclude">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>inc.cs</LastGenOutput>
+    </None>
+    <None Include="MyT4\Abs\AbsGenerator.ttinclude">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AbsGenerator.cs</LastGenOutput>
+    </None>
+    <None Include="MyT4\ConfigGenerator.tt.log">
+      <DependentUpon>ConfigGenerator.tt</DependentUpon>
+    </None>
+    <None Include="MyT4\ContractGenerator.tt.log">
+      <DependentUpon>ContractGenerator.tt</DependentUpon>
+    </None>
+    <None Include="MyT4\DaoGenerator.tt.log">
+      <DependentUpon>DaoGenerator.tt</DependentUpon>
+    </None>
+    <None Include="MyT4\ModelGenerator.tt.log">
+      <DependentUpon>ModelGenerator.tt</DependentUpon>
+    </None>
+    <None Include="MyT4\ServiceGenerator.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ServiceGenerator.cs</LastGenOutput>
+    </None>
+    <None Include="MyT4\ConfigGenerator.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ConfigGenerator.cs</LastGenOutput>
+    </None>
+    <None Include="MyT4\ContractGenerator.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ContractGenerator.cs</LastGenOutput>
+    </None>
+    <None Include="MyT4\ModelGenerator.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ModelGenerator1.cs</LastGenOutput>
+    </None>
+    <None Include="MyT4\Abs\AbsTemplate.ttinclude" />
+    <None Include="MyT4\ServiceGenerator.tt.log">
+      <DependentUpon>ServiceGenerator.tt</DependentUpon>
+    </None>
+    <None Include="MyT4\SvcGenerator.tt.log">
+      <DependentUpon>SvcGenerator.tt</DependentUpon>
+    </None>
+    <None Include="MyT4\Template\ServiceTemplate.tt" />
+    <None Include="MyT4\Template\ConfigTemplate.tt" />
+    <None Include="MyT4\Template\ContractTemplate.tt" />
+    <None Include="MyT4\Template\ModelTemplate.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ModelTemplate1.cs</LastGenOutput>
+    </None>
+    <None Include="MyT4\Template\DaoTemplate.tt" />
+    <None Include="MyT4\Template\SvcTemplate.tt" />
+    <None Include="MyT4\DaoGenerator.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DaoGenerator.cs</LastGenOutput>
+    </None>
+    <None Include="MyT4\SvcGenerator.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SvcGenerator.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

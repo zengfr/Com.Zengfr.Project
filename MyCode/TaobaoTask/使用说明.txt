@@ -1,0 +1,13 @@
+﻿一、获取Cookies
+1、打开Chrome浏览器，打开登录页 https://www.youzan.com/v2/fenxiao/market/index
+2、登录帐号密码，登录后台管理页。
+3、网页右键“检查”。则打开了开发工具，点击Network。
+4、刷新后台管理页。找到 v2/fenxiao/market/index。选中。
+5、右侧找到Request Heads下的Cookies。选中值 右键复制即可。
+二、配置参数
+1、程序目录config.ini
+2、配置keywords\cookies
+三、打开程序
+1、ConsoleTask.cmd
+2、一路回车
+3、会提示是否测试Cookies，默认执行测试准确性。成功或失败有语言和文字提示。

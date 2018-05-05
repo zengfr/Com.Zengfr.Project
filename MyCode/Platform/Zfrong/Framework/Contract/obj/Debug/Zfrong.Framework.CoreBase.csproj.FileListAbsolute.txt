@@ -1,0 +1,10 @@
+D:\Desktop\平台\Zfrong\Platform\Contract\obj\Debug\ResolveAssemblyReference.cache
+D:\Desktop\平台\Zfrong\Platform\bin\Debug\Zfrong.Framework.Core.dll
+D:\Desktop\平台\Zfrong\Platform\bin\Debug\Zfrong.Framework.Core.pdb
+D:\Desktop\平台\Zfrong\Platform\Contract\obj\Debug\Zfrong.Framework.Core.dll
+D:\Desktop\平台\Zfrong\Platform\Contract\obj\Debug\Zfrong.Framework.Core.pdb
+D:\Desktop\平台\Zfrong\Framework\bin\Debug\Zfrong.Framework.CoreBase.dll
+D:\Desktop\平台\Zfrong\Framework\bin\Debug\Zfrong.Framework.CoreBase.pdb
+D:\Desktop\平台\Zfrong\Framework\Contract\obj\Debug\ResolveAssemblyReference.cache
+D:\Desktop\平台\Zfrong\Framework\Contract\obj\Debug\Zfrong.Framework.CoreBase.dll
+D:\Desktop\平台\Zfrong\Framework\Contract\obj\Debug\Zfrong.Framework.CoreBase.pdb

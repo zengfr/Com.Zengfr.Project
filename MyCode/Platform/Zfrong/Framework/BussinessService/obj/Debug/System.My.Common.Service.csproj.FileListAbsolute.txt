@@ -1,0 +1,13 @@
+D:\Desktop\平台\System.My\Platform\Common\System.My.Commom.Service\obj\Debug\ResolveAssemblyReference.cache
+D:\Desktop\平台\System.My\Platform\Common\System.My.Commom.Service\bin\Debug\System.My.Common.Service.dll
+D:\Desktop\平台\System.My\Platform\Common\System.My.Commom.Service\bin\Debug\System.My.Common.Service.pdb
+D:\Desktop\平台\System.My\Platform\Common\System.My.Commom.Service\bin\Debug\NHibernate.dll
+D:\Desktop\平台\System.My\Platform\Common\System.My.Commom.Service\bin\Debug\System.My.Common.Contract.dll
+D:\Desktop\平台\System.My\Platform\Common\System.My.Commom.Service\bin\Debug\System.My.Common.Dao.dll
+D:\Desktop\平台\System.My\Platform\Common\System.My.Commom.Service\bin\Debug\System.My.Common.Domain.dll
+D:\Desktop\平台\System.My\Platform\Common\System.My.Commom.Service\bin\Debug\Iesi.Collections.dll
+D:\Desktop\平台\System.My\Platform\Common\System.My.Commom.Service\bin\Debug\System.My.Common.Domain.pdb
+D:\Desktop\平台\System.My\Platform\Common\System.My.Commom.Service\bin\Debug\System.My.Common.Contract.pdb
+D:\Desktop\平台\System.My\Platform\Common\System.My.Commom.Service\bin\Debug\System.My.Common.Dao.pdb
+D:\Desktop\平台\System.My\Platform\Common\System.My.Commom.Service\obj\Debug\System.My.Common.Service.dll
+D:\Desktop\平台\System.My\Platform\Common\System.My.Commom.Service\obj\Debug\System.My.Common.Service.pdb

@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{249C50FA-2243-49B7-B0C6-DE63D5553459}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TaobaoTask</RootNamespace>
+    <AssemblyName>ConsoleTask</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=3.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>d:\nuget\packages\Autofac.3.1.5\lib\net40\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AutoPrompt, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>d:\nuget\packages\rohankapoor.AutoPrompt.1.0.5\lib\net40\AutoPrompt.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Com.Zengfr.Proj.Common">
+      <HintPath>..\..\..\gitRepository\zhuizhangdashi\bin\Debug\Com.Zengfr.Proj.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonLibrary, Version=0.9.8.8, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>d:\nuget\packages\CommonLibrary.NET_0.9.8.8.0.9.8.8\lib\net40\CommonLibrary.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ConsoleTableExt, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>d:\nuget\packages\ConsoleTableExt.2.0.1\lib\net45\ConsoleTableExt.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\..\..\gitRepository\zhuizhangdashi\bin\Debug\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.8.1.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>d:\nuget\packages\HtmlAgilityPack.1.8.1\lib\Net45\HtmlAgilityPack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Konsole, Version=3.3.0.29034, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>d:\nuget\packages\Goblinfactory.Konsole.3.3.0\lib\net45\Konsole.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>d:\nuget\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NCrawler, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>d:\nuget\packages\NCrawler.3.0.1\lib\net45\NCrawler.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NCrawler.HtmlProcessor, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>d:\nuget\packages\NCrawler.HtmlProcessor.3.0.0\lib\net45\NCrawler.HtmlProcessor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\gitRepository\zhuizhangdashi\bin\Debug\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\..\..\gitRepository\zhuizhangdashi\bin\Debug\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\..\..\gitRepository\zhuizhangdashi\bin\Debug\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Collections" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppGCUtils.cs" />
+    <Compile Include="BeepUtil.cs" />
+    <Compile Include="ConsoleApp.cs" />
+    <Compile Include="ConsoleDisplayModeUtil.cs" />
+    <Compile Include="Craw\BloomFilter.cs" />
+    <Compile Include="Craw\CCrawler.cs" />
+    <Compile Include="Craw\ConsoleUtil.cs" />
+    <Compile Include="Craw\DictUtil.cs" />
+    <Compile Include="Craw\FileUtil.cs" />
+    <Compile Include="Craw\http_user_agent.cs" />
+    <Compile Include="Craw\PipelineStep\CHtmlDocumentProcessor.cs" />
+    <Compile Include="Craw\CNCrawlerModule.cs" />
+    <Compile Include="Craw\PipelineStep\DumpDictResultPipelineStep.cs" />
+    <Compile Include="Craw\PipelineStep\DumpResultPipelineStep.cs" />
+    <Compile Include="Craw\InMemoryViaBloomFilterCrawlerHistoryService.cs" />
+    <Compile Include="Craw\PipelineStep\HtmlDocumentExProcessorPipelineStep.cs" />
+    <Compile Include="Craw\Program.cs" />
+    <Compile Include="CsvMemoryUtil.cs" />
+    <Compile Include="CSVUtil.cs" />
+    <Compile Include="DllInvoke.cs" />
+    <Compile Include="KC\BoxExtensions.cs" />
+    <Compile Include="KC\BoxWriterEx.cs" />
+    <Compile Include="KC\ConsoleWriter.cs" />
+    <Compile Include="KC\FieldReader.cs" />
+    <Compile Include="KC\WriteAdapter.cs" />
+    <Compile Include="KC\DataTableUtil.cs" />
+    <Compile Include="KC\FormEx.cs" />
+    <Compile Include="KC\KCUtil.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RestClientUtil.cs" />
+    <Compile Include="Taobao\Taobaouggest.cs" />
+    <Compile Include="Taobao\TaobaoUtils.cs" />
+    <Compile Include="youzanApp.cs" />
+    <Compile Include="youzanApp2.cs" />
+    <Compile Include="youzan\goodslist\Data.cs" />
+    <Compile Include="youzan\goodslist\List.cs" />
+    <Compile Include="youzan\goodslist\Root.cs" />
+    <Compile Include="youzan\supplierteam\Data.cs" />
+    <Compile Include="youzan\supplierteam\Root.cs" />
+    <Compile Include="youzan\teamlist\Data.cs" />
+    <Compile Include="youzan\teamlist\List.cs" />
+    <Compile Include="youzan\teamlist\Pagination.cs" />
+    <Compile Include="youzan\teamlist\Profit_rate.cs" />
+    <Compile Include="youzan\teamlist\Root.cs" />
+    <Compile Include="youzan\teamlist\Top_goods_list.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="config.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ConsoleTask.cmd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="sound\dbz.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\dd.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\female.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="log4net.xml" />
+    <Content Include="sound\jqsj2.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\jqsj1.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\key.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\male.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="nhibernate.cfg.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="sound\119.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\break.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\o98.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\qq.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\V06.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\wd.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="使用说明.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

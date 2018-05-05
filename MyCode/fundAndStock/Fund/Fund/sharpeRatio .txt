@@ -1,0 +1,14 @@
+DescriptiveStatistics stats = new DescriptiveStatistics();
+    for( double item : returns) {
+        stats.addValue(item);
+    }
+
+    double mean = stats.getMean();
+
+    double std = stats.getStandardDeviation();
+
+    double sharpeRatio = (mean - (riskFreeReturn/12) ) / std * Math.sqrt(12);
+
+    System.out.println("sharpeRatio="+ sharpeRatio);
+
+http://stackoverflow.com/questions/3270065/calculating-sharpe-ratio-in-java

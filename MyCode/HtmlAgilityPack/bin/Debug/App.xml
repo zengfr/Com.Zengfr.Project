@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<config>
+<param><add key="SavePathRoot" value="E:\Debug\" /></param>
+<task>
+<add key="chinacity.org.cn" value="Spider" />
+</task>
+<task2>
+<add key="baixing.com" value="Spider" />
+<add key="58.com" value="Spider" />
+<add key="ganji.com" value="Spider" />
+<add key="qq.com" value="Monitor"/>
+<add key="qqzhi.com" value="Spider" />
+</task2>
+</config>

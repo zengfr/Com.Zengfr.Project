@@ -1,0 +1,289 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CDE9C191-1C7E-4C38-A656-E58601D03029}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CommonPack</RootNamespace>
+    <AssemblyName>CommonPack</AssemblyName>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRules>
+    </CodeAnalysisRules>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Com.Zfrong">
+      <HintPath>..\..\Com.Zfrong\Com.Zfrong\bin\Debug\Com.Zfrong.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL" />
+    <Reference Include="Lucene.Net, Version=1.3.3.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Lucene.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.JScript" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\MyConfigHelper.cs" />
+    <Compile Include="Common\PowerUri.cs" />
+    <Compile Include="Common\Sort.cs" />
+    <Compile Include="HtmlAgilityPack\DocumentWithForm.cs" />
+    <Compile Include="HtmlAgilityPack\DocumentWithLinks.cs" />
+    <Compile Include="HtmlAgilityPack\DocumentWithScript.cs" />
+    <Compile Include="HtmlAgilityPack\GetMainContentHelper.cs" />
+    <Compile Include="HtmlAgilityPack\Html2Rss.cs" />
+    <Compile Include="HtmlAgilityPack\Html2Xml.cs" />
+    <Compile Include="HtmlAgilityPack\HtmlToSubject.cs" />
+    <Compile Include="HtmlAgilityPack\HtmlToText.cs" />
+    <Compile Include="HtmlAgilityPack\FormPost.cs" />
+    <Compile Include="HtmlAgilityPack\ItemBuilder.cs" />
+    <Compile Include="HtmlAgilityPack\TemplateFactory.cs" />
+    <Compile Include="SearchEngineParser\TemplateHelper.cs" />
+    <Compile Include="RSS\atom\Atom.AdditionalElements\DublinCore\DcElement.cs" />
+    <Compile Include="RSS\atom\Atom.AdditionalElements\ScopedElement.cs" />
+    <Compile Include="RSS\atom\Atom.AdditionalElements\ScopedElementCollection.cs" />
+    <Compile Include="RSS\atom\Atom.Core.Collections\AtomContentCollection.cs" />
+    <Compile Include="RSS\atom\Atom.Core.Collections\AtomEntryCollection.cs" />
+    <Compile Include="RSS\atom\Atom.Core.Collections\AtomLinkCollection.cs" />
+    <Compile Include="RSS\atom\Atom.Core.Collections\AtomPersonConstructCollection.cs" />
+    <Compile Include="RSS\atom\Atom.Core\AtomContent.cs" />
+    <Compile Include="RSS\atom\Atom.Core\AtomContentConstruct.cs" />
+    <Compile Include="RSS\atom\Atom.Core\AtomDateConstruct.cs" />
+    <Compile Include="RSS\atom\Atom.Core\AtomElement.cs" />
+    <Compile Include="RSS\atom\Atom.Core\AtomEntry.cs" />
+    <Compile Include="RSS\atom\Atom.Core\AtomFeed.cs" />
+    <Compile Include="RSS\atom\Atom.Core\AtomGenerator.cs" />
+    <Compile Include="RSS\atom\Atom.Core\AtomLink.cs" />
+    <Compile Include="RSS\atom\Atom.Core\AtomPersonConstruct.cs" />
+    <Compile Include="RSS\atom\Atom.Core\Enums.cs" />
+    <Compile Include="RSS\atom\Atom.Core\Exceptions.cs" />
+    <Compile Include="RSS\atom\Atom.Utils\DefaultValues.cs" />
+    <Compile Include="RSS\atom\Atom.Utils\Utils.cs" />
+    <Compile Include="RSS\atom\AtomReader.cs" />
+    <Compile Include="RSS\atom\AtomWriter.cs" />
+    <Compile Include="RSS\rss\Collections\ExceptionCollection.cs" />
+    <Compile Include="RSS\rss\Collections\RssCategoryCollection.cs" />
+    <Compile Include="RSS\rss\Collections\RssChannelCollection.cs" />
+    <Compile Include="RSS\rss\Collections\RssFeedCollection.cs" />
+    <Compile Include="RSS\rss\Collections\RssItemCollection.cs" />
+    <Compile Include="RSS\rss\Collections\RssModuleCollection.cs" />
+    <Compile Include="RSS\rss\Collections\RssModuleItemCollection.cs" />
+    <Compile Include="RSS\rss\Collections\RssModuleItemCollectionCollection.cs" />
+    <Compile Include="RSS\rss\RssChannel\RssChannel.cs" />
+    <Compile Include="RSS\rss\RssChannel\RssCloud.cs" />
+    <Compile Include="RSS\rss\RssChannel\RssImage.cs" />
+    <Compile Include="RSS\rss\RssChannel\RssTextInput.cs" />
+    <Compile Include="RSS\rss\RssFeed.cs" />
+    <Compile Include="RSS\rss\RssItem\RssEnclosure.cs" />
+    <Compile Include="RSS\rss\RssItem\RssGuid.cs" />
+    <Compile Include="RSS\rss\RssItem\RssItem.cs" />
+    <Compile Include="RSS\rss\RssItem\RssSource.cs" />
+    <Compile Include="RSS\rss\RssModule.cs" />
+    <Compile Include="RSS\rss\RssModuleItem.cs" />
+    <Compile Include="RSS\rss\RssModules\RssPhotoAlbum.cs" />
+    <Compile Include="RSS\rss\RssReader.cs" />
+    <Compile Include="RSS\rss\RssWriter.cs" />
+    <Compile Include="RSS\rss\Shared\DBBool.cs" />
+    <Compile Include="RSS\rss\Shared\RssCategory.cs" />
+    <Compile Include="RSS\rss\Shared\RssDefault.cs" />
+    <Compile Include="RSS\rss\Shared\RssElement.cs" />
+    <Compile Include="RSS\rss\Shared\RssEnumerators.cs" />
+    <Compile Include="SearchEngineParser\Searcher\BaiduSearcher_WB.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SearchEngineParser\TemplateParser.cs" />
+    <Compile Include="SqlHelper.cs" />
+    <Compile Include="SqlHelperParameterCache.cs" />
+    <Compile Include="SearchEngineParser\RegexHelper.cs" />
+    <Compile Include="分词\Lucene.Net.Analysis.Cn\ChineseAnalyzer.cs" />
+    <Compile Include="分词\Lucene.Net.Analysis.Cn\ChineseFilter.cs" />
+    <Compile Include="分词\Lucene.Net.Analysis.Cn\ChineseTokenizer.cs" />
+    <Compile Include="Thread\ThreadWorker\Lockable.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="分词\HLSSplit\海量分词研究版C#接口.cs" />
+    <Compile Include="分词\HLSSplit\调用海量智能分词研究版的dll获取分词的结果.cs" />
+    <Compile Include="HtmlAgilityPack\TemplateBuilder.cs" />
+    <Compile Include="SearchEngineParser\Data\Table.cs" />
+    <Compile Include="SearchEngineParser\Template\TableTemplate.cs" />
+    <Compile Include="SearchEngineParser\Data\Cell.cs" />
+    <Compile Include="SearchEngineParser\Template\CellTemplate.cs" />
+    <Compile Include="SearchEngineParser\Data\NameValue.cs" />
+    <Compile Include="SearchEngineParser\Action\PatternAction.cs" />
+    <Compile Include="SearchEngineParser\Action\ReplaceAction.cs" />
+    <Compile Include="SearchEngineParser\Data\Row.cs" />
+    <Compile Include="SearchEngineParser\Template\RowTemplate.cs" />
+    <Compile Include="SearchEngineParser\Searcher.cs" />
+    <Compile Include="SearchEngineParser\Template\Template.cs" />
+    <Compile Include="SearchEngineParser\Test.cs" />
+    <Compile Include="StringSearch\PrecisionTimer.cs" />
+    <Compile Include="StringSearch\StringSearch.cs" />
+    <Compile Include="StringSearch\TestApp.cs" />
+    <Compile Include="Thread\ThreadWorker\base64.cs" />
+    <Compile Include="Thread\ThreadWorker\BloomFilter.cs" />
+    <Compile Include="Thread\ThreadWorker\CRC.cs" />
+    <Compile Include="Thread\ThreadWorker\Done.cs" />
+    <Compile Include="Thread\ThreadWorker\HttpWebClient.cs" />
+    <Compile Include="Thread\ThreadWorker\MyWeb.cs" />
+    <Compile Include="Thread\ThreadWorker\StringParser.cs" />
+    <Compile Include="Thread\ThreadWorker\TaskManager.cs" />
+    <Compile Include="Thread\ThreadWorker\ThreadWorker.cs" />
+    <Compile Include="Thread\ThreadWorker\ThreadManager.cs" />
+    <Compile Include="Thread\ThreadWorker\UrlReWrite.cs" />
+    <Compile Include="分词\WordNetCommon\Constants.cs" />
+    <Compile Include="分词\WordNetCommon\DbFileHelper.cs" />
+    <Compile Include="分词\WordNetCommon\Definition.cs" />
+    <Compile Include="分词\WordNetCommon\DictionaryHelper.cs" />
+    <Compile Include="分词\WordNetCommon\Enums.cs" />
+    <Compile Include="分词\WordNetCommon\FileParser.cs" />
+    <Compile Include="分词\WordNetCommon\Index.cs" />
+    <Compile Include="分词\WordNetCommon\Test\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="分词\WordNetCommon\Test\MainForm.designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="分词\WordNetCommon\Test\Properties\Resources.Designer.cs" />
+    <Compile Include="分词\WordNetCommon\Test\Properties\Settings.Designer.cs" />
+    <Compile Include="分词\WordNetCommon\WordNet.Net\bitset.cs" />
+    <Compile Include="分词\WordNetCommon\WordNet.Net\Class1.cs" />
+    <Compile Include="分词\WordNetCommon\WordNet.Net\Class2.cs" />
+    <Compile Include="分词\WordNetCommon\WordNet.Net\Index.cs" />
+    <Compile Include="分词\WordNetCommon\WordNet.Net\Lexeme.cs" />
+    <Compile Include="分词\WordNetCommon\WordNet.Net\LexemeList.cs" />
+    <Compile Include="分词\WordNetCommon\WordNet.Net\Lexicon.cs" />
+    <Compile Include="分词\WordNetCommon\WordNet.Net\morph.cs" />
+    <Compile Include="分词\WordNetCommon\WordNet.Net\SemCor.cs" />
+    <Compile Include="分词\WordNetCommon\WordNet.Net\Synonym.cs" />
+    <Compile Include="分词\WordNetCommon\WordNet.Net\SynSet.cs" />
+    <Compile Include="分词\WordNetCommon\WordNet.Net\SynSetList.cs" />
+    <Compile Include="分词\WordNetCommon\WordNet.Net\util.cs" />
+    <Compile Include="分词\WordNetCommon\WordNet.Net\wnhelp.cs" />
+    <Compile Include="分词\WordNetCommon\WordNet.Net\wordnet.cs" />
+    <Compile Include="分词\WordNetCommon\WordsMatching\DemoTest.cs" />
+    <Compile Include="分词\WordNetCommon\WordsMatching\ISimilarity.cs" />
+    <Compile Include="分词\WordNetCommon\WordsMatching\Matcher\BipartiteMatcher.cs" />
+    <Compile Include="分词\WordNetCommon\WordsMatching\Matcher\HeuristicMatcher.cs" />
+    <Compile Include="分词\WordNetCommon\WordsMatching\Relatedness.cs" />
+    <Compile Include="分词\WordNetCommon\WordsMatching\SentenceSimilarity.cs" />
+    <Compile Include="分词\WordNetCommon\WordsMatching\SimilarGenerator.cs" />
+    <Compile Include="分词\WordNetCommon\WordsMatching\TextHelper\Acronym.cs" />
+    <Compile Include="分词\WordNetCommon\WordsMatching\TextHelper\ExtOverlapCounter.cs" />
+    <Compile Include="分词\WordNetCommon\WordsMatching\TextHelper\SimpleOverlapCounter.cs" />
+    <Compile Include="分词\WordNetCommon\WordsMatching\TextHelper\StopWordsHandler.cs" />
+    <Compile Include="分词\WordNetCommon\WordsMatching\TextHelper\Tokeniser.cs" />
+    <Compile Include="分词\WordNetCommon\WordsMatching\WordSenseDisambiguator.cs" />
+    <Compile Include="分词\WordNetCommon\WordsMatching\WordSimilarity.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="RSS\atom\Makefile.am" />
+    <None Include="RSS\atom\Makefile.in" />
+    <None Include="RSS\rss\ChangeLog" />
+    <None Include="RSS\rss\Makefile.am" />
+    <None Include="RSS\rss\Makefile.in" />
+    <None Include="分词\WordNetCommon\Test\Properties\Settings.settings" />
+    <None Include="分词\WordNetCommon\WordNet.Net\app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HtmlAgilityPack\HtmlAgilityPack.csproj">
+      <Project>{193BB801-054F-4729-9D5D-FCE1E32594BF}</Project>
+      <Name>HtmlAgilityPack</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="StringSearch\graph10kb.gif" />
+    <Content Include="StringSearch\graph1kb.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="分词\WordNetCommon\Test\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="分词\WordNetCommon\Test\Properties\Resources.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

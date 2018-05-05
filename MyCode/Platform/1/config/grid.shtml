@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>界面预览</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+<link rel="stylesheet" type="text/css" href="http://127.0.0.1/ext/resources/css/ext-all-gray.css" />
+<style type="text/css">
+
+</style>
+<!--extjs-->
+<script type="text/javascript" src="http://127.0.0.1/ext/bootstrap.js"></script>
+<script type="text/javascript" src="http://127.0.0.1/ext/ext-lang-zh_CN.js"></script>
+<script type="text/javascript" src="http://127.0.0.1/ext/extloader.js"></script>
+<!--extjs-->
+</head>
+  <body>
+<div style="display:block;">
+	<div id="maincontainer" style="width:auto;display:block;"></div> 
+	<div id="maincontainer2" style="width:auto;display:block;"></div> 
+</div>
+<script type="text/javascript" src="../js/framework.js"></script>
+<script type="text/javascript" src="../js/pro/grid.js"></script>
+<script type="text/javascript">   
+</script>
+</body>
+</html>

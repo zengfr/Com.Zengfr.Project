@@ -1,0 +1,7 @@
+﻿<!--right-->
+<div id="right">
+	<script language="JavaScript" type="text/javascript" src="/js/ListRight.js"></script>
+	<!--#include file="/template/Item_New.shtml" -->
+	<!--#include file="/template/Item_Hot.shtml" -->
+</div>
+<!--right-->

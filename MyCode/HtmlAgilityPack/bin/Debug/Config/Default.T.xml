@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<XmlSerializableListOfAreaTemplate>
+  <AreaTemplate xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Name />
+    <Value />
+    <Patterns />
+    <RowTemplate>
+      <Name />
+      <Value />
+      <Patterns>
+        <Pattern>
+          <MatchIndex>0</MatchIndex>
+          <Text>&lt;li id=(.*?)- 新浪微博 -(.*?)&lt;/p&gt;&lt;/li&gt;</Text>
+          <Type>Html</Type>
+          <Filters />
+        </Pattern>
+      </Patterns>
+      <CellTemplates>
+        <CellTemplate>
+          <Name>连接</Name>
+          <Value />
+          <Patterns>
+            <Pattern>
+              <MatchIndex>1</MatchIndex>
+              <Text />
+              <Type>A_Href</Type>
+              <Filters>
+                <Replace>
+                  <Text>- 新浪微博 - 评论</Text>
+                  <RepText />
+                </Replace>
+                <Replace>
+                  <Text>=baidu_s_profile</Text>
+                  <RepText />
+                </Replace>
+              </Filters>
+            </Pattern>
+          </Patterns>
+        </CellTemplate>
+        <CellTemplate>
+          <Name>Text</Name>
+          <Value />
+          <Patterns>
+            <Pattern>
+              <MatchIndex>0</MatchIndex>
+              <Text />
+              <Type>Text</Type>
+              <Filters>
+                <Replace>
+                  <Text>- 新浪微博 - 评论</Text>
+                  <RepText />
+                </Replace>
+                <Replace>
+                  <Text>=baidu_s_profile</Text>
+                  <RepText />
+                </Replace>
+              </Filters>
+            </Pattern>
+          </Patterns>
+        </CellTemplate>
+      </CellTemplates>
+    </RowTemplate>
+  </AreaTemplate>
+</XmlSerializableListOfAreaTemplate>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<config>
+<param>
+<add key="IsExistUpdate" value="false" />
+<add key="OutputPath" value="E:\Output\" />
+<add key="IsTrue" value="true" /> 
+</param>
+<replace>
+<add key="www.qqzhi.com" value="qqzhi.wml365.com"/>
+<add key="qqzhi.com" value="qqzhi.wml365.com"/>
+<add key="QQ志" value="QQ个性站-wml365" />
+</replace>
+</config>

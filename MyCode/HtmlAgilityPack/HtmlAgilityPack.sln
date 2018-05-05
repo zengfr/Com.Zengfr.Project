@@ -1,0 +1,149 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Applicatlon", "Applicatlon", "{A82ABF8E-13D2-4A08-A78B-EEFC73DF0C0B}"
+	ProjectSection(FolderStartupServices) = postProject
+		{B4F97281-0DBD-4835-9ED8-7DFB966E87FF} = {B4F97281-0DBD-4835-9ED8-7DFB966E87FF}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utility", "Utility", "{EC400E52-5E1A-46CD-B835-1CA566007A86}"
+	ProjectSection(FolderStartupServices) = postProject
+		{B4F97281-0DBD-4835-9ED8-7DFB966E87FF} = {B4F97281-0DBD-4835-9ED8-7DFB966E87FF}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{2172E7DA-676C-4CAF-86D6-16043B1870E0}"
+	ProjectSection(FolderStartupServices) = postProject
+		{B4F97281-0DBD-4835-9ED8-7DFB966E87FF} = {B4F97281-0DBD-4835-9ED8-7DFB966E87FF}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Open Source Solution Items", "Open Source Solution Items", "{C0FB6AFE-0656-40D6-8E8B-BB3940B7DE73}"
+	ProjectSection(FolderStartupServices) = postProject
+		{B4F97281-0DBD-4835-9ED8-7DFB966E87FF} = {B4F97281-0DBD-4835-9ED8-7DFB966E87FF}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{4FE3E795-A87E-45A6-996D-6079C28F6184}"
+	ProjectSection(FolderStartupServices) = postProject
+		{B4F97281-0DBD-4835-9ED8-7DFB966E87FF} = {B4F97281-0DBD-4835-9ED8-7DFB966E87FF}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ToolKit", "ToolKit", "{17C2FDEE-EF7F-44D9-B6BC-A897C781697F}"
+	ProjectSection(FolderStartupServices) = postProject
+		{B4F97281-0DBD-4835-9ED8-7DFB966E87FF} = {B4F97281-0DBD-4835-9ED8-7DFB966E87FF}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{A008F3C2-75DA-4124-B0E8-C7832FB60F5F}"
+	ProjectSection(FolderStartupServices) = postProject
+		{B4F97281-0DBD-4835-9ED8-7DFB966E87FF} = {B4F97281-0DBD-4835-9ED8-7DFB966E87FF}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web Service", "Web Service", "{8DD27575-F6C6-4AC3-9F95-18A3B20C8100}"
+	ProjectSection(FolderStartupServices) = postProject
+		{B4F97281-0DBD-4835-9ED8-7DFB966E87FF} = {B4F97281-0DBD-4835-9ED8-7DFB966E87FF}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Winform", "Winform", "{501A01B7-AFB5-40B3-B88D-1B66F21A8E7B}"
+	ProjectSection(FolderStartupServices) = postProject
+		{B4F97281-0DBD-4835-9ED8-7DFB966E87FF} = {B4F97281-0DBD-4835-9ED8-7DFB966E87FF}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Persistence", "Persistence", "{D67A24F9-1748-4CC4-9F24-D01C55D6FB56}"
+	ProjectSection(FolderStartupServices) = postProject
+		{B4F97281-0DBD-4835-9ED8-7DFB966E87FF} = {B4F97281-0DBD-4835-9ED8-7DFB966E87FF}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{0B2DA7F4-16C3-4165-923B-A4BEAA71FB44}"
+	ProjectSection(FolderStartupServices) = postProject
+		{B4F97281-0DBD-4835-9ED8-7DFB966E87FF} = {B4F97281-0DBD-4835-9ED8-7DFB966E87FF}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HtmlAgilityPack", "HtmlAgilityPack\HtmlAgilityPack.csproj", "{193BB801-054F-4729-9D5D-FCE1E32594BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonPack", "CommonPack\CommonPack.csproj", "{CDE9C191-1C7E-4C38-A656-E58601D03029}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Builder", "Builder\Builder.csproj", "{E43917C0-FC72-48BF-87D1-DF5DF7B00B3F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSSBuilder", "RSSBuilder\RSSBuilder.csproj", "{91490DB7-324B-4FC1-82BD-F6CAE84A155E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordBuilder", "WordBuilder\WordBuilder.csproj", "{A2BE483A-0002-4C4C-A5A2-A7DB66BF6CAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.Common", "Client.Common\Client.Common.csproj", "{98D7DE92-CCB9-49CA-A3C3-F30A083C8A95}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 6
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs01.codeplex.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = GetDocLinks\\GetDocLinks.csproj
+		SccProjectTopLevelParentUniqueName1 = HtmlAgilityPack.sln
+		SccProjectName1 = GetDocLinks
+		SccLocalPath1 = GetDocLinks
+		SccProjectUniqueName2 = Html2Rss\\Html2Rss.csproj
+		SccProjectTopLevelParentUniqueName2 = HtmlAgilityPack.sln
+		SccProjectName2 = Html2Rss
+		SccLocalPath2 = Html2Rss
+		SccProjectUniqueName3 = Html2Txt\\Html2Txt.csproj
+		SccProjectTopLevelParentUniqueName3 = HtmlAgilityPack.sln
+		SccProjectName3 = Html2Txt
+		SccLocalPath3 = Html2Txt
+		SccProjectUniqueName4 = Html2Xml\\Html2Xml.csproj
+		SccProjectTopLevelParentUniqueName4 = HtmlAgilityPack.sln
+		SccProjectName4 = Html2Xml
+		SccLocalPath4 = Html2Xml
+		SccProjectUniqueName5 = HtmlAgilityPack\\HtmlAgilityPack.csproj
+		SccProjectName5 = HtmlAgilityPack
+		SccLocalPath5 = HtmlAgilityPack
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{193BB801-054F-4729-9D5D-FCE1E32594BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{193BB801-054F-4729-9D5D-FCE1E32594BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{193BB801-054F-4729-9D5D-FCE1E32594BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{193BB801-054F-4729-9D5D-FCE1E32594BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDE9C191-1C7E-4C38-A656-E58601D03029}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDE9C191-1C7E-4C38-A656-E58601D03029}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDE9C191-1C7E-4C38-A656-E58601D03029}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDE9C191-1C7E-4C38-A656-E58601D03029}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E43917C0-FC72-48BF-87D1-DF5DF7B00B3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E43917C0-FC72-48BF-87D1-DF5DF7B00B3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E43917C0-FC72-48BF-87D1-DF5DF7B00B3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E43917C0-FC72-48BF-87D1-DF5DF7B00B3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91490DB7-324B-4FC1-82BD-F6CAE84A155E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91490DB7-324B-4FC1-82BD-F6CAE84A155E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91490DB7-324B-4FC1-82BD-F6CAE84A155E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91490DB7-324B-4FC1-82BD-F6CAE84A155E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2BE483A-0002-4C4C-A5A2-A7DB66BF6CAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2BE483A-0002-4C4C-A5A2-A7DB66BF6CAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2BE483A-0002-4C4C-A5A2-A7DB66BF6CAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2BE483A-0002-4C4C-A5A2-A7DB66BF6CAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98D7DE92-CCB9-49CA-A3C3-F30A083C8A95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98D7DE92-CCB9-49CA-A3C3-F30A083C8A95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98D7DE92-CCB9-49CA-A3C3-F30A083C8A95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98D7DE92-CCB9-49CA-A3C3-F30A083C8A95}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A008F3C2-75DA-4124-B0E8-C7832FB60F5F} = {A82ABF8E-13D2-4A08-A78B-EEFC73DF0C0B}
+		{8DD27575-F6C6-4AC3-9F95-18A3B20C8100} = {A82ABF8E-13D2-4A08-A78B-EEFC73DF0C0B}
+		{501A01B7-AFB5-40B3-B88D-1B66F21A8E7B} = {A82ABF8E-13D2-4A08-A78B-EEFC73DF0C0B}
+		{EC400E52-5E1A-46CD-B835-1CA566007A86} = {C0FB6AFE-0656-40D6-8E8B-BB3940B7DE73}
+		{17C2FDEE-EF7F-44D9-B6BC-A897C781697F} = {C0FB6AFE-0656-40D6-8E8B-BB3940B7DE73}
+		{D67A24F9-1748-4CC4-9F24-D01C55D6FB56} = {C0FB6AFE-0656-40D6-8E8B-BB3940B7DE73}
+		{0B2DA7F4-16C3-4165-923B-A4BEAA71FB44} = {EC400E52-5E1A-46CD-B835-1CA566007A86}
+		{4FE3E795-A87E-45A6-996D-6079C28F6184} = {17C2FDEE-EF7F-44D9-B6BC-A897C781697F}
+		{193BB801-054F-4729-9D5D-FCE1E32594BF} = {4FE3E795-A87E-45A6-996D-6079C28F6184}
+		{E43917C0-FC72-48BF-87D1-DF5DF7B00B3F} = {501A01B7-AFB5-40B3-B88D-1B66F21A8E7B}
+		{91490DB7-324B-4FC1-82BD-F6CAE84A155E} = {501A01B7-AFB5-40B3-B88D-1B66F21A8E7B}
+		{A2BE483A-0002-4C4C-A5A2-A7DB66BF6CAF} = {501A01B7-AFB5-40B3-B88D-1B66F21A8E7B}
+		{98D7DE92-CCB9-49CA-A3C3-F30A083C8A95} = {501A01B7-AFB5-40B3-B88D-1B66F21A8E7B}
+		{CDE9C191-1C7E-4C38-A656-E58601D03029} = {0B2DA7F4-16C3-4165-923B-A4BEAA71FB44}
+	EndGlobalSection
+	GlobalSection(TextTemplating) = postSolution
+		TextTemplating = 1
+	EndGlobalSection
+EndGlobal

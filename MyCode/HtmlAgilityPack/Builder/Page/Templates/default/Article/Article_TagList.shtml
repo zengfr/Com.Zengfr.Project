@@ -1,0 +1,25 @@
+﻿<html>
+<head>
+<title>{Title}</title>
+<script language="JavaScript" type="text/javascript" src="/VipTagListComm.js"></script>
+<script language="JavaScript" type="text/javascript" src="/VipTagList-{PageIndex}.js"></script>
+<!--#include file="/template/head.shtml"-->
+<!--main-->
+<div id="main" align="center">
+<!--left-->
+<div id="left">
+
+</div>
+<!--left -->
+<!--#include file="/template/right.shtml" -->
+<!--center-->
+<div id="center">
+
+<div class="t3 bcg bgg">标签列表/标签分类</div>
+<div class="b3 bcg mb6">{TagItems}</div>
+
+</div>
+<!--center-->
+</div>
+<!--main-->
+<!--#include file="/template/foot.shtml"-->

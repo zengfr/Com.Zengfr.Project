@@ -1,0 +1,11 @@
+D:\Desktop\平台\System.My\Platform\Common\System.My.Common.Contract\bin\Debug\System.My.Common.Contract.dll
+D:\Desktop\平台\System.My\Platform\Common\System.My.Common.Contract\bin\Debug\System.My.Common.Contract.pdb
+D:\Desktop\平台\System.My\Platform\Common\System.My.Common.Contract\obj\Debug\ResolveAssemblyReference.cache
+D:\Desktop\平台\System.My\Platform\Common\System.My.Common.Contract\obj\Debug\System.My.Common.Contract.dll
+D:\Desktop\平台\System.My\Platform\Common\System.My.Common.Contract\obj\Debug\System.My.Common.Contract.pdb
+D:\Desktop\平台\System.My\Platform\Common\System.My.Common.Contract\bin\Debug\NHibernate.dll
+D:\Desktop\平台\System.My\Platform\Common\System.My.Common.Contract\bin\Debug\System.My.Common.Dao.dll
+D:\Desktop\平台\System.My\Platform\Common\System.My.Common.Contract\bin\Debug\System.My.Common.Domain.dll
+D:\Desktop\平台\System.My\Platform\Common\System.My.Common.Contract\bin\Debug\Iesi.Collections.dll
+D:\Desktop\平台\System.My\Platform\Common\System.My.Common.Contract\bin\Debug\System.My.Common.Domain.pdb
+D:\Desktop\平台\System.My\Platform\Common\System.My.Common.Contract\bin\Debug\System.My.Common.Dao.pdb

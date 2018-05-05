@@ -1,0 +1,17 @@
+D:\MyProject\dev\MyCode\ConsoleControlEx\ConsoleControlEx\bin\Debug\ConsoleControlEx.dll
+D:\MyProject\dev\MyCode\ConsoleControlEx\ConsoleControlEx\bin\Debug\ConsoleControlEx.pdb
+D:\MyProject\dev\MyCode\ConsoleControlEx\ConsoleControlEx\bin\Debug\ConsoleControl.dll
+D:\MyProject\dev\MyCode\ConsoleControlEx\ConsoleControlEx\bin\Debug\ConsoleControlAPI.dll
+D:\MyProject\dev\MyCode\ConsoleControlEx\ConsoleControlEx\bin\Debug\ConsoleControl.pdb
+D:\MyProject\dev\MyCode\ConsoleControlEx\ConsoleControlEx\bin\Debug\ConsoleControl.xml
+D:\MyProject\dev\MyCode\ConsoleControlEx\ConsoleControlEx\bin\Debug\ConsoleControlAPI.pdb
+D:\MyProject\dev\MyCode\ConsoleControlEx\ConsoleControlEx\bin\Debug\ConsoleControlAPI.xml
+D:\MyProject\dev\MyCode\ConsoleControlEx\ConsoleControlEx\obj\Debug\ConsoleControlSample.FormConsoleControlSample.resources
+D:\MyProject\dev\MyCode\ConsoleControlEx\ConsoleControlEx\obj\Debug\ConsoleControlSample.FormNewProcess.resources
+D:\MyProject\dev\MyCode\ConsoleControlEx\ConsoleControlEx\obj\Debug\ConsoleControlEx.ConsoleTabControl.resources
+D:\MyProject\dev\MyCode\ConsoleControlEx\ConsoleControlEx\obj\Debug\ConsoleControlSample.Properties.Resources.resources
+D:\MyProject\dev\MyCode\ConsoleControlEx\ConsoleControlEx\obj\Debug\ConsoleControlEx.csproj.GenerateResource.Cache
+D:\MyProject\dev\MyCode\ConsoleControlEx\ConsoleControlEx\obj\Debug\ConsoleControlEx.dll
+D:\MyProject\dev\MyCode\ConsoleControlEx\ConsoleControlEx\obj\Debug\ConsoleControlEx.pdb
+D:\MyProject\dev\MyCode\ConsoleControlEx\ConsoleControlEx\bin\Debug\Common.Logging.dll
+D:\MyProject\dev\MyCode\ConsoleControlEx\ConsoleControlEx\obj\Debug\ConsoleControlEx.csprojResolveAssemblyReference.cache

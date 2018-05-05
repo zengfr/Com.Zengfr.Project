@@ -1,0 +1,28 @@
+﻿<#@ template language="C#" hostspecific="True" debug="True" #>
+<#@ import namespace="System.Collections" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ include file="Abs\AbsGenerator.ttinclude" #>
+<#@ include file="Abs\inc.ttinclude" #>
+<#@ include file="Template\DaoTemplate.tt" #>
+<#
+    IEnumerable<Table> tables=MetadataUtils.Current.GetTables(false);
+    AbsGenerator  mc=new DaoGenerator(tables);
+    mc.Run();
+#>
+<#+
+public class DaoGenerator :AbsGenerator
+{
+    public DaoGenerator(IEnumerable<Table> tables):base(tables)
+    {
+
+    }
+    protected override IEnumerable<AbsTemplate> InitlizeTemplates(IEnumerable<Table> tables)
+    {        
+        foreach(Table table in tables)
+        {
+            yield return new DaoTemplate(table){FileSuffix="Dao.cs",NamespacePrefix="GeneratedCode"};
+        }
+    }
+}
+#>
+

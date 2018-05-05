@@ -1,0 +1,16 @@
+D:\Desktop\平台\Zfrong\Platform\DataAccess\bin\Debug\Zfrong.Platform.DataAccess.dll
+D:\Desktop\平台\Zfrong\Platform\DataAccess\bin\Debug\Zfrong.Platform.DataAccess.pdb
+D:\Desktop\平台\Zfrong\Platform\DataAccess\bin\Debug\NHibernate.dll
+D:\Desktop\平台\Zfrong\Platform\DataAccess\bin\Debug\Spring.Core.dll
+D:\Desktop\平台\Zfrong\Platform\DataAccess\bin\Debug\Spring.Data.dll
+D:\Desktop\平台\Zfrong\Platform\DataAccess\bin\Debug\Spring.Data.NHibernate32.dll
+D:\Desktop\平台\Zfrong\Platform\DataAccess\bin\Debug\Zfrong.Platform.Contract.dll
+D:\Desktop\平台\Zfrong\Platform\DataAccess\bin\Debug\Zfrong.Platform.Utils.dll
+D:\Desktop\平台\Zfrong\Platform\DataAccess\bin\Debug\Spring.Aop.dll
+D:\Desktop\平台\Zfrong\Platform\DataAccess\bin\Debug\Common.Logging.dll
+D:\Desktop\平台\Zfrong\Platform\DataAccess\bin\Debug\Iesi.Collections.dll
+D:\Desktop\平台\Zfrong\Platform\DataAccess\bin\Debug\Zfrong.Platform.Contract.pdb
+D:\Desktop\平台\Zfrong\Platform\DataAccess\bin\Debug\Zfrong.Platform.Utils.pdb
+D:\Desktop\平台\Zfrong\Platform\DataAccess\obj\Debug\ResolveAssemblyReference.cache
+D:\Desktop\平台\Zfrong\Platform\DataAccess\obj\Debug\Zfrong.Platform.DataAccess.dll
+D:\Desktop\平台\Zfrong\Platform\DataAccess\obj\Debug\Zfrong.Platform.DataAccess.pdb

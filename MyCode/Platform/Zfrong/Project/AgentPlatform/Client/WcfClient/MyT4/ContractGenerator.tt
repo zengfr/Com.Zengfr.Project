@@ -1,0 +1,28 @@
+﻿<#@ template language="C#" hostspecific="True" debug="True" #>
+<#@ import namespace="System.Collections" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ include file="Abs\AbsGenerator.ttinclude" #>
+<#@ include file="Abs\inc.ttinclude" #>
+<#@ include file="Template\ContractTemplate.tt" #>
+<#
+
+    IEnumerable<Table> tables=MetadataUtils.Current.GetTables(false);
+    ContractGenerator  mc=new  ContractGenerator(tables);
+    mc.Run();
+#>
+<#+
+public class ContractGenerator :AbsGenerator
+{
+    public ContractGenerator(IEnumerable<Table> tables):base(tables)
+    {
+
+    }
+    protected override IEnumerable<AbsTemplate> InitlizeTemplates(IEnumerable<Table> tables)
+    {        
+        foreach(Table table in tables)
+        {
+            yield return new ContractTemplate(table){ FilePrefix="I",FileSuffix="Service.cs",NamespacePrefix="GeneratedCode"};
+        }
+    }
+}
+#>

@@ -1,0 +1,19 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+<!--link rel="stylesheet" type="text/css" href="http://127.0.0.1/ext/resources/css/ext-all.css" /-->
+<link rel="stylesheet" type="text/css" href="http://127.0.0.1/ext/resources/css/ext-all-gray.css" />
+<script type="text/javascript" src="http://127.0.0.1/ext/bootstrap.js"></script>
+<script type="text/javascript" src="http://127.0.0.1/ext/ext-lang-zh_CN.js"></script>
+<script type="text/javascript" src="http://127.0.0.1/ext/extloader.js"></script>
+
+<script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
+ 
+<asp:ContentPlaceHolder ID="HeadContent" runat="server" />
+</head>
+<body>
+<asp:ContentPlaceHolder ID="MainContent" runat="server" />
+</body>
+</html>

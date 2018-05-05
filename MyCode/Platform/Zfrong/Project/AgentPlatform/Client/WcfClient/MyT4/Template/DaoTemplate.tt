@@ -1,0 +1,31 @@
+﻿<#@ include file="..\Abs\AbsTemplate.ttinclude" #>
+<#+
+    public class DaoTemplate : AbsTemplate
+    {   
+        public DaoTemplate(Table table):base(table)
+        {
+           
+        }
+        public override string TransformText()
+        {
+            base.TransformText();
+             WriteLine("using NHibernate;");
+            WriteLine("using NHibernate.Criterion;");
+             WriteLine("using Zfrong.Framework.Core.Dao.Base;");
+            WriteLine("using Zfrong.Framework.Core.Dao;");
+          WriteLine(string.Format("using {0}.Model;",this.NamespacePrefix));
+            WriteLine(string.Format("namespace {0}.Dao{{",this.NamespacePrefix));
+            WriteLine(string.Format("public class {0}Dao:DaoBase<{0}>,I{0}Dao",this.Table.TableName));
+            WriteLine("{");
+            PushIndent("\t"); 
+            WriteLine("public virtual ISessionFactory SessionFactory { get; set; }");
+           WriteLine(string.Format("public {0}Dao(IDaoPlugin<{0}> plugin): base(plugin)",this.Table.TableName));
+             WriteLine("{");
+            WriteLine("");
+           WriteLine("}");
+            PopIndent();
+            WriteLine("}");WriteLine("}");
+            return this.GenerationEnvironment.ToString();
+        }
+    }
+#>

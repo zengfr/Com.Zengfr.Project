@@ -1,0 +1,32 @@
+﻿<#@ include file="..\Abs\AbsTemplate.ttinclude" #>
+<#+
+    public class ContractTemplate : AbsTemplate
+    {   
+        public ContractTemplate(Table table):base(table)
+        {
+           
+        }
+        public override string TransformText()
+        {
+            base.TransformText();
+            WriteLine("using System.ServiceModel;");
+            WriteLine("using NHibernate.Criterion;");
+            WriteLine(string.Format("using {0}.Model;",this.NamespacePrefix));
+            WriteLine("using Zfrong.Framework.Core.Service;");
+            WriteLine("using Zfrong.Framework.Core.Service.ServiceContract;");
+             WriteLine(string.Format("namespace {0}.Contract{{",this.NamespacePrefix));
+WriteLine("[ServiceContract]");
+            WriteLine("[ServiceKnownType(typeof(Order))]");
+            WriteLine("[ServiceKnownType(typeof(SimpleExpression))]");
+            WriteLine("[ServiceKnownType(typeof(DetachedCriteria))]");
+            WriteLine(string.Format("public interface I{0}Service : IService<{0}>,IServicePlugin<{0}>",this.Table.TableName));
+
+            WriteLine("{");
+            PushIndent("\t"); 
+            WriteLine("");
+            PopIndent();
+            WriteLine("}");WriteLine("}");
+            return this.GenerationEnvironment.ToString();
+        }
+    }
+#>

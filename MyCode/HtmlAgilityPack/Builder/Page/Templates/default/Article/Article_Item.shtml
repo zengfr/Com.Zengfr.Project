@@ -1,0 +1,25 @@
+﻿<html><head>
+<title>{Title}</title>
+<meta name="description" content="{Description}">
+<meta name="keywords" content="{Keywords}"> 
+<!--#include file="/template/head.shtml"-->
+<!--main-->
+<div id="main" align="center">
+<!--#include file="/template/Itemleft.shtml" -->
+<!--#include file="/template/ItemRight.shtml" -->
+<!--center-->
+<div id="center">
+	<div class="t3 ItemT">{Item.Title}</div>
+	<div class="b3 ItemC">
+		<script language="JavaScript" type="text/javascript" src="/js/ItemTop.js"></script>
+		{Item.Title}
+		<script language="JavaScript" type="text/javascript" src="/js/ItemButtom.js"></script>
+	</div>
+	<!--#include file="/template/ItemCenter.shtml" -->
+</div>
+<!--center-->
+</div>
+<!--main-->
+<script language="JavaScript" type="text/javascript" src="/js/ItemComm.js"></script>
+<script language="JavaScript" type="text/javascript" src="/js/Item/{Item.ID}.js"></script>
+<!--#include file="/template/foot.shtml"-->

@@ -1,0 +1,3 @@
+D:\Desktop\平台\Zfrong\Project\AgentPlatform\Client\WcfClient\obj\Debug\ResolveAssemblyReference.cache
+D:\Desktop\平台\Zfrong\Project\AgentPlatform\Client\WcfClient\obj\Debug\Member.ServiceClient.pdb
+D:\Desktop\平台\Zfrong\Project\AgentPlatform\bin\Debug\Member.ServiceClient.exe.config

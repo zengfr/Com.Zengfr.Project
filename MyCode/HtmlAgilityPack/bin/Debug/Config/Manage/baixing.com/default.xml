@@ -1,0 +1,3 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<config><param><add key="BaseUrl" value="http://www.baixing.com/" /><add key="ThreadsCount" value="20" /><add key="QueueMaxDepth" value="0" /><add key="BloomFilterFileName" value="NoName" /><add key="BloomFilter.Count" value="0" /><add key="QueueAllowPattern" value="baixing.com" /><add key="QueueForbidPattern" value="" /><add key="QueueAllowTypes" value=".html.aspx.php.jsp.do.xml" /><add key="QueueForbidTypes" value=".css.js/.exe.com.msi/.rar.zip.z7.iso.img/.jpg.gif.png.ico/.swf.dat.mpeg.wmv.rm.mp3.wma/.doc.pdf.ppt.chm.mht" />
+<add key="TaskName" value="baixing.com" /><add key="Modetype" value="Spider" /></param></config>

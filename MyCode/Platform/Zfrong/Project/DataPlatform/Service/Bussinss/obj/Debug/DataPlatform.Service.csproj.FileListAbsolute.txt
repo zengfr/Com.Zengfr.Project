@@ -1,0 +1,5 @@
+D:\Desktop\平台\Zfrong\Project\DataPlatform\Service\Bussinss\obj\Debug\ResolveAssemblyReference.cache
+D:\Desktop\平台\Zfrong\Project\DataPlatform\bin\Debug\DataPlatform.Service.dll
+D:\Desktop\平台\Zfrong\Project\DataPlatform\bin\Debug\DataPlatform.Service.pdb
+D:\Desktop\平台\Zfrong\Project\DataPlatform\Service\Bussinss\obj\Debug\DataPlatform.Service.dll
+D:\Desktop\平台\Zfrong\Project\DataPlatform\Service\Bussinss\obj\Debug\DataPlatform.Service.pdb

@@ -1,0 +1,17 @@
+D:\Desktop\平台\Zfrong\Project\DataPlatform\Common\Model\bin\Debug\AgentPlatform.Model.dll
+D:\Desktop\平台\Zfrong\Project\DataPlatform\Common\Model\bin\Debug\AgentPlatform.Model.pdb
+D:\Desktop\平台\Zfrong\Project\DataPlatform\Common\Model\bin\Debug\NHibernate.dll
+D:\Desktop\平台\Zfrong\Project\DataPlatform\Common\Model\bin\Debug\Zfrong.Platform.Core.dll
+D:\Desktop\平台\Zfrong\Project\DataPlatform\Common\Model\bin\Debug\Spring.Data.dll
+D:\Desktop\平台\Zfrong\Project\DataPlatform\Common\Model\bin\Debug\Iesi.Collections.dll
+D:\Desktop\平台\Zfrong\Project\DataPlatform\Common\Model\bin\Debug\Spring.Aop.dll
+D:\Desktop\平台\Zfrong\Project\DataPlatform\Common\Model\bin\Debug\Spring.Core.dll
+D:\Desktop\平台\Zfrong\Project\DataPlatform\Common\Model\bin\Debug\Common.Logging.dll
+D:\Desktop\平台\Zfrong\Project\DataPlatform\Common\Model\bin\Debug\Zfrong.Platform.Core.pdb
+D:\Desktop\平台\Zfrong\Project\DataPlatform\Common\bin\Debug\AgentPlatform.Model.dll
+D:\Desktop\平台\Zfrong\Project\DataPlatform\Common\bin\Debug\AgentPlatform.Model.pdb
+D:\Desktop\平台\Zfrong\Project\DataPlatform\bin\Debug\DataPlatform.Model.dll
+D:\Desktop\平台\Zfrong\Project\DataPlatform\bin\Debug\DataPlatform.Model.pdb
+D:\Desktop\平台\Zfrong\Project\DataPlatform\Common\Model\obj\Debug\ResolveAssemblyReference.cache
+D:\Desktop\平台\Zfrong\Project\DataPlatform\Common\Model\obj\Debug\DataPlatform.Model.dll
+D:\Desktop\平台\Zfrong\Project\DataPlatform\Common\Model\obj\Debug\DataPlatform.Model.pdb

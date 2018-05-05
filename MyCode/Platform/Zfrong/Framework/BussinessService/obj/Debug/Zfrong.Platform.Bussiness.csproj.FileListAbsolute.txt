@@ -1,0 +1,15 @@
+D:\Desktop\平台\Zfrong\Platform\BussinessService\bin\Debug\Zfrong.Platform.Bussiness.dll
+D:\Desktop\平台\Zfrong\Platform\BussinessService\bin\Debug\Zfrong.Platform.Bussiness.pdb
+D:\Desktop\平台\Zfrong\Platform\BussinessService\bin\Debug\NHibernate.dll
+D:\Desktop\平台\Zfrong\Platform\BussinessService\bin\Debug\Spring.Data.dll
+D:\Desktop\平台\Zfrong\Platform\BussinessService\bin\Debug\Zfrong.Platform.Core.dll
+D:\Desktop\平台\Zfrong\Platform\BussinessService\bin\Debug\Iesi.Collections.dll
+D:\Desktop\平台\Zfrong\Platform\BussinessService\bin\Debug\Spring.Aop.dll
+D:\Desktop\平台\Zfrong\Platform\BussinessService\bin\Debug\Spring.Core.dll
+D:\Desktop\平台\Zfrong\Platform\BussinessService\bin\Debug\Common.Logging.dll
+D:\Desktop\平台\Zfrong\Platform\BussinessService\bin\Debug\Zfrong.Platform.Core.pdb
+D:\Desktop\平台\Zfrong\Platform\BussinessService\obj\Debug\ResolveAssemblyReference.cache
+D:\Desktop\平台\Zfrong\Platform\BussinessService\obj\Debug\Zfrong.Platform.Bussiness.dll
+D:\Desktop\平台\Zfrong\Platform\BussinessService\obj\Debug\Zfrong.Platform.Bussiness.pdb
+D:\Desktop\平台\Zfrong\Platform\bin\Debug\Zfrong.Platform.Bussiness.dll
+D:\Desktop\平台\Zfrong\Platform\bin\Debug\Zfrong.Platform.Bussiness.pdb

@@ -1,0 +1,10 @@
+D:\Desktop\平台\Zfrong\Platform\bin\Debug\Zfrong.Framework.Mvc.dll
+D:\Desktop\平台\Zfrong\Platform\bin\Debug\Zfrong.Framework.Mvc.pdb
+D:\Desktop\平台\Zfrong\Platform\Mvc\Zfrong.Platform.Mvc\obj\Debug\ResolveAssemblyReference.cache
+D:\Desktop\平台\Zfrong\Platform\Mvc\Zfrong.Platform.Mvc\obj\Debug\Zfrong.Framework.Mvc.dll
+D:\Desktop\平台\Zfrong\Platform\Mvc\Zfrong.Platform.Mvc\obj\Debug\Zfrong.Framework.Mvc.pdb
+D:\Desktop\平台\Zfrong\Framework\bin\Debug\Zfrong.Framework.Mvc.dll
+D:\Desktop\平台\Zfrong\Framework\bin\Debug\Zfrong.Framework.Mvc.pdb
+D:\Desktop\平台\Zfrong\Framework\Mvc\Zfrong.Framework.Mvc\obj\Debug\ResolveAssemblyReference.cache
+D:\Desktop\平台\Zfrong\Framework\Mvc\Zfrong.Framework.Mvc\obj\Debug\Zfrong.Framework.Mvc.dll
+D:\Desktop\平台\Zfrong\Framework\Mvc\Zfrong.Framework.Mvc\obj\Debug\Zfrong.Framework.Mvc.pdb

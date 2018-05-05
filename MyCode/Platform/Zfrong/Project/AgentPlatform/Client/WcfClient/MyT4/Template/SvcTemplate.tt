@@ -1,0 +1,16 @@
+﻿<#@ include file="..\Abs\AbsTemplate.ttinclude" #>
+<#+
+    public   class SvcTemplate : AbsTemplate
+    {   
+        public SvcTemplate(Table table):base(table)
+        {
+           
+        }
+        public override string TransformText()
+        {
+            WriteLine(string.Format("<%@ ServiceHost Language=\"C#\" Debug=\"true\" Service=\"{0}Service\" Factory=\"Spring.ServiceModel.Activation.ServiceHostFactory\" %>",this.Table.TableName));
+           
+            return this.GenerationEnvironment.ToString();
+        }
+    }
+#>

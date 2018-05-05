@@ -1,0 +1,26 @@
+﻿<!--foot-->
+<div id="foot">
+	<div class="t3 bcg bgg"></div>
+	<div class="b3 bcg mb3">
+
+		<div><a rel="mz" href="/help/intro.shtml">网站简介</a>－<a
+		rel="mz" href="/help/ads.shtml">广告服务</a>－<a
+		rel="mz" href="/help/vip.shtml">VIP资费标准</a>－<a
+		rel="mz" href="/help/bankaccount.shtml">银行汇款帐号</a>－<a
+		rel="mz" href="/help/sitemap.shtml">网站地图</a>－<a
+		rel="mz" href="/help/help.shtml">帮助指南</a>－<a
+		rel="mz" href="/help/contact.shtml">联系方式</a>－<a
+		rel="mz" href="">诚聘英才</a>－<a
+		rel="mz" href="/english/">English</a>－<a href="#" >问题报告</a><br/>CS科技有限公司  版权所有京 ICP 证 020026 号<br/>
+		CS广告有限公司  提供技术支持<br/>
+		Copyright &copy; 2007-2008, Com.NET, All Rights Reserved
+		<script language="JavaScript" type="text/javascript" src="/js/Count.js"></script>
+		</div>
+
+		
+	</div>
+	
+</div>
+<!--foot-->
+</body>
+</html>

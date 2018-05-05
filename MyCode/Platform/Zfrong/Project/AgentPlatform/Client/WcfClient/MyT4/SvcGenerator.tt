@@ -1,0 +1,27 @@
+﻿<#@ template language="C#" hostspecific="True" debug="True" #>
+<#@ import namespace="System.Collections" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ include file="Abs\AbsGenerator.ttinclude" #>
+<#@ include file="Abs\inc.ttinclude" #>
+<#@ include file="Template\SvcTemplate.tt" #>
+<# 
+    IEnumerable<Table> tables=MetadataUtils.Current.GetTables(false);
+    AbsGenerator  mc=new  SvcGenerator(tables);
+    mc.Run();
+#>
+<#+
+public class SvcGenerator :AbsGenerator
+{
+    public SvcGenerator(IEnumerable<Table> tables):base(tables)
+    {
+
+    }
+    protected override IEnumerable<AbsTemplate> InitlizeTemplates(IEnumerable<Table> tables)
+    {        
+        foreach(Table table in tables)
+        {
+            yield return new SvcTemplate(table){FileSuffix="Service.svc",NamespacePrefix="GeneratedCode"};
+        }
+    }
+}
+#>

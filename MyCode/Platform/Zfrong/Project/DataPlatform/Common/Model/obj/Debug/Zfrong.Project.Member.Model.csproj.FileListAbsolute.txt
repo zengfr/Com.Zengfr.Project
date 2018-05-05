@@ -1,0 +1,9 @@
+D:\Desktop\平台\Zfrong\Project\Member\Model\bin\Debug\Zfrong.Project.Member.Model.dll
+D:\Desktop\平台\Zfrong\Project\Member\Model\bin\Debug\Zfrong.Project.Member.Model.pdb
+D:\Desktop\平台\Zfrong\Project\Member\Model\bin\Debug\NHibernate.dll
+D:\Desktop\平台\Zfrong\Project\Member\Model\bin\Debug\Zfrong.Platform.Contract.dll
+D:\Desktop\平台\Zfrong\Project\Member\Model\bin\Debug\Iesi.Collections.dll
+D:\Desktop\平台\Zfrong\Project\Member\Model\bin\Debug\Zfrong.Platform.Contract.pdb
+D:\Desktop\平台\Zfrong\Project\Member\Model\obj\Debug\ResolveAssemblyReference.cache
+D:\Desktop\平台\Zfrong\Project\Member\Model\obj\Debug\Zfrong.Project.Member.Model.dll
+D:\Desktop\平台\Zfrong\Project\Member\Model\obj\Debug\Zfrong.Project.Member.Model.pdb

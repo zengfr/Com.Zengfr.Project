@@ -1,0 +1,10 @@
+D:\Desktop\平台\Zfrong\Platform\bin\Debug\Zfrong.Framework.Bussiness.dll
+D:\Desktop\平台\Zfrong\Platform\bin\Debug\Zfrong.Framework.Bussiness.pdb
+D:\Desktop\平台\Zfrong\Platform\BussinessService\obj\Debug\ResolveAssemblyReference.cache
+D:\Desktop\平台\Zfrong\Platform\BussinessService\obj\Debug\Zfrong.Framework.Bussiness.dll
+D:\Desktop\平台\Zfrong\Platform\BussinessService\obj\Debug\Zfrong.Framework.Bussiness.pdb
+D:\Desktop\平台\Zfrong\Framework\bin\Debug\Zfrong.Framework.Bussiness.dll
+D:\Desktop\平台\Zfrong\Framework\bin\Debug\Zfrong.Framework.Bussiness.pdb
+D:\Desktop\平台\Zfrong\Framework\BussinessService\obj\Debug\ResolveAssemblyReference.cache
+D:\Desktop\平台\Zfrong\Framework\BussinessService\obj\Debug\Zfrong.Framework.Bussiness.dll
+D:\Desktop\平台\Zfrong\Framework\BussinessService\obj\Debug\Zfrong.Framework.Bussiness.pdb

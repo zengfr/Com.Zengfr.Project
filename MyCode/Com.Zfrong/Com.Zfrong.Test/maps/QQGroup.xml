@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sqlMap namespace="QQGroup"  xmlns="http://ibatis.apache.org/mapping" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<alias>
+		<typeAlias alias="QQGroup" assembly="Test.dll" type="Test2.QQGroup" />
+	</alias>
+	<statements>
+		<statement id="ComplexMap" resultClass="QQGroup" parameterClass="int">
+		<![CDATA[select top 1000 * from [QQGroup] where [IDID]< #value# ]]>
+		</statement>
+	</statements>
+</sqlMap>

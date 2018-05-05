@@ -1,0 +1,2051 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NHibernate.Shards</name>
+    </assembly>
+    <members>
+        <member name="T:NHibernate.Shards.Cfg.IShardConfiguration">
+            <summary>
+            Describes the configuration properties that can vary across the <see cref="T:NHibernate.ISessionFactory"/>
+            instances contained within your <see cref="T:NHibernate.Shards.Session.IShardedSessionFactory"/>.
+            </summary>
+        </member>
+        <member name="P:NHibernate.Shards.Cfg.IShardConfiguration.ShardSessionFactoryName">
+            <summary>
+            the name that the <see cref="T:NHibernate.ISessionFactory"/> created from this config will have
+            </summary>
+        </member>
+        <member name="P:NHibernate.Shards.Cfg.IShardConfiguration.ShardId">
+            <summary>
+            unique id of the shard
+            </summary>
+        </member>
+        <member name="P:NHibernate.Shards.Cfg.IShardConfiguration.ShardCacheRegionPrefix">
+            <summary>
+            the cache region prefix for the shard
+            </summary>
+        </member>
+        <member name="P:NHibernate.Shards.Cfg.IShardConfiguration.ConnectionString">
+            <summary>
+            Connection string of the shard.
+            </summary>
+        </member>
+        <member name="P:NHibernate.Shards.Cfg.IShardConfiguration.ConnectionStringName">
+            <summary>
+            Named connection string of the shard.
+            </summary>
+        </member>
+        <member name="T:NHibernate.Shards.Cfg.ShardedEnvironment">
+            <summary>
+            Hibernate Shards configuration properties.
+            <seealso cref="T:NHibernate.Cfg.Environment"/>
+            </summary>
+        </member>
+        <member name="F:NHibernate.Shards.Cfg.ShardedEnvironment.CheckAllAssociatedObjectsForDifferentShards">
+            <summary>
+            Configuration property that determines whether or not we examine all
+            associated objects for shard conflicts when we save or update.  A shard
+            conflict is when we attempt to associate one object that lives on shard X
+            with an object that lives on shard Y.  Turning this on will hurt
+            performance but will prevent the programmer from ending up with the
+            same entity on multiple shards, which is bad (at least in the current version). 
+            </summary>
+        </member>
+        <member name="F:NHibernate.Shards.Cfg.ShardedEnvironment.ShardIdProperty">
+            <summary>
+            Unique identifier for a shard.  Must be an Integer.
+            </summary>
+        </member>
+        <member name="T:NHibernate.Shards.Criteria.IShardedCriteria">
+            <summary>
+            Interface for a shard-aware <see cref="T:NHibernate.ICriteria"/> implementation.
+            <seealso cref="T:NHibernate.ICriteria"/> 
+            </summary>
+        </member>
+        <member name="M:NHibernate.Shards.Criteria.IShardedCriteria.BuildListExitStrategy``1">
+            <summary>
+            Builds an exit strategy for <see cref="M:NHibernate.ICriteria.List``1"/> operation.
+            </summary>
+            <returns>An exit strategy for <see cref="M:NHibernate.ICriteria.List``1"/> operation</returns>
+        </member>
+        <member name="M:NHibernate.Shards.Criteria.IShardedCriteria.EstablishFor(NHibernate.Shards.IShard)">
+            <summary>
+            Returns an <see cref="T:NHibernate.ICriteria"/> instance that is associated with the
+            established session of a given shard.
+            </summary>
+            <param name="shard">The shard for which an <see cref="T:NHibernate.ICriteria"/> is to be established.</param>
+            <returns>An <see cref="T:NHibernate.ICriteria"/> instance that is associated with the established session 
+            of <paramref name="shard"/>.
+            </returns>
+        </member>
+        <member name="M:NHibernate.Shards.Criteria.IShardedMultiCriteria.EstablishFor(NHibernate.Shards.IShard)">
+            <summary>
+            Returns an <see cref="T:NHibernate.IMultiCriteria"/> instance that is associated with the
+            established session for a given shard.
+            </summary>
+            <param name="shard">A shard.</param>
+            <returns>An <see cref="T:NHibernate.IMultiCriteria"/> instance that is associated with the
+            established session for <paramref name="shard"/>.</returns>
+        </member>
+        <member name="T:NHibernate.Shards.Criteria.ShardedCriteriaImpl">
+            <summary>
+            Concrete implementation of <see cref="T:NHibernate.Shards.Criteria.IShardedCriteria"/> interface.
+            </summary>
+        </member>
+        <member name="T:NHibernate.Shards.IShardOperation`1">
+            <summary>
+            Represents a single operation that can be performed on a shard.
+            </summary>
+            <typeparam name="T">Operation result type</typeparam>
+        </member>
+        <member name="M:NHibernate.Shards.IShardOperation`1.Prepare(NHibernate.Shards.IShard)">
+            <summary>
+            Creates thread-safe delegate that will perform the operation on a given shard.
+            </summary>
+            <param name="shard">The shard to execute against</param>
+            <returns>Thread-safe delegate that will perform the operation on <paramref name="shard"/>.</returns>
+            <remarks>The delegate returned by this method may be executed in parallel for multiple 
+            shards. The delegate MUST therefore not perform any operations on state that is shared 
+            across shards. This implies that the establishing of shard-specific sessions, queries and/or 
+            criterias must be done before the delegate is returned by this method.</remarks>
+        </member>
+        <member name="P:NHibernate.Shards.IShardOperation`1.OperationName">
+            <summary>
+            The name of the operation (useful for logging and debugging)
+            </summary>
+        </member>
+        <member name="M:NHibernate.Shards.Criteria.ShardedMultiCriteriaImpl.#ctor(NHibernate.Shards.Engine.IShardedSessionImplementor)">
+            <summary>
+            Creates new <see cref="T:NHibernate.Shards.Criteria.ShardedCriteriaImpl"/> instance.
+            </summary>
+            <param name="session">The Sharded session on which this query is to be executed.</param>
+        </member>
+        <member name="T:NHibernate.Shards.Engine.IShardedSessionFactoryImplementor">
+            <summary>
+            Internal interface for implementors of ShardedSessionFactory
+            </summary>
+        </member>
+        <member name="T:NHibernate.Shards.Session.IShardedSessionFactory">
+            <summary>
+            Shard-aware extension to <see cref="T:NHibernate.ISessionFactory"/>.  Similar to <see cref="T:NHibernate.ISessionFactory"/>,
+            ShardedSessionFactory is threadsafe.
+            </summary>
+        </member>
+        <member name="M:NHibernate.Shards.Session.IShardedSessionFactory.GetSessionFactory(System.Collections.Generic.IEnumerable{NHibernate.Shards.ShardId},NHibernate.Shards.Strategy.IShardStrategyFactory)">
+             <summary>
+             This method is provided to allow a client to work on a subset of
+             shards or a specialized <see cref="T:NHibernate.Shards.Strategy.IShardStrategyFactory"/>.  By providing
+             the desired shardIds, the client can limit operations to these shards.
+             Alternatively, this method can be used to create a ShardedSessionFactory
+             with different strategies that might be appropriate for a specific operation.
+            
+             The factory returned will not be stored as one of the factories that would
+             be returned by a call to getSessionFactories.
+             </summary>
+             <param name="shardIds"></param>
+             <param name="shardStrategyFactory"></param>
+             <returns>specially configured ShardedSessionFactory</returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.IShardedSessionFactory.OpenSession(NHibernate.IInterceptor)">
+            <summary>
+            Create database connection(s) and open a ShardedSession on it,
+            specifying an interceptor.
+            </summary>
+            <param name="interceptor">a session-scoped interceptor</param>
+            <returns></returns>
+            Throws <see cref="T:NHibernate.HibernateException"/>
+        </member>
+        <member name="M:NHibernate.Shards.Session.IShardedSessionFactory.OpenSession">
+            <summary>
+            Create database connection(s) and open a ShardedSession on it.
+            </summary>
+            <returns></returns>
+            Throws <see cref="T:NHibernate.HibernateException"/>
+        </member>
+        <member name="M:NHibernate.Shards.Engine.IShardedSessionFactoryImplementor.GetShardMetadata">
+            <summary>
+            Enumerates meta data for all shards that are within the scope of this sharded session factory.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:NHibernate.Shards.Engine.IShardedSessionFactoryImplementor.ControlFactory">
+            <summary>
+            The session factory to be used for operations that cannot be distributed across multiple shards,
+            such as the calculation of shard-wide unique sequence numbers and identifiers.
+            </summary>
+            <seealso cref="T:NHibernate.Shards.Id.IShardEncodingIdentifierGenerator"/>
+        </member>
+        <member name="M:NHibernate.Shards.Engine.ShardedSessionFactoryImplementorUtil.TryExtractShardIdFromKey(NHibernate.Shards.Engine.IShardedSessionFactoryImplementor,NHibernate.Shards.Engine.ShardedEntityKey,NHibernate.Shards.ShardId@)">
+            <summary>
+            Attempts to extract <see cref="T:NHibernate.Shards.ShardId"/> from the entity identifier. This 
+            will only work if the shard identifier has been encoded into the entity 
+            identifier by an <see cref="T:NHibernate.Shards.Id.IShardEncodingIdentifierGenerator"/>.
+            </summary>
+            <param name="shardedSessionFactory">The sharded session factory to use to retrieve entity metadata.</param>
+            <param name="key">The entity key.</param>
+            <param name="result">Returns the extracted <see cref="T:NHibernate.Shards.ShardId"/> if this operation succeeds.</param>
+            <returns>Returns <c>true</c> if this operation succeeds or false otherwise.</returns>
+        </member>
+        <member name="T:NHibernate.Shards.Engine.IShardedSessionImplementor">
+            <summary>
+             Defines the internal contract between the ShardedSession and other
+            parts of Hibernate Shards.
+            <seealso cref="T:NHibernate.Shards.Session.IShardedSession"/> the interface to the application.
+            <seealso cref="T:NHibernate.Shards.Session.ShardedSessionImpl"/> the actual implementation
+            </summary>
+        </member>
+        <member name="M:NHibernate.Shards.Engine.IShardedSessionImplementor.AfterTransactionBegin(NHibernate.Shards.IShardedTransaction)">
+            <summary>
+            Notification that transaction has begun. The session factory should enlist any
+            established sessions into the transaction during this call.
+            </summary>
+            <param name="tx">The sharded transaction that has begun.</param>
+        </member>
+        <member name="M:NHibernate.Shards.Engine.IShardedSessionImplementor.AfterTransactionCompletion(NHibernate.Shards.IShardedTransaction,System.Nullable{System.Boolean})">
+            <summary>
+            Notification of transaction completion.
+            </summary>
+            <param name="transaction">The sharded transaction that has completed.</param>
+            <param name="success">Indicates whether transaction completed successfully.</param>
+        </member>
+        <member name="M:NHibernate.Shards.Engine.IShardedSessionImplementor.ApplyActionToShards(System.Action{NHibernate.ISession})">
+            <summary>
+            Registers an action to be performed once on each shard-local session 
+            that has been or will be opened within the scope of this sharded
+            session.
+            </summary>
+            <param name="action">The action to be performed once on an opened
+            shard-local session.</param>
+            <remarks>
+            The <paramref name="action"/> is performed immediately on all shard-local 
+            sessions that have already been established. It is also scheduled for
+            execution when any new shard-local sessions are established within the 
+            scope of this sharded session.
+            </remarks>
+        </member>
+        <member name="M:NHibernate.Shards.Engine.IShardedSessionImplementor.EstablishFor(NHibernate.Shards.IShard)">
+            <summary>
+            Establishes a shard-local session for a given shard.
+            </summary>
+            <param name="shard">The shard for which a session is to be established.</param>
+            <returns>An open session for the <paramref name="shard"/>.</returns>
+        </member>
+        <member name="M:NHibernate.Shards.Engine.IShardedSessionImplementor.Execute``1(NHibernate.Shards.IShardOperation{``0},NHibernate.Shards.Strategy.Exit.IExitStrategy{``0})">
+            <summary>
+            Performs the specified operation on the shards that are within the scope of
+            this sharded session and aggregates the results from each shard into a single 
+            result.
+            </summary>
+            <typeparam name="T">Return value type.</typeparam>
+            <param name="operation">The operation to be performed on each shard.</param>
+            <param name="exitStrategy">Strategy for collection and aggregation of 
+            operation results from the shards.</param>
+            <returns>The aggregated operation result.</returns>
+        </member>
+        <member name="P:NHibernate.Shards.Engine.IShardedSessionImplementor.AnyShard">
+            <summary>
+            Returns an arbitrary shard within the scope of this session.
+            </summary>
+        </member>
+        <member name="P:NHibernate.Shards.Engine.IShardedSessionImplementor.Shards">
+            <summary>
+            All shards that are within the scope of this session.
+            </summary>
+        </member>
+        <member name="T:NHibernate.Shards.Engine.IShardMetadata">
+            <summary>
+            Represents metadata for one shard.
+            </summary>
+        </member>
+        <member name="P:NHibernate.Shards.Engine.IShardMetadata.ShardIds">
+            <summary>
+            All shard identifiers for the shard.
+            </summary>
+        </member>
+        <member name="P:NHibernate.Shards.Engine.IShardMetadata.SessionFactory">
+            <summary>
+            The session factory for the shard.
+            </summary>
+        </member>
+        <member name="M:NHibernate.Shards.Engine.ShardedEntityKey.#ctor(System.String,System.Object)">
+            <summary>
+            Creates new <see cref="T:NHibernate.Shards.Engine.ShardedEntityKey"/> for given entity name and identifier.
+            </summary>
+            <param name="entityName">The entity name.</param>
+            <param name="id">The entity identifier.</param>
+        </member>
+        <member name="M:NHibernate.Shards.Engine.ShardedEntityKey.#ctor(System.Type,System.Object)">
+            <summary>
+            Creates new <see cref="T:NHibernate.Shards.Engine.ShardedEntityKey"/> for given entity class and identifier.
+            </summary>
+            <param name="entityClass">The entity class.</param>
+            <param name="id">The entity identifier.</param>
+            <remarks>The <see cref="P:NHibernate.Shards.Engine.ShardedEntityKey.EntityName"/> is set to <see cref="P:System.Type.FullName"/>
+            of the entity class, in accordance with NHibernate conventions.</remarks>
+        </member>
+        <member name="P:NHibernate.Shards.Engine.ShardedEntityKey.EntityName">
+            <summary>
+            The entity name.
+            </summary>
+        </member>
+        <member name="P:NHibernate.Shards.Engine.ShardedEntityKey.Id">
+            <summary>
+            The entity identifier.
+            </summary>
+        </member>
+        <member name="P:NHibernate.Shards.Engine.ShardedEntityKey.IsNull">
+            <summary>
+            Indicates whether <see cref="P:NHibernate.Shards.Engine.ShardedEntityKey.Id"/> is <c>null</c>.
+            </summary>
+        </member>
+        <member name="T:NHibernate.Shards.Id.IShardEncodingIdentifierGenerator">
+            <summary>
+            Identifier generator that contains encoded the Shard Id in the identifier.
+            </summary>
+        </member>
+        <member name="T:NHibernate.Shards.Id.ShardedUUIDGenerator">
+            <summary>
+            TODO: documentation
+            TODO: See if ShardedUUIDGenerator need to inherit from UUIDHexGenerator
+            </summary>
+        </member>
+        <member name="T:NHibernate.Shards.LoadBalance.BaseShardLoadBalancer">
+            <summary>
+            Helpful base class for ShardLoadBalancer implementations.
+            </summary>
+        </member>
+        <member name="T:NHibernate.Shards.BaseHasShardIdList">
+            <summary>
+            Base implementation for HasShadIdList.
+            Takes care of null/empty checks.
+            </summary>
+        </member>
+        <member name="T:NHibernate.Shards.IHasShardIdList">
+            <summary>
+            Interface for objects that can provide a List of ShardIds.
+            </summary>
+        </member>
+        <member name="P:NHibernate.Shards.IHasShardIdList.ShardIds">
+            <summary>
+            Unmodifiable list of <see cref="T:NHibernate.Shards.ShardId"/>s
+            </summary>
+        </member>
+        <member name="F:NHibernate.Shards.BaseHasShardIdList.shardIds">
+            <summary>
+            our list of <see cref="T:NHibernate.Shards.ShardId"/> objects
+            </summary>
+        </member>
+        <member name="P:NHibernate.Shards.BaseHasShardIdList.ShardIds">
+            <summary>
+            Unmodifiable list of <see cref="T:NHibernate.Shards.ShardId"/>s.
+            </summary>
+        </member>
+        <member name="T:NHibernate.Shards.LoadBalance.IShardLoadBalancer">
+            <summary>
+            Describes a load balance for shards.
+            Implementations are expected to be threadsafe.
+            </summary>
+        </member>
+        <member name="P:NHibernate.Shards.LoadBalance.IShardLoadBalancer.NextShardId">
+            <summary>
+            the next ShardId
+            Expected to be threadsafe.
+            </summary>
+        </member>
+        <member name="P:NHibernate.Shards.LoadBalance.BaseShardLoadBalancer.NextShardId">
+            <summary>
+            the next ShardId
+            </summary>
+        </member>
+        <member name="P:NHibernate.Shards.LoadBalance.BaseShardLoadBalancer.NextIndex">
+            <summary>
+            the index of the next ShardId we should return
+            </summary>
+        </member>
+        <member name="T:NHibernate.Shards.LoadBalance.RandomShardLoadBalancer">
+            <summary>
+            Random selection load balancing algorithm.
+            </summary>
+        </member>
+        <member name="M:NHibernate.Shards.LoadBalance.RandomShardLoadBalancer.#ctor(System.Collections.Generic.IEnumerable{NHibernate.Shards.ShardId})">
+            <summary>
+            Construct a RandomShardLoadBalancer
+            </summary>
+            <param name="shardIds">the ShardIds that we're balancing across</param>
+        </member>
+        <member name="P:NHibernate.Shards.LoadBalance.RandomShardLoadBalancer.NextIndex">
+            <summary>
+            the index of the next ShardId we should return
+            </summary>
+        </member>
+        <member name="T:NHibernate.Shards.LoadBalance.RoundRobinShardLoadBalancer">
+            <summary>
+            Round robin load balancing algorithm.
+            </summary>
+        </member>
+        <member name="M:NHibernate.Shards.LoadBalance.RoundRobinShardLoadBalancer.#ctor(System.Collections.Generic.IEnumerable{NHibernate.Shards.ShardId})">
+            <summary>
+            Construct a RoundRobinShardLoadBalancer
+            </summary>
+            <param name="shardIds">the ShardIds that we're balancing across</param>
+        </member>
+        <member name="P:NHibernate.Shards.LoadBalance.RoundRobinShardLoadBalancer.NextIndex">
+            <summary>
+            The index of the next ShardId we should return
+            </summary>
+        </member>
+        <member name="M:NHibernate.Shards.Query.IShardedMultiQuery.EstablishFor(NHibernate.Shards.IShard)">
+            <summary>
+            Returns an <see cref="T:NHibernate.IMultiQuery"/> instance that is associated with the
+            established session for a given shard.
+            </summary>
+            <param name="shard">A shard.</param>
+            <returns>An <see cref="T:NHibernate.IMultiQuery"/> instance that is associated with the
+            established session for <paramref name="shard"/>.</returns>
+        </member>
+        <member name="T:NHibernate.Shards.Query.IShardedQuery">
+            <summary>
+            <see cref="T:NHibernate.Shards.Query.IShardedQuery"/> extends the <see cref="T:NHibernate.IQuery"/> interface to 
+            provide the ability to query across shards.
+            </summary>
+        </member>
+        <member name="M:NHibernate.Shards.Query.IShardedQuery.BuildListExitStrategy``1">
+            <summary>
+            Builds an exit strategy for <see cref="M:NHibernate.IQuery.List``1"/> operation.
+            </summary>
+            <returns>An exit strategy for <see cref="M:NHibernate.IQuery.List``1"/> operation</returns>
+        </member>
+        <member name="M:NHibernate.Shards.Query.IShardedQuery.EstablishFor(NHibernate.Shards.IShard)">
+            <summary>
+            Returns an <see cref="T:NHibernate.IQuery"/> instance that is associated with the
+            established session of a given shard.
+            </summary>
+            <param name="shard">The shard for which an <see cref="T:NHibernate.IQuery"/> is to be established.</param>
+            <returns>An <see cref="T:NHibernate.IQuery"/> instance that is associated with the established session 
+            of <paramref name="shard"/>.
+            </returns>
+        </member>
+        <member name="T:NHibernate.Shards.Query.IShardedSQLQuery">
+            <summary>
+            <see cref="T:NHibernate.Shards.Query.IShardedSQLQuery"/> extends the <see cref="T:NHibernate.ISQLQuery"/> interface 
+            to provide the ability to query across shards.
+            </summary>
+        </member>
+        <member name="M:NHibernate.Shards.Query.ShardedMultiQueryImpl.#ctor(NHibernate.Shards.Engine.IShardedSessionImplementor)">
+            <summary>
+            Creates new <see cref="T:NHibernate.Shards.Query.ShardedQueryImpl"/> instance.
+            </summary>
+            <param name="session">The Sharded session on which this query is to be executed.</param>
+        </member>
+        <member name="T:NHibernate.Shards.Query.ShardedQueryImpl">
+            <summary>
+            Concrete implementation of ShardedQuery provided by Hibernate Shards. This
+            implementation introduces limits to the HQL language; mostly around
+            limits and aggregation. Its approach is simply to execute the query on
+            each shard and compile the results in a list, or if a unique result is
+            desired, the fist non-null result is returned.
+            
+            The setFoo methods are implemented using a set of classes that implement
+            the QueryEvent interface and are called SetFooEvent. These query events
+            are used to call setFoo with the appropriate arguments on each Query that
+            is executed on a shard.
+            </summary>
+        </member>
+        <member name="M:NHibernate.Shards.Query.ShardedQueryImpl.CreateQuery(NHibernate.Shards.Engine.IShardedSessionImplementor,System.String)">
+            <summary>
+            Creates new <see cref="T:NHibernate.Shards.Query.ShardedQueryImpl"/> instance.
+            </summary>
+            <param name="session">The Sharded session on which this query is to be executed.</param>
+            <param name="hql">An HQL query string.</param>
+        </member>
+        <member name="M:NHibernate.Shards.Query.ShardedQueryImpl.#ctor(NHibernate.Shards.Engine.IShardedSessionImplementor,System.Func{NHibernate.ISession,NHibernate.IQuery})">
+            <summary>
+            Creates new <see cref="T:NHibernate.Shards.Query.ShardedQueryImpl"/> instance.
+            </summary>
+            <param name="session">The Sharded session on which this query is to be executed.</param>
+            <param name="queryFactory">Factory method for creation of shard-local <see cref="T:NHibernate.IQuery"/> instances.</param>
+        </member>
+        <member name="M:NHibernate.Shards.Query.ShardedQueryImpl.Enumerable">
+             This method currently wraps list().
+            
+             {@inheritDoc}
+            
+             @return an iterator over the results of the query
+             @throws HibernateException
+        </member>
+        <member name="M:NHibernate.Shards.Query.ShardedQueryImpl.List">
+             The implementation executes the query on each shard and concatenates the
+             results.
+            
+             {@inheritDoc}
+            
+             @return a list containing the concatenated results of executing the
+             query on all shards
+             @throws HibernateException
+        </member>
+        <member name="M:NHibernate.Shards.Query.ShardedQueryImpl.UniqueResult">
+             The implementation executes the query on each shard and returns the first
+             non-null result.
+            
+             {@inheritDoc}
+            
+             @return the first non-null result, or null if no non-null result found
+             @throws HibernateException
+        </member>
+        <member name="T:NHibernate.Shards.Session.IStatefulInterceptorFactory">
+            <summary>
+            Interface describing an object that knows how to create Interceptors.
+            Technically this is just an interceptor factory, but it is designed
+            to be used by clients who want to use stateful interceptors in conjunction
+            with sharded sessions.  Clients should make sure their Interceptor
+            implementation implements this interface.  Furthermore, if the
+            Interceptor implementation requires a reference to the Session, the
+            Interceptor returned by NewInstance() should implement the <see cref="T:NHibernate.Shards.Session.IRequiresSession"/>
+            interface.
+            </summary>
+        </member>
+        <member name="T:NHibernate.Shards.Session.IControlSessionProvider">
+            <summary>
+            Interface for any entity that can provide the control session.
+            Control session is used to access control (meta)data which usually lives on
+            only one shard.
+            </summary>
+        </member>
+        <member name="M:NHibernate.Shards.Session.IControlSessionProvider.OpenControlSession">
+            <summary>
+            Opens control session.
+            </summary>
+            <returns>control session</returns>
+        </member>
+        <member name="T:NHibernate.Shards.Session.IRequiresSession">
+            <summary>
+            Interface describing an object that can have a Session set on it.  This
+            is designed to be used in conjunction with stateful interceptors.
+            <seealso cref="T:NHibernate.Shards.Session.IStatefulInterceptorFactory"/>
+            </summary>
+        </member>
+        <member name="T:NHibernate.Shards.Session.IShardAware">
+            <summary>
+            Describes an object that knows the id of the shard on which it lives.
+            </summary>
+        </member>
+        <member name="T:NHibernate.Shards.Session.IShardedSession">
+            <summary>
+            The main runtime inteface between .Net application and NHibernate Shards.
+            ShardedSession represents a logical transaction that might be spanning
+            multiple shards. It follows the contract set by ISession API, and adds some
+            shard-related methods. 
+            </summary>
+        </member>
+        <member name="M:NHibernate.Shards.Session.IShardedSession.GetSessionForObject(System.Object)">
+            <summary>
+            Gets the non-sharded session with which the objects is associated.
+            </summary>
+            <param name="obj">the object for which we want the Session</param>
+            <returns>
+            The Session with which this object is associated, or null if the
+            object is not associated with a session belonging to this ShardedSession
+            </returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.IShardedSession.GetShardIdForObject(System.Object)">
+            <summary>
+             Gets the ShardId of the shard with which the objects is associated.
+            </summary>
+            <param name="obj">the object for which we want the Session</param>
+            <returns>
+            the ShardId of the Shard with which this object is associated, or
+            null if the object is not associated with a shard belonging to this
+            ShardedSession
+            </returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.IShardedSession.LockShard">
+            <summary>
+            Place the session into a state where every create operation takes place
+            on the same shard.  Once the shard is locked on a session it cannot
+            be unlocked.
+            </summary>
+        </member>
+        <member name="T:NHibernate.Shards.Session.IShardIdResolver">
+            <summary>
+            Gets ShardId of the shard given object lives on.
+            </summary>
+        </member>
+        <member name="M:NHibernate.Shards.Session.IShardIdResolver.GetShardIdForObject(System.Object)">
+            <summary>
+            Gets ShardId of the shard given object lives on.
+            </summary>
+            <param name="obj">Object whose Shard should be resolved</param>
+            <returns>ShardId of the shard the object lives on; null if shard could not be resolved</returns>
+        </member>
+        <member name="T:NHibernate.Shards.Session.ShardAwareInterceptor">
+            <summary>
+            Interceptor that sets the <see cref="T:NHibernate.Shards.ShardId"/> of any object
+            that implements the <see cref="T:NHibernate.Shards.Session.IShardAware"/> interface and does already know its
+            <see cref="T:NHibernate.Shards.ShardId"/> when the object is saved or loaded.
+            </summary>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardAwareInterceptor.SetShardId(System.Object)">
+            <summary>
+            Set the ShardId if the entity is <see cref="T:NHibernate.Shards.Session.IShardAware"/> and it ShardId is null.
+            </summary>
+            <param name="entity"></param>
+            <returns>True if the state of the entity was changed</returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedFilterImpl.Validate">
+            <summary>
+            Perform validation of the filter state.  This is used to verify the
+            state of the filter after its enablement and before its use.
+            </summary>
+        </member>
+        <member name="T:NHibernate.Shards.Session.ShardedSessionException">
+            <summary>
+            Main exception used in Hibernate Shards.
+            </summary>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionFactoryImpl.#ctor(System.Collections.Generic.IDictionary{NHibernate.Engine.ISessionFactoryImplementor,System.Collections.Generic.ICollection{NHibernate.Shards.ShardId}},NHibernate.Shards.Strategy.IShardStrategyFactory,System.Collections.Generic.IEnumerable{System.Type},System.Boolean)">
+            <summary>
+            Constructs a ShardedSessionFactoryImpl
+            </summary>
+            <param name="shardIdsBySessionFactory">Mapping of SessionFactories to shard ids. 
+             When using virtual shards, this map associates SessionFactories (physical
+             shards) with virtual shards (shard ids).  Map cannot be empty.
+             Map keys cannot be null.  Map values cannot be null or empty.</param>
+            <param name="shardStrategyFactory">factory that knows how to create the <see cref="T:NHibernate.Shards.Strategy.IShardStrategy"/> 
+             that will be used for all shard-related operations</param>
+            <param name="classesWithoutTopLevelSaveSupport"> All classes that cannot be saved
+             as top-level objects</param>
+            <param name="checkAllAssociatedObjectsForDifferentShards">Flag that controls
+             whether or not we do full cross-shard relationshp checking (very slow)</param>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionFactoryImpl.SetupIdGenerators">
+            Sets the {@link ControlSessionProvider} on id generators that implement the
+            {@link GeneratorRequiringControlSessionProvider} interface
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionFactoryImpl.OpenControlSession">
+            <summary>
+            Opens control session.
+            </summary>
+            <returns>control session</returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionFactoryImpl.GetSessionFactory(System.Collections.Generic.IEnumerable{NHibernate.Shards.ShardId},NHibernate.Shards.Strategy.IShardStrategyFactory)">
+             <summary>
+             This method is provided to allow a client to work on a subset of
+             shards or a specialized <see cref="T:NHibernate.Shards.Strategy.IShardStrategyFactory"/>.  By providing
+             the desired shardIds, the client can limit operations to these shards.
+             Alternatively, this method can be used to create a ShardedSessionFactory
+             with different strategies that might be appropriate for a specific operation.
+            
+             The factory returned will not be stored as one of the factories that would
+             be returned by a call to getSessionFactories.
+             </summary>
+             <param name="shardIds"></param>
+             <param name="shardStrategyFactory"></param>
+             <returns>specially configured ShardedSessionFactory</returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionFactoryImpl.OpenSession(NHibernate.IInterceptor)">
+            <summary>
+            Create database connection(s) and open a ShardedSession on it,
+            specifying an interceptor.
+            </summary>
+            <param name="interceptor">a session-scoped interceptor</param>
+            <returns></returns>
+            Throws <see cref="T:NHibernate.HibernateException"/>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionFactoryImpl.NHibernate#ISessionFactory#OpenSession(NHibernate.IInterceptor)">
+            <summary>
+            Create database connection and open a <c>ISession</c> on it, specifying an interceptor
+            Warning: this interceptor will be shared across all shards, so be very
+            careful about using a stateful implementation.
+            </summary>
+            <param name="interceptor">A session-scoped interceptor</param>
+            <returns>A session</returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionFactoryImpl.OpenSession">
+            <summary>
+            Create database connection(s) and open a ShardedSession on it.
+            </summary>
+            <returns></returns>
+            Throws <see cref="T:NHibernate.HibernateException"/>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionFactoryImpl.NHibernate#ISessionFactory#OpenSession">
+            <summary>
+            Create a database connection and open a <c>ISession</c> on it
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionFactoryImpl.NHibernate#ISessionFactory#OpenSession(System.Data.IDbConnection)">
+            <summary>
+            Not supported for sharded sessions.
+            </summary>
+            <exception cref="T:System.NotSupportedException">This operation is not supported for a sharded session.</exception>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionFactoryImpl.NHibernate#ISessionFactory#OpenSession(System.Data.IDbConnection,NHibernate.IInterceptor)">
+            <summary>
+            Not supported for sharded sessions.
+            </summary>
+            <exception cref="T:System.NotSupportedException">This operation is not supported for a sharded session.</exception>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionFactoryImpl.GetClassMetadata(System.Type)">
+            <summary>
+            Get the <c>ClassMetadata</c> associated with the given entity class
+            </summary>
+            <param name="persistentType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionFactoryImpl.GetCollectionMetadata(System.String)">
+            <summary>
+            Get the <c>CollectionMetadata</c> associated with the named collection role
+            </summary>
+            <param name="roleName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionFactoryImpl.Close">
+            <summary>
+            Destroy this <c>SessionFactory</c> and release all resources 
+            connection pools, etc). It is the responsibility of the application
+            to ensure that there are no open <c>Session</c>s before calling
+            <c>close()</c>. 
+            </summary>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionFactoryImpl.Evict(System.Type)">
+            <summary>
+            Evict all entries from the process-level cache.  This method occurs outside
+            of any transaction; it performs an immediate "hard" remove, so does not respect
+            any transaction isolation semantics of the usage strategy.  Use with care.
+            </summary>
+            <param name="persistentClass"></param>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionFactoryImpl.Evict(System.Type,System.Object)">
+            <summary>
+            Evict an entry from the process-level cache.  This method occurs outside
+            of any transaction; it performs an immediate "hard" remove, so does not respect
+            any transaction isolation semantics of the usage strategy.  Use with care.
+            </summary>
+            <param name="persistentClass"></param>
+            <param name="id"></param>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionFactoryImpl.EvictEntity(System.String)">
+            <summary> 
+            Evict all entries from the second-level cache. This method occurs outside
+            of any transaction; it performs an immediate "hard" remove, so does not respect
+            any transaction isolation semantics of the usage strategy. Use with care.
+            </summary>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionFactoryImpl.EvictCollection(System.String)">
+            <summary>
+            Evict all entries from the process-level cache.  This method occurs outside
+            of any transaction; it performs an immediate "hard" remove, so does not respect
+            any transaction isolation semantics of the usage strategy.  Use with care.
+            </summary>
+            <param name="roleName"></param>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionFactoryImpl.EvictCollection(System.String,System.Object)">
+            <summary>
+            Evict an entry from the process-level cache.  This method occurs outside
+            of any transaction; it performs an immediate "hard" remove, so does not respect
+            any transaction isolation semantics of the usage strategy.  Use with care.
+            </summary>
+            <param name="roleName"></param>
+            <param name="id"></param>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionFactoryImpl.EvictQueries">
+            <summary>
+            Evict any query result sets cached in the default query cache region.
+            </summary>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionFactoryImpl.EvictQueries(System.String)">
+            <summary>
+            Evict any query result sets cached in the named query cache region.
+            </summary>
+            <param name="cacheRegion"></param>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionFactoryImpl.GetFilterDefinition(System.String)">
+            <summary>
+            Obtain the definition of a filter by name.
+            </summary>
+            <param name="filterName">The name of the filter for which to obtain the definition.</param>
+            <return>The filter definition.</return>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionFactoryImpl.GetCurrentSession">
+            <summary>
+            Unsupported
+            </summary>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionFactoryImpl.OpenStatelessSession">
+            <summary> Get a new stateless session.</summary>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionFactoryImpl.OpenStatelessSession(System.Data.IDbConnection)">
+            <summary> Get a new stateless session for the given ADO.NET connection.</summary>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionFactoryImpl.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+            <filterpriority>2</filterpriority>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionFactoryImpl.GetEntityPersister(System.String)">
+            <summary>
+            Get the persister for the named class
+            </summary>
+            <param name="className">The name of the class that is persisted.</param>
+            <returns>The <see cref="T:NHibernate.Persister.Entity.IEntityPersister"/> for the class.</returns>
+            <exception cref="T:NHibernate.MappingException">If no <see cref="T:NHibernate.Persister.Entity.IEntityPersister"/> can be found.</exception>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionFactoryImpl.GetCollectionPersister(System.String)">
+            <summary>
+            Get the persister object for a collection role
+            </summary>
+            <param name="role"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionFactoryImpl.GetReturnTypes(System.String)">
+            <summary>
+            Get the return types of a query
+            </summary>
+            <param name="queryString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionFactoryImpl.GetReturnAliases(System.String)">
+            <summary> Get the return aliases of a query</summary>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionFactoryImpl.GetImplementors(System.String)">
+            <summary>
+            Get the names of all persistent classes that implement/extend the given interface/class
+            </summary>
+            <param name="className"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionFactoryImpl.GetImportedClassName(System.String)">
+            <summary>
+            Get a class name, using query language imports
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionFactoryImpl.GetQueryCache(System.String)">
+            <summary>
+            Get a particular named query cache, or the default cache
+            </summary>
+            <param name="regionName">the name of the cache region, or null for the default
+            query cache</param>
+            <returns>the existing cache, or a newly created cache if none by that
+            region name</returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionFactoryImpl.GetSecondLevelCacheRegion(System.String)">
+            <summary> Get a named second-level cache region</summary>
+        </member>
+        <member name="P:NHibernate.Shards.Session.ShardedSessionFactoryImpl.ConnectionProvider">
+            <summary>
+            Get the <see cref="T:NHibernate.Connection.IConnectionProvider"/> used.
+            </summary>
+        </member>
+        <member name="P:NHibernate.Shards.Session.ShardedSessionFactoryImpl.Dialect">
+            <summary>
+            Get the SQL <c>Dialect</c>
+            </summary>
+        </member>
+        <member name="P:NHibernate.Shards.Session.ShardedSessionFactoryImpl.DefinedFilterNames">
+            <summary>
+            Obtain a set of the names of all filters defined on this SessionFactory.
+            </summary>
+            <return>The set of filter names.</return>
+        </member>
+        <member name="P:NHibernate.Shards.Session.ShardedSessionFactoryImpl.Statistics">
+            <summary> Get the statistics for this session factory</summary>
+        </member>
+        <member name="P:NHibernate.Shards.Session.ShardedSessionFactoryImpl.QueryCache">
+            <summary>
+            Get the default query cache
+            </summary>
+        </member>
+        <member name="P:NHibernate.Shards.Session.ShardedSessionFactoryImpl.CurrentSessionContext">
+            <summary>
+            Gets the ICurrentSessionContext instance attached to this session factory.
+            </summary>
+        </member>
+        <member name="P:NHibernate.Shards.Session.ShardedSessionFactoryImpl.UpdateTimestampsCache">
+            <summary> The cache of table update timestamps</summary>
+        </member>
+        <member name="P:NHibernate.Shards.Session.ShardedSessionFactoryImpl.StatisticsImplementor">
+            <summary> Statistics SPI</summary>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionFactoryImpl.Subset.Close">
+             This method is a NO-OP. As a ShardedSessionFactoryImpl that represents
+             a subset of the application's shards, it will not close any shard's
+             sessionFactory.
+            
+             @throws HibernateException
+        </member>
+        <member name="T:NHibernate.Shards.Session.ShardedSessionImpl">
+            <summary>
+            Concrete implementation of a ShardedSession, and also the central component of
+            Hibernate Shards' internal implementation. This class exposes two interfaces;
+            ShardedSession itself, to the application, and ShardedSessionImplementor, to
+            other components of Hibernate Shards. This class is not threadsafe.
+            </summary>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.#ctor(NHibernate.Shards.Engine.IShardedSessionFactoryImplementor,NHibernate.Shards.Strategy.IShardStrategy,System.Collections.Generic.IEnumerable{System.Type},NHibernate.IInterceptor,System.Boolean)">
+             Constructor used for openSession(...) processing.
+            
+             @param interceptor The interceptor to be applied to this session
+             @param shardedSessionFactory The factory from which this session was obtained
+             @param shardStrategy The shard strategy for this session
+             @param classesWithoutTopLevelSaveSupport The set of classes on which top-level save can not be performed
+             @param checkAllAssociatedObjectsForDifferentShards Should we check for cross-shard relationships
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.ApplyActionToShards(System.Action{NHibernate.ISession})">
+            <summary>
+            Registers an action to be performed once on each shard-local session
+            that has been or will be opened within the scope of this sharded
+            session.
+            </summary>
+            <param name="action">The action to be performed once on an opened
+            shard-local session.</param>
+            <remarks>
+            The <paramref name="action"/> is performed immediately on all shard-local
+            sessions that have already been established. It is also scheduled for
+            execution when any new shard-local sessions are established within the
+            scope of this sharded session.
+            </remarks>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.EstablishFor(NHibernate.Shards.IShard)">
+            <summary>
+            Establishes a shard-local session for a given shard.
+            </summary>
+            <param name="shard">The shard for which a session is to be established.</param>
+            <returns>
+            An open session for the <paramref name="shard"/>.
+            </returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.GetSessionForObject(System.Object)">
+            <summary>
+            Gets the session for the shard with which a given object is associated.
+            </summary>
+            <param name="obj">the object for which we want the session.</param>
+            <returns>
+            The session for the shard with which this object is associated, or
+            <c>null</c> if the object is not associated with a session belonging
+            to this <see cref="T:NHibernate.Shards.Session.IShardedSession"/>.
+            </returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.GetShardIdForObject(System.Object)">
+            <summary>
+            Gets the ShardId of the shard with which a given object is associated.
+            </summary>
+            <param name="obj">A persistent object.</param>
+            <returns>
+            The <see cref="T:NHibernate.Shards.ShardId"/> of the shard with which this object is associated, or
+            <c>null</c> if the object is not associated with a shard belonging
+            to this <see cref="T:NHibernate.Shards.Session.IShardedSession"/>.
+            </returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.GetShardIdForObject(System.String,System.Object)">
+            <summary>
+             Gets the ShardId of the shard with which the objects is associated.
+            </summary>
+            <param name="entityName">Entity name of <paramref name="obj"/>.</param>
+            <param name="obj">the object for which we want the Session</param>
+            <returns>
+            the ShardId of the Shard with which this object is associated, or
+            null if the object is not associated with a shard belonging to this
+            ShardedSession
+            </returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.TryGetShardIdForAttachedObject(System.String,System.Object,NHibernate.Shards.ShardId@)">
+            <summary>
+             Gets the ShardId of the shard with which the object is associated.
+            </summary>
+            <param name="entityName">Entity name of <paramref name="obj"/>.</param>
+            <param name="obj">the object for which we want the Session</param>
+            <param name="result">Returns the <see cref="T:NHibernate.Shards.ShardId"/> of the shard with 
+            which <paramref name="obj"/> is associated if this operation succeeds, 
+            or <c>null</c> otherwise.</param>
+            <returns>
+            Returns <c>true</c> is <paramref name="obj"/> is associated with a shard
+            that is within the scope of this sharded session.
+            </returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.LockShard">
+            <summary>
+            Place the session into a state where every create operation takes place
+            on the same shard.  Once the shard is locked on a session it cannot
+            be unlocked.
+            </summary>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Execute``1(NHibernate.Shards.IShardOperation{``0},NHibernate.Shards.Strategy.Exit.IExitStrategy{``0})">
+            <summary>
+            Performs the specified operation on the shards that are spanned by this session
+            and aggregates the results from each shard into a single result.
+            </summary>
+            <typeparam name="T">Return value type.</typeparam>
+            <param name="operation">The operation to be performed on each shard.</param>
+            <param name="exitStrategy">Strategy for collection and aggregation of
+            operation results from the shards.</param>
+            <returns>The aggregated operation result.</returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Flush">
+            <summary>
+            Force the <c>ISession</c> to flush.
+            </summary>
+            <remarks>
+            Must be called at the end of a unit of work, before commiting the transaction and closing
+            the session (<c>Transaction.Commit()</c> calls this method). <i>Flushing</i> if the process
+            of synchronising the underlying persistent store with persistable state held in memory.
+            </remarks>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Disconnect">
+            <summary>
+            Disconnect the <c>ISession</c> from the current ADO.NET connection.
+            </summary>
+            <remarks>
+            If the connection was obtained by Hibernate, close it or return it to the connection
+            pool. Otherwise return it to the application. This is used by applications which require
+            long transactions.
+            </remarks>
+            <returns>The connection provided by the application or <see langword="null" /></returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Reconnect">
+            <summary>
+            Obtain a new ADO.NET connection.
+            </summary>
+            <remarks>
+            This is used by applications which require long transactions
+            </remarks>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Reconnect(System.Data.IDbConnection)">
+            <summary>
+            Reconnect to the given ADO.NET connection.
+            </summary>
+            <remarks>This is used by applications which require long transactions</remarks>
+            <param name="connection">An ADO.NET connection</param>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Close">
+            <summary>
+            End the <c>ISession</c> by disconnecting from the ADO.NET connection and cleaning up.
+            </summary>
+            <remarks>
+            It is not strictly necessary to <c>Close()</c> the <c>ISession</c> but you must
+            at least <c>Disconnect()</c> it.
+            </remarks>
+            <returns>The connection provided by the application or <see langword="null" /></returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.CancelQuery">
+            <summary>
+            Cancel execution of the current query.
+            </summary>
+            <remarks>
+            May be called from one thread to stop execution of a query in another thread.
+            Use with care!
+            </remarks>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.IsDirty">
+            <summary>
+            Does this <c>ISession</c> contain any changes which must be
+            synchronized with the database? Would any SQL be executed if
+            we flushed this session?
+            </summary>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.IsReadOnly(System.Object)">
+            <summary>
+            Is the specified entity (or proxy) read-only?
+            </summary>
+            <param name="entityOrProxy">An entity (or <see cref="T:NHibernate.Proxy.INHibernateProxy"/>)</param>
+            <returns>
+              <c>true</c> if the entity (or proxy) is read-only, otherwise <c>false</c>.
+            </returns>
+            <seealso cref="P:NHibernate.ISession.DefaultReadOnly"/>
+            <seealso cref="M:NHibernate.ISession.SetReadOnly(System.Object,System.Boolean)"/>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.SetReadOnly(System.Object,System.Boolean)">
+            <summary>
+            Change the read-only status of an entity (or proxy).
+            </summary>
+            <param name="entityOrProxy">An entity (or <see cref="T:NHibernate.Proxy.INHibernateProxy"/>).</param>
+            <param name="readOnly">If <c>true</c>, the entity or proxy is made read-only; if <c>false</c>, it is made modifiable.</param>
+            <seealso cref="P:NHibernate.ISession.DefaultReadOnly"/>
+            <seealso cref="M:NHibernate.ISession.IsReadOnly(System.Object)"/>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.GetIdentifier(System.Object)">
+            <summary>
+            Return the identifier of an entity instance cached by the <c>ISession</c>
+            </summary>
+            <remarks>
+            Throws an exception if the instance is transient or associated with a different
+            <c>ISession</c>
+            </remarks>
+            <param name="obj">a persistent instance</param>
+            <returns>the identifier</returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Contains(System.Object)">
+            <summary>
+            Is this instance associated with this Session?
+            </summary>
+            <param name="obj">an instance of a persistent class</param>
+            <returns>true if the given instance is associated with this Session</returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Evict(System.Object)">
+            <summary>
+            Remove this instance from the session cache.
+            </summary>
+            <remarks>
+            Changes to the instance will not be synchronized with the database.
+            This operation cascades to associated instances if the association is mapped
+            with <c>cascade="all"</c> or <c>cascade="all-delete-orphan"</c>.
+            </remarks>
+            <param name="obj">a persistent instance</param>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Load(System.Type,System.Object,NHibernate.LockMode)">
+            <summary>
+            Return the persistent instance of the given entity class with the given identifier,
+            obtaining the specified lock mode.
+            </summary>
+            <param name="clazz">A persistent class</param>
+            <param name="id">A valid identifier of an existing persistent instance of the class</param>
+            <param name="lockMode">The lock level</param>
+            <returns>the persistent instance</returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Load(System.String,System.Object,NHibernate.LockMode)">
+            <summary>
+            Return the persistent instance of the given entity class with the given identifier,
+            obtaining the specified lock mode, assuming the instance exists.
+            </summary>
+            <param name="entityName">The entity-name of a persistent class</param>
+            <param name="id">a valid identifier of an existing persistent instance of the class</param>
+            <param name="lockMode">the lock level</param>
+            <returns>the persistent instance or proxy</returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Load(System.Type,System.Object)">
+            <summary>
+            Return the persistent instance of the given entity class with the given identifier,
+            assuming that the instance exists.
+            </summary>
+            <remarks>
+            You should not use this method to determine if an instance exists (use a query or
+            <see cref="M:NHibernate.Shards.Session.ShardedSessionImpl.Get(System.Type,System.Object)"/> instead). Use this only to retrieve an instance
+            that you assume exists, where non-existence would be an actual error.
+            </remarks>
+            <param name="clazz">A persistent class</param>
+            <param name="id">A valid identifier of an existing persistent instance of the class</param>
+            <returns>The persistent instance or proxy</returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Load``1(System.Object,NHibernate.LockMode)">
+            <summary>
+            Return the persistent instance of the given entity class with the given identifier,
+            obtaining the specified lock mode.
+            </summary>
+            <typeparam name="T">A persistent class</typeparam>
+            <param name="id">A valid identifier of an existing persistent instance of the class</param>
+            <param name="lockMode">The lock level</param>
+            <returns>the persistent instance</returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Load``1(System.Object)">
+            <summary>
+            Return the persistent instance of the given entity class with the given identifier,
+            assuming that the instance exists.
+            </summary>
+            <remarks>
+            You should not use this method to determine if an instance exists (use a query or
+            <see cref="M:NHibernate.ISession.Get``1(System.Object)"/> instead). Use this only to retrieve an instance that you
+            assume exists, where non-existence would be an actual error.
+            </remarks>
+            <typeparam name="T">A persistent class</typeparam>
+            <param name="id">A valid identifier of an existing persistent instance of the class</param>
+            <returns>The persistent instance or proxy</returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Load(System.String,System.Object)">
+            <summary>
+            Return the persistent instance of the given <paramref name="entityName"/> with the given identifier,
+            assuming that the instance exists.
+            </summary>
+            <param name="entityName">The entity-name of a persistent class</param>
+            <param name="id">a valid identifier of an existing persistent instance of the class</param>
+            <returns>The persistent instance or proxy</returns>
+            <remarks>
+            You should not use this method to determine if an instance exists (use <see cref="M:NHibernate.ISession.Get(System.String,System.Object)"/>
+            instead). Use this only to retrieve an instance that you assume exists, where non-existence
+            would be an actual error.
+            </remarks>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Load(System.Object,System.Object)">
+            <summary>
+            Read the persistent state associated with the given identifier into the given transient 
+            instance.
+            </summary>
+            <param name="obj">An "empty" instance of the persistent class</param>
+            <param name="id">A valid identifier of an existing persistent instance of the class</param>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Replicate(System.Object,NHibernate.ReplicationMode)">
+            <summary>
+            Persist all reachable transient objects, reusing the current identifier
+            values. Note that this will not trigger the Interceptor of the Session.
+            </summary>
+            <param name="obj">a detached instance of a persistent class</param>
+            <param name="replicationMode"></param>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Replicate(System.String,System.Object,NHibernate.ReplicationMode)">
+            <summary>
+            Persist the state of the given detached instance, reusing the current
+            identifier value.  This operation cascades to associated instances if
+            the association is mapped with <tt>cascade="replicate"</tt>.
+            </summary>
+            <param name="entityName"></param>
+            <param name="obj">a detached instance of a persistent class</param>
+            <param name="replicationMode"></param>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Save(System.Object)">
+            <summary>
+            Persist the given transient instance, first assigning a generated identifier.
+            </summary>
+            <param name="obj">A transient instance of a persistent class</param>
+            <returns>The generated identifier</returns>
+            <remarks>
+            Save will use the current value of the identifier property if the <c>Assigned</c>
+            generator is used.
+            </remarks>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Save(System.String,System.Object)">
+            <summary>
+            Persist the given transient instance, first assigning a generated identifier. (Or
+            using the current value of the identifier property if the <tt>assigned</tt>
+            generator is used.)
+            </summary>
+            <param name="entityName">The Entity name.</param>
+            <param name="obj">a transient instance of a persistent class</param>
+            <returns>the generated identifier</returns>
+            <remarks>
+            This operation cascades to associated instances if the
+            association is mapped with <tt>cascade="save-update"</tt>.
+            </remarks>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Save(System.Object,System.Object)">
+            <summary>
+            Persist the given transient instance, using the given identifier.
+            </summary>
+            <param name="obj">A transient instance of a persistent class</param>
+            <param name="id">An unused valid identifier</param>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Save(System.String,System.Object,System.Object)">
+            <summary>
+            Persist the given transient instance, using the given identifier.
+            </summary>
+            <param name="entityName">The Entity name.</param>
+            <param name="obj">A transient instance of a persistent class</param>
+            <param name="id">An unused valid identifier</param>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.GetAssociatedShardIds(System.String,System.Object)">
+            TODO(maxr) I can see this method benefitting from a cache that lets us quickly
+            see which properties we might need to look at.
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.SaveOrUpdate(System.Object)">
+            <summary>
+            Either <c>Save()</c> or <c>Update()</c> the given instance, depending upon the value of
+            its identifier property.
+            </summary>
+            <param name="obj">A transient instance containing new or updated state</param>
+            <remarks>
+            By default the instance is always saved. This behaviour may be adjusted by specifying
+            an <c>unsaved-value</c> attribute of the identifier property mapping
+            </remarks>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.SaveOrUpdate(System.String,System.Object)">
+            <summary>
+            Either <see cref="M:NHibernate.ISession.Save(System.String,System.Object)"/> or <see cref="M:NHibernate.ISession.Update(System.String,System.Object)"/>
+            the given instance, depending upon resolution of the unsaved-value checks
+            (see the manual for discussion of unsaved-value checking).
+            </summary>
+            <param name="entityName">The name of the entity</param>
+            <param name="obj">a transient or detached instance containing new or updated state</param>
+            <seealso cref="M:NHibernate.ISession.Save(System.String,System.Object)"/>
+            <seealso cref="M:NHibernate.ISession.Update(System.String,System.Object)"/>
+            <remarks>
+            This operation cascades to associated instances if the association is mapped
+            with <tt>cascade="save-update"</tt>.
+            </remarks>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Update(System.Object)">
+            <summary>
+            Update the persistent instance with the identifier of the given transient instance.
+            </summary>
+            <remarks>
+            If there is a persistent instance with the same identifier, an exception is thrown. If
+            the given transient instance has a <see langword="null" /> identifier, an exception will be thrown.
+            </remarks>
+            <param name="obj">A transient instance containing updated state</param>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Update(System.String,System.Object)">
+            <summary>
+            Update the persistent instance with the identifier of the given detached
+            instance.
+            </summary>
+            <param name="entityName">The Entity name.</param>
+            <param name="obj">a detached instance containing updated state</param>
+            <remarks>
+            If there is a persistent instance with the same identifier,
+            an exception is thrown. This operation cascades to associated instances
+            if the association is mapped with <tt>cascade="save-update"</tt>.
+            </remarks>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Update(System.Object,System.Object)">
+            <summary>
+            Update the persistent instance associated with the given identifier.
+            </summary>
+            <param name="obj">a detached instance containing updated state </param>
+            <param name="id">Identifier of persistent instance</param>
+            <remarks>
+            If there is a persistent instance with the same identifier, an exception 
+            is thrown. This operation cascades to associated instances if the association 
+            is mapped with <tt>cascade="save-update"</tt>.
+            </remarks>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Update(System.String,System.Object,System.Object)">
+            <summary>
+            Update the persistent instance associated with the given identifier.
+            </summary>
+            <param name="entityName">The Entity name.</param>
+            <param name="obj">a detached instance containing updated state </param>
+            <param name="id">Identifier of persistent instance</param>
+            <remarks>
+            If there is a persistent instance with the same identifier, an exception 
+            is thrown. This operation cascades to associated instances if the association 
+            is mapped with <tt>cascade="save-update"</tt>.
+            </remarks>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Merge(System.Object)">
+            <summary>
+            Copy the state of the given object onto the persistent object with the same
+            identifier. If there is no persistent instance currently associated with
+            the session, it will be loaded. Return the persistent instance. If the
+            given instance is unsaved, save a copy of and return it as a newly persistent
+            instance. The given instance does not become associated with the session.
+            This operation cascades to associated instances if the association is mapped
+            with <tt>cascade="merge"</tt>.<br/>
+            The semantics of this method are defined by JSR-220.
+            </summary>
+            <param name="obj">a detached instance with state to be copied</param>
+            <returns>an updated persistent instance</returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Merge(System.String,System.Object)">
+            <summary>
+            Copy the state of the given object onto the persistent object with the same
+            identifier. If there is no persistent instance currently associated with
+            the session, it will be loaded. Return the persistent instance. If the
+            given instance is unsaved, save a copy of and return it as a newly persistent
+            instance. The given instance does not become associated with the session.
+            This operation cascades to associated instances if the association is mapped
+            with <tt>cascade="merge"</tt>.<br/>
+            The semantics of this method are defined by JSR-220.
+            </summary>
+            <param name="entityName">Name of the entity.</param>
+            <param name="obj">a detached instance with state to be copied </param>
+            <returns> an updated persistent instance </returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Persist(System.Object)">
+            <summary>
+            Make a transient instance persistent. This operation cascades to associated
+            instances if the association is mapped with <tt>cascade="persist"</tt>.<br/>
+            The semantics of this method are defined by JSR-220.
+            </summary>
+            <param name="obj">a transient instance to be made persistent</param>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Persist(System.String,System.Object)">
+            <summary>
+            Make a transient instance persistent. This operation cascades to associated
+            instances if the association is mapped with <tt>cascade="persist"</tt>.<br/>
+            The semantics of this method are defined by JSR-220.
+            </summary>
+            <param name="entityName">Name of the entity.</param>
+            <param name="obj">a transient instance to be made persistent</param>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Delete(System.Object)">
+            <summary>
+            Remove a persistent instance from the datastore.
+            </summary>
+            <remarks>
+            The argument may be an instance associated with the receiving <c>ISession</c> or a
+            transient instance with an identifier associated with existing persistent state.
+            </remarks>
+            <param name="obj">The instance to be removed</param>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Delete(System.String)">
+            <summary>
+            Delete all objects returned by the query.
+            </summary>
+            <param name="query">The query string</param>
+            <returns>Returns the number of objects deleted.</returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Delete(System.String,System.Object,NHibernate.Type.IType)">
+            <summary>
+            Delete all objects returned by the query.
+            </summary>
+            <param name="query">The query string</param>
+            <param name="value">A value to be written to a "?" placeholer in the query</param>
+            <param name="type">The hibernate type of value.</param>
+            <returns>The number of instances deleted</returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Delete(System.String,System.Object[],NHibernate.Type.IType[])">
+            <summary>
+            Delete all objects returned by the query.
+            </summary>
+            <param name="query">The query string</param>
+            <param name="values">A list of values to be written to "?" placeholders in the query</param>
+            <param name="types">A list of Hibernate types of the values</param>
+            <returns>The number of instances deleted</returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.GetCurrentLockMode(System.Object)">
+            <summary>
+            Determine the current lock mode of the given object
+            </summary>
+            <param name="obj">A persistent instance</param>
+            <returns>The current lock mode</returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Lock(System.Object,NHibernate.LockMode)">
+            <summary>
+            Obtain the specified lock level upon the given object.
+            </summary>
+            <param name="obj">A persistent instance</param>
+            <param name="lockMode">The lock level</param>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Refresh(System.Object)">
+            <summary>
+            Re-read the state of the given instance from the underlying database.
+            </summary>
+            <remarks>
+            <para>
+            It is inadvisable to use this to implement long-running sessions that span many
+            business tasks. This method is, however, useful in certain special circumstances.
+            </para>
+            <para>
+            For example,
+            <list>
+            	<item>Where a database trigger alters the object state upon insert or update</item>
+            	<item>After executing direct SQL (eg. a mass update) in the same session</item>
+            	<item>After inserting a <c>Blob</c> or <c>Clob</c></item>
+            </list>
+            </para>
+            </remarks>
+            <param name="obj">A persistent instance</param>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Refresh(System.Object,NHibernate.LockMode)">
+            <summary>
+            Re-read the state of the given instance from the underlying database, with
+            the given <c>LockMode</c>.
+            </summary>
+            <remarks>
+            It is inadvisable to use this to implement long-running sessions that span many
+            business tasks. This method is, however, useful in certain special circumstances.
+            </remarks>
+            <param name="obj">a persistent or transient instance</param>
+            <param name="lockMode">the lock mode to use</param>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.BeginTransaction">
+            <summary>
+            Begin a unit of work and return the associated <c>ITransaction</c> object.
+            </summary>
+            <remarks>
+            If a new underlying transaction is required, begin the transaction. Otherwise
+            continue the new work in the context of the existing underlying transaction.
+            The class of the returned <see cref="T:NHibernate.ITransaction"/> object is determined by
+            the property <c>transaction_factory</c>
+            </remarks>
+            <returns>A transaction instance</returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.BeginTransaction(System.Data.IsolationLevel)">
+            <summary>
+            Begin a transaction with the specified <c>isolationLevel</c>
+            </summary>
+            <param name="isolationLevel">Isolation level for the new transaction</param>
+            <returns>A transaction instance having the specified isolation level</returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.CreateCriteria(System.Type)">
+            <summary>
+            Creates a new <c>Criteria</c> for the entity class.
+            </summary>
+            <param name="persistentClass">The class to Query</param>
+            <returns>An ICriteria object</returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.CreateCriteria(System.Type,System.String)">
+            <summary>
+            Creates a new <c>Criteria</c> for the entity class with a specific alias
+            </summary>
+            <param name="persistentClass">The class to Query</param>
+            <param name="alias">The alias of the entity</param>
+            <returns>An ICriteria object</returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.CreateQuery(System.String)">
+            <summary>
+            Create a new instance of <c>Query</c> for the given query string
+            </summary>
+            <param name="queryString">A hibernate query string</param>
+            <returns>The query</returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.CreateFilter(System.Object,System.String)">
+            <summary>
+            Create a new instance of <c>Query</c> for the given collection and filter string
+            </summary>
+            <param name="collection">A persistent collection</param>
+            <param name="queryString">A hibernate query</param>
+            <returns>A query</returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.GetNamedQuery(System.String)">
+            <summary>
+            Obtain an instance of <see cref="T:NHibernate.IQuery"/> for a named query string defined in the
+            mapping file.
+            </summary>
+            <param name="queryName">The name of a query defined externally.</param>
+            <returns>An <see cref="T:NHibernate.IQuery"/> from a named query string.</returns>
+            <remarks>
+            The query can be either in <c>HQL</c> or <c>SQL</c> format.
+            </remarks>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.CreateSQLQuery(System.String)">
+            <summary>
+            Create a new instance of <see cref="T:NHibernate.ISQLQuery"/> for the given SQL query string.
+            </summary>
+            <param name="queryString">a query expressed in SQL</param>
+            <returns>An <see cref="T:NHibernate.ISQLQuery"/> from the SQL string</returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.CreateMultiQuery">
+            <summary>
+            Create a multi query, a query that can send several
+            queries to the server, and return all their results in a single
+            call.
+            </summary>
+            <returns>
+            An <see cref="T:NHibernate.IMultiQuery"/> that can return
+            a list of all the results of all the queries.
+            Note that each query result is itself usually a list.
+            </returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.CreateMultiCriteria">
+            <summary>
+            An <see cref="T:NHibernate.IMultiCriteria"/> that can return a list of all the results
+            of all the criterias.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Clear">
+            <summary>
+            Completely clear the session. Evict all loaded instances and cancel all pending
+            saves, updates and deletions. Do not close open enumerables or instances of
+            <c>ScrollableResults</c>.
+            </summary>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Get(System.Type,System.Object)">
+            <summary>
+            Return the persistent instance of the given entity class with the given identifier, or null
+            if there is no such persistent instance. (If the instance, or a proxy for the instance, is
+            already associated with the session, return that instance or proxy.)
+            </summary>
+            <param name="clazz">a persistent class</param>
+            <param name="id">an identifier</param>
+            <returns>a persistent instance or null</returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Get(System.Type,System.Object,NHibernate.LockMode)">
+            <summary>
+            Return the persistent instance of the given entity class with the given identifier, or null
+            if there is no such persistent instance. Obtain the specified lock mode if the instance
+            exists.
+            </summary>
+            <param name="clazz">a persistent class</param>
+            <param name="id">an identifier</param>
+            <param name="lockMode">the lock mode</param>
+            <returns>a persistent instance or null</returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Get``1(System.Object)">
+            <summary>
+            Strongly-typed version of <see cref="M:NHibernate.Shards.Session.ShardedSessionImpl.Get``1(System.Object)"/>
+            </summary>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Get``1(System.Object,NHibernate.LockMode)">
+            <summary>
+            Strongly-typed version of <see cref="M:NHibernate.Shards.Session.ShardedSessionImpl.Get``1(System.Object,NHibernate.LockMode)"/>
+            </summary>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.GetEntityName(System.Object)">
+            <summary> 
+            Return the entity name for a persistent entity
+            </summary>
+            <param name="obj">a persistent entity</param>
+            <returns> the entity name </returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.ApplyShardFuncToAttachedObject``1(System.Func{NHibernate.ISession,System.Object,``0},System.Object)">
+            Helper method we can use when we need to find the Shard with which a
+            specified object is associated and invoke the method on that Shard.
+            If the object isn't associated with a Session we just invoke it on a
+            random Session with the expectation that this will cause an error.
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.EnableFilter(System.String)">
+            <summary>
+            Enable the named filter for this current session.
+            </summary>
+            <param name="filterName">The name of the filter to be enabled.</param>
+            <returns>The Filter instance representing the enabled fiter.</returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.GetEnabledFilter(System.String)">
+            <summary>
+            Retrieve a currently enabled filter by name.
+            </summary>
+            <param name="filterName">The name of the filter to be retrieved.</param>
+            <returns>The Filter instance representing the enabled fiter.</returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.DisableFilter(System.String)">
+            <summary>
+            Disable the named filter for the current session.
+            </summary>
+            <param name="filterName">The name of the filter to be disabled.</param>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.SetBatchSize(System.Int32)">
+            <summary>
+            Sets the batch size of the session
+            </summary>
+            <param name="batchSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.GetSessionImplementation">
+            <summary>
+            Gets the session implementation.
+            </summary>
+            <remarks>
+            This method is provided in order to get the <b>NHibernate</b> implementation of the session from wrapper implementions.
+            Implementors of the <seealso cref="T:NHibernate.ISession"/> interface should return the NHibernate implementation of this method.
+            </remarks>
+            <returns>
+            An NHibernate implementation of the <seealso cref="T:NHibernate.Engine.ISessionImplementor"/> interface 
+            </returns>
+        </member>
+        <member name="M:NHibernate.Shards.Session.ShardedSessionImpl.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+            <filterpriority>2</filterpriority>
+        </member>
+        <member name="P:NHibernate.Shards.Session.ShardedSessionImpl.Shards">
+            <summary>
+            Read-only collection of shards that are accessible to this session.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:NHibernate.Shards.Session.ShardedSessionImpl.FlushMode">
+            <summary>
+            Determines at which points Hibernate automatically flushes the session.
+            </summary>
+            <remarks>
+            For a readonly session, it is reasonable to set the flush mode to <c>FlushMode.Never</c>
+            at the start of the session (in order to achieve some extra performance).
+            </remarks>
+        </member>
+        <member name="P:NHibernate.Shards.Session.ShardedSessionImpl.CacheMode">
+            <summary> 
+            The current cache mode. 
+            </summary>
+            <remarks>
+            Cache mode determines the manner in which this session can interact with
+            the second level cache.
+            </remarks>
+        </member>
+        <member name="P:NHibernate.Shards.Session.ShardedSessionImpl.SessionFactory">
+            <summary>
+            Get the <see cref="T:NHibernate.ISessionFactory"/> that created this instance.
+            </summary>
+        </member>
+        <member name="P:NHibernate.Shards.Session.ShardedSessionImpl.Connection">
+            <summary>
+            Deprecated.
+            </summary>
+        </member>
+        <member name="P:NHibernate.Shards.Session.ShardedSessionImpl.IsOpen">
+            <summary>
+            Is there any shard with an open session?
+            </summary>
+        </member>
+        <member name="P:NHibernate.Shards.Session.ShardedSessionImpl.IsConnected">
+            <summary>
+            Is there any shard with a connected session?
+            </summary>
+        </member>
+        <member name="P:NHibernate.Shards.Session.ShardedSessionImpl.DefaultReadOnly">
+            <summary>
+            The read-only status for entities (and proxies) loaded into this Session.
+            </summary>
+            <seealso cref="M:NHibernate.ISession.IsReadOnly(System.Object)"/>
+            <seealso cref="M:NHibernate.ISession.SetReadOnly(System.Object,System.Boolean)"/>
+        </member>
+        <member name="P:NHibernate.Shards.Session.ShardedSessionImpl.Transaction">
+            <summary>
+            Get the current Unit of Work and return the associated <c>ITransaction</c> object.
+            </summary>
+        </member>
+        <member name="P:NHibernate.Shards.Session.ShardedSessionImpl.Statistics">
+            <summary> Get the statistics for this session.</summary>
+        </member>
+        <member name="P:NHibernate.Shards.Stat.ShardedSessionStatistics.EntityCount">
+            <summary>
+             Get the number of entity instances associated with the session
+            </summary>
+        </member>
+        <member name="P:NHibernate.Shards.Stat.ShardedSessionStatistics.CollectionCount">
+            <summary>
+             Get the number of collection instances associated with the session
+            </summary>
+        </member>
+        <member name="P:NHibernate.Shards.Stat.ShardedSessionStatistics.EntityKeys">
+            <summary>
+             Get the set of all <see cref="T:NHibernate.Engine.EntityKey">EntityKeys</see>.
+            </summary>
+            
+        </member>
+        <member name="P:NHibernate.Shards.Stat.ShardedSessionStatistics.CollectionKeys">
+            <summary>
+             Get the set of all <see cref="T:NHibernate.Engine.CollectionKey">CollectionKeys</see>.
+            </summary>
+        </member>
+        <member name="T:NHibernate.Shards.Strategy.Access.ParallelShardAccessStrategy">
+            <summary>
+            Invokes the given operation on the given shards in parallel.
+            </summary>
+        </member>
+        <member name="M:NHibernate.Shards.Strategy.Access.ParallelShardAccessStrategy.Apply``1(System.Collections.Generic.IEnumerable{NHibernate.Shards.IShard},NHibernate.Shards.IShardOperation{``0},NHibernate.Shards.Strategy.Exit.IExitStrategy{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="shards"></param>
+            <param name="operation"></param>
+            <param name="exitStrategy"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NHibernate.Shards.Strategy.Access.SequentialShardAccessStrategy.GetNextOrderingOfShards(System.Collections.Generic.IEnumerable{NHibernate.Shards.IShard})">
+            <summary>
+            Override this method if you want to control the order in which the
+            shards are operated on (this comes in handy when paired with exit
+            strategies that allow early exit because it allows you to evenly
+            distribute load).  Deafult implementation is to just iterate in the
+            same order every time.
+            </summary>
+            <param name="shards">The shards we might want to reorder</param>
+            <returns>Reordered view of the shards.</returns>
+        </member>
+        <member name="T:NHibernate.Shards.Strategy.Exit.IExitStrategy`1">
+            <summary>
+            Classes implementing this interface gather results from operations that are
+            executed across shards. 
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:NHibernate.Shards.Strategy.Exit.IExitStrategy`1.AddResult(`0,NHibernate.Shards.IShard)">
+            <summary>
+            Add the provided result and return whether or not the caller can halt
+            processing.
+            </summary>
+            <param name="result">The result to add</param>
+            <param name="shard">The shard from which the result was obtained.</param>
+            <returns>Whether or not the caller can halt processing.</returns>
+        </member>
+        <member name="M:NHibernate.Shards.Strategy.Exit.IExitStrategy`1.CompileResults">
+            <summary>
+            Transforms the received results from individual shards into the final 
+            operation result.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NHibernate.Shards.Strategy.Exit.FirstNonNullResultExitStrategy`1.AddResult(`0,NHibernate.Shards.IShard)">
+            <summary>
+            Add the provided result and return whether or not the caller can halt
+            processing.
+            
+            Synchronized method guarantees that only the first thread to add a result  will have its result reflected.
+            </summary>
+            <param name="result">The result to add</param>
+            <param name="shard"></param>
+            <returns>Whether or not the caller can halt processing</returns>
+        </member>
+        <member name="T:NHibernate.Shards.Strategy.Exit.ListExitOperation">
+            <summary>
+            Represents method object that performs postprocessing on results that have
+            been collected from shards.
+            </summary>
+        </member>
+        <member name="M:NHibernate.Shards.Strategy.Exit.ListExitOperation.#ctor(System.Nullable{System.Int32},System.Int32,System.Boolean,NHibernate.Shards.Strategy.Exit.AggregationFunc,System.Collections.Generic.IComparer{System.Object})">
+            <summary>
+            Creates new <see cref="T:NHibernate.Shards.Strategy.Exit.ListExitOperation"/> instance.
+            </summary>
+            <param name="maxResults">Maximum number of results requested by the client.</param>
+            <param name="firstResult">Index of the first result requested by the client.</param>
+            <param name="distinct">Indication whether client requests removal of duplicate results.</param>
+            <param name="aggregation">Optional aggregation function to be applied to the results. </param>
+            <param name="order">Optional sort order to be applied to the results.</param>
+        </member>
+        <member name="M:NHibernate.Shards.Strategy.Exit.ListExitOperation.Execute``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Transforms collected results from shards into final result for <c>List</c> 
+            operations on sharded <see cref="T:NHibernate.IQuery"/> or <see cref="T:NHibernate.ICriteria"/> 
+            implementations.
+            </summary>
+            <param name="input">Results that have been collected from individual shards.</param>
+            <returns>Merged and post-processed output from shards.</returns>
+        </member>
+        <member name="P:NHibernate.Shards.Strategy.Exit.ListExitOperation.MaxResults">
+            <summary>
+            Maximum number of results requested by the client.
+            </summary>
+        </member>
+        <member name="P:NHibernate.Shards.Strategy.Exit.ListExitOperation.FirstResult">
+            <summary>
+            Index of the first result requested by the client.
+            </summary>
+        </member>
+        <member name="P:NHibernate.Shards.Strategy.Exit.ListExitOperation.Distinct">
+            <summary>
+            Indication whether client requests removal of duplicate results.
+            </summary>
+        </member>
+        <member name="P:NHibernate.Shards.Strategy.Exit.ListExitOperation.Aggregation">
+            <summary>
+            Optional aggregation function to be applied to the results. 
+            </summary>
+        </member>
+        <member name="P:NHibernate.Shards.Strategy.Exit.ListExitOperation.Order">
+            <summary>
+            Optional sort order to be applied to the results.
+            </summary>
+        </member>
+        <member name="T:NHibernate.Shards.Strategy.Exit.ListExitOperationBuilder">
+            <summary>
+            A builder of <see cref="T:NHibernate.Shards.Strategy.Exit.ListExitOperation"/> instances.
+            </summary>
+        </member>
+        <member name="M:NHibernate.Shards.Strategy.Exit.ListExitOperationBuilder.#ctor">
+            <summary>
+            Creates empty <see cref="T:NHibernate.Shards.Strategy.Exit.ListExitOperationBuilder"/> instance.
+            </summary>
+        </member>
+        <member name="M:NHibernate.Shards.Strategy.Exit.ListExitOperationBuilder.#ctor(NHibernate.Shards.Strategy.Exit.ListExitOperationBuilder)">
+            <summary>
+            Creates clone of another <see cref="T:NHibernate.Shards.Strategy.Exit.ListExitOperationBuilder"/> instance.
+            </summary>
+            <param name="other">The builder to clone.</param>
+        </member>
+        <member name="M:NHibernate.Shards.Strategy.Exit.ListExitOperationBuilder.BuildListOperation">
+            <summary>
+            Creates new <see cref="T:NHibernate.Shards.Strategy.Exit.ListExitOperation"/> with settings matching those 
+            that are currently defined on this builder instance.
+            </summary>
+            <returns>A new <see cref="T:NHibernate.Shards.Strategy.Exit.ListExitOperation"/> with settings matching those 
+            that are currently defined on this builder instance.</returns>
+        </member>
+        <member name="P:NHibernate.Shards.Strategy.Exit.ListExitOperationBuilder.MaxResults">
+            <summary>
+            Maximum number of results requested by the client.
+            Defaults to <c>null</c>.
+            </summary>
+        </member>
+        <member name="P:NHibernate.Shards.Strategy.Exit.ListExitOperationBuilder.FirstResult">
+            <summary>
+            Index of the first result requested by the client.
+            Defaults to <c>0</c>.
+            </summary>
+        </member>
+        <member name="P:NHibernate.Shards.Strategy.Exit.ListExitOperationBuilder.Distinct">
+            <summary>
+            Indication whether client requests removal of duplicate results.
+            Defaults to <c>false</c>.
+            </summary>
+        </member>
+        <member name="P:NHibernate.Shards.Strategy.Exit.ListExitOperationBuilder.Aggregation">
+            <summary>
+            Optional aggregation function to be applied to the results.
+            </summary>
+        </member>
+        <member name="P:NHibernate.Shards.Strategy.Exit.ListExitOperationBuilder.Orders">
+            <summary>
+            Sort order to be applied to the results.
+            </summary>
+        </member>
+        <member name="T:NHibernate.Shards.Strategy.Exit.ListExitStrategy`1">
+            <summary>
+            Threadsafe ExistStrategy that concatenates all the lists that are added.
+            </summary>
+        </member>
+        <member name="M:NHibernate.Shards.Strategy.Exit.ListExitStrategy`1.AddResult(System.Collections.Generic.IEnumerable{`0},NHibernate.Shards.IShard)">
+            <summary>
+            Add the provided result and return whether or not the caller can halt
+            processing.
+            </summary>
+            <param name="partialResult">The result to add</param>
+            <param name="shard"></param>
+            <returns>Whether or not the caller can halt processing</returns>
+        </member>
+        <member name="M:NHibernate.Shards.Strategy.Exit.SortOrderComparer.Compare(System.Object,System.Object)">
+            <summary>
+            Compares two objects and returns a value indicating whether one is less than, equal to, or greater than the other.
+            </summary>
+            <returns>
+            Value Condition Less than zero x is less than y. Zero x equals y. Greater than zero x is greater than y. 
+            </returns>
+            <param name="y">The second object to compare. </param>
+            <param name="x">The first object to compare. </param>
+        </member>
+        <member name="M:NHibernate.Shards.Strategy.Exit.UniqueResultExitStrategy`1.AddResult(`0,NHibernate.Shards.IShard)">
+            <summary>
+            Add the provided result and return whether or not the caller can halt
+            processing.
+            
+            Synchronized method guarantees that only the first thread to add a result  will have its result reflected.
+            </summary>
+            <param name="result">The result to add</param>
+            <param name="shard"></param>
+            <returns>Whether or not the caller can halt processing</returns>
+        </member>
+        <member name="P:NHibernate.Shards.Strategy.Selection.IShardResolutionStrategyData.EntityName">
+            <summary>
+            Entity name of the persistent object
+            </summary>
+        </member>
+        <member name="P:NHibernate.Shards.Strategy.Selection.IShardResolutionStrategyData.Id">
+            <summary>
+            Id of the persistent object
+            </summary>
+        </member>
+        <member name="M:NHibernate.Shards.Strategy.Selection.IShardSelectionStrategy.SelectShardIdForNewObject(System.Object)">
+            <summary>
+            Determine the specific shard on which this object should reside
+            </summary>
+            <param name="obj">the new object for which we are selecting a shard</param>
+            <returns>the id of the shard on which this object should live</returns>
+        </member>
+        <member name="M:NHibernate.Shards.Strategy.Selection.LoadBalancedShardSelectionStrategy.SelectShardIdForNewObject(System.Object)">
+            <summary>
+            Determine the specific shard on which this object should reside
+            taking into account the load balance strategy configurated.
+            </summary>
+            <param name="obj">the new object for which we are selecting a shard</param>
+            <returns>the id of the shard on which this object should live</returns>
+        </member>
+        <member name="T:NHibernate.Shards.Strategy.ShardStrategyImpl">
+            <summary>
+            Actual Implementation of IShardStrategy
+            </summary>
+        </member>
+        <member name="T:NHibernate.Shards.Transaction.ShardedTransactionImpl">
+            <summary>
+            NHibernate <see cref="T:NHibernate.ITransaction"/> implementation for a transaction that can span one or more
+            shards. If a transaction spans more than one shard, it is important to use a distributed 
+            transaction manager across all shards. Otherwise consistent committing or rolling back of 
+            transactions cannot be guaranteed.
+            </summary>
+            <remarks>
+            This implementation deviates from the Hibernate version, as NHibernate <see cref="T:NHibernate.ITransaction"/>
+            implementations are often disposed automatically on commit or rollback and therefore do not 
+            support beginning a new transaction after completion of a previous transaction.
+            </remarks>
+        </member>
+        <member name="T:NHibernate.Shards.IShardedTransaction">
+            <summary>
+            Simple interface to represent a shard-aware <see cref="T:NHibernate.ITransaction"/> 
+            </summary>
+        </member>
+        <member name="M:NHibernate.Shards.IShardedTransaction.Enlist(NHibernate.ISession)">
+            <summary>
+            Enlists a shard-local session into the sharded transaction.
+            </summary>
+            <param name="session">The shard-local session to be enlisted.</param>
+        </member>
+        <member name="T:NHibernate.Shards.Util.Preconditions">
+            <summary>
+            Helper methods for checking preconditions.
+            </summary>
+        </member>
+        <member name="M:NHibernate.Shards.Util.Preconditions.CheckArgument(System.Boolean)">
+            <summary>
+            TODO: doc
+            </summary>
+            <param name="expression"></param>
+        </member>
+        <member name="M:NHibernate.Shards.Util.Preconditions.CheckState(System.Boolean)">
+            <summary>
+            TODO: documentation
+            </summary>
+            <param name="expression"></param>
+        </member>
+        <member name="M:NHibernate.Shards.Util.Preconditions.CheckNotNull(System.Object)">
+            <summary>
+            TODO: doc
+            </summary>
+            <param name="reference"></param>
+        </member>
+        <member name="T:NHibernate.Shards.CrossShardAssociationException">
+             <summary>
+             Exception thrown when someone attempts to create a cross-shard association.
+             Here's an example of a cross-shard association.  Let's say we have
+             AccountManager and Account.  There is an owned, one-to-many relationship
+             between AccountManagers and Accounts, and we are sharding by AccountManager.
+             That means an AccountManager and all her Accounts live on the same shard.
+             Now suppose you did the following:
+             <code>
+             public void reassignLeastProfitableAccount(AccountManager mgr1, AccountManager mgr2) 
+             {
+            		Account acct = mgr1.removeLeastProfitableAccount();
+            		acct.setAccountManager(mgr2);
+            		mgr2.addAccount(acct);
+             }
+             </code>
+             If the 2 managers happen to live on different shards and you were to then
+             attempt to save the second manager you would receive a
+             CrossShardAssociationException because the account lives on a different shard
+             than the manager with which you're attempting to associate it.
+            
+             Now you'll notice a few things about this example.  First, it doesn't really
+             respect the constraints of an owned one-to-many relationship.  If AccountManagers
+             truly own Accounts (as opposed to just being associated with them), it doesn't
+             makes sense to reassign an account because the AccountManager is part of that
+             object's identity.  And If the relationship is an association then you
+             probably shouldn't be using Hibernate Sharding to manage this relationship
+             because Accounts are going to pass between AccountManagers, which means
+             Accounts are going to need to pass between shards, which means you're better
+             off just letting Hibernate manage the relationship between AccountManagers
+             and account ids and loading the objects uniquely identified by those ids
+             on your own.
+            
+             The other thing you'll notice is that if the two managers happen to live on
+             the same shard this will work just fine.  Yup, it will.  We can detect
+             cross-shard relationships.  We can't detect risky code.  You just need to
+             be careful here.
+             </summary>
+        </member>
+        <member name="T:NHibernate.Shards.IShard">
+            <summary>
+            Interface representing a Shard.  A shard is a physical partition (as opposed
+            to a virtual partition). Shards know how to lazily instantiate Sessions.
+            </summary>
+        </member>
+        <member name="M:NHibernate.Shards.IShard.EstablishSession">
+            <summary>
+            Opens new session for this shard.
+            </summary>
+        </member>
+        <member name="P:NHibernate.Shards.IShard.ShardIds">
+            <summary>
+            Readonly set of the virtual shards that are mapped to this physical shard.
+            </summary>
+        </member>
+        <member name="T:NHibernate.Shards.ShardedConfiguration">
+            <summary>
+            Like regular Hibernate's Configuration, this class helps construct your
+            factories. Not extending Hibernate's Configuration because that is the one place
+            where the notion of a single database is specified (i.e. in the
+            hibernate.properties file). While we would like to maintain the Hibernate paradigm
+            as much as possible, this is one place it might be different.
+            </summary>
+        </member>
+        <member name="T:NHibernate.Shards.ShardId">
+            <summary>
+            Uniquely identifies a virtual shard.
+            </summary>
+        </member>
+        <member name="P:NHibernate.Shards.ShardImpl.SessionFactory">
+            <summary>
+            SessionFactoryImplementor that owns the Session associated with this Shard
+            </summary>
+        </member>
+    </members>
+</doc>

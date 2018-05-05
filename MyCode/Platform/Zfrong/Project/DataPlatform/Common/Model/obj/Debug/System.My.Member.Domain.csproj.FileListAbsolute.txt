@@ -1,0 +1,7 @@
+D:\Desktop\平台\System.My\Project\Member\System.My.Member.Domain\bin\Debug\System.My.Member.Domain.dll
+D:\Desktop\平台\System.My\Project\Member\System.My.Member.Domain\bin\Debug\System.My.Member.Domain.pdb
+D:\Desktop\平台\System.My\Project\Member\System.My.Member.Domain\obj\Debug\ResolveAssemblyReference.cache
+D:\Desktop\平台\System.My\Project\Member\System.My.Member.Domain\obj\Debug\System.My.Member.Domain.dll
+D:\Desktop\平台\System.My\Project\Member\System.My.Member.Domain\obj\Debug\System.My.Member.Domain.pdb
+D:\Desktop\平台\System.My\Project\Member\System.My.Member.Domain\bin\Debug\System.My.Common.Domain.dll
+D:\Desktop\平台\System.My\Project\Member\System.My.Member.Domain\bin\Debug\System.My.Common.Domain.pdb

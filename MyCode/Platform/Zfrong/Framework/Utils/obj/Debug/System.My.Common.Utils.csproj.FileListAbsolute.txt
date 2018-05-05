@@ -1,0 +1,5 @@
+D:\Desktop\平台\System.My\Platform\Common\System.My.Common.Utils\bin\Debug\System.My.Common.Utils.dll
+D:\Desktop\平台\System.My\Platform\Common\System.My.Common.Utils\bin\Debug\System.My.Common.Utils.pdb
+D:\Desktop\平台\System.My\Platform\Common\System.My.Common.Utils\obj\Debug\ResolveAssemblyReference.cache
+D:\Desktop\平台\System.My\Platform\Common\System.My.Common.Utils\obj\Debug\System.My.Common.Utils.dll
+D:\Desktop\平台\System.My\Platform\Common\System.My.Common.Utils\obj\Debug\System.My.Common.Utils.pdb

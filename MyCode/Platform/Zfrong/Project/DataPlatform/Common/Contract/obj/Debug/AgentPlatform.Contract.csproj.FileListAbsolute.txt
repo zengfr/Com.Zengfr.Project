@@ -1,0 +1,15 @@
+D:\Desktop\平台\Zfrong\Project\Member\Contract\bin\Debug\AgentPlatform.Contract.dll
+D:\Desktop\平台\Zfrong\Project\Member\Contract\bin\Debug\AgentPlatform.Contract.pdb
+D:\Desktop\平台\Zfrong\Project\Member\Contract\bin\Debug\AgentPlatform.Model.dll
+D:\Desktop\平台\Zfrong\Project\Member\Contract\bin\Debug\NHibernate.dll
+D:\Desktop\平台\Zfrong\Project\Member\Contract\bin\Debug\Zfrong.Platform.Core.dll
+D:\Desktop\平台\Zfrong\Project\Member\Contract\bin\Debug\Spring.Data.dll
+D:\Desktop\平台\Zfrong\Project\Member\Contract\bin\Debug\Iesi.Collections.dll
+D:\Desktop\平台\Zfrong\Project\Member\Contract\bin\Debug\Spring.Aop.dll
+D:\Desktop\平台\Zfrong\Project\Member\Contract\bin\Debug\Spring.Core.dll
+D:\Desktop\平台\Zfrong\Project\Member\Contract\bin\Debug\Common.Logging.dll
+D:\Desktop\平台\Zfrong\Project\Member\Contract\bin\Debug\Zfrong.Platform.Core.pdb
+D:\Desktop\平台\Zfrong\Project\Member\Contract\bin\Debug\AgentPlatform.Model.pdb
+D:\Desktop\平台\Zfrong\Project\Member\Contract\obj\Debug\ResolveAssemblyReference.cache
+D:\Desktop\平台\Zfrong\Project\Member\Contract\obj\Debug\AgentPlatform.Contract.dll
+D:\Desktop\平台\Zfrong\Project\Member\Contract\obj\Debug\AgentPlatform.Contract.pdb

@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9C0BB254-8159-41A2-AD7C-565037DC9E9A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ConsoleControlEx</RootNamespace>
+    <AssemblyName>ConsoleControlEx</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Common.Logging">
+      <HintPath>..\..\ConsoleApplication1\packages\Common.Logging.2.0.0\lib\2.0\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="ConsoleControl">
+      <HintPath>..\..\ConsoleApplication1\packages\ConsoleControl.1.1.0.0\lib\net40\ConsoleControl.dll</HintPath>
+    </Reference>
+    <Reference Include="ConsoleControlAPI">
+      <HintPath>..\..\ConsoleApplication1\packages\ConsoleControl.1.1.0.0\lib\net40\ConsoleControlAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ConsoleControl\FormConsoleControlSample.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsoleControl\FormConsoleControlSample.Designer.cs">
+      <DependentUpon>FormConsoleControlSample.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsoleControl\FormNewProcess.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsoleControl\FormNewProcess.Designer.cs">
+      <DependentUpon>FormNewProcess.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsoleTabControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ConsoleTabPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ConsoleTabPage.Designer.cs">
+      <DependentUpon>ConsoleTabPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ConsoleControl\FormConsoleControlSample.resx">
+      <DependentUpon>FormConsoleControlSample.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsoleControl\FormNewProcess.resx">
+      <DependentUpon>FormNewProcess.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsoleTabControl.resx">
+      <DependentUpon>ConsoleTabControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <DependentUpon>Resources.Designer.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ConsoleControl\Console.ico" />
+    <Content Include="ConsoleControl\Resources\ConsoleControl.bmp" />
+    <Content Include="ConsoleControl\Resources\Control_TextBox.bmp" />
+    <Content Include="ConsoleControl\Resources\Delete.bmp" />
+    <Content Include="ConsoleControl\Resources\FontDialog.bmp" />
+    <Content Include="ConsoleControl\Resources\GotoShortcuts.bmp" />
+    <Content Include="ConsoleControl\Resources\Information.bmp" />
+    <Content Include="ConsoleControl\Resources\NewWindow.bmp" />
+    <Content Include="ConsoleControl\Resources\Play.bmp" />
+    <Content Include="ConsoleControl\Resources\Stop.bmp" />
+    <Content Include="ConsoleControl\Resources\Warning.bmp" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
