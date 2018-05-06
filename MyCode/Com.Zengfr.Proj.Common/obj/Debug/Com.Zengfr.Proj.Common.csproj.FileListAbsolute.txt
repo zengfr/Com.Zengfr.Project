@@ -3,7 +3,6 @@ E:\gitRepository\zhuizhangdashi\bin\Debug\Com.Zengfr.Proj.Common.pdb
 E:\gitRepository\zhuizhangdashi\Com.Zengfr.Proj.Common\obj\Debug\Com.Zengfr.Proj.Common.dll
 E:\gitRepository\zhuizhangdashi\Com.Zengfr.Proj.Common\obj\Debug\Com.Zengfr.Proj.Common.pdb
 E:\gitRepository\zhuizhangdashi\Com.Zengfr.Proj.Common\obj\Debug\Com.Zengfr.Proj.Common.csprojResolveAssemblyReference.cache
-E:\csharpproject\Com.Zengfr.Project\MyCode\Com.Zengfr.Proj.Common\obj\Debug\Com.Zengfr.Proj.Common.csprojResolveAssemblyReference.cache
 E:\csharpproject\Com.Zengfr.Project\MyCode\Com.Zengfr.Proj.Common\obj\Debug\Com.Zengfr.Proj.Common.dll
 E:\csharpproject\Com.Zengfr.Project\MyCode\Com.Zengfr.Proj.Common\obj\Debug\Com.Zengfr.Proj.Common.pdb
 E:\csharpproject\Com.Zengfr.Project\MyCode\bin\Debug\Com.Zengfr.Proj.Common.dll
