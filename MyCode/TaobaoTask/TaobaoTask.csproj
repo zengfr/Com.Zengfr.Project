@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TaobaoTask</RootNamespace>
     <AssemblyName>ConsoleTask</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
@@ -72,8 +72,9 @@
       <HintPath>d:\nuget\packages\rohankapoor.AutoPrompt.1.0.5\lib\net40\AutoPrompt.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Com.Zengfr.Proj.Common">
-      <HintPath>..\..\..\gitRepository\zhuizhangdashi\bin\Debug\Com.Zengfr.Proj.Common.dll</HintPath>
+    <Reference Include="Com.Zengfr.Proj.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\bin\Debug\Com.Zengfr.Proj.Common.dll</HintPath>
     </Reference>
     <Reference Include="CommonLibrary, Version=0.9.8.8, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>d:\nuget\packages\CommonLibrary.NET_0.9.8.8.0.9.8.8\lib\net40\CommonLibrary.dll</HintPath>
@@ -163,11 +164,17 @@
     <Compile Include="RestClientUtil.cs" />
     <Compile Include="Taobao\Taobaouggest.cs" />
     <Compile Include="Taobao\TaobaoUtils.cs" />
+    <Compile Include="ximalaya\entity\getTracksList.cs" />
+    <Compile Include="ximalaya\ximalayaDownloader.cs" />
     <Compile Include="youzanApp.cs" />
     <Compile Include="youzanApp2.cs" />
     <Compile Include="youzan\goodslist\Data.cs" />
     <Compile Include="youzan\goodslist\List.cs" />
     <Compile Include="youzan\goodslist\Root.cs" />
+    <Compile Include="youzan\marketdetail\Data.cs" />
+    <Compile Include="youzan\marketdetail\Goods_detail.cs" />
+    <Compile Include="youzan\marketdetail\Root.cs" />
+    <Compile Include="youzan\marketdetail\Team_info.cs" />
     <Compile Include="youzan\supplierteam\Data.cs" />
     <Compile Include="youzan\supplierteam\Root.cs" />
     <Compile Include="youzan\teamlist\Data.cs" />

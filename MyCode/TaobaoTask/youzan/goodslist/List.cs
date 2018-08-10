@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaobaoTask.youzan.gys;
 
 namespace TaobaoTask.youzan.goodslist
 {
@@ -24,11 +25,13 @@ namespace TaobaoTask.youzan.goodslist
 
         public int stock_num;
 
-        //public String title;
+        public String title;
 
         public String min_retail_price;
 
         public String max_retail_price;
+
+        public Profit_rate Profit_rate;
 
         public int kdt_id;
 

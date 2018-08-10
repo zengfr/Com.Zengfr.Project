@@ -22,6 +22,10 @@ namespace TaobaoTask
         }
         public static IRestClient GetRestClient(string baseUrl)
         {
+            return GetRestClient(baseUrl, "text / html, application / xhtml + xml, application / xml; q = 0.9,*/*;q=0.8");
+        }
+        public static IRestClient GetRestClient(string baseUrl,string accept)
+        {
             if (baseUrl.StartsWith("https", StringComparison.OrdinalIgnoreCase))
             {
                  
@@ -36,10 +40,11 @@ namespace TaobaoTask
             }
             var restClient = new RestClient(baseUrl);
             restClient.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:46.0) Gecko/20100101 Firefox/46.0";
-            restClient.AddDefaultHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+            restClient.AddDefaultHeader("Accept", accept);
             restClient.AddDefaultHeader("Accept-Language", "en-US,en;q=0.5");
             restClient.AddDefaultHeader("Accept-Encoding", "gzip,deflate,br");
             restClient.AddDefaultHeader("Cache-Control", "max-age=0");
+            restClient.AddDefaultHeader("Upgrade-Insecure-Requests", "1");
             restClient.AddDefaultHeader("Referer", baseUrl);
             restClient.CookieContainer = new CookieContainer() { MaxCookieSize = 1024 * 1024 };
             restClient.FollowRedirects = true;

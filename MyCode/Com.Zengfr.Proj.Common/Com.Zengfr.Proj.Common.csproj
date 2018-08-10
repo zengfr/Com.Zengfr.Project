@@ -57,6 +57,7 @@
     <Reference Include="log4net">
       <HintPath>..\CommonLib\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\CommonLib\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -143,6 +144,9 @@
   <ItemGroup>
     <Compile Include="Common\ChineseUtils.cs" />
     <Compile Include="Common\CsvFileHelper.cs" />
+    <Compile Include="Common\DataRowDynamicExtension.cs" />
+    <Compile Include="Common\DataTableDynamicExtension.cs" />
+    <Compile Include="Common\DataTableDynamicExtensionTest.cs" />
     <Compile Include="Common\EnumerablePagedAdapter.cs" />
     <Compile Include="Common\GZipUtil.cs" />
     <Compile Include="Common\IOSerialization.cs" />
@@ -163,6 +167,13 @@
     <Compile Include="Common\ObjectPool\SharedPools.cs" />
     <Compile Include="Common\ObjectPool\StringBuilderPool.cs" />
     <Compile Include="Common\PermissionFilterUtils .cs" />
+    <Compile Include="Common\Pipeline\AsyncStage.cs" />
+    <Compile Include="Common\Pipeline\IPipelineHander.cs" />
+    <Compile Include="Common\Pipeline\IPipelineStage.cs" />
+    <Compile Include="Common\Pipeline\Pipeline.cs" />
+    <Compile Include="Common\Pipeline\PipelineContext.cs" />
+    <Compile Include="Common\Pipeline\StageBase.cs" />
+    <Compile Include="Common\Pipeline\SyncStage.cs" />
     <Compile Include="Common\WebUtils.cs" />
     <Compile Include="NH\SessionFactoryUtils.cs" />
     <Compile Include="NH\XFactoriesExtensions.cs" />
@@ -226,12 +237,16 @@
     <Compile Include="Pay\Unionpay\sdk\SDKConfig.cs" />
     <Compile Include="Pay\Unionpay\sdk\SDKUtil.cs" />
     <Compile Include="Pay\Unionpay\sdk\SecurityUtil.cs" />
+    <Compile Include="Test\Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="PermutationandCombination\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

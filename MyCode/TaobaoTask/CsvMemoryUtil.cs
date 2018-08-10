@@ -31,23 +31,43 @@ namespace TaobaoTask
         protected int SaveIntervalMinute { get; set; }
         protected int SaveIntervalCount { get; set; }
         protected DateTime SaveLastTime { get; set; }
-        public void Load(string dir, string colName)
+        public void Load(string dir,string type, string keyColName)
         {
 
-            var fs = Directory.EnumerateFiles(dir, "*.csv", SearchOption.AllDirectories);
+            var fs = Directory.EnumerateFiles(dir, type+"*.csv", SearchOption.AllDirectories);
             foreach (var f in fs)
             {
                 var dt = Com.Zengfr.Proj.Common.CsvFileHelper.OpenCSV(f);
                 foreach (DataRow r in dt.Rows)
                 {
 
-                    var v = "" + r[colName];
-                    if (!Data.ContainsKey(v))
-                        Data[v] = true;
+                    var k = "" + r[keyColName];
+                    if (!Data.ContainsKey(k))
+                        Data[k] = true;
                     else
-                        Console.WriteLine("duplicate Key:{0},{1}", Path.GetFileName(f), v);
+                        Console.WriteLine("duplicate Key:{0},{1}", Path.GetFileName(f), k);
                 }
             }
+        }
+        public IDictionary<string,string> LoadDictionary(string dir, string type, string keyColName, string valueColName)
+        {
+            IDictionary<string, string> kv = new Dictionary<string, string>();
+            var fs = Directory.EnumerateFiles(dir, type + "*.csv", SearchOption.AllDirectories);
+            foreach (var f in fs)
+            {
+                var dt = Com.Zengfr.Proj.Common.CsvFileHelper.OpenCSV(f);
+                foreach (DataRow r in dt.Rows)
+                {
+
+                    var k = "" + r[keyColName];
+                    var v= "" + r[valueColName];
+                    if (!kv.ContainsKey(k))
+                        kv[k] = v;
+                    else
+                        Console.WriteLine("duplicate Key:{0},{1},{2}", Path.GetFileName(f), k,v);
+                }
+            }
+            return kv;
         }
         public string GetLastCreationFile(string dir, string ext)
         {
@@ -70,11 +90,11 @@ namespace TaobaoTask
                         Data[key] = false;
                     }
                 }
-            }
-            if (items.Count > 0)
-            {
-                ComLib.Queue.Queues.Enqueue(items);
-                Process<T>(true);
+                if (items.Count > 0)
+                {
+                    ComLib.Queue.Queues.Enqueue(items);
+                    Process<T>(true);
+                }
             }
         }
         protected bool CheckIsDoProcess<T>()

@@ -1,7 +1,8 @@
-/obj/
-/Debug/
-/Release/
-/Temp/
+obj/
+[Bb]in
+[Dd]ebug*/
+[Rr]elease*/
+Temp/
 
 */obj/*
 */Debug/*
@@ -17,3 +18,7 @@
 *.dat
 *.cache
 *.tmp
+*.dll
+*.zip
+*.7z
+*.rar

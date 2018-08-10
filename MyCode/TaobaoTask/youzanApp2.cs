@@ -19,6 +19,7 @@ using System.Collections.Concurrent;
 using ComLib.Configuration;
 using ComLib.IO;
 using System.IO;
+using Com.Zengfr.Proj.Common;
 
 namespace TaobaoTask
 {
@@ -57,7 +58,7 @@ namespace TaobaoTask
             if (testCookies == "YES")
             {
                 var testAlias = consoleApp.GetConfig("testAlias", "bqpxrhnu");
-                var result = ProcessItem(consoleApp, restClient, testAlias, true);
+                var result = ProcessTeamItem(consoleApp, restClient, testAlias, true);
             }
 
             string type = AutoPrompt.PromptForInput("Enter Type(Press up/down):", new string[] { "Suppliers", "Goods" });
@@ -81,7 +82,7 @@ namespace TaobaoTask
                 if (!Directory.Exists(dataPath))
                     Directory.CreateDirectory(dataPath);
                 Console.WriteLine("Loading data...");
-                CsvMemoryUtil.Instance.Load(dataPath, "alias");
+                CsvMemoryUtil.Instance.Load(dataPath,type, "alias");
                 Console.WriteLine("Load finish totalCount:{0}", CsvMemoryUtil.Instance.TotalCount);
             }
             Console.WriteLine("Please Input Any Key To Continue...{0}", DateTime.Now.ToString("HH:mm:ss fff"));
@@ -89,52 +90,34 @@ namespace TaobaoTask
             var startTime = DateTime.Now;
 
             consoleApp.InitWindow();
-            CsvMemoryUtil.Instance.AddProcessorFor((IList<ResultItem> items) =>
-            {
-                var fPath = CsvMemoryUtil.Instance.GetLastCreationFile(dataPath, "*.csv");
-                var newfPath = string.Format("{0}\\{1}_{2}.csv", dataPath, type, DateTime.Now.ToString("yyyyMMddHHmmssfff"));
-                var isNewFile = false;
-                if (string.IsNullOrWhiteSpace(fPath))
-                {
-                    fPath = newfPath;
-                    isNewFile = true;
-                }
-                else
-                {
-                    var fLines = File.ReadAllLines(fPath);
-                    if (fLines.Length + items.Count > storeFileMaxRowsCount)
-                    {
-                        fPath = newfPath;
-                        isNewFile = true;
-                    }
-                }
-                if (playSoundWhenSaveData)
-                {
-                    PlayQQ();
-                }
-                consoleApp.LeftWriter.WriteLine(string.Format("count:{0},isNewFile:{1},saveToFile:{2}", items.Count, isNewFile, fPath));
-                var data = CSVUtil.EnumerableToDataTable(items);
-                CSVUtil.SaveCSV(data, fPath);
-            }, saveIntervalMinute, saveIntervalCount);
-            foreach (var keyWord in keyWords)
-            {
-                try
-                {
-                    var resultItems = ProcessList(consoleApp, restClient, maxDegreeOfParallelism, sleepIntervalMilis, keyWord);
-                    CsvMemoryUtil.Instance.SaveToEnqueue(resultItems, (ResultItem item) =>
-                    {
-                        return item.alias;
-                    });
-                    if (playSoundWhenWordFinish)
-                    {
-                        PlayJQ();
-                    }
-                }
-                catch (Exception ex)
-                {
-                }
+            switch (type) {
+                case "Suppliers":
+                    
+                    AddProcessorFor<SupplierResultItem>(consoleApp, restClient,true,
+             dataPath, type, maxDegreeOfParallelism, saveIntervalMinute, saveIntervalCount, storeFileMaxRowsCount,
+             sleepIntervalMilis, playSoundWhenSaveData, playSoundWhenWordFinish);
+                    ProcessBySupplier(  consoleApp,   restClient,   keyWords,   maxDegreeOfParallelism,
+              sleepIntervalMilis,   playSoundWhenWordFinish);
+                    break;
+                case "Goods":
+                    storeFileMaxRowsCount = int.MaxValue - 1;//Goods
+                    IDictionary<string, string> fx_priceDict = null;// CsvMemoryUtil.Instance.LoadDictionary(dataPath, type, "alias", "fx_priceString");
+                    IDictionary<string, string> sold_num_d30Dict = null;// CsvMemoryUtil.Instance.LoadDictionary(dataPath, type, "alias", "sold_num_d30String");
+                    IDictionary<string, string> aliasDict =   CsvMemoryUtil.Instance.LoadDictionary(dataPath, type, "alias", "alias");
+
+                    AddProcessorFor<GoodResultItem>(consoleApp, restClient,false,
+             dataPath, type, maxDegreeOfParallelism, saveIntervalMinute, saveIntervalCount, storeFileMaxRowsCount,
+             sleepIntervalMilis, playSoundWhenSaveData, playSoundWhenWordFinish);
+
+                    ProcessByGoodAliasDict(consoleApp, restClient, aliasDict.Keys, false);
+
+                    ProcessByGood(consoleApp, restClient, keyWords, maxDegreeOfParallelism,
+              sleepIntervalMilis, playSoundWhenWordFinish, fx_priceDict, sold_num_d30Dict);
+                    
+
+
+                    break;
             }
-            CsvMemoryUtil.Instance.Process<ResultItem>(false);
             consoleApp.LeftWriter.WriteLine(string.Format("all Finished! Timespan(ms):{0}", (DateTime.Now - startTime).TotalMilliseconds));
             for (var i = 0; i < 60 / 5 * 5; i++)
             {
@@ -160,9 +143,212 @@ namespace TaobaoTask
         {
 
         }
-        protected static List<ResultItem> ProcessList(ConsoleApp consoleApp, IRestClient restClient, int maxDegreeOfParallelism, int sleepIntervalMilis, string keyword)
+        protected static void AddProcessorFor<T>(ConsoleApp consoleApp, IRestClient restClient,bool appendFile,
+           string dataPath, string type, int maxDegreeOfParallelism, int saveIntervalMinute, int saveIntervalCount, int storeFileMaxRowsCount,
+           int sleepIntervalMilis, bool playSoundWhenSaveData,  bool playSoundWhenWordFinish)
         {
-            var resultItems = new ConcurrentBag<ResultItem>();
+            CsvMemoryUtil.Instance.AddProcessorFor((IList<T> items) =>
+            {
+                var fPath = CsvMemoryUtil.Instance.GetLastCreationFile(dataPath,type+ "*.csv");
+                var newfPath = string.Format("{0}\\{1}_{2}.csv", dataPath, type, DateTime.Now.ToString("yyyyMMddHHmmssfff"));
+                var isNewFile = false;
+                if (string.IsNullOrWhiteSpace(fPath))
+                {
+                    fPath = newfPath;
+                    isNewFile = true;
+                }
+                else
+                {
+                    var fLines = File.ReadAllLines(fPath);
+                    if (fLines.Length + items.Count > storeFileMaxRowsCount)
+                    {
+                        fPath = newfPath;
+                        isNewFile = true;
+                    }
+                }
+                if (playSoundWhenSaveData)
+                {
+                    PlayQQ();
+                }
+                consoleApp.LeftWriter.WriteLine(string.Format("count:{0},isNewFile:{1},saveToFile:{2}", items.Count, isNewFile, fPath));
+                var data = CsvFileHelper.EnumerableToDataTable(items);
+                if (appendFile)
+                {
+                    CSVUtil.SaveCSVAppend(data, fPath);
+                }
+                else
+                {
+                    data.SetPrimaryKeyColumns<string>("alias");
+                    data.AddColumnsByDays<int>("总销量", 0, 1);
+                    data.AddColumnsByDays<int>("分销商", 0, 1);
+
+                    data.CopyColumn("fx_count", data.BuildColumnNameByDay("分销商", 0));
+                    data.CopyColumn("sold_num", data.BuildColumnNameByDay("总销量", 0));
+                    
+                    var dt= CsvFileHelper.OpenCSV(fPath);
+                    dt.RemoveColumnsByDays<int>("总销量", -22, -15);
+                    dt.RemoveColumnsByDays<int>("分销商", -22, -15);
+                    
+                     
+                    dt.SetPrimaryKeyColumns<string>("alias");
+                    dt.MergeTableFrom<string>(data,false);
+                    CSVUtil.SaveCSVCreate(dt, fPath);
+                }
+            }, saveIntervalMinute, saveIntervalCount);
+        }
+        protected static void ProcessBySupplier(ConsoleApp consoleApp, IRestClient restClient, IEnumerable<string> keyWords,  int maxDegreeOfParallelism, 
+            int sleepIntervalMilis, bool playSoundWhenWordFinish)
+        {
+            
+            foreach (var keyWord in keyWords)
+            {
+                try
+                {
+                    var resultItems = ProcessSupplierList(consoleApp, restClient, maxDegreeOfParallelism, sleepIntervalMilis, keyWord);
+                    CsvMemoryUtil.Instance.SaveToEnqueue(resultItems, (SupplierResultItem item) =>
+                    {
+                        return item.alias;
+                    });
+                    if (playSoundWhenWordFinish)
+                    {
+                        PlayJQ();
+                    }
+                }
+                catch (Exception ex)
+                {
+                }
+            }
+            CsvMemoryUtil.Instance.Process<SupplierResultItem>(false);
+        }
+        protected static void ProcessByGood(ConsoleApp consoleApp, IRestClient restClient, IEnumerable<string> keyWords, int maxDegreeOfParallelism,
+            int sleepIntervalMilis, bool playSoundWhenWordFinish, IDictionary<string, string> fx_priceDict, IDictionary<string, string> sold_num_d30Dict )
+        {
+
+            foreach (var keyWord in keyWords)
+            {
+                try
+                {
+                    var resultItems = ProcessGoodList(consoleApp, restClient, maxDegreeOfParallelism, sleepIntervalMilis, keyWord);
+                    resultItems = resultItems.GroupBy(o => o.alias).Select(g => g.First()).ToList();
+                    /*foreach (var item in resultItems) {
+                        var k = item.alias;
+                        if (fx_priceDict.ContainsKey(k))
+                        {
+                            item.fx_priceString = string.Format("{0},{1}", fx_priceDict[k], item.fx_price);
+                        }
+                        else {
+                            item.fx_priceString = string.Format("{0}",  item.fx_price);
+                        }
+                        if (sold_num_d30Dict.ContainsKey(k))
+                        {
+                            item.sold_num_d30String = string.Format("{0},{1}", sold_num_d30Dict[k], item.sold_num_d30);
+                        }
+                        else
+                        {
+                            item.sold_num_d30String = string.Format("{0}", item.sold_num_d30);
+                        }
+                    }*/
+                    CsvMemoryUtil.Instance.SaveToEnqueue(resultItems, (GoodResultItem item) =>
+                    {
+                        return item.alias;
+                    });
+                    if (playSoundWhenWordFinish)
+                    {
+                        PlayJQ();
+                    }
+                }
+                catch (Exception ex)
+                {
+                }
+            }
+            CsvMemoryUtil.Instance.Process<GoodResultItem>(false);
+        }
+        protected static void ProcessByGoodAliasDict(ConsoleApp consoleApp, IRestClient restClient,IEnumerable<string> aliass, bool test)
+        {
+            var resultItems = new ConcurrentBag<GoodResultItem>();
+            foreach (var alias in aliass) {
+                var resultItem=  new GoodResultItem();
+                var data = ProcessGoodDetail(consoleApp, restClient, alias, false);
+                if (data != null)
+                {
+                    resultItem.alias = alias;
+                    resultItem.team_name = data.team_info.team_name;
+                    if (resultItem.fx_count <= 0)
+                        resultItem.fx_count = int.Parse(data.goods_detail.fx_count ?? "0");
+                    if (resultItem.sold_num <= 0)
+                        resultItem.sold_num = data.goods_detail.sold_num;
+                    resultItems.Add(resultItem);
+                }
+            }
+            CsvMemoryUtil.Instance.SaveToEnqueue(resultItems.ToList(), (GoodResultItem item) =>
+            {
+                return item.alias;
+            });
+             
+        }
+        protected static List<GoodResultItem> ProcessGoodList(ConsoleApp consoleApp, IRestClient restClient, int maxDegreeOfParallelism, int sleepIntervalMilis, string keyword)
+        {
+            var resultItems = new ConcurrentBag<GoodResultItem>();
+            int pageIndex = 1;
+            int totalPage = pageIndex;
+            ParallelOptions parallelOptions = new ParallelOptions();
+            parallelOptions.MaxDegreeOfParallelism = maxDegreeOfParallelism;
+            do
+            {
+                if (sleepIntervalMilis > 0)
+                    Thread.Sleep(sleepIntervalMilis);
+                var url = string.Format("v2/fenxiao/goods/list.json?keyword={0}&p={1}&category=all&t={2}", keyword, pageIndex++, RestClientUtil.GetRandomStr(12));
+                var resp = RestClientUtil.Get(restClient, url, consoleApp.BottomWriter);
+                if (resp.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    var root = JsonConvert.DeserializeObject<TaobaoTask.youzan.goodslist.Root>(RestClientUtil.Unicode2String(resp.Content));
+                    if (root != null && root.data != null && root.data.pagination != null && root.data.list != null)
+                    {
+                        consoleApp.LeftWriter.WriteLine("code:{0};msg:{1};keyword:{2};count:{3};{4}", root.code, root.msg, keyword, root.data.list.Count, RestClientUtil.BuildLog(root.data.pagination));
+                        totalPage = Math.Max(totalPage, root.data.pagination.perPage);
+                        Parallel.ForEach(root.data.list, parallelOptions, item =>
+                        {
+                            if (sleepIntervalMilis > 0)
+                                Thread.Sleep(sleepIntervalMilis);
+                            var alias = item.alias;
+                            
+                            var resultItem = new GoodResultItem();
+                            resultItem.word = RestClientUtil.FiterChars(keyword ?? string.Empty);
+                            resultItem.page = pageIndex;
+                            resultItem.alias = RestClientUtil.FiterChars(alias ?? string.Empty);
+                            resultItem.title = RestClientUtil.FiterChars(item.title ?? string.Empty).Replace("\"","");
+                            resultItem.fx_price =float.Parse(item.fx_price??"-1");
+                            resultItem.sold_num_d30 = item.sold_num_d30;
+                            resultItem.sold_num = item.sold_num;
+                            resultItem.fx_count = item.fx_count;
+                            if (item.Profit_rate != null)
+                            {
+                                resultItem.min = item.Profit_rate.min;
+                                resultItem.max = item.Profit_rate.max;
+                            }
+                            resultItem.goodsUrl = string.Format("https://www.youzan.com/v2/fenxiao/market/detail/{0}", alias);
+                            //resultItem.team_name=item.
+                            var data = ProcessGoodDetail(consoleApp, restClient, alias, false);
+                            if (data != null) {
+                                resultItem.team_name = data.team_info.team_name;
+                                if (resultItem.fx_count <= 0)
+                                    resultItem.fx_count =int.Parse(data.goods_detail.fx_count??"0");
+                                if(resultItem.sold_num<=0)
+                                  resultItem.sold_num = data.goods_detail.sold_num;
+                                //resultItem.fx_count = data.goods_detail.fx_count;
+                            } 
+                            resultItems.Add(resultItem);
+                        });
+                    }
+                }
+
+            } while (pageIndex < totalPage);
+
+            return resultItems.ToList();
+        }
+        protected static List<SupplierResultItem> ProcessSupplierList(ConsoleApp consoleApp, IRestClient restClient, int maxDegreeOfParallelism, int sleepIntervalMilis, string keyword)
+        {
+            var resultItems = new ConcurrentBag<SupplierResultItem>();
             int pageIndex = 1;
             int totalPage = pageIndex;
             ParallelOptions parallelOptions = new ParallelOptions();
@@ -185,10 +371,10 @@ namespace TaobaoTask
                             if (sleepIntervalMilis > 0)
                                 Thread.Sleep(sleepIntervalMilis);
                             var alias = item.alias;
-                            var data = ProcessItem(consoleApp, restClient, alias, false);
-                            var goodslist = ProcessGoodslist(consoleApp, restClient, alias, false);
+                            var data = ProcessTeamItem(consoleApp, restClient, alias, false);
+                            var goodslist = ProcessSupplierGoodslist(consoleApp, restClient, alias, false);
 
-                            var resultItem = new ResultItem();
+                            var resultItem = new SupplierResultItem();
                             resultItem.word = RestClientUtil.FiterChars(keyword ?? string.Empty);
                             resultItem.alias = RestClientUtil.FiterChars(alias ?? string.Empty);
                             resultItem.category = RestClientUtil.FiterChars(item.category ?? string.Empty);
@@ -227,7 +413,7 @@ namespace TaobaoTask
 
             return resultItems.ToList();
         }
-        protected static TaobaoTask.youzan.supplierteam.Data ProcessItem(ConsoleApp consoleApp, IRestClient restClient, string alias, bool test)
+        protected static TaobaoTask.youzan.supplierteam.Data ProcessTeamItem(ConsoleApp consoleApp, IRestClient restClient, string alias, bool test)
         {
             TaobaoTask.youzan.supplierteam.Data result = null;
             var url = string.Format("v2/fenxiao/supplier/team.json?alias={0}&t={1}", alias, RestClientUtil.GetRandomStr(12));
@@ -235,7 +421,7 @@ namespace TaobaoTask
             if (resp.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 var content = RestClientUtil.Unicode2String(resp.Content);
-                if (content.IndexOf("登录") != -1 || content.IndexOf("错误") != +-1)
+                if ((content.IndexOf("登录") != -1 || content.IndexOf("错误") != -1)&& content.IndexOf("\"msg\":\"\"") <=0)
                 {
                     var msg = RestClientUtil.RegexGetString("", content, "\"msg\":\"(.*?)\"", 1);
                     var success = string.IsNullOrWhiteSpace(msg);
@@ -277,7 +463,7 @@ namespace TaobaoTask
             }
             return result;
         }
-        protected static TaobaoTask.youzan.goodslist.Data ProcessGoodslist(ConsoleApp consoleApp, IRestClient restClient, string alias, bool test)
+        protected static TaobaoTask.youzan.goodslist.Data ProcessSupplierGoodslist(ConsoleApp consoleApp, IRestClient restClient, string alias, bool test)
         {
             TaobaoTask.youzan.goodslist.Data result = null;
             var url = string.Format("v2/fenxiao/supplier/goodslist.json?alias={0}&p=1&t={1}", alias, RestClientUtil.GetRandomStr(12));
@@ -303,6 +489,59 @@ namespace TaobaoTask
             }
             return result;
         }
+
+        protected static TaobaoTask.youzan.marketdetail.Data ProcessGoodDetail(ConsoleApp consoleApp, IRestClient restClient, string alias, bool test)
+        {
+            TaobaoTask.youzan.marketdetail.Data result = null;
+            var url = string.Format("v2/fenxiao/market/detail.json?alias={0}&t={1}", alias, RestClientUtil.GetRandomStr(12));
+            var resp = RestClientUtil.Get(restClient, url, consoleApp.BottomWriter);
+            if (resp.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                var content = RestClientUtil.Unicode2String(resp.Content);
+                if ((content.IndexOf("登录") != -1 || content.IndexOf("错误") != -1)&& content.IndexOf("\"msg\":\"\"") <=0)
+                {
+                    var msg = RestClientUtil.RegexGetString("", content, "\"msg\":\"(.*?)\"", 1);
+                    var success = string.IsNullOrWhiteSpace(msg);
+                    Console.WriteLine("Test Cookies Result:{0}", success ? "Success" : msg);
+                    if (success && test)
+                    {
+                        PlayOK();
+                    }
+                    else
+                    {
+                        PlayError();
+                    }
+                    if (consoleApp.RightWriter != null)
+                        consoleApp.RightWriter.WriteLine("code:{0};msg:{1},alias:{2} Error!", -1, msg, alias);
+
+                }
+                else
+                {
+                    if (test)
+                    {
+                        Console.WriteLine("Test Cookies Result:{0}", "Success");
+                        PlayOK();
+                    }
+                    try
+                    {
+                        var root = JsonConvert.DeserializeObject<TaobaoTask.youzan.marketdetail.Root>(resp.Content);
+                        if (root != null && root.data != null)
+                        {
+                            root.data.goods_detail.title=RestClientUtil.Unicode2String(root.data.goods_detail.title);
+                            if (consoleApp.RightWriter != null)
+                                consoleApp.RightWriter.WriteLine("code:{0};msg:{1};alias:{2};{3}", root.code, root.msg, alias, root.data.goods_detail.title.Substring(0,22));
+                            result = root.data;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                }
+            }
+            return result;
+        }
+        
         private static async void PlayOK()
         {
             await Task.Factory.StartNew(() =>
@@ -363,7 +602,37 @@ namespace TaobaoTask
                 });
             }
         }
-        public class ResultItem
+        public class GoodResultItem
+        {
+            public String word { get; set; }
+            public int? page { get; set; }
+            public String alias { get; set; }
+            public String team_name { get; set; }
+            public float? fx_price { get; set; }
+            public String min { get; set; }
+            public String max{ get; set; }
+            /// <summary>
+            /// 月销量
+            /// </summary>
+            public int? sold_num_d30 { get; set; }
+            /// <summary>
+            /// 总销量
+            /// </summary>
+            public int? sold_num { get; set; }
+            /// <summary>
+            /// 分销商 数
+            /// </summary>
+            public int? fx_count { get; set; }
+            public String title { get; set; }
+            /// <summary>
+            /// https://www.youzan.com/v2/fenxiao/market/detail/36a8czpfplwae
+            /// </summary>
+            public String goodsUrl { get; set; }
+            //public String fx_priceString { get; set; }
+            //public String maxString { get; set; }
+            //public String sold_num_d30String { get; set; }
+        }
+            public class SupplierResultItem
         {
             public String word { get; set; }
             public String alias { get; set; }
