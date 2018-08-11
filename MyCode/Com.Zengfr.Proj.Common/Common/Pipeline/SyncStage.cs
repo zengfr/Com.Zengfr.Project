@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Com.Zengfr.Proj.Common.Pipeline
 {
-    internal class SyncStage<I, M, O> : StageBase<I, M, O>, IPipelineStage<I, M, O>
+    internal class SyncStage<I, M, O> : StageBase<I, M, O>, IPipelineSyncStage<I, M, O>
     {
-        public SyncStage(ICollection<IPipelineStage<I, M, O>> stages) : base(stages)
+        public SyncStage(ICollection<IPipelineProcessor<I, M, O>> processors) : base(processors)
         {
 
         }
-        public SyncStage(IPipelineStage<I, M, O> stage) : base(stage)
+        public SyncStage(IPipelineProcessor<I, M, O> processor) : base(processor)
         {
             
         }
@@ -20,25 +20,28 @@ namespace Com.Zengfr.Proj.Common.Pipeline
         public override bool PreProcess(PipelineContext<I, M, O> context)
         {
             var complate = true;
-            foreach (var stage in Stages)
+            foreach (var processor in Processors)
             {
-                if (complate) {
-                    complate = complate && stage.PreProcess(context);
-                    Hander.PreProcess(context);
+                if (complate & processor.Enabled)
+                {
+                    var sTime = DateTime.Now;
+                    complate = complate && processor.PreProcess(context);
+                    this.ProcessorHander.PreProcess(this.Name, processor.Name, (DateTime.Now - sTime).TotalMilliseconds, context);
                 }
             }
             return complate;
         }
 
-        public override bool Process(PipelineContext<I, M, O> context)
+        public override bool PostProcess(PipelineContext<I, M, O> context)
         {
             var complate = true;
-            foreach (var stage in Stages)
+            foreach (var processor in Processors)
             {
-                if (complate)
+                if (complate & processor.Enabled)
                 {
-                    complate = complate && stage.Process(context);
-                    Hander.Process(context);
+                    var sTime = DateTime.Now;
+                    complate = complate && processor.PostProcess(context);
+                    this.ProcessorHander.PostProcess(this.Name, processor.Name, (DateTime.Now - sTime).TotalMilliseconds, context);
                 }
             }
             return complate;

@@ -6,42 +6,48 @@ using System.Threading.Tasks;
 
 namespace Com.Zengfr.Proj.Common.Pipeline
 {
-    internal class AsyncStage<I, M, O> : StageBase<I, M, O>, IPipelineStage<I, M, O>
+    internal class AsyncStage<I, M, O> : StageBase<I, M, O>, IPipelineAsyncStage<I, M, O>
     {
+        public int Parallelism { get; set; }
+        
         ParallelOptions ParallelOptions { get; set; }
-        public AsyncStage(ICollection<IPipelineStage<I, M, O>> stages, int maxDegreeOfParallelism) :
+        public AsyncStage(ICollection<IPipelineProcessor<I, M, O>> stages, int parallelism) :
             base(stages)
         {
-            ParallelOptions = new ParallelOptions { MaxDegreeOfParallelism = maxDegreeOfParallelism };
+            this.Parallelism = parallelism;
+            ParallelOptions = new ParallelOptions { MaxDegreeOfParallelism = this.Parallelism };
         }
-        public AsyncStage(ICollection<IPipelineStage<I, M, O>> stages) :
-            base(stages)
+        public AsyncStage(IPipelineProcessor<I, M, O> processor) : base(processor)
         {
-            ParallelOptions = new ParallelOptions { MaxDegreeOfParallelism = 2 };
+            this.Parallelism = 2;
+            ParallelOptions = new ParallelOptions { MaxDegreeOfParallelism = this.Parallelism };
         }
         public override bool PreProcess(PipelineContext<I, M, O> context)
         {
             var complate = true;
-            Parallel.ForEach(Stages,ParallelOptions ,stage =>
+            Parallel.ForEach(Processors, ParallelOptions, (processor, loopState) =>
             {
-                if (complate)
+                if (complate & processor.Enabled&& !loopState.IsStopped)
                 {
-                    complate= complate&&stage.PreProcess(context);
-                    Hander.PreProcess(context);
+                    var sTime = DateTime.Now;
+                    complate = complate&& processor.PreProcess(context);
+                    this.ProcessorHander.PreProcess(this.Name, processor.Name,(DateTime.Now- sTime).TotalMilliseconds, context);
                 }
             });
             return complate;
         }
 
-        public override bool Process(PipelineContext<I, M, O> context)
+        public override bool PostProcess(PipelineContext<I, M, O> context)
         {
             var complate = true;
-            Parallel.ForEach(Stages, stage =>
+            Parallel.ForEach(Processors, ParallelOptions, (processor, loopState) =>
             {
-                if (complate)
+                if (complate&& processor.Enabled && !loopState.IsStopped)
                 {
-                    complate = complate && stage.Process(context);
-                    Hander.Process(context);
+                    var sTime = DateTime.Now;
+                    complate = complate && processor.PostProcess(context);
+                    this.ProcessorHander.PostProcess(this.Name, processor.Name, (DateTime.Now - sTime).TotalMilliseconds, context);
+                     
                 }
             });
             return complate;

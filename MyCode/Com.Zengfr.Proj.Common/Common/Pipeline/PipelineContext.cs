@@ -10,6 +10,9 @@ namespace Com.Zengfr.Proj.Common.Pipeline
     {
         public string TraceId { get; set; }
         public DateTime StartTime { get; set; }
+        public PipelineContextBase() {
+            StartTime = DateTime.Now;
+        }
     }
     public class PipelineContext<I, O> : PipelineContextBase
     {
