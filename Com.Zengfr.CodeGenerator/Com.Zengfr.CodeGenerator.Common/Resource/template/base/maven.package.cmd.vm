@@ -1,0 +1,8 @@
+﻿#set($outputConfig.OutputDir = "base\\")
+#set($outputConfig.OutputFileName = "maven.package.cmd")
+
+echo off
+cls
+echo on
+mvn package
+pause

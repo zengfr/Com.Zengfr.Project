@@ -1,0 +1,258 @@
+
+package cn.jj.service.msg.protocol;
+
+import "TKCagSns.proto";
+import "TKCagRanking.proto";
+import "TKCagPa.proto";
+import "TKCagMail.proto";
+import "TKCagShop.proto";
+import "TKCagSeason.proto";
+import "TKCagCommon.proto";
+import "TKCagChat.proto";
+import "TKCagLobby.proto";
+
+message CagReqMsg {
+    optional uint32 game_id = 1; // 游戏id
+    //optional uint32 player_id = 2; // 玩家id
+    optional CagPlayerEnterReqMsg cag_player_enter_req_msg = 3; // 玩家进入消息 (第一条消息，客户端发起)
+    optional CagPlayerLeaveReqMsg cag_player_leave_req_msg = 4; // 玩家离开消息 (最后一条消息，客户端发起)
+    optional CagPlayerHeartBeatReqMsg cag_player_heart_beat_req_msg = 5; // 玩家心跳消息（客户端发起）
+    optional CagPlayerExitGameReqMsg cag_player_exit_game_req_msg = 6; // 在game record服务器中删除玩家记录，屏蔽断线重连时自动拉回机制，未真正退赛
+    optional CagPlayerInGameReqMsg cag_player_in_game_req_msg = 7; // 玩家登录jj大厅后查询是否在休闲游戏中（中转发起，客户端不用处理）
+    optional CagPlayerBreakReqMsg cag_player_break_req_msg = 8; // 玩家断线消息（中转发起，客户端不用处理）
+    optional CagPlayerBreakToGameReqMsg cag_player_break_to_game_req_msg = 9; // 玩家断线消息（cag proxy发送给game，客户端不用处理）
+    optional CagPlayerClientInfoReqMsg cag_player_client_info_req_msg = 10; // 玩家客户端信息消息（平台、渠道号等）
+    optional CagPlayerLoginReqMsg cag_player_login_req_msg = 11; // 玩家登录消息
+    optional CagPlayerLogoutReqMsg cag_player_logout_req_msg = 12; // 玩家登出消息
+    optional CagPlayerSignupReqMsg cag_player_signup_req_msg = 13; // 玩家报名消息
+    optional CagPlayerUnSignupReqMsg cag_player_unsignup_req_msg = 14; // 玩家取消报名消息
+    optional CagPlayerEnterGameReqMsg cag_player_enter_game_req_msg = 15; // 玩家进入游戏消息
+    optional CagPlayerLeaveGameReqMsg cag_player_leave_game_req_msg = 16; // 玩家退出游戏消息
+    optional CagPlayerLobbyReqMsg cag_player_lobby_req_msg = 17; // 常用lobby消息打包
+    optional CagSnsReqMsg cag_sns_req_msg = 45;  //45 好友系统上行消息
+    optional CagMailReqMsg cag_mail_req_msg = 46;//46 邮件系统上行消息
+    optional CagRankingReqMsg cag_ranking_req_msg = 47; //47 排行榜上行消息
+    optional CagPAReqMsg cag_pa_req_msg = 48; //48 名片系统上行消息
+    //49 旁观列表服务器消息
+    optional CagShopReqMsg cag_shop_req_msg = 50; // 50 商店上行消息
+    //51 坦克大战上行消息
+    //52 萌球大战上行消息
+    optional CagSeasonReqMsg cag_season_req_msg = 201; // 赛季上行消息
+    optional CagChatReq cag_chat_req = 202; // 聊天上行消息
+}
+
+message CagAckMsg {
+    optional uint32 game_id = 1; // 游戏id
+    optional uint32 player_id = 2; // 玩家id
+    optional CagPlayerEnterAckMsg cag_player_enter_ack_msg = 3; // 玩家进入消息对应ack（发送到客户端）
+    optional CagLobbyBreakAckMsg cag_lobby_break_ack_msg = 4; // 大厅断线消息 (大厅崩溃、大厅与proxy之间断线时产生，发送到客户端)
+    optional CagGameBreakAckMsg cag_game_break_ack_msg = 5; // 游戏服务断线消息 (游戏服务崩溃、游戏服务与proxy之间断线时产生，发送到客户端)
+    optional CagPlayerInGameAckMsg cag_player_in_game_ack_msg = 6; // 玩家在游戏中通知消息（断线重连、定点赛开赛通知消息，发送到客户端）
+    optional CagPlayerLeaveLobbyAckMsg cag_player_leave_lobby_ack_msg = 7; // 玩家离开大厅消息 （服务之间使用，不发送到客户端）
+    optional CagPlayerLeaveGameAckMsg cag_player_leave_game_ack_msg = 8; // 玩家离开游戏消息 （服务之间使用，不发送到客户端）
+    optional CagServerMaintenanceAckMsg cag_server_maintenance_ack_msg = 9; // 服务器维护消息（发送到客户端）
+    optional CagPlayerLoginAckMsg cag_player_login_ack_msg = 11; // 玩家登录消息
+    optional CagPlayerSignupAckMsg cag_player_signup_ack_msg = 12; // 玩家报名消息
+    optional CagPlayerUnSignupAckMsg cag_player_unsignup_ack_msg = 13; // 玩家取消报名消息
+    optional CagPlayerStartGameAckMsg cag_player_start_game_ack_msg = 14; // 玩家开始游戏消息
+    optional CagPlayerEnterGameAckMsg cag_player_enter_game_ack_msg = 15; // 玩家进入游戏消息
+    optional CagPlayerFinishGameAckMsg cag_player_finish_game_ack_msg = 16; // 玩家游戏结束消息
+    optional CagPlayerGameResultAckMsg cag_player_game_result_ack_msg = 17; // 玩家游戏结果消息
+    optional CagPlayerLobbyAckMsg cag_player_lobby_ack_msg = 18; // 常用lobby消息打包
+    optional CagSnsAckMsg cag_sns_ack_msg = 45;  // 好友系统下行消息
+    optional CagMailAckMsg cag_mail_ack_msg = 46;//46 邮件系统下行消息
+    optional CagRankingAckMsg cag_ranking_ack_msg = 47; //47 排行榜下行消息
+    optional CagPAAckMsg cag_pa_ack_msg = 48; //48 名片系统下行消息
+    //49 旁观列表服务器消息
+    optional CagShopAckMsg cag_shop_ack_msg = 50; // 50 商店下行消息
+    //51 坦克大战下行消息
+    //52 萌球大战下行消息
+    optional CagSeasonAckMsg cag_season_ack_msg = 201; // 赛季下行消息
+    optional CagChatAck cag_chat_ack = 202; // 聊天下行消息
+}
+
+//--------------------------CAG Req消息
+
+// 玩家进入消息
+message CagPlayerEnterReqMsg {
+    optional string nick = 1; // 玩家昵称（JJ平台，中转服务器填充，客户端不用处理）
+    optional uint32 figure = 2; // 玩家头像（JJ平台，中转服务器填充，客户端不用处理）
+    optional uint32 user_id = 3; // 用户id（JJ平台，中转服务器填充，客户端不用处理）
+}
+
+// 玩家离开消息
+message CagPlayerLeaveReqMsg {
+    optional uint32 null_value = 1;
+}
+
+// 玩家心跳消息
+message CagPlayerHeartBeatReqMsg {
+
+}
+
+// 在game record服务器中删除玩家记录，屏蔽断线重连时自动拉回机制，未真正退赛
+message CagPlayerExitGameReqMsg {
+    optional uint32 game_id = 1; // 游戏id
+    optional uint32 game_mode = 2; // 游戏模式：1-排位 2-休闲...
+    optional uint32 game_sub_mode = 3; // 游戏子模式：夺星、逃杀...
+    optional uint32 game_serial = 4; // 游戏场次的序列号
+}
+
+// 玩家登录jj大厅后查询是否在休闲游戏中（中转发起，客户端不用处理）
+message CagPlayerInGameReqMsg {
+    optional uint32 player_id = 1; // 玩家id
+}
+
+// 玩家断线消息
+message CagPlayerBreakReqMsg {
+    optional uint32 null_value = 1;
+}
+
+// 玩家断线消息（cag proxy发送给game）
+message CagPlayerBreakToGameReqMsg {
+    optional uint32 game_mode = 1; // 游戏模式：1-排位 2-休闲...
+    optional uint32 game_sub_mode = 2; // 游戏子模式：夺星、逃杀...
+    optional uint32 game_serial = 3; // 游戏场次的序列号
+}
+
+// 玩家客户端信息消息（平台、渠道号等）
+message CagPlayerClientInfoReqMsg {
+    optional string platform = 1; // 平台：ios、android
+    optional string promoter = 2; // 渠道号
+    optional string appver = 3; // app版本
+    optional string sdkver = 4; // sdk版本
+    optional string appid = 5; // app id
+}
+
+// 玩家登录消息
+message CagPlayerLoginReqMsg  {
+    optional uint32 null_value = 1;
+}
+
+// 玩家登出消息
+message CagPlayerLogoutReqMsg  {
+    optional uint32 null_value = 1;
+}
+
+// 玩家报名消息
+message CagPlayerSignupReqMsg {
+    optional GameModeIdentifierMsg game_info = 1; // 游戏模式
+    optional uint32 param1 = 2; // 参数1
+    optional uint32 param2 = 3; // 参数2
+    optional uint32 param3 = 4; // 参数3
+}
+
+// 玩家取消报名消息
+message CagPlayerUnSignupReqMsg {
+    optional GameModeIdentifierMsg game_info = 1; // 游戏模式
+    optional uint32 param1 = 2; // 参数1
+    optional uint32 param2 = 3; // 参数2
+    optional uint32 param3 = 4; // 参数3
+}
+
+// 玩家进入游戏消息
+message CagPlayerEnterGameReqMsg {
+    optional GameIdentifierMsg game_info = 1; // 游戏场次识别信息
+    optional string ticket = 2; // 进入游戏票证串
+}
+
+// 玩家退出游戏消息
+message CagPlayerLeaveGameReqMsg {
+    optional GameIdentifierMsg game_info = 1; // 游戏场次识别信息
+}
+
+//--------------------------CAG Ack消息
+
+// 玩家进入消息对应ack
+message CagPlayerEnterAckMsg {
+    optional uint32 result = 1; // 0：成功 非0：失败
+}
+
+// 玩家离开大厅消息
+message CagPlayerLeaveLobbyAckMsg {
+    optional uint32 null_value = 1;
+}
+
+// 玩家离开游戏消息
+message CagPlayerLeaveGameAckMsg {
+    optional uint32 game_id = 1; // 游戏id
+    optional GameIdentifierMsg game_info = 2; // 游戏场次识别信息
+}
+
+// 大厅断线消息
+message CagLobbyBreakAckMsg {
+    optional uint32 null_value = 1;
+}
+
+// 游戏服务断线消息
+message CagGameBreakAckMsg {
+    optional uint32 game_id = 1; // 游戏id
+    optional GameIdentifierMsg game_info = 2; // 游戏场次识别信息
+}
+
+// 玩家在游戏中通知消息（断线重连、定点赛开赛通知消息）
+message CagPlayerInGameAckMsg {
+    optional uint32 game_id = 1; // 游戏id
+    optional uint32 game_mode = 2; // 游戏模式：1-排位 2-休闲...
+    optional uint32 game_sub_mode = 3; // 游戏子模式：夺星、逃杀...
+    optional uint32 game_serial = 4; // 游戏场次的序列号
+}
+
+// 服务器维护消息（发送到客户端）
+message CagServerMaintenanceAckMsg {
+}
+
+// 玩家登录消息
+message CagPlayerLoginAckMsg  {
+    optional uint32 result = 1; // 登录结果
+}
+
+// 玩家报名消息
+message CagPlayerSignupAckMsg {
+    optional uint32 result = 1; // 报名结果：0-成功 非0-失败
+    optional GameModeIdentifierMsg game_info = 2; // 游戏模式
+    optional uint32 param1 = 3; // 参数1
+    optional uint32 param2 = 4; // 参数2
+    optional uint32 param3 = 5; // 参数3
+}
+
+// 玩家取消报名消息
+message CagPlayerUnSignupAckMsg {
+    optional uint32 result = 1; // 取消报名结果：0-成功 非0-失败
+    optional GameModeIdentifierMsg game_info = 2; // 游戏模式
+    optional uint32 param1 = 3; // 参数1
+    optional uint32 param2 = 4; // 参数2
+    optional uint32 param3 = 5; // 参数3
+}
+
+// 玩家开始游戏消息
+message CagPlayerStartGameAckMsg {
+    optional GameIdentifierMsg game_info = 1; // 游戏场次识别信息
+    optional string game_ip = 2; // 游戏服务器地址
+    optional string ticket = 3; // 进入游戏票证串
+}
+
+// 玩家进入游戏消息
+message CagPlayerEnterGameAckMsg {
+    optional uint32 result = 1; // 返回结果
+    optional GameIdentifierMsg game_info = 2; // 游戏场次识别信息
+}
+
+// 玩家游戏结束消息
+message CagPlayerFinishGameAckMsg {
+    optional GameIdentifierMsg game_info = 1; // 游戏场次识别信息
+}
+
+message PlayerCombatRecord {
+    optional uint32 player_id = 1;
+    repeated CombatStatistics statistics_list = 2;
+}
+
+// 玩家游戏结果消息
+message CagPlayerGameResultAckMsg {
+    optional GameIdentifierMsg game_info = 1; // 游戏模式、序号信息
+    optional bytes reward = 2; //如各自格式的json，具体游戏各自约定格式
+    optional uint32 reward_len = 3; // 奖励字符串长度
+    repeated PlayerCombatRecord player_combat_record = 100; // 战斗数据列表
+}
+

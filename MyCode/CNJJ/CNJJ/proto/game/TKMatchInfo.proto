@@ -1,0 +1,72 @@
+
+//zhh 2011.12.1
+package cn.jj.service.msg.protocol;
+
+message MatchInfoReqMsg  {
+	//required uint32 tourneyid = 1;
+	optional GetTableListReq gettablelist_req_msg = 2; // 获取 tourneyid 的 table List 信息
+	optional GetTablePlayerReq getplayer_req_msg = 3; // 获取单个 table 的player 信息
+	optional GetSignCountReq getsigncount_req_msg = 4; // 获取 tourneyid 的报名人数
+}
+
+message MatchInfoAckMsg  {
+	//required uint32 tourneyid = 1;
+	optional GetTableListAck gettablelist_ack_msg = 2;
+	optional GetTablePlayerAck getplayer_ack_msg = 3;
+	optional GetSignCountAck getsigncount_ack_msg = 4;
+}
+
+message TableData  {
+	required uint32 tableid=1;                     		// 赛桌编号
+	optional uint32 matchid=2;                          	// MatchID
+	required uint32 signupamount=3;                     	// 报名人数
+	required uint32 maxamount=4;                        	// 最大参赛人数
+	optional uint32 state=5;                             	// 赛桌状态
+	optional uint32 type=6;                          	// 自由桌标识,对应协议reserve
+	optional string tablename=7;				//赛桌名称
+	optional string tablenote=8;				//赛桌说明
+	required uint32 joingold=9;                         	// 入场金币数
+}
+message TablePlayerData  {
+	//required uint32 tableid = 1;                     		// 赛桌编号
+	optional uint32 userid = 2;                           		// 用户ID
+	required string nickname = 3;     				// 玩家昵称
+	required uint32 score = 4;                            		// 积分
+}
+
+message GetTableListReq {
+	required uint32 tourneyid = 1;
+	required uint32 begintableid=2; //桌号
+	required uint32 tablecount=3;  //桌数
+
+}
+
+message GetTableListAck  {
+	required uint32 tourneyid = 1;
+	optional uint32 alltablecount=2;
+	repeated TableData tabledata = 3;
+}
+
+message GetTablePlayerReq  {
+	required uint32 tourneyid = 1;
+	required uint32 tableid = 2;
+}
+
+message GetTablePlayerAck  {
+	required uint32 tourneyid = 1;
+	required uint32 tableid = 2;
+	repeated TablePlayerData tableplayerdata = 3;
+}
+
+message GetSignCountReq {
+	required uint32 tourneyid = 1;
+}
+
+message GetSignCountAck {
+	optional uint32 tourneyid = 1;
+	optional uint32 matchpoint = 2;
+	optional uint32 signupplayer = 3; // 报名人数
+	optional uint32 matchcreateinterval = 4; // 最近一段时间的比赛开赛间隔
+	optional uint32 matchplayercount = 5; // 最近一段时间的比赛开赛人数
+}
+

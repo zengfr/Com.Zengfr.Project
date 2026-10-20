@@ -1,0 +1,80 @@
+
+package cn.jj.service.msg.protocol;
+
+// [Client->Server] 请求消息
+message MobileBrokerReqMsg
+{
+	optional FBReqTest1			req_test1		= 1;
+	optional FBReqLotteryMsg	req_lottery_msg	= 2;
+	optional FBReqBrokerMsg		req_broker_msg	= 3;
+	optional FBReqGetInfoMsg	req_getinfo_msg	= 4;
+}
+
+// [Server->Client] 应答消息
+message MobileBrokerAckMsg
+{
+	optional FBAckTest1 ack_test1 = 1;
+}
+
+// @{ 请求消息
+//==============================================================================
+
+message FBReqTest1
+{
+	required uint32 test = 1;
+}
+
+//发送到lottery的消息
+message FBReqLotteryMsg
+{
+	required uint32			lotterytype	= 1;
+	optional FBLReqChipin	req_chipin	= 2;
+}
+
+//发送到broker的消息
+message FBReqBrokerMsg
+{
+
+}
+
+//发送到GetInfo的消息
+message FBReqGetInfoMsg
+{
+
+}
+
+//下注消息
+message FBLReqChipin
+{
+	required uint32	figureid	= 1;	//玩家头像
+	required string	nickname	= 2;	//玩家昵称
+}
+
+//==============================================================================
+// 请求消息 @}
+
+
+// @{ 应答消息
+//==============================================================================
+
+message FBAckTest1
+{
+	required uint32 test = 1;
+}
+
+// 颁奖
+message LotteryAward
+{
+	required uint32 typeid = 1;
+	required uint32 period = 2;
+	required uint32 userid = 3;
+	repeated AwardGoods awardgoods = 4;
+}
+
+// 奖励物品
+message AwardGoods
+{
+	required uint32 goodsid = 1;
+	required uint32 goodscount = 2;
+}
+

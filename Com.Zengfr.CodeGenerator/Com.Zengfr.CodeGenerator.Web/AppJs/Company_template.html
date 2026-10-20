@@ -1,0 +1,104 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script type='text/javascript'>
+Ext = {
+    buildSettings:{
+	    "baseCSSPrefix":"x-",
+        "scopeResetCSS": true
+    }
+};
+</script>
+<script type="text/javascript" src="http://cdn.sencha.io/ext-4.2.0-gpl/ext-all.js"></script>
+<link rel="Stylesheet" type="text/css" href="http://cdn.sencha.io/ext-4.2.0-gpl/resources/css/ext-all.css"/>
+<script type="text/javascript" src="ModelBase_dataModel.js"></script>
+<script type="text/javascript" src="ModelBase_dataStore.js"></script>
+<script type="text/javascript" src="ModelBase_searchPanel.js"></script>
+<script type="text/javascript" src="ModelBase_formPanel.js"></script>
+<script type="text/javascript" src="ModelBase_gridPanel.js"></script>
+<script type="text/javascript" src="ModelBase_infoPanel.js"></script>
+<script type="text/javascript" src="ModelBase_propertyGrid.js"></script>
+<script type="text/javascript" src="ModelBase_list.js"></script>
+<script type="text/javascript" src="Company_dataModel.js"></script>
+<script type="text/javascript" src="Company_dataStore.js"></script>
+<script type="text/javascript" src="Company_searchPanel.js"></script>
+<script type="text/javascript" src="Company_formPanel.js"></script>
+<script type="text/javascript" src="Company_gridPanel.js"></script>
+<script type="text/javascript" src="Company_infoPanel.js"></script>
+<script type="text/javascript" src="Company_propertyGrid.js"></script>
+<script type="text/javascript" src="Company_list.js"></script>
+<script type="text/javascript" src="Database_dataModel.js"></script>
+<script type="text/javascript" src="Database_dataStore.js"></script>
+<script type="text/javascript" src="Database_searchPanel.js"></script>
+<script type="text/javascript" src="Database_formPanel.js"></script>
+<script type="text/javascript" src="Database_gridPanel.js"></script>
+<script type="text/javascript" src="Database_infoPanel.js"></script>
+<script type="text/javascript" src="Database_propertyGrid.js"></script>
+<script type="text/javascript" src="Database_list.js"></script>
+<script type="text/javascript" src="Model_dataModel.js"></script>
+<script type="text/javascript" src="Model_dataStore.js"></script>
+<script type="text/javascript" src="Model_searchPanel.js"></script>
+<script type="text/javascript" src="Model_formPanel.js"></script>
+<script type="text/javascript" src="Model_gridPanel.js"></script>
+<script type="text/javascript" src="Model_infoPanel.js"></script>
+<script type="text/javascript" src="Model_propertyGrid.js"></script>
+<script type="text/javascript" src="Model_list.js"></script>
+<script type="text/javascript" src="ModelAttr_dataModel.js"></script>
+<script type="text/javascript" src="ModelAttr_dataStore.js"></script>
+<script type="text/javascript" src="ModelAttr_searchPanel.js"></script>
+<script type="text/javascript" src="ModelAttr_formPanel.js"></script>
+<script type="text/javascript" src="ModelAttr_gridPanel.js"></script>
+<script type="text/javascript" src="ModelAttr_infoPanel.js"></script>
+<script type="text/javascript" src="ModelAttr_propertyGrid.js"></script>
+<script type="text/javascript" src="ModelAttr_list.js"></script>
+<script type="text/javascript" src="GenTask_dataModel.js"></script>
+<script type="text/javascript" src="GenTask_dataStore.js"></script>
+<script type="text/javascript" src="GenTask_searchPanel.js"></script>
+<script type="text/javascript" src="GenTask_formPanel.js"></script>
+<script type="text/javascript" src="GenTask_gridPanel.js"></script>
+<script type="text/javascript" src="GenTask_infoPanel.js"></script>
+<script type="text/javascript" src="GenTask_propertyGrid.js"></script>
+<script type="text/javascript" src="GenTask_list.js"></script>
+<style type="text/css">
+.nav> li > a{ background-color: #4f4f4f;color: #bFbFbF;}
+.nav> li > a:hover,.nav> li > a:focus { background-color: #5f5f5f;color: #EFEFEF;}
+.x-grid-row{
+  height:36px;
+}
+.x-grid-row td,.x-grid-summary-row td{
+line-height:25px;//控制GRID单元格高度
+vertical-align:center;//单元格垂直居中
+border-right: 1px solid #eceff6 !important;//控制表格列线
+border-top: 1px solid #eceff6 !important;//控制表格行线
+}
+.x-grid-dirty-cell{
+   color: #EC0000;
+}
+</style></head>
+<body></body>
+<script type="text/javascript">
+Ext.Loader.setConfig({
+    enabled: true
+});
+//Ext.Loader.setPath('Ext.ux', '../ux');
+Ext.require([
+    '*',
+]);
+
+Ext.onReady(function() {
+var bd = Ext.getBody(); 
+var ModelBase_List=Ext.create('App.View.ModelBaseList',{});
+ModelBase_List.render(document.body);
+var Company_List=Ext.create('App.View.CompanyList',{});
+Company_List.render(document.body);
+var Database_List=Ext.create('App.View.DatabaseList',{});
+Database_List.render(document.body);
+var Model_List=Ext.create('App.View.ModelList',{});
+Model_List.render(document.body);
+var ModelAttr_List=Ext.create('App.View.ModelAttrList',{});
+ModelAttr_List.render(document.body);
+var GenTask_List=Ext.create('App.View.GenTaskList',{});
+GenTask_List.render(document.body);
+});
+</script>
+</html>

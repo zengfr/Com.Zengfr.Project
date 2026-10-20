@@ -1,0 +1,686 @@
+
+package cn.jj.service.msg.protocol;
+
+message CagSnsReqMsg {
+	optional CagPlayerGetFriendListReq                 cag_player_get_friend_list_req = 1;                    // 获取好友列表
+	optional CagPlayerGetApplicantListReq              cag_player_get_applicant_list_req = 2;                 // 获取申请者列表
+	optional CagPlayerGetBlackListReq                  cag_player_get_black_list_req = 3;                     // 获取黑名单
+	optional CagPlayerSearchPlayerReq                  cag_player_search_player_req = 4;                      // 查询好友
+	optional CagPlayerAddFriendReq                     cag_player_add_friend_req = 5;                         // 添加好友
+	optional CagPlayerDelFriendReq                     cag_player_del_friend_req = 6;                         // 删除好友
+	optional CagPlayerOprApplicationReq                cag_player_opr_application_req = 7;                    // 好友申请操作
+	optional CagPlayerAddBlackReq                      cag_player_add_black_req = 8;                          // 添加黑名单
+	optional CagPlayerDelBlackReq                      cag_player_del_black_req = 9;                          // 从黑名单中移除
+	optional CagPlayerSendChatMsgReq                   cag_player_send_chat_msg_req = 10;                     // 发送聊天信息
+	optional CagPlayerStartPWSearchReq		             cag_player_start_pw_search_req = 11;			              // 开始口令查找
+	optional CagPlayerFinishPWSearchReq		             cag_player_finish_pw_search_req = 12;		              // 结束口令查找
+	optional CagPlayerGetFriendIDListReq               cag_player_get_friend_id_list_req = 13;                // 获取全量好友ID
+	optional CagPlayerQueryFriendSnsInfoReq            cag_player_query_friend_sns_info_req = 14;             // 获取好友SNS信息
+
+	optional CagPlayerCreateTeamReq                    cag_player_create_team_req = 51;                       // 创建队伍
+	optional CagPlayerDeleteTeamReq                    cag_player_delete_team_req = 52;                       // 解散队伍
+	optional CagPlayerInviteFriendReq                  cag_player_invite_friend_req = 53;                     // 邀请玩家加入团队
+	optional CagPlayerCancelInvitationReq              cag_player_cancel_invitation_req = 54;                 // 取消玩家邀请
+	optional CagPlayerKickTeamMemberReq                cag_player_kick_team_member_req = 55;                  // 队长踢队伍成员
+	optional CagPlayerOprInvitationReq                 cag_player_opr_invitation_req = 56;                    // 团队邀请操作
+	optional CagPlayerJoinTeamReq                      cag_player_join_team_req = 57;                         // 跟随进队
+	optional CagPlayerOprJoinTeamApplicationReq        cag_player_opr_join_team_application_req = 58;
+	optional CagPlayerLeaveTeamReq                     cag_player_leave_team_req = 59;                        // 队员离开队伍
+	optional CagPlayerPrepareReq                       cag_player_prepare_req = 60;                           // 准备就绪/未准备就绪请求
+	optional CagPlayerSendTeamChatMsgReq               cag_player_send_team_chat_msg_req = 61;
+	optional CagPlayerChangeStateReq	   	             cag_player_change_state_req = 62;		  	              //队伍内状态信息变更
+
+	//扩展
+	optional uint32                                    extend_req_msg_len = 200;
+	optional bytes                                     tank_sns_req_msg = 201;
+}
+
+message CagSnsAckMsg {
+	optional CagPlayerPushFriendSnsInfoAck             cag_player_push_friend_sns_info_ack = 1;               // 好友信息变更
+	optional CagPlayerGetFriendListAck                 cag_player_get_friend_list_ack = 2;                    // 获取好友列表
+	optional CagPlayerGetApplicantListAck              cag_player_get_applicant_list_ack = 3;                 // 获取好友申请列表
+	optional CagPlayerGetBlackListAck                  cag_player_get_black_list_ack = 4;                     // 获取黑名单
+	optional CagPlayerSearchPlayerAck                  cag_player_search_player_ack = 5;                      // 查找玩家
+	optional CagPlayerAddFriendAck                     cag_player_add_friend_ack = 6;                         // 添加好友请求
+	optional CagPlayerPushApplicationAck               cag_player_push_application_ack = 7;                   // 推送好友申请
+	optional CagPlayerDelFriendAck                     cag_player_del_friend_ack = 8;                         // 删除好友
+	optional CagPlayerPushDelFriendAck                 cag_player_push_del_friend_ack = 9;                    // 推送删除好友
+	optional CagPlayerOprApplicationAck                cag_player_opr_application_ack = 10;                   // 好友申请列表操作
+	optional CagPlayerPushOprApplicantionAck           cag_player_push_opr_application_ack = 11;              // 推送好友申请操作
+	optional CagPlayerAddBlackAck                      cag_player_add_black_ack = 12;                         // 添加黑名单
+	optional CagPlayerDelBlackAck                      cag_player_del_black_ack = 13;                         // 从黑名单中移除
+	optional CagPlayerSendChatMsgAck                   cag_player_send_chat_msg_ack = 14;                     // 发送聊天消息
+	optional CagPlayerPushChatMsgAck                   cag_player_push_chat_msg_ack = 15;                     // 推送聊天消息
+	optional CagPlayerStartPWSearchAck		             cag_player_start_pw_search_ack = 16;			              // 开始口令查找
+	optional CagPlayerPushPWSearchResultAck		         cag_player_push_pw_search_result_ack = 17;		          // 口令查找结果
+	optional CagPlayerFinishPWSearchAck		             cag_player_finish_pw_search_ack = 18;		              // 结束口令查找
+	optional CagPlayerGetFriendIDListAck               cag_player_get_friend_id_list_ack = 19;                // 获取全量好友ID
+	optional CagPlayerQueryFriendSnsInfoAck            cag_player_query_friend_sns_info_ack = 20;             // 获取好友SNS信息
+
+	optional CagPlayerCreateTeamAck                    cag_player_create_team_ack = 51;                       // 创建团队
+	optional CagPlayerDeleteTeamAck                    cag_player_delete_team_ack = 52;                       // 解散队伍
+	optional CagPlayerInviteFriendAck                  cag_player_invite_friend_ack = 53;                     // 邀请玩家加入团队
+	optional CagPlayerCancelInvitationAck              cag_player_cancel_invitaion_ack = 54;                  // 取消邀请玩家入队
+	optional CagPlayerPushCancelInvitationAck          cag_player_push_cancel_invitation_ack = 55;            // 推送取消玩家邀请消息
+	optional CagPlayerKickTeamMemberAck                cag_player_kick_team_member_ack = 56;                  // 队长踢队伍成员
+	optional CagPlayerPushTeamInvitationAck            cag_player_push_team_invitation_ack = 57;              // 向被邀请人推送邀请
+	optional CagPlayerOprInvitationAck                 cag_player_opr_invitation_ack = 58;                    // 团队邀请操作
+	optional CagPlayerPushOprInvitationAck             cag_player_push_opr_invitation_ack = 59;               // 邀请操作结果推送给邀请人
+	optional CagPlayerPushTeamInfoAck                  cag_player_push_team_info_ack = 60;                    // 推送队伍信息
+	optional CagPlayerLeaveTeamAck                     cag_player_leave_team_ack = 61;                        // 队员离开队伍
+	optional CagPlayerJoinTeamAck                      cag_player_join_team_ack = 62;                         // 主动加入队伍ACK
+	optional CagPlayerPushJoinTeamApplicationAck       cag_player_push_join_team_application_ack = 63;
+	optional CagPlayerOprJoinTeamApplicationAck        cag_player_opr_join_team_application_ack = 64;         // 队长处理其他人的队伍申请操作Ack
+	optional CagPlayerPushOprJoinTeamApplicationAck    cag_player_push_opr_join_team_application_ack = 65;    // 队长处理其他人的队伍申请操作结果推送给被邀请人
+	optional CagPushPlayerLeaveTeamAck                 cag_push_player_leave_team_ack = 66;
+	optional CagPlayerPrepareAck                       cag_player_prepare_ack = 67;
+	optional CagPushPlayerPrepareAck                   cag_push_player_prepare_ack = 68;
+	optional CagPushPlayerJoinTeamAck                  cag_push_player_join_team_ack = 69;
+	optional CagPushPlayerDisMissTeamAck               cag_push_player_dismiss_team_ack = 70;                 //队伍解散推送
+	optional CagPlayerSendTeamChatMsgAck               cag_player_send_team_chat_msg_ack = 71;
+	optional CagPlayerPushTeamChatMsgAck               cag_player_push_team_chat_msg_ack = 72;
+	optional CagPlayerChangeStateAck	   	             cag_player_change_state_ack = 73;		  	              //队伍内状态信息变更
+	optional CagPushPlayerChangeStateAck		           cag_push_player_change_state_ack = 74;		              //推送成员状态变更消息
+
+
+	//扩展
+	optional uint32                                    extend_ack_msg_len = 200;
+	optional bytes                                     tank_sns_ack_msg = 201;
+}
+
+
+enum PlayerLineState {
+  OFF_LINE  = 1;       //离线
+  ON_LINE   = 2;       //在线
+}
+
+enum PlayerTeamState {
+  IN_TEAM = 1;         //组队中
+  OUT_TEAM = 2;        //没有组队
+}
+
+enum PlayerGameState {
+  IN_LOBBY = 1;        //大厅
+  IN_MATCH = 2;        //匹配中
+  IN_GAME = 3;         //游戏中
+}
+
+enum FriendApplicantionOpr {
+  AGREE = 1;   //同意
+  REFUSE = 2;  //拒绝
+}
+
+enum TeamPlayerPrepareState {
+  Ready = 1;          //准备就绪
+  UN_READY =2;        //未准备就绪
+}
+
+enum FriendTeamInvitationOpr {
+  FRIEND_TEAM_INVITATION_OPR_AGREE = 1; //同意
+  FRIEND_TEAM_INVITATION_OPR_REFUSE = 2; //拒绝
+  FRIEND_TEAM_INVITATION_OPR_DONT_DISTURB = 3; //免打扰
+}
+
+enum JoinTeamApplicationOpr {
+  JOIN_TEAM_APPLICATION_OPR_AGREE = 1;   //同意
+  JOIN_TEAM_APPLICATION_OPR_REFUSE = 2;  //拒绝
+  JOIN_TEAM_APPLICATION_OPR_DONT_DISTURB = 3; //免打扰
+}
+
+enum eAddFriendRst {
+  ADD_FRIEND_RST_SUCCESS = 0;
+  ADD_FRIEND_RST_FAIL = 1;
+  ADD_FRIEND_RST_ALREADY_FRIEND = 2;       //已经是好友
+  ADD_FRIEND_RST_SELF_FULL_FRIENDS = 3;    //自己好友已满
+  ADD_FRIEND_RST_OTHER_FULL_FRINEDS = 4;   //对方好友已满
+  ADD_FRIEND_RST_INVALID_PLAYER = 5;       //无效玩家
+  ADD_FRIEND_RST_REPEATED_APPLICANTION = 6; //重复申请
+}
+
+enum eCreateTeamRst {
+  CREATE_TEAM_RST_SUCCESS = 0;
+  CREATE_TEAM_RST_IN_TEAM = 1;
+  CREATE_TEAM_FAIL = 2;
+}
+
+enum eJoinTeamRst {
+  JOIN_TEAM_RST_SUCCESS = 0;
+  JOIN_TEAM_RST_IN_TEAM = 1;              //已经加入队伍
+  JOIN_TEAM_RST_CNT_FIND_PLAYER = 2;      //没有找到相应PLAYER对象实体
+  JOIN_TEAM_RST_TEAM_FULL = 3;            //队伍已满
+  JOIN_TEAM_RST_TEAL_ALREADY_START = 4;   //队伍已经开赛
+}
+
+enum eDeleteTeamRst {
+  DELETE_TEAM_RST_SUCCESS = 0;
+  DELETE_TEAM_RST_NOT_CAPTAIN = 1;          //不是队长
+  DELETE_TEAM_RST_CNT_FIND_TEAM = 2;        //队伍不存在
+  DELETE_TEAM_RST_IN_MATCH = 3;             //比赛中队伍无法解散
+}
+
+
+enum eTeamInviteFriendRst {
+  TEAM_INVITE_FRIEND_RST_SUCCESS = 0;
+  TEAM_INVITE_FRIEND_RST_ALREADY_INVITE = 1;       //已经邀请
+  TEAM_INVITE_FRIEND_RST_CNT_FIND_PLAYER = 2;      //对方不存在
+  TEAM_INVITE_FRIEND_RST_FRIEND_OFF_LINE = 3;      //对方不在线
+  TEAM_INVITE_FRIEND_RST_FRIEND_ALREADY_INGAME = 4;//好友已经在游戏中
+  TEAM_INVITE_FRIEND_RST_FRIEND_ALREADY_INTEAM = 5;//好友已经组队
+  TEAM_INVITE_FRIEND_RST_NOT_CAPTAIN = 6;          //不是队长
+  TEAM_INVITE_FRIEND_RST_CNT_FIND_TEAM = 7;        //队伍不存在
+  TEAM_INVITE_FRIEND_RST_DONT_DISTURB = 8;         //被邀请者暂时不接受邀请
+  TEAM_INVITE_FRIEND_RST_NONE_PLACE = 9;           //没有空位
+}
+
+enum eTeamCancelInvitationRst {
+  TEAM_CANCEL_INVITATION_RST_SUCCESS = 0;
+  TEAM_CANCEL_INVITATION_RST_FAIL = 1;
+  TEAM_CANCEL_INVITATION_RST_NO_POWER = 2;          //没有权利
+  TEAM_CANCEL_INVITATION_RST_CNT_FIND_TEAM = 3;     //队伍不存在
+}
+
+enum eKickTeamMemberRst {
+  KICK_TEAM_MEMBER_RST_SUCCESS = 0;
+  KICK_TEAM_MEMBER_RST_CNT_FIND_PLAYER = 1;      //对方不在队伍中
+  KICK_TEAM_MEMBER_RST_ALREADY_INGAME = 2;       //已经在游戏中
+  KICK_TEAM_MEMBER_RST_NOT_CAPTAIN = 3;          //不是队长
+  KICK_TEAM_MEMBER_RST_CNT_FIND_TEAM = 4;        //队伍不存在
+}
+
+enum eLeaveTeamReason {
+  SELF_LEAVE = 0;
+  KICKED_BY_CAPTAIN = 1;
+}
+
+enum eFriendTeamInvitationOprRst {
+  FRIEND_TEAM_INVITATION_OPR_RST_SUCCESS = 0;
+  FRIEND_TEAM_INVITATION_OPR_RST_CNT_FIND_TEAM = 1;           //队伍不存在
+  FRIEND_TEAM_INVITATION_OPR_RST_CNT_FIND_INVITATION = 2;     //邀请不存在
+  FRIEND_TEAM_INVITATION_OPR_RST_TEAM_FULL = 3;               //队伍已满
+  FRIEND_TEAM_INVITATION_OPR_RST_ALREADY_START = 4;           //队伍已经开始匹配/游戏
+  FRIEND_TEAM_INVITATION_OPR_RST_ALREADY_IN_TEAM = 5;         //已经在队伍中
+  FRIEND_TEAM_INVITATION_OPR_RST_CNT_FIND_PLAYER = 6;         //不能找到player对象实体
+}
+
+enum eLeaveTeamRst {
+  LEAVE_TEAM_RST_SUCCESS = 0;
+  LEAVE_TEAM_RST_CNT_FIND_PLAYER = 1;      //对方不在队伍中
+  LEAVE_TEAM_RST_ALREADY_INGAME = 2;       //已经在游戏中
+  LEAVE_TEAM_RST_CNT_FIND_TEAM = 3;        //队伍不存在
+}
+
+enum eTeamPlayerPrepareRst {
+  TEAM_PLAYER_RST_SUCCESS = 0;
+  TEAM_PLAYER_RST_CNT_FIND_PLAYER = 1;      //对方不在队伍中
+  TEAM_PLAYER_RST_ALREADY_INGAME = 2;       //已经在游戏中
+  TEAM_PLAYER_RST_CNT_FIND_TEAM = 3;        //队伍不存在
+  TEAM_PLAYER_RST_DELAY = 4;                //取消准备延迟处理，需要Match取消报名成功才能返回。
+}
+
+enum eSendTeamChatMsgRst {
+  SEND_TEAM_CHAT_MSG_RST_SUCCESS = 0;
+  SEND_TEAM_CHAT_MSG_RST_CNT_FIND_TEAM = 1;
+  SEND_TEAM_CHAT_MSG_RST_SHUT_UP = 3;       //被禁言
+}
+
+enum eApplicantJoinTeamRst {
+  APPLICANT_JOIN_TEAM_RST_SUCCESS = 0;                       //加入队伍请求发送成功（并未加入队伍）
+  APPLICANT_JOIN_TEAM_RST_ALREADY_JOIN = 1;                  //已经发送加入队伍申请
+  APPLICANT_JOIN_TEAM_RST_ALREADY_INGAME = 2;                //预加入的队伍已经在游戏中
+  APPLICANT_JOIN_TEAM_RST_ALREADY_INTEAM = 3;                //已经在队伍中
+  APPLICANT_JOIN_TEAM_RST_CNT_FIND_TEAM = 4;                 //队伍不存在
+  APPLICANT_JOIN_TEAM_RST_CNT_FIND_PLAYER = 5;
+  APPLICANT_JOIN_TEAM_RST_DONT_DISTURB = 6;                  //队长暂时不接受主动加入队伍
+  APPLICANT_JOIN_TEAM_RST_NONE_PLACE = 7;                    //没有空位
+}
+
+enum eJoinTeamApplicationOprRst {
+  JOIN_TEAM_APPLICATION_OPR_RST_SUCCESS = 0;
+  JOIN_TEAM_APPLICATION_OPR_RST_CNT_FIND_TEAM = 1;           //队伍不存在
+  JOIN_TEAM_APPLICATION_OPR_RST_CNT_FIND_APPLICATION = 2;    //申请不存在
+  JOIN_TEAM_APPLICATION_OPR_RST_OPR_RST_TEAM_FULL = 3;       //队伍已满
+  JOIN_TEAM_APPLICATION_OPR_RST_ALREADY_START = 4;           //队伍已经开始匹配/游戏
+  JOIN_TEAM_APPLICATION_OPR_RST_ALREADY_IN_TEAM = 5;         //已经在队伍中
+  JOIN_TEAM_APPLICATION_OPR_RST_CNT_FIND_PLAYER = 6;         //不能找到player对象实体
+}
+
+// 好友信息
+message PlayerSnsInfo {
+  optional uint32           player_id = 1;              // 玩家ID
+  optional string           nick_name = 2;              // 昵称
+  optional uint32           player_line_state = 3;      // 在线状态
+  optional uint32           player_team_state = 4;      // 组队状态
+  optional uint32           player_game_state = 5;      // 游戏状态
+  optional uint32           last_login_timestamp = 6;   //最近登录时间
+  optional uint32           team_member_cnt = 7;        //队伍成员数量
+  optional uint32           team_member_full_cnt = 8;   //队伍满员数量
+  optional uint32           team_id = 9;                //队伍id
+  optional bytes            extend_info = 10;           //扩展信息
+  optional uint32           extend_info_len = 11;       //扩展信息长度
+  optional uint32           figure = 12;                //玩家头像
+  optional uint32           user_id = 13;               //JJ平台ID
+}
+
+//推送变更后的好友信息
+message CagPlayerPushFriendSnsInfoAck {
+  optional PlayerSnsInfo     player_sns_info = 1;
+}
+
+//获取好友申请列表
+message CagPlayerGetFriendListReq {
+  optional uint32            count = 1;      //获取个数
+  optional uint32            index_beg = 2;  //起始索引
+}
+
+message CagPlayerGetFriendListAck {
+  optional uint32            result = 1;               //  0成功 1失败
+  repeated PlayerSnsInfo     friends = 2;              // 好友信息
+  optional uint32            index_beg = 3;            // 起始索引地址
+  optional uint32            total_friend_count = 4;   // 总的好友个数
+  optional uint32	           online_friend_count = 5;  // 在线好友数量
+}
+
+//获取全量好友ID
+message CagPlayerGetFriendIDListReq {
+}
+
+message CagPlayerGetFriendIDListAck {
+  optional uint32            result = 1;               //  0成功 1失败
+  repeated uint32            friends = 2;              // 好友ID数组
+  optional uint32            total_friend_count = 3;   // 总的好友个数
+  optional uint32	           online_friend_count = 4;  // 在线好友数量
+}
+
+//获取好友SNS信息
+message CagPlayerQueryFriendSnsInfoReq {
+  optional uint32 friend_id = 1;
+}
+
+message CagPlayerQueryFriendSnsInfoAck {
+  optional uint32            result = 1;               //  0成功 1失败
+  optional PlayerSnsInfo     friend_info = 2;          // 好友信息
+}
+
+// 获取好友申请列表
+message CagPlayerGetApplicantListReq {
+}
+
+message CagPlayerGetApplicantListAck {
+  optional uint32            result = 1;    // 0成功 1失败
+  repeated PlayerSnsInfo     applicants = 2;// 好友信息
+}
+
+
+// 获取黑名单列表
+message CagPlayerGetBlackListReq {
+}
+
+message CagPlayerGetBlackListAck {
+  optional uint32            result = 1;    // 0成功 1失败
+  repeated PlayerSnsInfo     blacks = 2;    // 黑名单信息
+}
+
+// 查询玩家
+message CagPlayerSearchPlayerReq {
+  optional string            key = 1;       // 查询值
+}
+
+message CagPlayerSearchPlayerAck {
+  optional uint32            result = 1;    // 0成功 1失败
+  repeated PlayerSnsInfo     players = 2;   // 好友信息
+}
+
+// 添加好友
+message CagPlayerAddFriendReq {
+  optional uint32            friend_id = 1; // 好友id
+}
+
+message CagPlayerAddFriendAck {
+  optional uint32            friend_id = 1;
+  optional uint32            result = 2;    // 0成功 1失败
+}
+
+message CagPlayerPushApplicationAck {
+  optional PlayerSnsInfo     applicant = 1; // 申请者信息
+}
+
+// 删除好友
+message CagPlayerDelFriendReq {
+  optional uint32            friend_id = 1; // 好友ID
+}
+
+message CagPlayerDelFriendAck {
+  optional uint32            result = 1;    // 0成功 1失败
+  optional uint32            friend_id = 2;
+}
+
+message CagPlayerPushDelFriendAck {
+  optional uint32            friend_id = 1;
+}
+
+// 好友申请操作
+message CagPlayerOprApplicationReq {
+  optional uint32            applicant_id = 1;           // 申请者ID
+  optional uint32            friend_application_opr = 2; // 同意/拒绝
+}
+
+message CagPlayerOprApplicationAck {
+  optional uint32            result = 1;                 // 0成功 1失败
+  optional uint32            applicant_id = 2;
+  optional uint32            friend_application_opr = 3;
+}
+
+message CagPlayerPushOprApplicantionAck {
+  optional uint32            be_applied_id = 1;        //被申请人id
+  optional uint32            friend_application_opr = 2;
+}
+
+//黑名单
+message CagPlayerAddBlackReq {
+  optional uint32            friend_id = 1;     // 好友id
+}
+
+message CagPlayerAddBlackAck {
+  optional uint32            friend_id = 1;
+  optional uint32            result = 2;        // 0成功 1失败
+}
+
+message CagPlayerDelBlackReq {
+  optional uint32            black_id = 1;      // 好友ID
+}
+
+message CagPlayerDelBlackAck {
+  optional uint32            black_id = 1;
+  optional uint32            result = 2;        // 0成功 1失败
+}
+
+// 发送聊天信息
+message CagPlayerSendChatMsgReq {
+  repeated uint32            to_ids = 1;        // 0 为广播
+  optional uint32            msg_player_id = 2; // 发送消息的玩家ID
+  optional string            message = 3;       // 消息内容
+  optional uint32            msg_type = 4;      // 消息类型
+}
+
+message CagPlayerSendChatMsgAck {
+  required uint32            result = 1;         // 0成功 1失败
+  optional uint32            msg_player_id = 2;  // 发送消息玩家ID
+  optional string            message = 3;        // 消息内容
+  optional uint32            msg_type = 4;       // 消息类型
+}
+
+// 推送聊天信息
+message CagPlayerPushChatMsgAck {
+  optional uint32            msg_player_id = 1;// 发送消息玩家ID
+  optional string            message = 2;      // 消息内容
+  optional uint32            msg_type = 3;     // 消息类型
+}
+
+//开始口令查找
+message CagPlayerStartPWSearchReq {
+  optional string	     password = 1;	//口令
+}
+
+message CagPlayerStartPWSearchAck {
+  optional uint32	     result = 1;
+}
+
+message CagPlayerPushPWSearchResultAck {
+  repeated PlayerSnsInfo    players = 1;	//全量
+}
+
+message CagPlayerFinishPWSearchReq {
+  optional string 	     password = 1;
+}
+
+message CagPlayerFinishPWSearchAck {
+  optional uint32 	     result = 1;
+}
+
+//创建队伍Req
+message CagPlayerCreateTeamReq {
+  optional uint32            player_id = 1;
+}
+
+message CagPlayerCreateTeamAck {
+  optional uint32            player_id = 1;
+  optional uint32            result = 2;       //eCreateTeamRst
+  optional uint32            team_id = 3;
+}
+
+message CagPlayerDeleteTeamReq {
+  optional uint32            player_id = 1;
+  optional uint32            team_id = 2;
+}
+
+message CagPlayerDeleteTeamAck {
+  optional uint32            player_id = 1;
+  optional uint32            result = 2;
+  optional uint32            team_id =3;
+}
+
+message CagPushPlayerDisMissTeamAck {
+  optional uint32            captain_id = 1;
+  optional uint32            team_id = 2;
+}
+
+message CagPlayerInviteFriendReq {
+  optional uint32            player_id = 1;
+  optional uint32            team_id = 2;
+  optional uint32            invitee_id = 3;        //被邀请人id
+}
+
+message CagPlayerInviteFriendAck {
+  optional uint32            player_id = 1;
+  optional uint32            team_id = 2;
+  optional uint32            invitee_id = 3;        //被邀请人id
+  optional uint32            result = 4;
+}
+
+message CagPlayerPushTeamInvitationAck {
+  optional uint32            player_id = 1;
+  optional uint32            invitor_id = 2;
+  optional uint32            team_id = 3;
+  optional uint32            invitation_beg_timestamp = 4; //邀请生效时间戳
+  optional uint32            invitation_last_long =5;  //邀请有效时长
+}
+
+message CagPlayerCancelInvitationReq {
+  optional uint32            player_id = 1;
+  optional uint32            team_id = 2;
+  optional uint32            invitee_id = 3;
+}
+
+message CagPlayerCancelInvitationAck {
+  optional uint32            player_id = 1;
+  optional uint32            team_id = 2;
+  optional uint32            invitee_id = 3;
+  optional uint32            result = 4;
+}
+
+message CagPlayerPushCancelInvitationAck {
+  optional uint32            invitor_id = 1;
+  optional uint32            team_id = 2;
+  optional uint32            invitee_id = 3;
+}
+
+message CagPlayerKickTeamMemberReq {
+  optional uint32            player_id = 1;
+  optional uint32            team_id = 2;
+  optional uint32            outsider_id = 3;
+}
+
+message CagPlayerKickTeamMemberAck {
+  optional uint32            player_id = 1;
+  optional uint32            team_id = 2;
+  optional uint32            kicked_member_id = 3;     //被踢成员id
+  optional uint32            result = 4;
+}
+
+message CagPlayerOprInvitationReq {
+  optional uint32            player_id = 1;
+  optional uint32            team_id = 2;
+  optional uint32            invitation_opr = 3;   //FriendTeamInvitationOpr
+}
+
+message CagPlayerOprInvitationAck {
+  optional uint32            player_id = 1;
+  optional uint32            team_id = 2;
+  optional uint32            invitation_opr = 3;
+  optional uint32            result = 4;
+  optional CagTeamInfo       team_info = 5;
+}
+
+message CagPlayerPushOprInvitationAck {
+  optional uint32            player_id = 1;
+  optional uint32            team_id = 2;
+  optional uint32            invitation_opr = 3;
+}
+
+message CagPushPlayerJoinTeamAck {
+  optional CagTeamPlayerInfo invitee_info = 1;
+  optional uint32            team_id = 2;
+}
+
+message CagPlayerLeaveTeamReq {
+  optional uint32            player_id = 1;
+  optional uint32            team_id = 2;
+}
+
+message CagPlayerLeaveTeamAck {
+  optional uint32            player_id = 1;
+  optional uint32            team_id = 2;
+  optional uint32            result = 3;
+}
+
+message CagPushPlayerLeaveTeamAck {
+  optional uint32            player_id = 1;          //离开玩家
+  optional uint32            team_id = 2;
+  optional uint32            leave_team_reason = 3;  //主动 被动离开
+}
+
+message CagPlayerPrepareReq {
+  optional uint32            player_id = 1;
+  optional uint32            team_id = 2;
+  optional uint32            prepare_state = 3;
+}
+
+message CagPlayerPrepareAck {
+  optional uint32            player_id = 1;
+  optional uint32            team_id = 2;
+  optional uint32            prepare_state =3;
+  optional uint32            result = 4;
+}
+
+message CagPushPlayerPrepareAck {
+  optional uint32            player_id = 1;
+  optional uint32            team_id = 2;
+  optional uint32            prepare_state =3;
+}
+
+message CagTeamPlayerInfo {
+  optional uint32            player_id = 1;
+  optional uint32            prepare_state = 2;
+  optional PlayerSnsInfo     sns_info = 3;
+  optional bytes             signup_data = 4;
+  optional uint32            signup_data_len = 5;
+  optional uint32            invitor_id = 6;
+}
+
+message CagTeamInfo {
+  optional uint32            team_id = 1;
+  optional uint32            captain_id = 2;
+  repeated CagTeamPlayerInfo members_info = 3;
+  repeated CagTeamPlayerInfo invitees_info = 4;
+  repeated CagTeamPlayerInfo applicants_info = 5;
+}
+
+message CagPlayerPushTeamInfoAck {
+  optional CagTeamInfo       team_info = 1;
+}
+
+// 发送聊天信息
+message CagPlayerSendTeamChatMsgReq {
+  optional uint32            msg_player_id = 1; // 发送消息的玩家ID
+  optional uint32            team_id = 2;       // 队伍id
+  optional string            message = 3;       // 消息内容
+  optional uint32            msg_type = 4;      // 消息类型
+}
+
+message CagPlayerSendTeamChatMsgAck {
+  required uint32            result = 1;         // 0成功 1失败
+  optional uint32            msg_player_id = 2;  // 发送消息玩家ID
+  optional uint32            team_id = 3;        // 团队ID
+  optional string            message = 4;        // 消息内容
+  optional uint32            msg_type = 5;       // 消息类型
+}
+
+// 推送聊天信息
+message CagPlayerPushTeamChatMsgAck {
+  optional uint32            msg_player_id = 1;// 发送消息玩家ID
+  optional uint32            team_id = 2;      // 团队ID
+  optional string            message = 3;      // 消息内容
+  optional uint32            msg_type = 4;     // 消息类型
+}
+
+//请求加入队伍
+message CagPlayerJoinTeamReq {
+  optional uint32            player_id = 1;
+  optional uint32            team_id = 2;
+  optional uint32            friend_id = 3;  //跟随入队的好友id
+}
+
+message CagPlayerJoinTeamAck {
+  optional uint32            player_id = 1;
+  optional uint32            team_id = 2;
+  optional uint32            result = 3; //eApplicateJoinTeamRst
+  optional uint32            friend_id = 4;  //跟随入队的好友id
+}
+
+message CagPlayerPushJoinTeamApplicationAck {
+  optional uint32            applicant_id = 1;
+  optional uint32            team_id = 2;
+  optional uint32            application_beg_timestamp = 3; //邀请生效时间戳
+  optional uint32            application_last_long = 4;  //邀请有效时长
+  optional uint32            friend_id = 5;  //跟随入队的好友id
+}
+
+//加入队伍请求操作
+message CagPlayerOprJoinTeamApplicationReq {
+  optional uint32            applicant_id = 1;
+  optional uint32            team_id = 2;
+  optional uint32            application_opr = 3; //JoinTeamApplicationOpr
+}
+
+message CagPlayerOprJoinTeamApplicationAck {
+  optional uint32            applicant_id = 1;
+  optional uint32            team_id = 2;
+  optional uint32            application_opr = 3; //JoinTeamApplicationOpr
+  optional uint32            result = 4;          //eJoinTeamApplicationOprRst
+}
+
+message CagPlayerPushOprJoinTeamApplicationAck {
+  optional uint32           applicant_id = 1;
+  optional uint32           team_id = 2;
+  optional uint32           application_opr = 3;
+}
+
+message CagPlayerChangeStateReq {
+  optional uint32            player_id = 1;
+  optional uint32            team_id = 2;
+  optional string		         change_state = 3;
+}
+
+message CagPlayerChangeStateAck {
+  optional uint32            player_id = 1;
+  optional uint32            team_id = 2;
+  optional string		         change_state = 3;
+  optional uint32	           result = 4;
+}
+
+message CagPushPlayerChangeStateAck {
+  optional uint32            player_id = 1;
+  optional uint32            team_id = 2;
+  optional string	    	     change_state = 3;
+}
+

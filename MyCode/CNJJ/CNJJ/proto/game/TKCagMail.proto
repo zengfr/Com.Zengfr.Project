@@ -1,0 +1,65 @@
+
+package cn.jj.service.msg.protocol;
+//option optimize_for = CODE_SIZE;
+//option optimize_for = LITE_RUNTIME;
+
+import "TKCagCommon.proto";
+
+message CagMailReqMsg {
+    optional EmailListReq email_list_req_msg = 1; //邮件列表请求
+    optional EmailOperationReq email_operation_req_msg = 2; //邮件操作请求
+    optional EmailAKeyOperationReq email_akey_operation_req_msg = 3; //邮件一键操作请求
+}
+
+message CagMailAckMsg {
+    optional EmailListAck email_list_ack_msg = 1; //邮件列表响应
+    optional EmailOperationAck email_operation_ack_msg = 2; //邮件操作响应
+    optional EmailAKeyOperationAck email_akey_operation_ack_msg = 3; //邮件一键操作响应
+    optional NewEmailPushAck new_email_push_ack_msg = 4; //新邮件推送
+}
+
+//邮件列表请求
+message EmailListReq {
+    optional uint32 icount = 1; //要取多少个
+    optional string last_emailid = 2; // 取这个邮件之后的邮件
+}
+
+//邮件列表响应
+message EmailListAck {
+    required uint32 result = 1; //请求结果
+    repeated Email emails = 2;
+    optional uint32 indexbeg = 3; // 从第几个取，从0开始索引
+    optional uint32 allcount = 4; // 当前数据的总数
+    optional uint32 noget = 5;//总缓存列表中 附件未领取的邮件数目
+    optional uint32 noread = 6;//总缓存列表中 状态未读取的邮件数目
+}
+
+//邮件操作请求
+message EmailOperationReq {
+    optional string emailid = 1; //邮件id
+    optional uint32 op_type = 2; //操作类型： 1 已读、2 领取、 3 删除
+}
+
+//邮件操作响应
+message EmailOperationAck {
+    optional uint32 result = 1; //请求结果
+    optional string emailid = 2; //回传邮件id
+    optional uint32 op_type = 3; //回传 req携带的操作类型
+}
+
+//邮件一键操作请求
+message EmailAKeyOperationReq {
+    optional uint32 op_type = 1; //操作类型： 1 一键已读 2 领取所有邮件未领取的附件并设置为已读状态 3 删除所有已读且附件已领取的邮件 4 领取所有邮件未领取的附件
+}
+
+//邮件一键操作响应
+message EmailAKeyOperationAck {
+    optional uint32 result = 1; //请求结果
+    optional uint32 op_type = 3; //回传 req携带的操作类型
+}
+
+//新邮件推送
+message NewEmailPushAck {
+    optional Email new_email = 1;
+}
+

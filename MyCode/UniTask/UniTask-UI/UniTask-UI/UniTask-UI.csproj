@@ -1,0 +1,569 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="d:\nuget\packages\PropertyChanged.Fody.4.1.0\build\PropertyChanged.Fody.props" Condition="Exists('d:\nuget\packages\PropertyChanged.Fody.4.1.0\build\PropertyChanged.Fody.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A8F46BFE-ED46-4CB8-A173-CC91DE8A273E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UniTask_UI</RootNamespace>
+    <AssemblyName>UniTask-UI</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Release\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AdvancedStringBuilder, Version=0.1.0.0, Culture=neutral, PublicKeyToken=e818a2fc08933ddb, processorArchitecture=MSIL">
+      <HintPath>d:\nuget\packages\AdvancedStringBuilder.0.1.0\lib\net45\AdvancedStringBuilder.dll</HintPath>
+    </Reference>
+    <Reference Include="ClearScript.Core, Version=7.3.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>d:\nuget\packages\Microsoft.ClearScript.Core.7.3.5\lib\net471\ClearScript.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="ClearScript.V8, Version=7.3.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>d:\nuget\packages\Microsoft.ClearScript.V8.7.3.5\lib\net471\ClearScript.V8.dll</HintPath>
+    </Reference>
+    <Reference Include="ClearScript.V8.ICUData, Version=7.3.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>d:\nuget\packages\Microsoft.ClearScript.V8.ICUData.7.3.5\lib\netstandard1.0\ClearScript.V8.ICUData.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>d:\nuget\packages\log4net.2.0.15\lib\net45\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>d:\nuget\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PropertyChanged, Version=4.1.0.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
+      <HintPath>d:\nuget\packages\PropertyChanged.Fody.4.1.0\lib\net40\PropertyChanged.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=106.15.0.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>d:\nuget\packages\RestSharp.106.15.0\lib\net452\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SmartThreadPool, Version=2.3.0.0, Culture=neutral, PublicKeyToken=1126fe8b671e8a79, processorArchitecture=MSIL">
+      <HintPath>d:\nuget\packages\SmartThreadPool.dll.2.3.0\lib\net45\SmartThreadPool.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>d:\nuget\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime, Version=4.1.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>d:\nuget\packages\System.Runtime.4.3.1\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>d:\nuget\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>d:\nuget\packages\System.Security.Cryptography.Algorithms.4.3.1\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>d:\nuget\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>d:\nuget\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>d:\nuget\packages\System.Security.Cryptography.X509Certificates.4.3.2\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>d:\nuget\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WebDriver, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>d:\nuget\packages\Selenium.WebDriver.4.7.0\lib\net48\WebDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Support, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>d:\nuget\packages\Selenium.Support.4.7.0\lib\net48\WebDriver.Support.dll</HintPath>
+    </Reference>
+    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
+      <HintPath>d:\nuget\packages\DockPanelSuite.3.1.0\lib\net40\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WeifenLuo.WinFormsUI.Docking.ThemeVS2012, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
+      <HintPath>d:\nuget\packages\DockPanelSuite.ThemeVS2012.3.1.0\lib\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2012.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WeifenLuo.WinFormsUI.Docking.ThemeVS2013, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
+      <HintPath>d:\nuget\packages\DockPanelSuite.ThemeVS2013.3.1.0\lib\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2013.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WeifenLuo.WinFormsUI.Docking.ThemeVS2015, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
+      <HintPath>d:\nuget\packages\DockPanelSuite.ThemeVS2015.3.1.0\lib\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2015.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="app1\MyPriceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="app1\MyPriceForm.Designer.cs">
+      <DependentUpon>MyPriceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="app1\MySolutionExplorer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="app1\MySolutionExplorer.Designer.cs">
+      <DependentUpon>MySolutionExplorer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="app1\MyPropertiesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="app1\MyPropertiesForm.Designer.cs">
+      <DependentUpon>MyPropertiesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="common\ChromeDriverUtil.cs" />
+    <Compile Include="common\DatePickerEditor.cs" />
+    <Compile Include="common\LoggerUtil.cs" />
+    <Compile Include="common\PropertyGridRichText.cs" />
+    <Compile Include="common\UpdaterUI.cs" />
+    <Compile Include="common\V8Util.cs" />
+    <Compile Include="common\WebbrowserUtil.cs" />
+    <Compile Include="common\XmlTreeViewState.cs" />
+    <Compile Include="form\c\MyTaskThread.cs" />
+    <Compile Include="sample\AboutDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="sample\AboutDialog.Designer.cs">
+      <DependentUpon>AboutDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="common\LogLevelExtensions.cs" />
+    <Compile Include="common\ProgressFileStream.cs" />
+    <Compile Include="common\RandomComparer.cs" />
+    <Compile Include="common\RestClientUtil.cs" />
+    <Compile Include="Customization\DockHelper.cs" />
+    <Compile Include="sample\DummyDoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="sample\DummyDoc.Designer.cs">
+      <DependentUpon>DummyDoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="sample\DummyOutputWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="sample\DummyOutputWindow.Designer.cs">
+      <DependentUpon>DummyOutputWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="sample\DummyPropertyWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="sample\DummyPropertyWindow.Designer.cs">
+      <DependentUpon>DummyPropertyWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="sample\DummySolutionExplorer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="sample\DummySolutionExplorer.Designer.cs">
+      <DependentUpon>DummySolutionExplorer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="sample\DummyTaskList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="sample\DummyTaskList.Designer.cs">
+      <DependentUpon>DummyTaskList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="sample\DummyToolbox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="sample\DummyToolbox.Designer.cs">
+      <DependentUpon>DummyToolbox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="sample\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="sample\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\c\MyDataGridForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="app1\MyHeadForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="app1\MyHeadForm.Designer.cs">
+      <DependentUpon>MyHeadForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="app1\MyPoolForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="app1\MyPoolForm.Designer.cs">
+      <DependentUpon>MyPoolForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="app1\MyUserAgentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="app1\MyUserAgentForm.Designer.cs">
+      <DependentUpon>MyUserAgentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="app1\MyProxyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="app1\MyProxyForm.Designer.cs">
+      <DependentUpon>MyProxyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="app1\MyLogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="app1\MyLogForm.Designer.cs">
+      <DependentUpon>MyLogForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\c\MyRestUtil.cs" />
+    <Compile Include="form\c\MyTaskUtil.cs" />
+    <Compile Include="app1\MyCustomForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="app1\MyCustomForm.Designer.cs">
+      <DependentUpon>MyCustomForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="app1\MyAccountForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="app1\MyAccountForm.Designer.cs">
+      <DependentUpon>MyAccountForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\c\MyCtrl.cs" />
+    <Compile Include="form\c\MyData.cs" />
+    <Compile Include="app1\MyMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="app1\MyMainForm.Designer.cs">
+      <DependentUpon>MyMainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="app1\MyOrderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="app1\MyOrderForm.Designer.cs">
+      <DependentUpon>MyOrderForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="app1\MyProductForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="app1\MyProductForm.Designer.cs">
+      <DependentUpon>MyProductForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="app1\MySettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="app1\MySettingForm.Designer.cs">
+      <DependentUpon>MySettingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\c\MyStoreUtil.cs" />
+    <Compile Include="form\c\MyThreadPool.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sample\SplashScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="sample\SplashScreen.Designer.cs">
+      <DependentUpon>SplashScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="common\TextBoxBaseAppender.cs" />
+    <Compile Include="sample\ToolWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="sample\ToolWindow.Designer.cs">
+      <DependentUpon>ToolWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Task\DeviceManager\AdbManager.cs" />
+    <Compile Include="Task\DeviceManager\ConsoleExeRunner.cs" />
+    <Compile Include="Task\DeviceManager\DeviceData.cs" />
+    <Compile Include="Task\DeviceManager\DeviceState.cs" />
+    <Compile Include="Task\DeviceManager\Program.cs" />
+    <Compile Include="Task\DeviceManager\UIHelper.cs" />
+    <Compile Include="Task\TaskItem.cs" />
+    <Compile Include="Task\TaskManager.cs" />
+    <Compile Include="Task\TaskSettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Task\TaskGridForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Task\TaskSettingForm.Designer.cs">
+      <DependentUpon>TaskSettingForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="app1\MyPriceForm.resx">
+      <DependentUpon>MyPriceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="app1\MySolutionExplorer.resx">
+      <DependentUpon>MySolutionExplorer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\c\MyDataGridForm.resx">
+      <DependentUpon>MyDataGridForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="sample\AboutDialog.resx">
+      <DependentUpon>AboutDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="sample\DummyDoc.resx">
+      <DependentUpon>DummyDoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="sample\DummyOutputWindow.resx">
+      <DependentUpon>DummyOutputWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="sample\DummyPropertyWindow.resx">
+      <DependentUpon>DummyPropertyWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="sample\DummySolutionExplorer.resx">
+      <DependentUpon>DummySolutionExplorer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="sample\DummyTaskList.resx">
+      <DependentUpon>DummyTaskList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="sample\DummyToolbox.resx">
+      <DependentUpon>DummyToolbox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="sample\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="app1\MyHeadForm.resx">
+      <DependentUpon>MyHeadForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="app1\MyPoolForm.resx">
+      <DependentUpon>MyPoolForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="app1\MyUserAgentForm.resx">
+      <DependentUpon>MyUserAgentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="app1\MyProxyForm.resx">
+      <DependentUpon>MyProxyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="app1\MyLogForm.resx">
+      <DependentUpon>MyLogForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="app1\MyCustomForm.resx">
+      <DependentUpon>MyCustomForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="app1\MyAccountForm.resx">
+      <DependentUpon>MyAccountForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="app1\MyMainForm.resx">
+      <DependentUpon>MyMainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="app1\MyOrderForm.resx">
+      <DependentUpon>MyOrderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="app1\MyProductForm.resx">
+      <DependentUpon>MyProductForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="app1\MySettingForm.resx">
+      <DependentUpon>MySettingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="sample\SplashScreen.resx">
+      <DependentUpon>SplashScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="sample\ToolWindow.resx">
+      <DependentUpon>ToolWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Task\TaskSettingForm.resx">
+      <DependentUpon>TaskSettingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="log4net.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Task\DeviceManager\App.config" />
+    <None Include="Task\DeviceManager\packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\ArrowDown.bmp" />
+    <Content Include="Images\ArrowUp.bmp" />
+    <Content Include="Images\Bitmap.ico" />
+    <Content Include="Images\BlankIcon.ico" />
+    <Content Include="Images\ClosedFolder.ICO" />
+    <Content Include="Images\CSFile.ico" />
+    <Content Include="Images\CSProject.ico" />
+    <Content Include="Images\File.ico" />
+    <Content Include="Images\Form.ico" />
+    <Content Include="Images\Logo.ico" />
+    <Content Include="Images\Mouse.bmp" />
+    <Content Include="Images\msenv22.ico" />
+    <Content Include="Images\New.ico" />
+    <Content Include="Images\Open.ico" />
+    <Content Include="Images\OpenFolder.ICO" />
+    <Content Include="Images\OutputWindow.ico" />
+    <Content Include="Images\PropertyWindow.ico" />
+    <Content Include="Images\Reference.ico" />
+    <Content Include="Images\References.ico" />
+    <Content Include="Images\SolutionExplorer.ico" />
+    <Content Include="Images\SplashScreen.png" />
+    <Content Include="Images\TaskListWindow.ico" />
+    <Content Include="Images\ToolboxWindow.ico" />
+    <Content Include="Images\XmlFile.ico" />
+    <Content Include="license.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Logo.ico" />
+    <Content Include="Newtonsoft.Net.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="readme-app.txt" />
+    <Content Include="Resources\DockPanel.xml" />
+    <EmbeddedResource Include="Resources\TrayIcon.ico" />
+    <Content Include="ThemeVS2012\Resources\Dockindicator_PaneDiamond_Hotspot.png" />
+    <Content Include="ThemeVS2012\Resources\DockIndicator_PaneDiamond_HotspotIndex.png" />
+    <Content Include="ThemeVS2012\Resources\MaskArrowBottom.png" />
+    <Content Include="ThemeVS2012\Resources\MaskArrowLeft.png" />
+    <Content Include="ThemeVS2012\Resources\MaskArrowRight.png" />
+    <Content Include="ThemeVS2012\Resources\MaskArrowTop.png" />
+    <Content Include="ThemeVS2012\Resources\MaskCoreBottom.png" />
+    <Content Include="ThemeVS2012\Resources\MaskCoreCenter.png" />
+    <Content Include="ThemeVS2012\Resources\MaskCoreLeft.png" />
+    <Content Include="ThemeVS2012\Resources\MaskCoreRight.png" />
+    <Content Include="ThemeVS2012\Resources\MaskCoreTop.png" />
+    <Content Include="ThemeVS2012\Resources\MaskDock.png" />
+    <Content Include="ThemeVS2012\Resources\MaskDockFive.png" />
+    <Content Include="ThemeVS2012\Resources\MaskTabClose.png" />
+    <Content Include="ThemeVS2012\Resources\MaskTabList.png" />
+    <Content Include="ThemeVS2012\Resources\MaskTabOverflow.png" />
+    <Content Include="ThemeVS2012\Resources\MaskToolWindowAutoHide.png" />
+    <Content Include="ThemeVS2012\Resources\MaskToolWindowClose.png" />
+    <Content Include="ThemeVS2012\Resources\MaskToolWindowDock.png" />
+    <Content Include="ThemeVS2012\Resources\MaskToolWindowOption.png" />
+    <Content Include="ThemeVS2012\Resources\MaskWindowBottom.png" />
+    <Content Include="ThemeVS2012\Resources\MaskWindowCenter.png" />
+    <Content Include="ThemeVS2012\Resources\MaskWindowLeft.png" />
+    <Content Include="ThemeVS2012\Resources\MaskWindowRight.png" />
+    <Content Include="ThemeVS2012\Resources\MaskWindowTop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Task\Scrcpy\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    if not exist "$(TargetDir)x86" md "$(TargetDir)x86"
+    xcopy /s /y "d:\nuget\packages\Noesis.Javascript.0.7.1.0\NativeBinaries\net40\x86\*.*" "$(TargetDir)x86"
+    if not exist "$(TargetDir)amd64" md "$(TargetDir)amd64"
+    xcopy /s /y "d:\nuget\packages\Noesis.Javascript.0.7.1.0\NativeBinaries\net40\amd64\*.*" "$(TargetDir)amd64"</PostBuildEvent>
+  </PropertyGroup>
+  <Import Project="d:\nuget\packages\Selenium.WebDriver.4.7.0\build\Selenium.WebDriver.targets" Condition="Exists('d:\nuget\packages\Selenium.WebDriver.4.7.0\build\Selenium.WebDriver.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('d:\nuget\packages\Selenium.WebDriver.4.7.0\build\Selenium.WebDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', 'd:\nuget\packages\Selenium.WebDriver.4.7.0\build\Selenium.WebDriver.targets'))" />
+    <Error Condition="!Exists('d:\nuget\packages\Selenium.WebDriver.ChromeDriver.108.0.5359.7100\build\Selenium.WebDriver.ChromeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', 'd:\nuget\packages\Selenium.WebDriver.ChromeDriver.108.0.5359.7100\build\Selenium.WebDriver.ChromeDriver.targets'))" />
+    <Error Condition="!Exists('d:\nuget\packages\Fody.6.7.0\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', 'd:\nuget\packages\Fody.6.7.0\build\Fody.targets'))" />
+    <Error Condition="!Exists('d:\nuget\packages\PropertyChanged.Fody.4.1.0\build\PropertyChanged.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', 'd:\nuget\packages\PropertyChanged.Fody.4.1.0\build\PropertyChanged.Fody.props'))" />
+  </Target>
+  <Import Project="d:\nuget\packages\Selenium.WebDriver.ChromeDriver.108.0.5359.7100\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('d:\nuget\packages\Selenium.WebDriver.ChromeDriver.108.0.5359.7100\build\Selenium.WebDriver.ChromeDriver.targets')" />
+  <Import Project="d:\nuget\packages\Fody.6.7.0\build\Fody.targets" Condition="Exists('d:\nuget\packages\Fody.6.7.0\build\Fody.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

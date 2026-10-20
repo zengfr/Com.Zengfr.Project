@@ -191,7 +191,7 @@ namespace TaobaoTask
                     
                      
                     dt.SetPrimaryKeyColumns<string>("alias");
-                    dt.MergeTableFrom<string>(data,false);
+                    //20200519 临时注释 dt.MergeTableFrom<string>(data,false);
                     CSVUtil.SaveCSVCreate(dt, fPath);
                 }
             }, saveIntervalMinute, saveIntervalCount);
@@ -298,7 +298,7 @@ namespace TaobaoTask
                 if (sleepIntervalMilis > 0)
                     Thread.Sleep(sleepIntervalMilis);
                 var url = string.Format("v2/fenxiao/goods/list.json?keyword={0}&p={1}&category=all&t={2}", keyword, pageIndex++, RestClientUtil.GetRandomStr(12));
-                var resp = RestClientUtil.Get(restClient, url, consoleApp.BottomWriter);
+                var resp = RestClientUtil.Get(restClient, url,null, consoleApp.BottomWriter);
                 if (resp.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     var root = JsonConvert.DeserializeObject<TaobaoTask.youzan.goodslist.Root>(RestClientUtil.Unicode2String(resp.Content));
@@ -358,7 +358,7 @@ namespace TaobaoTask
                 if (sleepIntervalMilis > 0)
                     Thread.Sleep(sleepIntervalMilis);
                 var url = string.Format("v2/fenxiao/team/list.json?keyword={0}&p={1}&t={2}", keyword, pageIndex++, RestClientUtil.GetRandomStr(12));
-                var resp = RestClientUtil.Get(restClient, url, consoleApp.BottomWriter);
+                var resp = RestClientUtil.Get(restClient, url, null, consoleApp.BottomWriter);
                 if (resp.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     var root = JsonConvert.DeserializeObject<Root>(RestClientUtil.Unicode2String(resp.Content));
@@ -417,7 +417,7 @@ namespace TaobaoTask
         {
             TaobaoTask.youzan.supplierteam.Data result = null;
             var url = string.Format("v2/fenxiao/supplier/team.json?alias={0}&t={1}", alias, RestClientUtil.GetRandomStr(12));
-            var resp = RestClientUtil.Get(restClient, url, consoleApp.BottomWriter);
+            var resp = RestClientUtil.Get(restClient, url, null, consoleApp.BottomWriter);
             if (resp.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 var content = RestClientUtil.Unicode2String(resp.Content);
@@ -467,7 +467,7 @@ namespace TaobaoTask
         {
             TaobaoTask.youzan.goodslist.Data result = null;
             var url = string.Format("v2/fenxiao/supplier/goodslist.json?alias={0}&p=1&t={1}", alias, RestClientUtil.GetRandomStr(12));
-            var resp = RestClientUtil.Get(restClient, url, consoleApp.BottomWriter);
+            var resp = RestClientUtil.Get(restClient, url, null, consoleApp.BottomWriter);
             if (resp.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 var content = RestClientUtil.Unicode2String(resp.Content);
@@ -494,7 +494,7 @@ namespace TaobaoTask
         {
             TaobaoTask.youzan.marketdetail.Data result = null;
             var url = string.Format("v2/fenxiao/market/detail.json?alias={0}&t={1}", alias, RestClientUtil.GetRandomStr(12));
-            var resp = RestClientUtil.Get(restClient, url, consoleApp.BottomWriter);
+            var resp = RestClientUtil.Get(restClient, url, null, consoleApp.BottomWriter);
             if (resp.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 var content = RestClientUtil.Unicode2String(resp.Content);

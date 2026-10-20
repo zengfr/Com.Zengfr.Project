@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0870F852-1FF1-4C32-82A2-FEC9C2F4F07E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Com.Zengfr.CodeGenerator</RootNamespace>
+    <AssemblyName>Com.Zengfr.CodeGenerator</AssemblyName>
+    <StartupObject>
+    </StartupObject>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
+    <PublishUrl>http://localhost/Code/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualStudio.TextTemplating.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\Documents\Visual Studio 2010\Addins\Microsoft.VisualStudio.TextTemplating.10.0.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TextTemplating.Interfaces.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\Documents\Visual Studio 2010\Addins\Microsoft.VisualStudio.TextTemplating.Interfaces.10.0.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.Mapping.Attributes">
+      <HintPath>..\..\..\myproj\bin\Debug\NHibernate.Mapping.Attributes.dll</HintPath>
+    </Reference>
+    <Reference Include="SchemaExplorer">
+      <HintPath>..\..\..\..\Documents\Visual Studio 2010\Addins\SchemaExplorer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Builders.cs" />
+    <Compile Include="Common\CodeStringBuilder.cs" />
+    <Compile Include="Common\CommonLogger.cs" />
+    <Compile Include="Common\ConvertUtils.cs" />
+    <Compile Include="Common\SchemaBuilder.cs" />
+    <Compile Include="Common\ZIP\MemoryDataSource.cs" />
+    <Compile Include="Common\ZIP\MemoryZipFile.cs" />
+    <Compile Include="Core\Builder\BuilderFactory.cs" />
+    <Compile Include="Core\Config\Converter\CsvConverter.cs" />
+    <Compile Include="Core\Config\AbstractConfig.cs" />
+    <Compile Include="Core\Config\Impl\AssemblyConfig.cs" />
+    <Compile Include="Core\Config\Impl\DatabaseConfig.cs" />
+    <Compile Include="Core\Config\Editor\DatabaseSchemaEditor.cs" />
+    <Compile Include="Core\Builder\T4Engine.cs" />
+    <Compile Include="Core\Builder\SolutionBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\Builder\TemplatesBuilder.cs" />
+    <Compile Include="Core\Builder\ProjectBuilder.cs" />
+    <Compile Include="Core\Host\BaseHost.cs" />
+    <Compile Include="Core\Host\FileBaseHost.cs" />
+    <Compile Include="Core\Host\Impl\AssemblyHost.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Core\Schema\AssemblySchema.cs" />
+    <Compile Include="Core\Schema\PropertySchema.cs" />
+    <Compile Include="Core\Schema\TypeSchema.cs" />
+    <Compile Include="TemplateReadUtil.cs" />
+    <Compile Include="T4Engine.cs" />
+    <Content Include="Common\ZIP\ICSharpCode.SharpZipLib.dll" />
+    <Content Include="Core\Tpl\Spring\Business\Bo\BaseBo.txt" />
+    <Content Include="Core\Tpl\Spring\Business\Bo\BaseMapper.txt" />
+    <Content Include="Core\Tpl\Spring\Business\Bo\Mapper.txt" />
+    <Content Include="Core\Tpl\Spring\Business\Bo\Validator.txt" />
+    <Content Include="Core\Tpl\Spring\Contracts\QueryContract.txt" />
+    <Content Include="Core\Tpl\Spring\DataAccess\Dao\DeepTransformer.cs.txt" />
+    <Content Include="Core\Tpl\Spring\Domain\ModelSchema.txt" />
+    <Content Include="Core\Tpl\Spring\ServiceStack\ServiceStackContract-Command.txt" />
+    <Content Include="Core\Tpl\Spring\ServiceStack\ServiceStackContract-Query.txt" />
+    <Content Include="Core\Tpl\Spring\ServiceStack\ServiceStackContract-Response.txt" />
+    <Content Include="Core\Tpl\Spring\ServiceStack\ServiceStackCurdService.txt" />
+    <Content Include="Core\Tpl\Spring\ServiceStack\ServiceStackQueryService.txt" />
+    <Content Include="Core\Tpl\Spring\ServiceStack\ServiceStackServiceHost.txt" />
+    <Content Include="Core\Tpl\Spring\Services\ContractService.txt" />
+    <Content Include="Core\Tpl\Spring\Services\ContractServices.config.txt" />
+    <Content Include="Core\Tpl\Spring\Services\ContractServiceServices.config.txt" />
+    <Content Include="Core\Tpl\Spring\Services\Services.config.txt" />
+    <Content Include="Core\Tpl\Spring\Services\Services.WebServices.config.txt" />
+    <Content Include="Core\Tpl\Spring\Console\Test.txt" />
+    <Content Include="Core\Tpl\Spring\Web\Controller\Controllers.config.txt" />
+    <Content Include="Core\Tpl\Spring\Web\Controller\extjs-WebExtController.txt" />
+    <Content Include="Core\Tpl\Spring\Web\Controller\Knockout-Controller.cs.txt" />
+    <Content Include="Core\Tpl\Spring\Web\Controller\Knockout-ControllerBase.cs.txt" />
+    <Content Include="Core\Tpl\Spring\Web\Controller\ServiceStack-Controller.cs.txt" />
+    <Content Include="Core\Tpl\Spring\Web\Controller\ServiceStack-ControllerBase.cs.txt" />
+    <Content Include="Core\Tpl\Spring\Web\Controller\WCF-WebController.txt" />
+    <Content Include="Core\Tpl\Spring\Web\Controller\WCF-WebControllerBase.txt" />
+    <Content Include="Core\Tpl\Spring\Web\tool.js" />
+    <Content Include="Core\Tpl\Spring\Web\View\AspNet\Edit.Aspx.txt" />
+    <Content Include="Core\Tpl\Spring\Web\View\AspNet\JQuery.js.txt" />
+    <Content Include="Core\Tpl\Spring\Web\View\AspNet\List.Aspx.txt" />
+    <Content Include="Core\Tpl\Spring\Web\View\Bootstrap\bootstrap-form.txt" />
+    <Content Include="Core\Tpl\Spring\Web\View\Bootstrap\bootstrap-table.txt" />
+    <Content Include="Core\Tpl\Spring\Web\View\Bootstrap\bootstrap-template.txt" />
+    <Content Include="Core\Tpl\Spring\Web\View\Bootstrap\bootstrap-template2.txt" />
+    <Content Include="Core\Tpl\Spring\Web\View\Extjs\extjs-Data.txt" />
+    <Content Include="Core\Tpl\Spring\Web\View\Extjs\extjs-DataModel.txt" />
+    <Content Include="Core\Tpl\Spring\Web\View\Extjs\extjs-DataStore.txt" />
+    <Content Include="Core\Tpl\Spring\Web\View\Extjs\extjs-FormPanel.txt" />
+    <Content Include="Core\Tpl\Spring\Web\View\Extjs\extjs-framework.txt" />
+    <Content Include="Core\Tpl\Spring\Web\View\Extjs\extjs-GridPanel.txt" />
+    <Content Include="Core\Tpl\Spring\Web\View\Extjs\extjs-InfoPanel.txt" />
+    <Content Include="Core\Tpl\Spring\Web\View\Extjs\extjs-init.txt" />
+    <Content Include="Core\Tpl\Spring\Web\View\Extjs\extjs-List.txt" />
+    <Content Include="Core\Tpl\Spring\Web\View\Extjs\extjs-PropertyGrid.txt" />
+    <Content Include="Core\Tpl\Spring\Web\View\Extjs\extjs-SearchPanel.txt" />
+    <Content Include="Core\Tpl\Spring\Web\View\Extjs\extjs-template.txt" />
+    <Content Include="Core\Tpl\Spring\Web\View\Knockout\Knockout-Edit.aspx.txt" />
+    <Content Include="Core\Tpl\Spring\Web\View\Knockout\Knockout-List.aspx.txt" />
+    <None Include="Core\Tpl\Spring\Contracts\ContractServiceContract.txt" />
+    <Content Include="Core\Tpl\Spring\WebServices\ContractServices.svc.txt" />
+    <Content Include="Core\Tpl\Spring\WebServices\Services.svc.txt" />
+    <None Include="Core\Tpl\Spring\Services\Service.txt" />
+    <Content Include="Core\Tpl\Spring\Domain\BaseModel.txt" />
+    <Content Include="Core\Tpl\Spring\WebServices\Services.Web.config.txt" />
+    <None Include="Core\Tpl\Spring\IDataAccess\IBaseDao.txt" />
+    <Content Include="Core\Tpl\Spring\Console\App.config.txt" />
+    <Content Include="Core\Tpl\Spring\Console\Client.config.txt" />
+    <Content Include="Core\Tpl\Spring\DataAccess\Dao\BaseDao.txt" />
+    <Content Include="Core\Tpl\Spring\DataAccess\Dao\LocalSessionFactoryObject.txt" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="template.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Core\Template\" />
+    <Folder Include="Core\Tpl\Spring\Web\View\AngularJS\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Core\Tpl\Spring\Business\Bo\Bo.config.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Core\Tpl\Spring\Business\Bo\Bo.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Core\Tpl\Spring\DataAccess\Dao\Dao.config.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Core\Tpl\Spring\DataAccess\Dao\Dao.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Core\Tpl\Spring\Contracts\DataContract.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Core\Tpl\Spring\Domain\Model.config.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Core\Tpl\Spring\Domain\Model.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Core\Tpl\Spring\IBusiness\IBo.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Core\Tpl\Spring\IDataAccess\IDao.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Core\Tpl\Spring\Domain\ModelMapping.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Core\Tpl\Spring\Contracts\ServiceContract.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

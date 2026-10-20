@@ -1,0 +1,21 @@
+﻿#set($projectName = "businessbase")
+#set($packageName = $javaUtil.getPackageName(${config.NamespacePrefix},$projectName))
+#set($outputDir = $javaUtil.getPackagePath("base\\${projectName}",$packageName))
+#set($outputConfig.OutputDir = $outputDir)
+#set($outputConfig.OutputFileName = "${model.Name}BusinessBase.java")
+package $packageName;
+import java.lang.*;
+import java.util.*;
+import java.math.*;
+/**
+* $model.Description
+*/
+public class ${model.Name}BusinessBase
+{
+   #foreach($attr in $model.Attributes)
+    /**
+    * $attr.Description
+    */
+     private $javaUtil.getTypeName($attr.TypeName) $attr.Name;
+   #end
+}

@@ -1,0 +1,25 @@
+﻿#set($projectName = "entity")
+#set($packageName = $javaUtil.getPackageName(${config.NamespacePrefix},$projectName))
+#set($outputDir = $javaUtil.getPackagePath("base\\${projectName}",$packageName))
+#set($outputConfig.OutputDir = $outputDir)
+#set($outputConfig.OutputFileName = "${model.Name}.java")
+package $packageName;
+import java.lang.*;
+import java.util.*;
+import java.math.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+/**
+* $model.Description
+*/
+@Entity
+@Table(name = "${model.Name}")
+public class ${model.Name}
+{
+   #foreach($attr in $model.Attributes)
+    /**
+    * $attr.Description
+    */
+     public $javaUtil.getTypeName($attr.TypeName) $attr.Name;
+   #end
+}

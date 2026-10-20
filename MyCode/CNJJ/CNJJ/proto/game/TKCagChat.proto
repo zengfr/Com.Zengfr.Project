@@ -1,0 +1,162 @@
+
+package cn.jj.service.msg.protocol;
+
+//*************************************************************
+// 消息声明
+//*************************************************************
+
+// 请求消息
+message CagChatReq
+{
+	// 发送玩家消息请求
+	optional ChatSendPlayerMessageReq chat_send_player_message_req = 1;
+
+	// 发送聊天组消息请求
+	optional ChatSendGroupMessageReq chat_send_group_message_req = 2;
+
+	// 发送广播消息请求
+	optional ChatSendBroadcastMessageReq chat_send_broadcast_message_req = 3;
+}
+
+// 响应消息
+message CagChatAck
+{
+	// 发送玩家消息响应
+	optional ChatSendPlayerMessageAck chat_send_player_message_ack = 1;
+
+	// 推送玩家消息响应
+	optional ChatPushPlayerMessageAck chat_push_player_message_ack = 2;
+
+	// 发送聊天组消息响应
+	optional ChatSendGroupMessageAck chat_send_group_message_ack = 3;
+
+	// 推送聊天组消息响应
+	optional ChatPushGroupMessageAck chat_push_group_message_ack = 4;
+
+	// 发送广播消息响应
+	optional ChatSendBroadcastMessageAck chat_send_broadcast_message_ack = 5;
+
+	// 推送广播消息响应
+	optional ChatPushBroadcastMessageAck chat_push_broadcast_message_ack = 6;
+
+	// 推送聊天组创建响应
+	optional ChatPushGroupCreateAck chat_push_group_create_ack = 7;
+
+	// 推送聊天组修改响应
+	optional ChatPushGroupModifyAck chat_push_group_modify_ack = 8;
+
+	// 推送聊天组解散响应
+	optional ChatPushGroupDisbandAck chat_push_group_disband_ack = 9;
+}
+
+//*************************************************************
+// 数据结构
+//*************************************************************
+
+// 消息数据结构
+message StChatMessage
+{
+	optional uint32 from_id = 1; // 来自于谁的id，0：系统；非0，玩家id；
+	optional uint32 message_type = 2; // 消息类型，0：无效
+	optional string content = 3; // 消息内容，空：无效
+	optional uint32 timestamp = 4; // 消息生成时间，10位时间戳，0：无效
+	optional string params = 5; // 扩展信息，建议为json
+}
+
+//*************************************************************
+// 请求消息
+//*************************************************************
+
+// 发送玩家消息请求
+message ChatSendPlayerMessageReq
+{
+	optional uint32 to_player_id = 1; // 发送给谁的玩家id，0：无效
+	optional StChatMessage message = 2; // 消息数据，空：无效
+}
+
+// 发送聊天组消息请求
+message ChatSendGroupMessageReq
+{
+	optional uint32 to_group_id = 1; // 发送给哪个聊天组的组id，0：无效
+	optional StChatMessage message = 2; // 消息数据，空：无效
+}
+
+// 发送广播消息请求
+message ChatSendBroadcastMessageReq
+{
+	optional uint32 broadcast_type = 1; // 广播类型，0：无效
+	optional StChatMessage message = 2; // 广播消息数据，空：无效
+}
+
+//*************************************************************
+// 响应消息
+//*************************************************************
+
+// 发送玩家消息响应
+message ChatSendPlayerMessageAck
+{
+	optional uint32 ret = 1; // 结果码，0：成功；非0：对应错误码；
+	optional uint32 to_player_id = 2; // 发送给谁的玩家id，同请求参数
+	optional StChatMessage message = 3; // 消息数据，同请求参数，多了timestamp
+}
+
+// 推送玩家消息响应
+message ChatPushPlayerMessageAck
+{
+	optional uint32 to_player_id = 1; // 发送给谁的玩家id，同请求参数
+	optional StChatMessage message = 2; // 消息数据，同请求参数，多了timestamp
+}
+
+// 发送聊天组消息响应
+message ChatSendGroupMessageAck
+{
+	optional uint32 ret = 1; // 结果码，0：成功；非0：对应错误码；
+	optional uint32 to_group_id = 2; // 发送给哪个聊天组的组id，同请求参数
+	optional StChatMessage message = 3; // 消息数据，同请求参数，多了timestamp
+}
+
+// 推送聊天组消息响应
+message ChatPushGroupMessageAck
+{
+	optional uint32 to_group_id = 1; // 发送给哪个聊天组的组id，同请求参数
+	optional StChatMessage message = 2; // 消息数据，同请求参数，多了timestamp
+}
+
+// 发送广播消息响应
+message ChatSendBroadcastMessageAck
+{
+	optional uint32 ret = 1; // 结果码，0：成功；非0：对应错误码；
+	optional uint32 broadcast_type = 2; // 广播类型，同请求参数
+	optional StChatMessage message = 3; // 广播消息数据，同请求参数，多了timestamp
+}
+
+// 推送广播消息响应
+message ChatPushBroadcastMessageAck
+{
+	optional uint32 broadcast_type = 1; // 广播类型，同请求参数
+	optional StChatMessage message = 2; // 广播消息数据，同请求参数，多了timestamp
+}
+
+// 推送聊天组创建响应
+message ChatPushGroupCreateAck
+{
+	optional uint32 group_id = 1; // 聊天组id，0：无效
+	optional uint32 group_type = 2; // 聊天组类型，0：无效
+	repeated uint32 player_id_list = 3; // 聊天组包含的玩家id列表，空：按照“无玩家”处理
+	optional string params = 4; // 扩展信息，建议为json
+}
+
+// 推送聊天组修改响应
+message ChatPushGroupModifyAck
+{
+	optional uint32 group_id = 1; // 聊天组id，0：无效
+	repeated uint32 add_player_id_list = 2; // 新增的玩家id列表，空：按照“无新增”处理
+	repeated uint32 del_player_id_list = 3; // 删除的玩家id列表，空：按照“无删除”处理
+}
+
+// 推送聊天组解散响应
+message ChatPushGroupDisbandAck
+{
+	optional uint32 group_id = 1; // 聊天组id，0：无效
+}
+

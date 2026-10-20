@@ -1,0 +1,100 @@
+
+package cn.jj.service.msg.protocol;
+//option optimize_for = CODE_SIZE;
+//option optimize_for = LITE_RUNTIME;
+
+import "TKCagCommon.proto";
+
+message CagPlayerLobbyReqMsg {
+    optional CagRandomNicknameReq random_nickname_req_msg = 1;  // 随机昵称请求
+    optional CagModifyNicknameReq modify_nickname_req_msg = 2;  // 修改昵称请求
+    optional CagModifyFigureReq modify_figure_req_msg = 3;      // 修改头像请求
+    optional CagFigureListReq figure_list_req_msg = 4;          // 获取玩家可用头像请求
+    optional CagRedeemCodeReq redeem_code_req_msg = 5;          // 兑换码兑换请求
+}
+
+message CagPlayerLobbyAckMsg {
+    optional CagRandomNicknameAck random_nickname_ack_msg = 1;  // 随机昵称响应
+    optional CagModifyNicknameAck modify_nickname_ack_msg = 2;  // 修改昵称响应
+    optional CagModifyFigureAck modify_figure_ack_msg = 3;      // 修改头像响应
+    optional CagFigureListAck figure_list_ack_msg = 4;          // 获取玩家可用头像响应
+    optional CagPushNewFigureAck push_new_figure_ack_msg = 5;   // 推送玩家新增可用头像响应
+    optional CagRedeemCodeAck redeem_code_ack_msg = 6;          // 兑换码兑换响应
+}
+
+//------------------------------------------------------------
+// 数据结构
+//------------------------------------------------------------
+
+// 兑换码兑换结果数据结构
+message RedeemCodeResult
+{
+    optional uint32 ret = 1; // 校验结果，0：成功；非0，对应错误码
+    optional string code = 2; // 兑换码，同请求参数
+    repeated Ware awards = 3; // 兑换所得通用物品数组
+}
+
+//------------------------------------------------------------
+// req 消息
+//------------------------------------------------------------
+
+// 随机昵称请求
+message CagRandomNicknameReq {
+    optional uint32 count = 1; // 请求的随机昵称个数，0：无效
+}
+
+// 修改昵称请求
+message CagModifyNicknameReq {
+    optional string nickname = 1; // 新昵称
+}
+
+// 修改头像请求
+message CagModifyFigureReq {
+    optional uint32 figure = 1; // 新头像
+}
+
+// 获取玩家可用头像请求
+message CagFigureListReq {
+}
+
+// 兑换码兑换请求
+message CagRedeemCodeReq {
+    repeated string codes = 1; // 兑换码数组，支持一次兑换多个
+}
+
+//------------------------------------------------------------
+// ack 消息
+//------------------------------------------------------------
+
+// 随机昵称响应
+message CagRandomNicknameAck {
+    repeated string nicknames = 1; // 随机昵称列表
+}
+
+// 修改昵称响应
+message CagModifyNicknameAck {
+    optional uint32 result = 1; // 结果码，0：成功；非0，对应错误码；
+    optional string nickname = 2; // 玩家昵称
+}
+
+// 修改头像响应
+message CagModifyFigureAck {
+    optional uint32 result = 1; // 结果码，0：成功；非0，对应错误码；
+    optional uint32 figure = 2; // 玩家头像
+}
+
+// 获取玩家可用头像响应
+message CagFigureListAck {
+    repeated uint32 figures = 1; // 头像列表
+}
+
+// 推送玩家新增可用头像响应
+message CagPushNewFigureAck {
+    repeated uint32 figures = 1; // 玩家新头像
+}
+
+// 兑换码兑换响应
+message CagRedeemCodeAck {
+    repeated RedeemCodeResult results = 1; // 兑换结果数组
+}
+

@@ -1,0 +1,47 @@
+﻿#set($projectName = "daobase")
+#set($packageName = $javaUtil.getPackageName(${config.NamespacePrefix},$projectName))
+#set($outputDir = $javaUtil.getPackagePath("base\\${projectName}",$packageName))
+#set($outputConfig.OutputDir = $outputDir)
+#set($outputConfig.OutputFileName = "${model.Name}JpaRepositoryBase.java")
+package $packageName;
+import java.lang.*;
+import java.util.*;
+import java.math.*;
+import java.util.Collection;
+import java.util.List;
+import java.sql.Timestamp;
+import org.joda.time.DateTime;
+import org.springframework.stereotype.Repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
+import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
+import org.springframework.data.querydsl.binding.QuerydslBindings;
+import com.querydsl.core.types.Predicate;
+
+import $javaUtil.getPackageName(${config.NamespacePrefix},"entity").*;
+import com.github.zengfr.project.data.repository.BaseJpaRepository;
+/**
+* $model.Description
+*/
+@Repository
+public interface ${model.Name}JpaRepositoryBase extends
+JpaRepository<${model.Name}, Long>,JpaSpecificationExecutor<${model.Name}>,
+QuerydslPredicateExecutor<${model.Name}>, QuerydslBinderCustomizer<Q${model.Name}>,
+BaseJpaRepository<${model.Name}, Long>
+{
+	#set ($rr1 =$jpaUtil.buildOne($attrsMap))
+	#foreach($r1 in $rr1)
+		 Collection<${model.Name}> findBy$r1.Key.Replace(",","")($r1.Value);
+	#end
+
+	#set ($rr2 =$jpaUtil.buildTwo($attrsMap))
+	#foreach($r2 in $rr2)
+		Collection<${model.Name}> findBy$r2.Key.Replace(",","")($r2.Value);
+	#end
+}

@@ -50,7 +50,7 @@ namespace TaobaoTask
             Console.WindowTop = 0;
             Console.WindowWidth = Console.LargestWindowWidth - 10;
             Console.WindowHeight = Console.LargestWindowHeight * 4/5;
-            Console.BufferWidth = Console.WindowWidth * 3;
+            Console.BufferWidth = Console.WindowWidth * 4;
             Console.BufferHeight = Console.WindowHeight * 4;
            
             if (initWindow)

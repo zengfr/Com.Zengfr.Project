@@ -68,3 +68,4 @@ E:\project\TaobaoTask\TaobaoTask\bin\x86\Debug\Iesi.Collections.xml
 E:\project\TaobaoTask\TaobaoTask\bin\x86\Debug\Microsoft.Web.Infrastructure.xml
 E:\project\TaobaoTask\TaobaoTask\obj\x86\Debug\ConsoleTask.exe
 E:\project\TaobaoTask\TaobaoTask\obj\x86\Debug\ConsoleTask.pdb
+E:\csharpproject\Com.Zengfr.Project\MyCode\TaobaoTask\bin\x86\Debug\ConsoleTask.exe.config

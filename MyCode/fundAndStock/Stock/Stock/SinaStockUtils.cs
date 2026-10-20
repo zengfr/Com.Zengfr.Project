@@ -14,7 +14,10 @@ using Common.Utils;
 using Spring.Rest.Utils;
 
 namespace  Stock.Utils
-{
+
+
+{// https://q.stock.sohu.com/hisHq?code=zs_000001&start=20000504&end=20151215&stat=1&order=D&period=d&callback=historySearchHandler&rt=jsonp&r=0.8391495715053367&0.9677250558488026
+//http://money.finance.sina.com.cn/quotes_service/api/json_v2.php/CN_MarketData.getKLineData?symbol=sz000001&scale=5&ma=5&datalen=1023
     public class SinaStockUtils : RestTemplateUtils
     {
         protected static ILog log = LogManager.GetLogger(typeof(SinaStockUtils));

@@ -1,0 +1,452 @@
+
+package cn.jj.service.msg.protocol;
+
+message MatchInfoExReqMsg  {
+    optional GetRandTeamNameReq getrandteamname_req_msg = 1;
+    optional GetUnitCountReq getunitcount_req_msg = 2;
+    optional GetPendingPlayerListReq getpendingplayerlist_req_msg = 3;
+    optional GetPlayerTeamInfoReq getplayerteaminfo_req_msg = 4;
+    optional GetBoutTeamScoreReq getboutteamscore_req_msg = 5;
+    optional GetBoutTeamMemberScoreReq getboutteammemberscore_req_msg = 6;
+    optional CheckTeamNameReq checkteamname_req_msg = 7;
+    optional CheckTeamMemberReq checkteammember_req_msg = 8;
+    optional GetTeamScoreReq getteamscore_req_msg = 9;
+    optional GetTeamMemberScoreReq getteammemberscore_req_msg = 10;
+    optional GetUintAttributeReq getuintattribute_req_msg = 11;
+    optional GetObservePlayerListReq getobserveplayerlist_req_msg = 12;
+    optional GetMatchRankReq getmatchrank_req_msg = 13;
+    optional RefreshMatchUintInfoReq refreshmatchuintInfo_req_msg = 14;
+    optional RegisterObserverReq registerobserver_req_msg = 15; // 注册观察信息
+    optional UnRegisterObserverReq unregisterobserver_req_msg = 16; // 反注册
+    optional RegisterObserverExReq registerobserverex_req_msg = 17;
+    optional UnRegisterObserverExReq unregisterobserverex_req_msg = 18;
+}
+
+message MatchInfoExAckMsg  {
+    optional GetRandTeamNameAck getrandteamname_ack_msg = 1;
+    optional GetUnitCountAck getunitcount_ack_msg = 2;
+    optional MatchUnitInfoAck matchunitinfo_ack_msg = 3;
+    optional GetPlayerTeamInfoAck getplayerteaminfo_ack_msg = 4;
+    optional GetBoutTeamMemberScoreAck getboutteammemberscore_ack_msg = 5;
+    optional CheckTeamNameAck checkteamname_ack_msg = 6;
+    optional CheckTeamMemberAck checkteammember_ack_msg = 7;
+    optional GetTeamScoreAck getteamscore_ack_msg = 8;
+    optional GetBoutTeamMemberScoreAck getteammemberscore_ack_msg = 9;
+    optional GetUintAttributeAck getuintattribute_ack_msg = 10;
+    optional GetObservePlayerListAck getobserveplayerlist_ack_msg = 11;
+    optional GetMatchRankAck getmatchrank_ack_msg = 12;
+    optional RefreshMatchUintInfoAck refreshmatchuintInfo_ack_msg = 14;
+    optional UpdateMatchUintInfoAck updatematchuintInfo_ack_msg = 15;
+    optional AddUintAck adduint_ack_msg = 16;
+    optional DeleteUnitAck deleteunit_ack_msg = 17;
+    optional DeleteViewAck deleteview_ack_msg = 18;
+    optional UpdateViewInfoAck updateviewinfo_ack_msg = 19;
+    optional ModuleBeginAck modulebegin_ack_msg = 20;
+    optional RegisterObserverAck registerobserver_ack_msg = 21; // 注册观察信息
+    optional UnRegisterObserverAck unregisterobserver_ack_msg = 22; // 反注册
+    optional RegisterObserverExAck registerobserverex_ack_msg = 23;
+    optional PushRecommendListAck pushrecommendlist_ack_msg = 24;
+    optional RegisterExFailAck registerexfail_ack_msg = 25; // 注册失败
+}
+
+message GetRandTeamNameReq {
+    optional uint32 tourneyid = 1;
+}
+
+message GetRandTeamNameAck {
+    optional uint32 tourneyid = 1;
+    optional string teamname = 2;
+}
+
+message GetUnitCountReq {
+    optional uint32 tourneyid = 1;
+}
+
+message GetUnitCountAck {
+    optional uint32 tourneyid = 1;
+    optional uint32 signplayercount = 2;
+    optional uint32 pendingplayercount = 3;
+    optional uint32 completedteamcount = 4;
+    optional uint32 createteamcount = 5;
+}
+
+message GetPendingPlayerListReq
+{
+    optional uint32 tourneyid = 1;
+    optional uint32 playercount = 2;
+}
+
+message ViewIdentifyEx
+{
+    optional uint32 tourneyid = 1;
+    optional uint32 committeeid = 2;
+    optional uint32 matchid = 3;
+    optional uint32 viewtype = 4;
+    repeated uint32 idlist = 5;
+}
+
+message DnyField
+{
+    optional uint32 growid = 1;
+    optional uint32 growvalue = 2;
+}
+
+message UnitAttribute {
+    optional int32 id = 1;
+    optional int32 intvalue = 2;
+    optional string stringvalue = 3;
+    repeated DnyField fieldlist = 4;
+}
+
+message Unit
+{
+    optional uint32 id = 1;
+    repeated UnitAttribute attributelist = 2;
+}
+
+message Player
+{
+    optional uint32 id = 1;
+    repeated UnitAttribute attributelist = 2;
+    optional string name = 3;
+}
+
+message Team
+{
+    optional string name = 1;                            //队名
+    optional uint32 teamid = 2;                            //队id
+    repeated Player memberlist = 3;                //队员列表
+    repeated Player substitute_list = 4;    //替补列表
+    repeated UnitAttribute attributelist = 5;
+}
+
+message MatchUnitInfoAck
+{
+    optional ViewIdentifyEx id = 1;
+    repeated Player playerlist = 2;
+    repeated Team teamlist = 3;
+}
+
+message GetPlayerTeamInfoReq
+{
+    optional uint32 tourneyid = 1;
+    optional uint32 userid = 2;
+}
+
+message GetPlayerTeamInfoAck
+{
+    optional uint32 tourneyid = 1;
+    optional uint32 jointeam = 2;
+    optional uint32 userid = 3;
+    optional Team team = 4;
+}
+
+message GetBoutTeamScoreReq
+{
+    optional ViewIdentifyEx id = 1;
+}
+
+message GetBoutTeamMemberScoreReq
+{
+    optional ViewIdentifyEx id = 1;
+    optional uint32 teamid = 2;
+}
+
+message GetBoutTeamMemberScoreAck
+{
+    optional ViewIdentifyEx id = 1;
+    optional uint32 teamid = 2;
+    optional Team team = 3;
+}
+
+message CheckTeamNameReq
+{
+    optional uint32 tourneyid = 1;
+    optional string teamname = 2;
+}
+
+message CheckTeamNameAck
+{
+    optional uint32 tourneyid = 1;
+    optional string teamname = 2;
+    optional int32 passed = 3; // 0：校验失败，该队名已被占用；1：校验成功，队名可用
+}
+
+message CheckTeamMemberReq
+{
+    optional uint32 tourneyid = 1;
+    optional Team team = 2;
+}
+
+message CheckTeamMemberAck
+{
+    optional uint32 tourneyid = 1;
+    optional int32 passed = 2; // 0：校验失败，该队名已被占用；1：校验成功，队名可用
+    optional Team team = 3;
+}
+
+message GetTeamScoreReq
+{
+    optional ViewIdentifyEx id = 1;
+    optional uint32 time = 2;
+}
+
+message GetTeamScoreAck
+{
+    optional ViewIdentifyEx id = 1;
+    optional uint32 time = 2;
+    optional uint32 countperround = 3;
+    optional uint32 unittype = 4;
+    repeated Team teamunitlist = 5;
+    repeated Team teamroundlist = 6;
+}
+
+message GetTeamMemberScoreReq
+{
+    optional ViewIdentifyEx id = 1;
+    optional uint32 time = 2;
+    optional uint32 teamid = 3;
+}
+
+//ack GetBoutTeamMemberScoreAck
+
+message GetUintAttributeReq
+{
+    optional ViewIdentifyEx id = 1;
+    optional uint32 unittype = 2; // 如unit_type_player, unit_type_pair, unit_type_team, unit_type_pair_team
+    optional uint32 attributeid = 3; //0-取所有的属性，非0取特定的属性
+    optional uint32 unitid = 4;
+}
+
+message GetUintAttributeAck
+{
+    optional ViewIdentifyEx id = 1;
+    optional uint32 unittype = 2; // 如unit_type_player, unit_type_pair, unit_type_team, unit_type_pair_team
+    optional uint32 attributeid = 3; // 回传的请求ID
+    optional uint32 unitid = 4;
+    repeated UnitAttribute attributelist = 5;
+}
+
+message GetObservePlayerListReq
+{
+    optional uint32 tourneyid = 1;
+    optional uint32 matchid = 2;
+    optional uint32 stageid = 3;
+    optional uint32 playercount = 4; // 获取推荐玩家的数量，为0时指定查询玩家dwPlayerID的ip端口
+    optional uint32 userid = 5; // 需要查询的player的id，wPlayerCount为0时，返回该玩家的ip端口
+}
+
+message GetObservePlayerListAck
+{
+    optional uint32 tourneyid = 1;
+    optional uint32 matchid = 2;
+    optional uint32 stageid = 3;
+    optional uint32 ip = 4;  // 游戏的转播服务ip
+    optional uint32 port = 5; // 游戏的转播服务端口
+    repeated Player memberlist = 6;        //玩家列表
+}
+
+message GetMatchRankReq
+{
+    optional uint32 tourneyid = 1;
+    optional uint32 matchid = 2;
+}
+
+message GetMatchRankAck
+{
+    optional uint32 tourneyid = 1;
+    optional uint32 matchid = 2;
+    optional string xml = 3;
+}
+
+message mie_award_field {
+    optional uint32 classid = 1;
+    optional uint32 dtid = 2;
+    optional uint32 atid = 3;
+    optional uint32 oriid = 4;
+    optional uint32 accumulate = 5;
+}
+
+message mie_award_attribute {
+    repeated mie_award_field awardfield = 1;
+}
+
+message MIEAttribute {
+    optional int32 attrtype = 1;
+    optional int32 attrvalue = 2;
+    optional string attrstr = 3;
+    optional mie_award_attribute attrawardlist = 4;
+}
+
+message MIEPlayerUnit {
+    required uint32 uid = 1;
+    repeated MIEAttribute attributes = 2;//701:排名 722:猎杀数 732:赏金数
+    optional string name = 3;
+}
+
+message MIETeamUnit {
+    required uint32 uid = 1;
+    repeated MIEPlayerUnit members = 2;
+    repeated MIEAttribute attributes = 3;
+    optional string name = 4;
+}
+
+message RefreshMatchUintInfoReq
+{
+    optional uint32 tourneyid = 1;
+    optional uint32 matchpoint = 2; // 开赛点
+}
+
+
+message RefreshMatchUintInfoAck
+{
+    repeated MIEPlayerUnit playerlist = 1;
+    optional uint32 alivecount = 2;
+    repeated MIETeamUnit teams = 3;
+    optional int32 id_type = 4;
+    optional ViewIdentifyEx id = 5;
+}
+
+message UpdateMatchUintInfoAck
+{
+    required uint32 uid = 1;
+    repeated MIEPlayerUnit playerlist = 2;
+    repeated MIETeamUnit teams = 3;
+    optional ViewIdentifyEx id = 4;
+}
+
+message AddUintAck
+{
+    optional uint32 totalcount = 1;
+    repeated MIETeamUnit teams = 2;
+    optional int32 id_type = 3;
+    optional ViewIdentifyEx id = 4;
+    repeated MIEPlayerUnit players = 5; // 个人
+}
+
+message DeleteUnitAck
+{
+    optional uint32         totalcount   = 1;
+    repeated uint32         playerids    = 2; // 用户ID列表
+    repeated MIETeamUnit    teams        = 3;
+    optional int32          id_type      = 4;
+    optional ViewIdentifyEx id           = 5;
+    optional bool           deletemember = 6;
+}
+
+message DeleteViewAck
+{
+    optional ViewIdentifyEx id = 4;
+}
+
+message UpdateViewInfoAck {
+    optional ViewIdentifyEx id           = 1;
+    optional int32          infotype     = 2; // 信息类型 3:match 4:phase 5:stage 6:bout 7:round 8:table
+    repeated MIEAttribute   attributes   = 3; // 各种属性值
+    optional int32          stageid      = 4; // 用于 match的UserReqHematinicReq消息
+    optional uint32         flag         = 5;
+}
+
+message ModuleBeginAck {
+    optional ViewIdentifyEx id           = 1;
+    repeated MIEPlayerUnit  players      = 2; // 个人
+    repeated MIETeamUnit    teams        = 3; // 队伍
+    repeated MIEAttribute   attributes   = 4; // 各种属性值
+    optional uint32         flag         = 5;
+    optional int32          stageid      = 6; // 用于 match的UserReqHematinicReq消息
+}
+
+message RegisterObserverReq {
+    optional ViewIdentifyEx id           = 1;
+    optional uint32         observerid   = 2; // 观察者ID
+    optional string         observername = 3; // 观察者名称
+}
+
+message MIEView {
+    optional ViewIdentifyEx id           = 1;
+    repeated MIEAttribute   attributes   = 2;
+    repeated MIEView        members      = 3;
+}
+
+message RegisterObserverAck {
+    optional ViewIdentifyEx id           = 1;
+    optional uint32         result       = 2; // 观察者ID
+    optional uint32         servicetime  = 3; // 服务器时间
+    repeated MIEView        viewtree     = 4; // 后缀view数据
+    optional string         strviewtree  = 5;
+}
+
+message UnRegisterObserverReq {
+    optional ViewIdentifyEx id           = 1;
+}
+
+message UnRegisterObserverAck {
+    optional ViewIdentifyEx id           = 1;
+}
+
+// 新增 ：自建赛旁观消息协议
+message RecomViewInfo {
+    optional uint32 tourneyid  = 1;
+    optional uint32 committeeid = 2;
+    optional uint32 matchid    = 3;
+    optional uint32 matchstate = 4;
+    optional uint32 reserve1   = 5;
+    optional uint32 reserve2   = 6;
+}
+
+message RegisterObserverExReq {
+    optional ViewIdentifyEx id           = 1;
+    optional uint32         observerid   = 2;
+    optional string         observername = 3;
+}
+
+message RegisterObserverExAck {
+    optional ViewIdentifyEx id            = 1;
+    optional uint32         result        = 2;
+    optional uint32         servicetime   = 3;
+    optional uint32         reserve1      = 4;
+    optional uint32         reserve2      = 5;
+    optional uint32         reserve3      = 6;
+    optional uint32         reserve4      = 7;
+    repeated RecomViewInfo  recomviewinfo = 8;
+}
+
+message RecomPlayer {
+    optional uint64 userid      = 1;
+    optional uint32 formid      = 2;
+    optional uint32 phaseid     = 3;
+    optional uint32 stageid     = 4;
+    optional uint32 roundid     = 5;
+    optional uint32 gsip        = 6;
+    optional uint32 hostflag    = 7;
+    optional uint32 reserve1    = 8;
+    optional uint32 reserve2    = 9;
+    optional int32  order       = 10;
+    optional int32  figureid    = 11;
+    optional string matchscore  = 12;
+    optional int32  gsport      = 13;
+    optional int32  reserve3    = 14;
+    optional uint32 matchstatus = 15;
+    optional uint32 reserve4    = 16;
+    optional string nickname    = 17;
+    optional uint32 reserve5    = 18;
+    optional uint32 reserve6    = 19;
+}
+
+message PushRecommendListAck {
+    optional ViewIdentifyEx id           = 1;
+    optional uint32         reserve1     = 2;
+    optional uint32         reserve2     = 3;
+    repeated RecomPlayer    recomplayer  = 4;
+}
+
+message UnRegisterObserverExReq {
+    optional ViewIdentifyEx id           = 1;
+    optional uint32         observerid   = 2;
+}
+
+message RegisterExFailAck {
+    optional ViewIdentifyEx id       = 1;
+    optional uint32         failtype = 2;
+}
+

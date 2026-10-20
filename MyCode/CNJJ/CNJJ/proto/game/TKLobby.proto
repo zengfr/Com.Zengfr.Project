@@ -1,0 +1,3059 @@
+
+package cn.jj.service.msg.protocol;
+//option optimize_for = CODE_SIZE;
+//option optimize_for = LITE_RUNTIME;
+message LobbyReqMsg  {
+    optional LoginReq login_req_msg = 1; // 登录请求
+    optional LogoutReq logout_req_msg = 2; // 登出请求
+    optional AnonymousBrowseReq anonymous_req_msg = 3; // Say Hi：给服务器发的第一条消息，获得服务器时间、临时 ID
+    optional GetUserAllGrowReq getuserallgrow_req_msg = 4; // 获取用户成就
+    optional GetUserAllWareReq getuserallware_req_msg = 5; // 获取用户物品
+    optional GetAccNumMoneyReq getaccnummoney_req_msg = 6; // 获取用户账户信息（目前没用）
+    optional TourneySignupExReq tourneysignupex_req_msg = 7; // 请求报名比赛
+    optional TourneyUnsignupReq tourneyunsignup_req_msg = 8; // 请求退出未开赛的比赛
+    optional GetSysMsgExReq getsysmsgex_req_msg = 9; // 获取系统发布的消息（目前没用）
+    optional QuickStartGameReq quickstartgame_req_msg = 10; // 匿名登录请求
+    optional GetUserInterfixTourneyListReq getuserinterfixtourneylist_req_msg = 11; // 实名用户登录后用于获取该用户之前报名的比赛列表
+    optional GetTicketTempExReq gettickettempex_req_msg = 20; // 获取 SSO（和 HTTP 服务器通信的鉴权串）
+    optional ModifyNickNameReq modifynickname_req_msg = 21; // 修改用户昵称
+    optional VerifyNickNameReq verifynickname_req_msg = 22; // 验证昵称 注册
+    optional VerifyLoginNameReq verifyloginname_req_msg = 23; // 验证用户名 注册
+    optional GetVerifyCodeReq getverifycode_req_msg = 24; // 获取验证码 注册
+    optional RegisterReq register_req_msg = 25; //注册请求 注册
+    optional GetSingleGrowReq getsinglegrow_req_msg = 26; //获取用户积分信息
+    optional URSSendRegSMSCodeReq urssendregsmscode_req_msg = 27;
+    optional MobileRegisterReq mobileregister_req_msg = 28;
+    optional MobileLoginReq mobilelogin_req_msg = 29;
+    optional GeneralLoginReq generallogin_req_msg = 30;
+    optional NoRegLoginReq noreglogin_req_msg = 31;
+    optional NoRegBindDefaultAccReq noregbinddefaultacc_req_msg = 32;
+    optional NoRegBindEmailAccReq noregbindemailacc_req_msg = 33;
+    optional NoRegBindMobileAccReq noregbindmobileacc_req_msg = 34;
+    optional UnicomAccountUpReq unicomaccountup_req_msg = 35; //联通wo+账号上传
+    optional LoginReq loginex_req_msg = 36; // 加密登录请求
+    optional GeneralLoginReq generalloginex_req_msg = 37;
+    optional GetSMSRandomPwdReq getsmsrandompwd_req_msg = 38; //获取随机密码短信
+    optional RandomPwdLoginReq randompwdlogin_req_msg = 39; //随机短信密码登录
+    optional GetAccessTokenReq getaccesstoken_req_msg = 40; //开放平台用户到OAuth系统获得登录令牌
+    optional OpenPartnerLoginReq openpartnerlogin_req_msg = 41; //开放平台用户使用SSO一站式的方式登录到Auth系统验证
+    optional TokenLoginReq tokenlogin_req_msg = 42; //token登录
+    optional ModifyFigureReq modifyfigure_req_msg = 43; //修改头像
+    optional GetUserDomainGrowReq getuserdomaingrow_req_msg = 44; //获取域积分
+    optional RegisterReq registerex_req_msg = 45; //加密注册请求
+    optional MobileRegisterReq mobileregisterex_req_msg = 46; //加密手机注册请求
+    optional GetRealRegStatusReq getrealregstatus_req_msg = 47; //获得用户是否实名制认证
+    optional CommerceGetAllPartnerInfoReq commercegetallpartnerinfo_req_msg = 48; //
+    optional CommerceUserLoginReq commerceuserlogin_req_msg = 49; //
+    optional GetpngVerifyCodeReq getpngverifycode_req_msg = 50; // 获取验证码 注册
+    optional VerifyLoginNameExistReq verifyloginnameexist_req_msg = 51; //验证LoginName是否重复(普通用户，手机号，邮箱三种类型)
+    optional ModifyGrowReq modifygrow_req_msg = 52; //修改积分
+    optional CommerceUserLoginReq commerceuserloginnew_req_msg = 53; //手机QQ接入实现二次免登协议
+    optional GetRequestTokenReq getrequesttoken_req_msg = 54; //获取Token给第三方应用
+    optional RegUserInfoReq reguserinfo_req_msg = 55; //消息的注册通道
+    optional SendUserMsgReceiptReq sendusermsgreceipt_req_msg = 56; //消息的回执通道
+    optional GetUserSignupListReq getusersignuplist_req_msg = 57;
+    optional SendRecentGameReq sendrecentgame_req_msg = 58; //查询最近玩过比赛请求
+    optional OprateRecentGameReq opraterecentgame_req_msg = 59; //最近玩过比赛进行操作（删除或置顶等）请求
+    optional GetRandomNicknameReq getrandomnickname_req_msg = 60; //获取随机昵称
+    optional GetPngAlgorithmVerifyCodeReq getpngalgorithmverifycode_req_msg = 61; //获取Png格式用户验证码
+    optional GetBmpAlgorithmVerifyCodeReq getbmpalgorithmverifycode_req_msg = 62; //获取BMP算格式法验证码
+    optional GetSingleEvtReq getsingleevt_req_msg = 63; //获得用户Evt信息
+    optional GetUserDomainEvtReq getuserdomainevt_req_msg = 64; //按域获取Evt
+    optional GetUserAllHisEvtReq getuserallhisevt_req_msg = 65; //获得全部Evt信息
+    optional MakerInfoReq makerinfo_req_msg = 66; //更新里程碑数据（最好成绩）
+    optional NoRegBindPartnerReq noregbindpartner_req_msg = 67; //免注册账号绑定联运账号
+    optional GetLoginSMSCodeReq getloginsmscode_req_msg = 68; //绑定手机获取登陆短信验证码
+    optional BPGetSmsFCodeReq bpgetsmsfcode_req_msg = 69; //手机获取一级验证码
+    optional BPGetMobileBindReq bpgetmobilebind_req_msg = 70; //获得用户绑定状态
+    optional BPBindSafeMobileReq bpbindsafemobile_req_msg = 71; //用户绑定密保手机
+    optional BPGetMobileBindCountReq bpgetmobilebindcount_req_msg = 72; //获得手机号绑定用户的数量
+    optional GetAdvancedInfoReq getadvancedinfo_req_msg = 73; //获取用户高级信息
+    optional ModifyAdvancedInfoReq modifyadvancedinfo_req_msg = 74; //修改用户高级信息
+    optional GetSingleWareReq getsingleware_req_msg = 75; //获取单个物品信息
+    optional DeviceActiveReq deviceactive_req_msg = 76; //设备激活并查询渠道协议
+    optional UserRegNotifyReq userregnotify_req_msg = 77; //IOS设备注册通知广告推广
+    optional GeneralGetFCodeReq generalgetfcode_req_msg = 78; //手机获取一级验证码，通用方式（包含短信、语音）
+    optional GeneralBindMobileGetFCodeReq generalbindmobilegetfcode_req_msg = 79; //绑定手机获取一级验证码(系统隐含下SMS订单)，通用方式（包含短信、语音）
+    optional ReviseNickNameReq revisenickname_req_msg = 80; //昵称修订接口
+    optional GetRecommendNickNameReq getrecommendnickname_req_msg = 81; //获得随机昵称
+    optional UnBindSafeMobileReq unbindsafemobile_req_msg = 82; //解除密保手机绑定
+    optional ModifyOriginalEventReq modifyoriginalevent_req_msg = 83; //客户端推送原生事件（首次捕鱼签到）
+    optional TourneyCreateTeamReq tourneycreateteam_req_msg = 84; //团战创建队伍
+    optional GetMobileBindDetailReq getmobilebinddetail_req_msg = 85; //获得详细的手机绑定信息
+    optional CheckMdfNicknameReq checkmdfnickname_req_msg = 86; //检查修改昵称条件
+    optional GeneralModifyNickNameReq generalmodifynickname_req_msg = 87; //统一修改昵称
+    optional ReviseNickNameNewReq revisenicknamenew_req_msg = 88; //昵称判定+修订接口（昵称存在即修订，昵称超过15字节不予修订，最多可修订三个）
+    optional TourneyAlterTeamReq tourneyalterteam_req_msg = 89; //团战改变队伍
+    optional TourneyJoinTeamReq tourneyjointeam_req_msg = 90; //团战加入队伍
+    optional TourneyLeaveTeamReq tourneyleaveteam_req_msg = 91; //团战离开队伍
+    optional TourneyDeleteTeamReq tourneydeleteteam_req_msg = 92; //团战解散队伍
+    optional TourneySignupReq tourneysignup_req_msg = 93;   //团战报名(后台返回TourneySignupExAck，因此没另外定义ack结构)
+    optional MasterRoundReq masterround_req_msg = 94;   //请求大师分对局信息
+    optional NetTestReq nettest_req_msg = 95; //网络测试协议
+    optional ModifyUserHisEvReq modifyuserhisev_req_msg =96; //闯关升级
+    optional GetAccessTokenNewReq getaccesstokennew_req_msg = 97; //TV盒子登录
+    optional CreateTableReq createtable_req_msg = 98; //自建桌创建
+    optional EnterTableReq entertable_req_msg = 99; //自建桌进入
+    optional GetMyTableReq getmytable_req_msg = 100; //获得自己自建桌
+    optional UserExistPWDReq userexistpwd_req_msg = 101; //账号是否已设置密码
+    optional BindSafeMobileNewReq bindsafemobilenew_req_msg = 102; //绑定手机
+    optional BindSafeMobileNewReq changebindmobile_req_msg = 103; //变更绑定手机
+    optional MayOpenUserRLMobileReq mayopenusermobile_req_msg = 104; //账号是否可一键式开通
+    optional OpenUserRLMobileReq openusermobile_req_msg = 105; //手动开通手机登陆名
+    optional MobileExistQueryReq mobileexistquery_req_msg = 106; //用户手机通用查询
+    optional GetAccountOpenStateReq getaccountopenstate_req_msg = 107; //用户开通方式
+    optional GetUserDataReq getuserdata_req_msg = 108; //获取用户数据
+    optional ModifyUserDataReq modifyuserdata_req_msg = 109; //修改用户数据
+    optional ConfirmTeamReq confirm_team_req_msg = 110; //确认队伍
+    optional TourneyLookOnReq tourney_lookon_req_msg = 111; //比赛旁观请求
+    optional GetRealIDInfoReq getrealidinfo_req_msg = 112; //真实身份信息查询
+    optional AuthRealIDInfoReq authrealidinfo_req_msg = 113; //真实身份信息认证
+    optional SetRealIDInfoReq setrealidinfo_req_msg = 114; //真实身份信息设置
+    optional GetCardDataSynReq get_card_data_syn_req_msg = 115; //同步请求名片数据
+    optional GetCardDataAsynReq get_card_data_asyn_req_msg = 116; //异步请求名片数据
+    optional QueryHisBrokerIndexReq queryhisbrokerindex_req_msg = 117; //查询历史记录的索引
+    optional QueryHisBrokerDataReq queryhisbrokerdata_req_msg = 118; //查询指定索引的历史数据
+    optional RegisterUserToTeamReq registerusertoteam_req_msg = 119;   //请求报备人员信息
+    optional TourneyInviteReq  tourneyinvite_req_msg = 120; //约战
+    optional CheckPartnerUnbindCondReq checkpartnerunbindcond_req_msg = 121;   //查询合作方账号解绑条件
+    optional UnbindPartnerAccReq unbindpartneracc_req_msg = 122;   //解绑合作方账号
+    optional QueryTableNumReq querytablenum_req_msg = 123; // 查询桌号-TKID_LC2LS_QUERY_TABLE_NUM
+    optional RecommendTableReq recommendtable_req_msg = 124; //自建桌推荐牌桌（数据流：LC -> LobbySvr（转发至LobbySign） -> MS）
+    optional GetSpreadCodeReq getspreadcode_req_msg = 125; // 获取传播码（数据流：LC -> LobbySvr -> SPD）
+    optional SetSpreadRelReq setspreadrel_req_msg = 126; // 设置传播关系（数据流：LC -> LobbySvr -> SPD）
+    optional SetSpreadReceiptReq setspreadreceipt_req_msg = 127; // 获取传播回执，传播成功时调用（数据流：LC -> LobbySvr -> SPD）
+    optional UpdateTopicContentReq updatetopiccontent_req_msg = 128; // 更新主题数据（数据流：LC -> LobbySvr -> SPD）
+    optional GetTableRuleReq gettablerule_req_msg = 129; // 获取自建桌自定义规则（数据流：LC -> LobbySvr -> MS）
+    optional PartnerGameDeviceRegisterReq partnergamedeviceregister_req_msg = 130; // 联运游戏设备登记接口（数据流：LC -> LobbySvr -> AOSBrokerS）
+    optional PSEBrokerCommonReq psebrokercommon_req_msg = 131; // PSE消息通道协议（LC <-> LS <-> PSEBroker）
+    optional GetJsonAuthinfoReq getjsonauthinfo_req_msg = 132; // 获取授权启动参数（用于支付宝联运登录）
+    optional GetUserAllHisEvtExReq getuserallhisevtex_req_msg = 133; // 查询用户某个产品（MPID）下，某个域（TagID）中的全部积分值
+    optional CommonLoginReq commonlogin_req_msg = 134; // 统一登录消息
+    optional GetSingleGrow64Req getsinglegrow64_req_msg = 135; // 用户获取64位GROW信息
+    optional GetSingleDataReq getsingledata_req_msg = 136; // 用户查询单个USC（用户安全）数据
+    optional ActivityChannelReq activitychannel_req_msg = 137; // CMT活动协议通道
+    optional GetDomainSPDReq getdomainspd_req_msg = 138; // 获取下线的uid列表以及对应的微信头像和昵称信息
+    optional NotifyUserADClickReq notifyuseradclick_req_msg = 139; // 用户广告点击通知
+    optional UDPAuthenticationReq udp_authentication_req_msg = 140; // UDP 鉴权
+    optional UDPDisconnectReq udp_disconnect_req_msg = 141; // UDP 断开, 没有 ack
+    optional UDPConfirmConnReq udp_confirmconn_req_msg = 142; // 确认客户端UDP连接可用，服务器接下来消息采用udp发送
+    optional FDTableInfoTransReq fdtableinfotrans_req_msg = 143; // 自建桌信息相关通用消息
+    optional MatchInfoTransReq matchinfotrans_req_msg = 144; // 比赛推送相关信息
+    optional TourneyNewSignupReq tourneynewsignup_req_msg = 145;   //新的报名协议
+    optional VerifyCheckReq verifycheck_req_msg = 146;   //滑块验证请求
+    optional GetRelattrSPDReq getrelattrspd_req_msg = 147;   //关系属性查询-SPD数据
+    optional RefreshRelattrSPDReq refreshrelattrspd_req_msg = 148;   //关系属性刷新
+    optional TgpAsySendReceiptReq tgpasysendreceipt_req_msg = 149;   //TGP任务平台发送回执
+    optional QueryOutsideDataSPDReq queryoutsidedataspd_req_msg = 150;   //查询平台外数据 美团成功下单以后获得的参赛次数
+    optional GetMatchRankListReq getmatchranklist_req_msg = 151; // 客户端向MDRS请求获取某场比赛的二次排名数据
+    optional SUploadCollectedDataReq suploadcollecteddata_req_msg = 152; // 微信直播上传采集的数据
+    optional UnTourneySignUpNewReq untourneysignupnew_req_msg = 153; // 用户取消Tourney报名
+    optional FamilyBizTransReq familybiztrans_req_msg = 154; // 家族业务通用透传消息
+    optional FamilyMatchTransReq familymatchtrans_req_msg = 155; // 家族比赛通用透传消息
+    optional SpectRoundInfoTransReq spectroundinfotrans_req_msg = 156; // 旁观列表服务通用透传协议 （数据流：LC -> LS -> SpectRoundInfo）
+    optional GetUserDomainGrow64Req getuserdomaingrow64_req_msg = 157; // 按域获取64位积分 （数据流：LC -> LS -> DAT）
+    optional SNSPivotSvrTransReq snspivotsvrtrans_req_msg = 158; //  SNS关系服务通用透传协议 (LC -> LS -> SnsPivot) 微信麻将
+    optional TransTeamReq transteam_req_msg = 159;  // 客户端发送组队相关请求到比赛
+    optional TransMsg2GIMSReq transmsg2gims_req_msg = 160; // 号码服务通用透传协议
+}
+
+message LobbyAckMsg  {
+    optional LoginAck login_ack_msg = 1; // 登录的反馈
+    optional LogoutAck logout_ack_msg = 2; // 登出的反馈（未处理。在发送登出消息时就认为登出成功了）
+    optional AnonymousBrowseAck anonymous_ack_msg = 3;   // Say Hi 的反馈
+    optional GetUserAllGrowAck getuserallgrow_ack_msg = 4; // 获取用户成就
+    optional GetUserAllWareAck getuserallware_ack_msg = 5; // 获取用户物品
+    optional GetAccNumMoneyAck getaccnummoney_ack_msg = 6; //
+    optional TourneySignupExAck tourneysignupex_ack_msg = 7; // 报名反馈
+    optional TourneyUnsignupAck tourneyunsignup_ack_msg = 8; // 退赛反馈
+    optional GetSysMsgExAck getsysmsgex_ack_msg = 9;
+    optional QuickStartGameAck quickstartgame_ack_msg = 10; // 匿名登录的反馈
+    optional GetUserInterfixTourneyListAck getuserinterfixtourneylist_ack_msg = 11; // 服务器返回实名用户相关(及时赛)的比赛
+    optional StartClientExAck startclientex_ack_msg = 12; // 比赛开赛了
+    optional PushUserWareAck pushuserware_ack_msg = 13; // 用户物品更新
+    optional PushUserGrowAck pushusergrow_ack_msg = 14; // 用户成就更新
+    optional PushAccNumMoneyAck pushaccnummoney_ack_msg = 15; // 用户账户详情更新
+    optional PushUserScoreAck pushuserscore_ack_msg = 16; // 用户大师分，积分更新
+    optional PushUserMoneyAck pushusermoney_ack_msg = 17; // 用户金币、元宝更新
+    optional GetUserMatchPointSignupTourneyListAck getusermatchpointsignuptourneylist_ack_msg = 18; // 服务器返回实名用户相关(定点赛)的比赛
+    optional PushAlowSysBoardAck pushalowsysboard_ack_msg = 19; // 系统广播：需要提示用户
+    optional GetTicketTempExAck gettickettempex_ack_msg = 20; // 获取 SSO
+    optional ModifyNickNameAck modifynickname_ack_msg = 21; // 修改昵称
+    optional TerminateNotifyAck terminatenotify_ack_msg = 22; // 断线原因通知
+    optional VerifyNickNameAck verifynickname_ack_msg = 23; // 验证昵称 注册
+    optional VerifyLoginNameAck verifyloginname_ack_msg = 24; // 验证用户名 注册
+    optional GetVerifyCodeAck getverifycode_ack_msg = 25; // 获取验证码 注册
+    optional RegisterAck register_ack_msg = 26; //注册请求 注册
+    optional GetSingleGrowAck getsinglegrow_ack_msg = 27; //获取用户积分信息
+    optional URSSendRegSMSCodeAck urssendregsmscode_ack_msg = 28;
+    optional MobileRegisterAck mobileregister_ack_msg = 29;
+    optional MobileLoginAck mobilelogin_ack_msg = 30;
+    optional LsPushInfoAck lspushinfo_ack_msg = 31; //咨询系统推送的咨询
+    optional GeneralLoginAck generallogin_ack_msg = 32;
+    optional NoRegLoginAck noreglogin_ack_msg = 33;
+    optional NoRegBindDefaultAccAck noregbinddefaultacc_ack_msg = 34;
+    optional NoRegBindEmailAccAck noregbindemailacc_ack_msg = 35;
+    optional NoRegBindMobileAccAck noregbindmobileacc_ack_msg = 36;
+    optional GetSMSRandomPwdAck getsmsrandompwd_ack_msg = 37;
+    optional RandomPwdLoginAck randompwdlogin_ack_msg = 38;
+    optional GetAccessTokenAck getaccesstoken_ack_msg = 39; //开放平台用户到OAuth系统获得登录令牌
+    optional OpenPartnerLoginAck openpartnerlogin_ack_msg = 40; //开放平台用户使用SSO一站式的方式登录到Auth系统验证
+    optional TokenLoginAck tokenlogin_ack_msg = 41;
+    optional ModifyFigureAck modifyfigure_ack_msg = 42; //修改头像
+    optional GetUserDomainGrowAck getuserdomaingrow_ack_msg = 43; //获取域积分
+    optional GetRealRegStatusAck getrealregstatus_ack_msg = 44; //获得用户是否实名制认证
+    optional CommerceGetAllPartnerInfoAck commercegetallpartnerinfo_ack_msg = 45;
+    optional CommerceUserLoginAck commerceuserlogin_ack_msg = 46;
+    optional GetpngVerifyCodeAck getpngverifycode_ack_msg = 47; // 获取验证码 注册
+    optional VerifyLoginNameExistAck verifyloginnameexist_ack_msg = 48; //验证LoginName是否重复(普通用户，手机号，邮箱三种类型)
+    optional ModifyGrowAck modifygrow_ack_msg = 49; //修改积分
+    optional CommerceUserLoginNewAck commerceuserloginnew_ack_msg = 50;
+    optional GetRequestTokenAck getrequesttoken_ack_msg = 51;
+    optional RegUserInfoAck reguserinfo_ack_msg = 52; //消息的注册通道
+    optional SendUserMsgReceiptAck sendusermsgreceipt_ack_msg = 53; //消息的回执通道
+    optional PushUserMsgAck pushusermsg_ack_msg = 54; //给用户推送消息
+    optional GetUserSignupListAck getusersignuplist_ack_msg = 55; //获取已报名比赛列表
+    optional SendRecentGameAck sendrecentgame_ack_msg = 56; //查询最近玩过比赛请求
+    optional OprateRecentGameAck opraterecentgame_ack_msg = 57; //最近玩过比赛进行操作（删除或置顶等）请求
+    optional GetRandomNicknameAck getrandomnickname_ack_msg = 58; //获取随机昵称
+    optional GetPngAlgorithmVerifyCodeAck getpngalgorithmverifycode_ack_msg = 59; //获取Png格式用户验证码
+    optional GetBmpAlgorithmVerifyCodeAck getbmpalgorithmverifycode_ack_msg = 60; //获取BMP算格式法验证码
+    optional GetSingleHisEvtAck getsinglehisevt_ack_msg = 61; //获得用户Evt信息
+    optional GetUserDomainEvtAck getuserdomainevt_ack_msg = 62; //按域获取Evt
+    optional GetUserAllEvtAck getuserallevt_ack_msg = 63; //获得全部Evt信息
+    optional PushUserHisEvtAck pushuserhisevt_ack_msg = 64; //推送用户更新后的Evt信息
+    optional MakerInfoAck makerinfo_ack_msg = 65; //更新里程碑数据（最好成绩）
+    optional NoRegBindPartnerAck noregbindpartner_ack_msg = 66; //免注册账号绑定联运账号
+    optional GetLoginSMSCodeAck getloginsmscode_ack_msg = 67; //绑定手机获取登陆短信验证码
+    optional BPGetSmsFCodeAck bpgetsmsfcode_ack_msg = 68; //手机获取一级验证码
+    optional BPGetMobileBindAck bpgetmobilebind_ack_msg = 69; //获得用户绑定状态
+    optional BPBindSafeMobileAck bpbindsafemobile_ack_msg = 70; //用户绑定密保手机
+    optional BPGetMobileBindCountAck bpgetmobilebindcount_ack_msg = 71; //获得手机号绑定用户的数量
+    optional GetAdvancedInfoAck getadvancedinfo_ack_msg = 72; //获取用户高级信息
+    optional ModifyAdvancedInfoAck modifyadvancedinfo_ack_msg = 73; //修改用户高级信息
+    optional GetSingleWareAck getsingleware_ack_msg = 74; //获取单个物品信息
+    optional DeviceActiveAck deviceactive_ack_msg = 75; //设备激活并查询渠道协议
+    optional UserRegNotifyAck userregnotify_ack_msg = 76; //IOS设备注册通知广告推广
+    optional GeneralGetFCodeAck generalgetfcode_ack_msg = 77; //手机获取一级验证码，通用方式（包含短信、语音）
+    optional GeneralBindMobileGetFCodeAck generalbindmobilegetfcode_ack_msg = 78; //绑定手机获取一级验证码(系统隐含下SMS订单)，通用方式（包含短信、语音）
+    optional ReviseNickNameAck revisenickname_ack_msg = 79; //昵称修订接口
+    optional GetRecommendNickNameAck getrecommendnickname_ack_msg = 80; //获得随机昵称
+    optional StartGameClientAck startgameclient_ack_msg = 81; //通知用户进入游戏
+    optional UnBindSafeMobileAck unbindsafemobile_ack_msg = 82; //解除密保手机绑定
+    optional ModifyOriginalEventAck modifyoriginalevent_ack_msg = 83; //客户端推送原生事件（首次捕鱼签到）
+    optional TourneyCreateTeamAck tourneycreateteam_ack_msg = 84; //团战创建队伍
+    optional GetMobileBindDetailAck getmobilebinddetail_ack_msg = 85; //获得详细的手机绑定信息
+    optional CheckMdfNicknameAck checkmdfnickname_ack_msg = 86; //检查修改昵称条件
+    optional GeneralModifyNickNameAck generalmodifynickname_ack_msg = 87; //统一修改昵称
+    optional ReviseNickNameNewAck revisenicknamenew_ack_msg = 88; //昵称判定+修订接口（昵称存在即修订，昵称超过15字节不予修订，最多可修订三个）
+    optional TourneyAlterTeamAck tourneyalterteam_ack_msg = 89; //团战改变队伍
+    optional TourneyJoinTeamAck tourneyjointeam_ack_msg = 90; //团战加入队伍
+    optional TourneyLeaveTeamAck tourneyleaveteam_ack_msg = 91; //团战离开队伍
+    optional TourneyDeleteTeamAck tourneydeleteteam_ack_msg = 92; //团战解散队伍
+    optional PushMsNotifyAck pushmsnotify_ack_msg = 93;
+    optional MasterRoundAck masterround_ack_msg = 94; //大师分对局信息
+    optional NetTestAck nettest_ack_msg = 95; //网络测试协议
+    optional ModifyUserHisEvAck modifyuserhisev_ack_msg=96; //闯关升级
+    optional PushUserMsgRemindAck pushusermsgre_ack_msg=97;
+    optional GetAccessTokenNewAck getaccesstokennew_ack_msg = 98; //TV盒子登录
+    optional CreateTableAck createtable_ack_msg = 99; //自建桌创建
+    optional EnterTableAck entertable_ack_msg = 100;
+    optional GetMyTableAck getmytable_ack_msg = 101;
+    optional UserExistPWDAck userexistpwd_ack_msg = 102; //账号是否已设置密码
+    optional ChangeBindMobileAck changebindmobile_ack_msg = 103; //变更绑定手机
+    optional BindSafeMobileNewAck bindsafemobilenew_ack_msg = 104; //绑定手机
+    optional MayOpenUserRLMobileAck mayopenusermobile_ack_msg = 105; //账号是否可一键式开通 返回结果码与上者相同
+    optional OpenUserRLMobileAck openusermobile_ack_msg = 106; //手动开通手机登陆名,一键式开通,返回结果码与上者相同
+    optional MobileExistQueryAck mobileexistquery_ack_msg = 107; //用户手机通用查询
+    optional GetAccountOpenStateAck getaccountopenstate_ack_msg = 108; //用户开通方式
+    optional GetUserDataAck getuserdata_ack_msg = 109; //获取用户数据
+    optional ModifyUserDataAck modifyuserdata_ack_msg = 110; //修改用户数据
+    optional ConfirmTeamAck confirm_team_ack_msg = 111; // 确认队伍
+    optional TourneyLookOnAck tourney_lookon_ack_msg = 112; //比赛旁观请求
+    optional GetRealIDInfoAck getrealidinfo_ack_msg = 113; //真实身份信息查询
+    optional AuthRealIDInfoAck authrealidinfo_ack_msg = 114; //真实身份信息认证
+    optional SetRealIDInfoAck setrealidinfo_ack_msg = 115; //真实身份信息设置
+    optional GetCardDataSynAck get_card_data_syn_ack_msg = 116; //同步请求名片数据
+    optional PushCardDataAck push_card_data_ack_msg = 117;  //异步补齐后的名片数据推送
+    optional PushMarkerInfoAck  push_marker_info_ack_msg = 118;  //协议：推送 更新里程碑数据（最好成绩）
+    optional GetCardDataAsynAck get_card_data_asyn_ack_msg = 119; //异步请求名片数据
+    optional QueryHisBrokerIndexAck queryhisbrokerindex_ack_msg = 120; //查询历史记录的索引
+    optional QueryHisBrokerDataAck queryhisbrokerdata_ack_msg = 121; //查询指定索引的历史数据
+    optional RegisterUserToTeamAck registerusertoteam_ack_msg = 122;   //请求报备人员信息
+    optional PushGeneralDataAck pushgeneraldata_ack_msg = 123;         //推送一条或多条GeneralData数据
+    optional TourneyInviteAck  tourneyinvite_ack_msg = 124; //约战
+    optional PushInviteResultAck pushinviteresult_ack_msg = 125; //推送约战结果
+    optional CheckPartnerUnbindCondAck checkpartnerunbindcond_ack_msg = 126;         //查询合作方账号解绑条件（数据流：LC -> LobbySvr -> AllyIDSvr）
+    optional UnbindPartnerAccAck unbindpartneracc_ack_msg = 127;         //解绑合作方账号（数据流：LC -> LobbySvr -> AllyIDSvr）
+    optional QueryTableNumAck querytablenum_ack_msg = 128;   //协议：查询桌号 LC -> LS
+    optional RecommendTableAck recommendtable_ack_msg = 129;    //自建桌推荐牌桌（数据流：LC -> LobbySvr（转发至LobbySign） -> MS）
+    optional GetSpreadCodeAck getspreadcode_ack_msg = 130; // 获取传播码 消息响应
+    optional SetSpreadRelAck setspreadrel_ack_msg = 131; // 设置传播关系 消息响应
+    optional SetSpreadReceiptAck setspreadreceipt_ack_msg = 132; // 获取传播回执 消息响应
+    optional UpdateTopicContentAck updatetopiccontent_ack_msg = 133; // 更新主题数据 消息响应
+    optional GetTableRuleAck gettablerule_ack_msg = 134; // 获取自建桌自定义规则消息 响应
+    optional PartnerGameDeviceRegisterAck partnergamedeviceregister_ack_msg = 135; // 联运游戏设备登记接口 响应
+    optional PSEBrokerCommonAck psebrokercommon_ack_msg = 136; // PSE消息通道协议 响应
+    optional GetJsonAuthinfoAck getjsonauthinfo_ack_msg = 137; // 获取授权启动参数（用于支付宝联运登录） 响应
+    optional GetUserAllHisEvtExAck getuserallhisevtex_ack_msg = 138; // 查询用户某个产品下，某个域中的全部积分值 响应
+    optional CommonLoginAck commonlogin_ack_msg = 139; // 统一登录消息 响应
+    optional GetSingleGrow64Ack getsinglegrow64_ack_msg = 140; // 用户获取64位GROW信息
+    optional PushUserGrow64Ack pushusergrow64_ack_msg = 141; // 推送用户64位Grow信息
+    optional GetSingleDataAck getsingledata_ack_msg = 142; // 用户查询单个USC（用户安全）数据
+    optional PushSingleDataAck pushsingledata_ack_msg = 143; // 推送用户更新后的USC（用户安全）数据
+    optional PushGeneralDataExAck pushgeneraldataex_ack_msg = 144; // 推送一条或多条GeneralData数据，按数据域进行推送
+    optional ActivityChannelAck activitychannel_ack_msg = 145; // CMT活动协议通道
+    optional GetDomainSPDAck getdomainspd_ack_msg = 146; // 获取下线的uid列表以及对应的微信头像和昵称信息
+    optional NotifyUserADClickAck notifyuseradclick_ack_msg = 147; // 用户广告点击通知
+    optional UDPAuthenticationAck udp_authentication_ack_msg = 148; // UDP 鉴权 ack
+    optional FDTableInfoTransAck fdtableinfotrans_ack_msg = 149; // 自建桌信息相关通用消息
+    optional MatchInfoTransAck matchinfotrans_ack_msg = 150; // 比赛推送相关信息
+    optional TourneyNewSignupAck tourneynewsignup_ack_msg = 151;   //新的报名协议
+    optional VerifyCheckAck verifycheck_ack_msg = 152;   //滑块验证请求
+    optional GetRelattrSPDAck getrelattrspd_ack_msg = 153;   //关系属性查询-SPD数据
+    optional RefreshRelattrSPDAck refreshrelattrspd_ack_msg = 154;   //关系属性刷新
+    optional TgpAsySendReceiptAck tgpasysendreceipt_ack_msg = 155;   //TGP任务平台发送回执
+    optional QueryOutsideDataSPDAck queryoutsidedataspd_ack_msg = 156;   //查询平台外数据 美团成功下单以后获得的参赛次数
+    optional GetMatchRankListAck getmatchranklist_ack_msg = 157; // 客户端向MDRS请求获取某场比赛的二次排名数据
+    optional SUploadCollectedDataAck suploadcollecteddata_ack_msg = 158; // 微信直播上传采集的数据
+    optional UnTourneySignUpNewAck untourneysignupnew_ack_msg = 159; // 用户取消Tourney报名
+    optional FamilyBizTransAck familybiztrans_ack_msg = 160; // 家族业务通用透传消息
+    optional FamilyMatchTransAck familymatchtrans_ack_msg = 161; // 家族比赛通用透传消息
+    optional DatRegistPushMpidDataAck datregistpushmpiddata_ack_msg = 162; // DAT推送消息 （数据流：DATRegist -> Lobby -> Client）
+    optional SpectRoundInfoTransAck spectroundinfotrans_ack_msg = 163; // 旁观列表服务通用透传协议 （数据流：SpectRoundInfo -> LS -> LC）
+    optional GetUserDomainGrow64Ack getuserdomaingrow64_ack_msg = 164; // 按域获取64位积分 （数据流：DAT -> LS -> LC）
+    optional SNSPivotSvrTransAck snspivotsvrtrans_ack_msg = 165; //  SNS关系服务通用透传协议 (LC -> LS -> SnsPivot) 微信麻将
+    optional TransTeamAck transteam_ack_msg = 166;      //客户端发送组队相关请求到比赛
+    optional TransMsg2GIMSAck transmsg2gims_ack_msg = 167; // 号码服务通用透传协议
+}
+
+message LsAddrInfo  {
+    required uint32 ip = 1;
+    required int32 port = 2;
+    required string szip = 3;
+    required string szhost = 4;
+}
+
+message LcUserInfoEx  {
+    required uint32 userid = 1; // 用户 ID，很多地方都用到，这个值比较重要
+    required string nickname = 2; // 昵称
+    optional uint32 figureid = 3;
+    required uint32 coin = 4; // 元宝
+    required uint32 bonus = 5; // 奖券
+    required uint32 gold = 6; // 金币
+    required uint32 cert = 7; // 参赛积分
+    required uint32 score = 8; // 经验值
+    required uint32 masterscore = 9; // 大师分
+    optional uint32 matchcount = 10;
+    optional uint64 matchtime = 11;
+    optional uint32 formid = 12;//形象ID
+}
+
+message DaoExpTypeLenVal {
+  required uint32 dtid = 1;     //数据类型 见"TKSTBillUniversalDic.h"        eDicTKSTGDCDef
+  required uint32 atid = 2;     //账户类型 见"TKMoneyUniversalDicSrv.h"      eDicMynsAccNumType
+  optional LoobyUserDataDown data =3;
+}
+
+message CardEntryIdx {
+  required uint32 userid = 1;
+  repeated DaoExpTypeLenVal dao_exp_type_len_val = 2;
+}
+
+message LoginReq  {
+    required string loginname = 1; // 用户名
+    optional string nickname = 2;
+    required string password = 3; // 密码
+    optional uint32 gameid = 4;
+    optional uint32 version = 5;
+    optional uint32 ip = 6;
+    optional uint64 time = 7;
+    required string mac = 8; // MAC 地址：目前无用，填了个随机值，格式就是 MAC 地址的格式
+    optional uint32 psdsns = 9;
+    optional uint32 param2 = 10;
+    optional uint32 param3 = 11;
+    optional uint32 cryptotype = 12; //加密类型: 1--aes
+    optional string u64timestamp = 13;
+}
+
+message LoginAck  {
+    optional uint32 anonymousid = 1;
+    optional LsAddrInfo addrinfo = 2;
+    optional uint32 showsns = 3;
+    optional uint32 param2 = 4;
+    optional uint32 param3 = 5;
+    required LcUserInfoEx userinfo = 6; // 用户信息
+}
+
+message LogoutReq  {
+    optional uint32 userid = 1;
+    optional string nickname = 2;
+}
+
+message LogoutAck  {
+    optional uint32 anonymousid = 1;
+}
+
+message AnonymousBrowseReq  {
+    optional uint64 time = 1;
+    optional uint64 version = 2;
+    optional int32  param = 3;
+}
+
+message AnonymousBrowseAck  {
+    required uint32 anonymousid = 1; // 服务器分配的临时 ID，任何一个用户都有，和 UserId 不是一回事
+    optional uint64 lstimever = 2;
+    required uint64 servertime = 3; // 系统时间：用于同步一些游戏中显示的时间（本地时间+（系统时间和本地时间的差值））
+    optional uint64 channeltimever = 4;
+    optional uint32 lsdyncinterfacever = 5;
+    optional uint32 lslevel2masterscorever = 6;
+    optional uint32 lslevel2bonusver = 7;
+    optional uint32 lslevel2goldver = 8;
+    optional uint32 lsproducttype2awardver = 9;
+    optional uint32 lsgrowtypever = 10;
+    optional uint32 lswaretypever = 11;
+    optional string userip = 12;
+    optional string param = 13;
+    optional string strbindinfo = 14;
+    optional string bindkey = 15;
+    optional uint32 sid = 16;
+    optional uint32 port = 17;
+}
+
+message LcTranGrow  {
+    required uint32 growid = 1; // 成就 ID
+    required int32 value = 2; // 成就值
+}
+
+message GetUserAllGrowReq  {
+    required uint32 userid = 1;
+}
+
+message GetUserAllGrowAck  {
+    optional uint32 userid = 1;
+    repeated LcTranGrow growlist = 2;
+}
+
+message TranWareBaseInfo  {
+    optional uint32 wareclassid = 1;
+    optional uint32 waretypeid = 2;
+    required uint32 wareid = 3; // 物品 ID
+    required uint32 count = 4; // 物品数量
+    optional uint32 time = 5; // 过期时间
+}
+
+message GetUserAllWareReq  {
+    required uint32 userid = 1;
+}
+
+message GetUserAllWareAck  {
+    repeated TranWareBaseInfo warelist = 1;
+}
+
+message GetAccNumMoneyReq  {
+    required uint32 userid = 1;
+    required uint32 accnum = 2;
+    required uint32 acctype = 3;
+}
+
+message GetAccNumMoneyAck  {
+    optional uint32 userid = 1;
+    optional uint32 accnum = 2;
+    required uint32 acctype = 3;
+    required uint32 coin = 4;
+    required uint32 bonus = 5;
+    required uint32 gold = 6;
+    required uint32 cert = 7;
+}
+
+message TourneySignupExReq  {
+    required uint32 userid = 1;
+    optional string nickname = 2;
+    required uint32 tourneyid = 3;
+    required uint32 signuptype = 4; // 报名条件的类型：在报名条件的消息中，有些比赛有多种报名条件，用户选择后，报名时告诉服务器
+    optional uint32 matchver = 5;
+    optional uint32 param = 6;
+    optional uint32 gamever = 7;
+    required uint32 matchpoint = 8; // 报名那个开始时间点：只有多个开赛点的比赛才有用，其他比赛传 0 即可
+    required uint32 gameid = 9; // 游戏 ID：目前只有斗地主和德州两个
+    optional uint32 signupplanid = 10; // 填写报名方案号，老的客户端不填，为0即可
+}
+
+message TourneySignupExAck  {
+    // 这条消息中，使用 TKMobileAckMsg 里的 param 参数来表示成功与否。具体的定义见：JJMsgEnum_MatchSignUpState
+    required uint32 tourneyid = 1;
+    optional uint32 param = 2;
+    required uint32 matchpoint = 3;
+    optional int32  productid = 4;
+    optional int32  gameid = 5;
+    optional int32  flags = 6; //产品属性标记: 1 pc端可以报名 2 flash端可以报名 4 移动端可以报名
+}
+
+message TourneyUnsignupReq  {
+    required uint32 userid = 1;
+    optional string nickname = 2;
+    required uint32 tourneyid = 3;
+    optional uint32 param = 4;
+    required uint32 matchpoint = 5;
+}
+
+message TourneyUnsignupAck  {
+    // 这条消息中，使用 TKMobileAckMsg 里的 param 参数来表示成功与否。0 或者没有这个参数（节省流量）表示成功，其他都表示失败
+    required uint32 tourneyid = 1;
+    optional uint32 param = 2;
+    required uint32 matchpoint = 3;
+}
+
+message MessageIC2LsItem  {
+    required uint32 msgid = 1;
+    required uint32 msgtype = 2;
+    required uint64 sendtime = 3;
+    required uint32 offline = 4;
+    required uint32 showpos = 5;
+    required uint32 cltproperty = 6;
+    required uint32 showlevel = 7;
+    required string sender = 8;
+    required string title = 9;
+    required string content = 10;
+}
+
+message GetSysMsgExReq  {
+    required uint32 maxid = 1;
+}
+
+message GetSysMsgExAck  {
+    repeated MessageIC2LsItem msglist = 2;
+}
+
+message QuickStartGameReq  {
+    optional uint32 clientver = 1;
+    optional uint32 ip = 2;
+    optional uint64 time = 3;
+    optional string mac = 4;
+    required uint32 anonymousid = 5;
+    optional uint32 param1 = 6;
+    optional uint32 param2 = 7;
+}
+
+message QuickStartGameAck  {
+    // 这条消息中，使用 TKMobileAckMsg 里的 param 参数来表示成功与否。0 或者没有这个参数（节省流量）表示成功，其他都表示失败
+    required uint32 vistorid = 1; // 当做 UserId 来用
+    required string vistornickname = 2; // 当做昵称来用
+    optional uint32 vistorfigureid = 3;
+    optional uint32 param1 = 4;
+}
+
+message UserInterfixTourney  {
+    required uint32 tourneyid = 1;
+    optional uint32 userid = 2;
+    optional uint32 signup = 3;
+    optional uint32 productid = 4;
+    optional uint32 gameid = 5;
+    optional int32 flags = 6;
+}
+
+message GetUserInterfixTourneyListReq  {
+    required uint32 userid = 1;
+}
+
+message SignupTourney  {
+    required uint32 tourneyid = 1;
+    optional uint32 matchstarttime = 2;
+    optional uint32 productid = 3;
+    optional uint32 gameid = 4;
+}
+
+message SignupMatchPoint  {
+    required uint32 tourneyid = 1;
+    optional uint32 matchpoint = 2;
+    optional uint32 productid = 3;
+    optional uint32 gameid = 4;
+}
+
+message GetUserSignupListReq  {
+    required uint32 userid = 1;
+}
+
+message GetUserSignupListAck {
+    repeated SignupTourney tourneylist = 1;
+    repeated SignupMatchPoint pointlist = 2;
+}
+
+message GetUserInterfixTourneyListAck  {
+    repeated UserInterfixTourney tourneylist = 1;
+}
+
+message StartClientExAck  {
+    optional uint32 userid = 1;
+    required uint32 tourneyid = 2; // 开赛的 Tourney Id
+    required uint32 matchid = 3; // 开赛的 Match Id
+    optional uint32 stageid = 4;
+    required uint32 gameid = 5; // 比赛 Id
+    required uint32 productid = 6; // 产品 Id
+    optional string ip = 7;
+    optional uint32 port = 8;
+    required bytes ticket = 9; // 鉴权串：需要回传给服务器
+    optional uint32 starttype = 10; //参见eLcStartMcType
+}
+
+//enum eLcStartMcType
+//{
+//TK_LCSTARTMC_TYPE_BEGIN = 0, // 开赛启动
+//TK_LCSTARTMC_TYPE_BREAK = 1, // 断线重启
+//TK_LCSTARTMC_TYPE_INVOKE = 2, // 疑似断线重启
+//TK_LCSTARTMC_TYPE_GSCHANGE = 3, // GS跳转重启
+//TK_LCSTARTMC_TYPE_SPECTATOR = 4 // 旁观启动(Agent封装启动消息下发给移动端时)
+//};
+
+message PushUserWareAck  {
+    optional uint32 userid = 1;
+    repeated TranWareBaseInfo warelist = 2;
+}
+
+message PushUserGrowAck  {
+    optional uint32 userid = 1;
+    repeated LcTranGrow growlist = 2;
+}
+
+message PushAccNumMoneyAck  {
+    optional uint32 userid = 1;
+    optional uint32 accnum = 2;
+    required uint32 acctype = 3;
+    required uint32 coin = 4;
+    required uint32 bonus = 5;
+    required uint32 gold = 6;
+    required uint32 cert = 7;
+    optional uint32 bankaccid = 8;
+    optional uint32 bankacctime = 9;
+}
+
+message PushUserScoreAck  {
+    optional uint32 userid = 1;
+    optional uint32 gameid = 2;
+    optional uint64 matchtime = 3;
+    optional uint32 matchcount = 4;
+    optional uint32 param1 = 5;
+    optional uint32 param2 = 6;
+    optional uint32 score = 7;
+    required uint32 masterscore = 8;
+}
+
+message PushUserMoneyAck  {
+    optional uint32 userid = 1;
+    required uint32 coin = 2;
+    required uint32 bonus = 3;
+    required uint32 gold = 4;
+    required uint32 cert = 5;
+    optional uint32 bankaccid = 6;
+    optional uint32 bankacctime = 7;
+}
+
+message UserMatchPoint  {
+    required uint32 tourneyid = 1;
+    required uint32 matchpoint = 2; // 开赛点
+    optional uint32 userid = 3;
+    optional uint32 signup = 4;
+    optional int32  productid = 5; //产品ID
+    optional int32  gameid = 6; // GameID
+    optional int32  flags = 7;  //产品属性标记: 1 pc端可以报名 2 flash端可以报名 4 移动端可以报名
+}
+
+message GetUserMatchPointSignupTourneyListAck  {
+    optional uint32 tourneyid = 1;
+    repeated UserMatchPoint matchpointlist = 2;
+}
+
+message PushAlowSysBoardAck  {
+    required uint32 type = 1; // 类型
+    optional string caption = 2;
+    required string text = 3; // 提示的字符串
+}
+
+//zhh
+message GetTicketTempExReq  {
+    required uint32       userid = 1;
+    required uint32       type = 2;     //#define TICKETTMP_URL  2  Url取临时票证
+
+
+}
+
+message GetTicketTempExAck  {
+    required uint32     userid = 1;
+    required uint32     type = 2;        //#define TICKETTMP_URL  2  Url取临时票证
+    required uint32     ticketcrttime = 3;  // 票证的创建时间,c++ time_t
+    required string     ticket = 5;
+}
+
+message ModifyNickNameReq  {
+    required uint32     userid = 1;
+    required string     nicknamenew = 2; // 新昵称
+}
+
+message ModifyNickNameAck  {
+    required int32      ret = 1; //101 昵称和登陆名相等， 102 昵称校验失败 ，103 昵称已经存在，104  用户不存在
+}
+message TerminateNotifyAck {
+    optional uint32 nullvalue = 1;//与J2ME统一用，无意义
+}
+
+message VerifyNickNameReq {
+    required string nickname = 1;//昵称
+    optional uint32 param = 2;
+}
+
+message VerifyNickNameAck {
+    required string nickname = 1;//昵称
+    optional uint32 param = 2;
+}
+
+message VerifyLoginNameReq {
+    required string loginname = 1;//用户名
+    optional uint32 param = 2;
+}
+
+message VerifyLoginNameAck {
+    required string loginname = 1;//用户名
+    optional uint32 param = 2;
+}
+
+message GetVerifyCodeReq {
+    optional uint32 param = 1;
+}
+
+message GetpngVerifyCodeReq
+{
+    optional uint32 param = 1;
+}
+
+message VerifyLoginNameExistReq
+{
+    required string loginname = 1;//用户名
+    optional uint32 param = 2;
+    optional uint32 acctype = 3;
+}
+
+message GetVerifyCodeAck {
+    required int32 timefound = 1;//验证码创建时间
+    optional uint32 param = 2;
+    required uint32 len = 3;
+    optional bytes verifycode = 4;
+}
+
+message GetpngVerifyCodeAck
+{
+    required int32 timefound = 1;//验证码创建时间
+    optional uint32 param = 2;
+    required uint32 len = 3;
+    optional bytes verifycode = 4;
+}
+
+message VerifyLoginNameExistAck
+{
+  required string loginname = 1;//用户名
+    optional uint32 param = 2;
+    optional uint32 acctype = 3;
+}
+
+message RegisterReq {
+    required string loginname = 1;//用户名
+    optional string nickname = 2;//昵称
+    required string password = 3;//密码
+    optional uint32 figureid = 4;//头像
+    required string verifycode = 5;//验证码
+    required int32 timefound = 6;//验证码生成时间
+    optional uint32 param = 7;//验证码对应param
+    optional string email = 8;//邮箱
+    optional uint32 agent = 9;//注册来源
+    optional uint32 extendid = 10;//推广员ID
+    optional string extendnickname = 11;//推广员昵称
+    optional string newplayercard = 12;//新手卡号
+    optional uint32 param1 = 13;//保留参数1
+    optional uint32 param2 = 14;//保留参数2
+    optional string macaddr = 15;//mac地址
+    optional uint32 customid = 16;//安装员ID
+    optional uint32 cryptotype = 17; //加密类型: 1--aes
+}
+
+message RegisterAck {
+    optional uint32 param = 1;
+    required uint32 userid = 2;
+    required string nickname = 3;
+}
+
+message GetSingleGrowReq {
+    required uint32 userid = 1; //用户ID
+    required int32 growid = 2; //成长ID
+}
+
+message GetSingleGrowAck {
+    required int32 growid = 1; //成长ID
+    required int32 growbalance = 2;
+}
+
+message URSSendRegSMSCodeReq {
+    required uint32 userid = 1;
+    required string phonenumber = 2;
+    optional uint32 smschannel = 3;
+}
+
+message URSSendRegSMSCodeAck {
+    optional string phonenumber = 1;
+    optional uint32 param = 2;
+}
+
+message MobileRegisterReq {
+    required string phonenumber = 1;
+    required string smslongcode = 2;
+    optional string nickname = 3;
+    required string password = 4;
+    optional uint32 figureid = 5;
+    optional string verifycode = 6;
+    optional int32 timefound = 7;
+    optional uint32 param = 8;
+    optional string email = 9;
+    optional uint32 agent = 10;
+    optional uint32 extendid = 11;
+    optional string extendnickname = 12;
+    optional string newplayercard = 13;
+    optional uint32 param1 = 14;
+    optional uint32 param2 = 15;
+    optional string macaddr = 16;
+    optional uint32 customid = 17;//安装员ID
+    optional uint32 cryptotype = 18; //加密类型: 1--aes
+    optional int32 version = 19; // 功能版本控制标识：默认0-标识老流程，1-新流程
+}
+
+message MobileRegisterAck {
+    optional uint32 param = 1;
+    optional uint32 userid = 2;
+    optional string nickname = 3;
+}
+
+message MobileLoginReq {
+    required string phonenumber = 1;
+    optional string nickname = 2;
+    required string password = 3;
+    optional uint32 gameid = 4;
+    optional string macaddr = 5;
+    optional uint32 psdsns = 6;
+    optional uint32 comitschemeid = 7;
+    optional uint32 param = 8;
+    optional string devid = 9;
+}
+
+message MobileLoginAck {
+    optional uint32 anonymousid = 1;
+    optional LsAddrInfo lsaddrinfo = 2;
+    optional uint32 showsns = 3;
+    optional uint32 proxynip = 4;
+    optional uint32 param = 5;
+    optional LcUserInfoEx userinfo = 6;
+}
+
+message DSMsgItem {
+    required uint32 msgid = 1;
+    optional string ctrxml = 2;
+    optional string displayxml = 3;
+}
+
+message LsPushInfoAck {
+    repeated DSMsgItem msgitem = 1;
+}
+
+message GeneralLoginReq {
+    required string generalloginname = 1;
+    optional string nickname = 2;
+    required string password = 3;
+    optional uint32 gameid = 4;
+    optional string macaddr = 5;
+    optional uint32 psdsns = 6;
+    optional uint32 comitschemeid = 7;
+    optional uint32 param = 8;
+    optional string devid = 9;
+    optional uint32 cryptotype = 10; //加密类型: 1--aes
+    optional string smslongcode = 11;
+    optional string smscheckcode = 12;
+    optional uint32 smsaccid = 13;
+    optional string u64timestamp = 14;
+}
+message RemindLoginDevInfo {
+    optional string unittpye =1;
+    optional string devicename =2;
+    optional uint32 tostype=3;
+}
+message GeneralLoginAck {
+    optional uint32 anonymousid = 1;
+    optional LsAddrInfo lsaddrinfo = 2;
+    optional uint32 showsns = 3;
+    optional uint32 proxynip = 4;
+    optional uint32 param = 5;
+    optional LcUserInfoEx userinfo = 6;
+    optional string phoneno = 7;
+    optional string suffstring = 8;  //后缀字符串
+    optional uint32 type = 9;        //返回类型
+    repeated RemindLoginDevInfo remindlogindevinf = 10;  //结构
+}
+
+message NoRegLoginReq {
+    required string specialcode = 1;
+    optional uint32 agentid = 2;
+    optional string agentmark = 3;
+    optional string macaddr = 4;
+    optional uint32 snspwd = 5;
+    optional uint32 comitschemeid = 6;
+    optional string devid = 7;
+    optional uint32 customid = 8;//安装员ID
+    optional string u64timestamp = 9;
+}
+
+message NoRegLoginAck {
+    optional uint32 anonymousid = 1;
+    optional LsAddrInfo lsaddrinfo = 2;
+    optional uint32 showsns = 3;
+    optional uint32 proxynip = 4;
+    optional LcUserInfoEx userinfo = 5;
+    optional uint32 regstatus = 6; // 转换状态。当header.dwParam为0时有效，0老用户，没有注册；1-新用户，有注册
+}
+
+message NoRegBindDefaultAccReq {
+    required string specialcode = 1;
+    required string loginname = 2;
+    required string password = 3;
+    optional string nickname = 4;
+    optional uint32 figureid = 5;
+    required string verifycode = 6;
+    required uint32 timefound = 7;
+    optional uint32 cryptotype = 8; //加密类型: 1--aes
+}
+
+message NoRegBindDefaultAccAck {
+    optional uint32 userid = 1;
+}
+
+message NoRegBindEmailAccReq {
+    required string specialcode = 1;
+    required string email = 2;
+    required string password = 3;
+    optional string nickname = 4;
+    optional uint32 figureid = 5;
+    required string verifycode = 6;
+    required uint32 timefound = 7;
+    optional uint32 cryptotype = 8; //加密类型: 1--aes
+}
+
+message NoRegBindEmailAccAck {
+    optional uint32 userid = 1;
+}
+
+message NoRegBindMobileAccReq {
+    required string specialcode = 1;
+    required string mobile = 2;
+    required string password = 3;
+    optional string nickname = 4;
+    optional uint32 figureid = 5;
+    required string smscode = 6;
+    optional uint32 cryptotype = 7; //加密类型: 1--aes
+    optional int32 version = 8; // 功能版本控制标识：默认0-标识老流程，1-新流程
+}
+
+message NoRegBindMobileAccAck {
+    optional uint32 userid = 1;
+}
+
+message UnicomAccountUpReq {
+    required string unicomaccount = 1;
+}
+
+message GetSMSRandomPwdReq {
+    required string loginname = 1;  //账号
+    required string mac = 2; //mac地址
+}
+
+message GetSMSRandomPwdAck {
+    optional int32 nullvalue = 1;
+}
+
+message RandomPwdLoginReq {
+    required string loginname = 1; //账号
+    required string randompwd = 2; //随机密码
+    optional uint32 agentid = 3; //媒体ID
+    optional string agentmark = 4; //媒体说明
+    required string mac = 5; //mac地址
+    optional uint32 psdsns = 6; //是否显示SNS的密匙
+    optional uint32 comitschemeid = 7; //组委会方案ID
+    optional string devid = 8; //设备ID
+}
+
+message RandomPwdLoginAck {
+    optional uint32 anonymousid = 1;
+    optional LsAddrInfo lsaddrinfo = 2;
+    optional uint32 showsns = 3;
+    optional uint32 proxynip = 4;
+    optional LcUserInfoEx userinfo = 5;
+    optional string refreshtoken = 6;
+    optional string accesstoken = 7;
+}
+
+message GetAccessTokenReq {
+    required string granttype = 1;
+    required string reqtoken = 2;
+    optional string appkey = 3;
+    optional string appsecret = 4;
+    optional string redirecturi = 5;
+    optional string scope = 6;
+    optional int32  protocol = 7;
+    optional string time = 8;
+    optional string sign = 9;
+}
+
+message GetAccessTokenAck {
+    required uint32 result = 1;
+    optional string accesstoken = 2;
+    optional string refreshtoken = 3;
+    optional string sessionkey = 4;
+    optional string sessionsecret = 5;
+    optional uint32 expires = 6;
+    optional string param1 = 7;
+    optional string param2 = 8;
+}
+message GetAccessTokenNewReq {
+    required string granttype = 1;
+    required string reqtoken = 2;
+    optional string appkey = 3;
+    optional string appsecret = 4;
+    optional string redirecturi = 5;
+    optional string scope = 6;
+    optional int32  protocol = 7;
+    optional string time = 8;
+    optional string sign = 9;
+}
+
+message GetAccessTokenNewAck {
+    required uint32 result = 1;
+    optional string accesstoken = 2;
+    optional string refreshtoken = 3;
+    optional string sessionkey = 4;
+    optional string sessionsecret = 5;
+    optional uint32 expires = 6;
+    optional string param1 = 7;
+    optional string param2 = 8;
+}
+
+message OpenPartnerLoginReq {
+    required string partneruserid = 1;
+    required uint32 partnerid = 2;
+    optional string macaddr = 3;
+    optional string accesstoken = 4;
+    optional string refreshtoken = 5;
+    optional string loginname = 6;
+    optional string password = 7;
+    optional uint32 param1 = 8;
+    optional uint32 param2 = 9;
+    optional string szparam1 = 10;
+    optional string szparam2 = 11;
+    optional uint32 productid = 12; //合作方产品ID，用于区分同一个合作方的多个产品渠道
+    optional uint32 gameid = 13; //游戏id
+    optional uint32 comitschemeid = 14; //组委会方案id
+    optional string u64timestamp = 15;
+}
+
+message OpenPartnerLoginAck {
+    required uint32 acktype = 1;
+    required string partneruserid = 2;
+    optional string accesstoken = 3;
+    optional string refreshtoken = 4;
+}
+
+message TokenLoginReq {
+    required string loginname = 1;
+    required string refreshtoken = 2;
+    required string acctoken = 3;
+    optional string macaddr = 4;
+    optional uint32 psdsns = 5;
+    optional uint32 comitschemeid = 6;
+    optional uint32 reserveparam = 7;
+    optional string devid = 8;
+    optional string u64timestamp = 9;
+}
+
+message TokenLoginAck {
+    optional uint32 anonymousid = 1;
+    optional LsAddrInfo lsaddrinfo = 2;
+    optional uint32 showsns = 3;
+    optional uint32 proxynip = 4;
+    optional LcUserInfoEx userinfo = 5;
+    optional string refreshtoken = 6;
+    optional string acctoken = 7;
+}
+
+message ModifyFigureReq {
+    required uint32 userid = 1;
+    required uint32 newfigureid = 2;
+}
+
+message ModifyFigureAck {
+    optional int32 nullvalue = 1;
+}
+
+message GetUserDomainGrowReq {
+    required uint32 userid = 1;
+    required uint32 domainid = 2;
+    required uint32 gameid = 3;
+    optional int32 param = 4;
+}
+
+message DomainGrow {
+    required uint32 growid = 1;
+    required int32 value = 2;
+}
+
+message GetUserDomainGrowAck {
+    required uint32 userid = 1;
+    required uint32 domainid = 2;
+    required uint32 gameid = 3;
+    optional uint32 param = 4;
+    repeated DomainGrow growlist = 5;
+}
+
+message GetRealRegStatusReq {
+    required uint32 userid = 1;
+}
+
+message GetRealRegStatusAck {
+    optional uint32 status = 1;
+}
+
+message CommerceGetAllPartnerInfoReq {
+    optional string partneruserid = 1; //max available length : 64 bytes
+    optional string apikey = 2; //max available length : 32 bytes
+    optional string sessionid = 3; //max available length : 256
+    optional string timestamp = 4; //max available length : 20
+    optional string sign = 5; //max available length : 32
+    optional uint32 partnerid = 6;
+    optional string mac = 7; //max available length : 23
+    optional uint32 uparam1 = 8; //保留参数
+    optional uint32 uparam2 = 9; //保留参数
+    optional string szparam1 = 10; //保留参数 max available length : 512
+    optional string szparam2 = 11; //保留参数 max available length : 63
+    optional uint32 customid = 12; //安装推广员id
+    optional uint32 productid = 13; //合作方产品ID，用于区分同一个合作方的多个产品渠道
+}
+
+message PartnerInfo {
+    optional uint32 userid = 1;
+    optional uint32 figureid = 2;
+    optional string nickname = 3;
+    optional string loginname = 4;
+    optional uint32 formid = 5;
+}
+
+message PartnerCertLoginResult {
+    optional string errcode = 1;
+    optional string errmsg = 2;
+}
+
+message CommerceGetAllPartnerInfoAck {
+    required uint32 acktype = 1; //响应类型
+                     //0-JJ帐号存在，返回JJ帐号信息；
+                     //1-JJ帐号不存在，配置自动注册，认证成功，返回JJ帐号信息；
+                     //2-JJ帐号不存在，配置自动注册，认证失败，返回合作方认证失败的错误码和提升消息；
+                     //3-JJ帐号不存在，配置手动注册，不做认证，直接返回，由客户端发起关联注册；
+    optional string partneruserid = 2; //合作方用户ID
+    optional uint32 partneruseral = 3; //合作方用户自动登录配置项：0-自动登录，1-手动登录
+    optional PartnerInfo partnerinfo = 4; //acktype == 0 || acktype == 1 时设置
+    optional PartnerCertLoginResult result = 5; //acktype == 2 时设置
+}
+
+message CommerceUserLoginReq {
+    optional string partneruserid = 1; //max available length : 64 bytes
+    optional string sessionid = 2; //max available length : 256
+    optional string timestamp = 3; //max available length : 20
+    optional string sign = 4; //max available length : 32
+    optional uint32 partnerid = 5;
+    optional string mac = 6; //max available length : 23
+    optional string loginname = 7; //max available length : 19
+    optional string password = 8; //max available length : 19
+    optional uint32 uparam1 = 9; //保留参数
+    optional uint32 uparam2 = 10; //保留参数
+    optional string szparam1 = 11; //保留参数 max available length : 512
+    optional string szparam2 = 12; //保留参数 max available length : 63
+    optional uint32 reserve = 13; //保留参数
+    optional uint32 productid = 14; //合作方产品ID，用于区分同一个合作方的多个产品渠道
+    optional uint32 gameid = 15; //游戏id
+    optional uint32 comitschemeid = 16; //组委会方案id
+    optional string u64timestamp = 17;
+}
+
+message CommerceUserLoginAck {
+    optional uint32 acktype = 1;
+    optional string partneruserid = 2;
+}
+
+message ModifyGrowReq  {
+    required uint32 userid = 1;
+    required uint32 growid = 2;
+    required uint32 growvalue = 3;
+    optional uint32 outeraccid = 4;
+    optional uint32 param = 5;
+}
+
+message ModifyGrowAck  {
+    required uint32 growid = 1;
+    required int32 growvalue = 2;
+}
+message ModifyUserHisEvReq{
+    required uint32 userid = 1;
+    required uint32 eid=2;
+    required uint32 modcount=3;
+    optional uint32 outeraccid=4;
+    optional string note =5;
+    optional uint32 mpid =6;
+    optional bool isnew =7;  //是否发送新协议给大厅
+}
+message ModifyUserHisEvAck {
+    required uint32 balance=1;
+}
+
+message CommerceUserLoginNewAck {
+    optional uint32 acktype = 1;
+    optional string partneruserid = 2;
+    optional string accesstoken = 3;
+    optional string refreshtoken = 4;
+    optional uint32 reserve = 5;
+}
+
+message GetRequestTokenReq {
+    optional string appkey = 1;//应用ID或者叫应用key
+    optional string extsession = 2;//用户外部登陆标示
+    optional uint32 userdefine = 3;//用户自定义标识
+    optional uint32 param2 = 4;//客户端参数
+}
+
+message GetRequestTokenAck {
+    optional uint32 result = 1;//结果码
+    optional string redirecturi = 2;//URI
+    optional string token = 3;//token信息
+    optional uint32 userdefine = 4;//用户自定义标识
+    optional uint32 param2 = 5;//客户端参数
+}
+
+message UserRegInfo {
+    optional uint32 userinfoid = 1;
+    optional uint32 value = 2;
+}
+
+message RegUserInfoReq {
+    optional uint32 regtype = 1; //注册类型 1:用户信息注册(比如客户端登录时); 2:删除用户信息(比如用户退出客户端时)
+    optional uint32 param1 = 2; //预留参数
+    repeated UserRegInfo userinfo = 3; //用户信息
+}
+
+message RegUserInfoAck {
+    optional uint32 nullvalue = 1;
+}
+
+message SendUserMsgReceiptReq {
+    optional uint32 msgtype = 1; //消息类型
+    optional uint32 param1 = 2; //预留参数
+    optional string cltctr = 3; //客控属性
+}
+
+message SendUserMsgReceiptAck {
+    optional uint32 nullvalue = 1;
+}
+
+message PushUserMsgAck {
+    optional uint32 userid = 1;
+    optional uint32 msgtype = 2; //消息类型
+    optional string srvctrdata = 3; //服控属性
+    optional string cltctrdata = 4; //客控属性
+    optional string cltdisdata = 5; //客显属性
+}
+
+message SendRecentGameReq {
+    optional int32  producttype = 1;    // 产品平台类型 3 移动
+    optional int32  getcount = 2;           // 获取条数，默认为20条
+}
+
+message MyGamedata{
+    optional int32  productid = 1;          // 产品ID
+    optional int32  gameid = 2;             // 游戏ID
+    optional uint32 gametime = 3;           // 参赛时间
+    optional int32  dataproperty = 4;           // 数据操作类型 0-预留，未使用 1-置顶
+    optional uint32 modifytime = 5;             // 数据修改时间，用于客户端数据排序
+}
+message SendRecentGameAck {
+    optional uint32  userid = 1;    //用户id
+    optional int32  producttype = 2;    // 产品平台类型 0-全部 1-PC 2-IOS 3-安卓 4-WINPHONE 5-网页端
+    repeated MyGamedata gamedatas = 3; //data
+}
+
+message OprateRecentGameReq {
+    optional int32  productid = 1; // 产品ID
+    optional int32  optrtype = 2; // 数据操作类型 0-预留，未使用 1-置顶 2-取消置顶 3-删除
+}
+
+message OprateRecentGameAck {
+    optional uint32 userid = 1; //用户id
+    optional int32  productid = 2; // 产品ID
+    optional int32  optrtype = 3; // 数据操作类型 0-预留，未使用 1-置顶 2-取消置顶 3-删除
+}
+
+message GetRandomNicknameReq {
+    optional uint32 platid = 1;         //平台类型，取值ePlatTypeID
+    optional uint32 accstyle = 2;       //账号类型，取值eAccStyle
+    optional uint32 internetip = 3; // 外网IP,用于频率限制
+    optional uint32 param = 4;      // LC使用的参数，LS原样回传
+}
+
+message GetRandomNicknameAck {
+    optional uint32 result = 1;         //结果码
+    optional uint32 id = 2;
+    optional uint32 param = 3;
+    optional string  nickname = 4;
+}
+
+message GetPngAlgorithmVerifyCodeReq {
+    optional uint32 param = 1;      // LC使用的参数，LS原样回传
+}
+
+message GetPngAlgorithmVerifyCodeAck {
+    required int32 timefound = 1;//验证码创建时间
+    optional uint32 param = 2;
+    required uint32 len = 3;
+    optional bytes verifycode = 4;
+}
+
+message GetBmpAlgorithmVerifyCodeReq {
+    optional uint32 param = 1;      // LC使用的参数，LS原样回传
+}
+
+message GetBmpAlgorithmVerifyCodeAck {
+    required int32 timefound = 1;//验证码创建时间
+    optional uint32 param = 2;
+    required uint32 len = 3;
+    optional bytes verifycode = 4;
+}
+
+//获得用户Evt信息
+message GetSingleEvtReq {
+    required uint32 userid = 1;
+    required uint32 evtid = 2;
+    required uint32 mpid = 3;
+}
+ message GetSingleHisEvtAck {
+    required uint32 userid = 1;
+    required uint32 evtid = 2;
+    required uint32 mpid = 3;
+    required uint32 evtvalue = 4;  // Evt值
+ }
+
+ //按域获取Evt
+message GetUserDomainEvtReq {
+    required uint32 userid = 1;
+    required uint32 domainid = 2; //域ID
+    required uint32 gameid = 3;
+    required uint32 param = 4; //客户端参数
+}
+
+message TranHisEvt {
+    required uint32 evtid = 1;
+    required uint32 evtvalue = 2;  // Evt值
+}
+
+message GetUserDomainEvtAck {
+    required uint32 userid = 1;
+    required uint32 domainid = 2; //域ID
+    required uint32 gameid = 3;
+    required uint32 param = 4; //客户端参数
+    repeated TranHisEvt hisevts = 5;
+}
+
+//获得全部Evt信息
+message GetUserAllHisEvtReq {
+    required uint32 userid = 1;
+}
+
+message GetUserAllEvtAck {
+    required uint32 userid = 1;
+    repeated TranHisEvt hisevts = 2;
+}
+
+//推送用户更新后的Evt信息
+message PushUserHisEvtAck {
+    required uint32 userid = 1;
+    required uint32 mpid = 2;
+    repeated LcTranGrow growlist = 3;
+}
+
+//更新里程碑数据（最好成绩）
+message MakerInfoReq {
+    required uint32 userid = 1;
+    required uint32 productid = 2;
+}
+
+message MakerInfoAck {
+    required uint32 userid = 1; // 用户Id
+    required uint32 productid = 2; // 比赛的产品ID
+    required uint32 rank = 3; // 最好名次
+    required uint32 quantity = 4; // 比赛参赛人数
+    required uint32 markerstamp = 5; // 比赛开始时间，时间戳
+    required uint32 wincount = 6; // 如果最好名次是冠军，夺冠次数
+}
+
+message NoRegBindPartnerReq {
+    optional string specialcode = 1;//特征码
+    optional string nick = 2;
+    optional uint32 figureid = 3;
+    optional uint32 partnerid = 4;//合作厂商ID
+    optional uint32 productid = 5;//合作方产品ID，用于区分同一个合作方的多个产品渠道
+    optional string partneruserid = 6;//合作方用户ID，保证在当前合作方内该标识是唯一的
+    optional string sessionid = 7;//用户状态唯一标识
+    optional string timestamp = 8;//服务请求时间戳，格式：yyyy-MM-dd_HH:mm:ss 特殊处理了一下日期，日期和时间使用_分隔
+    optional string sign = 9;//签名认证，用于验证签名结果，不参加签名
+    optional string regsign = 10;//合作方验证签名
+    optional string appkey = 11;//应用Key
+    optional string openid = 12;//合作方OpenID，与szPartnerUserID可能不同
+                    // 如，微信用户有两个ID：OpenID（用户在所在应用内唯一）、UnionID（用户在微信体系内唯一）
+                    // 此时，szPartnerID填UnionID，szOpenID填OpenID
+}
+
+
+
+message NoRegBindPartnerAck {
+    optional uint32 result = 1;//返回结果码 返回码：
+                   //(35) 合作方账号已绑定为其他JJ账号
+                   //(36) 合作方信息验证失败
+                   //(37) 免注册账号升级失败
+    optional uint32 userid = 2;//用户ID
+}
+
+message GetLoginSMSCodeReq {
+    optional uint32 smschannel = 1; //短信渠道 1或者2 如果第一次用1发送失败，在次获取的时候可以写成2
+}
+
+message GetLoginSMSCodeAck {
+    optional string mobileno = 1;//保留手机号码
+    optional string smslongcode = 2;//长代码，提示用户将一级校验码发送到该长代码索取确认码,给用户的验证码
+    optional string smscheckcode = 3;//一级校验码,需要回复
+    optional uint32 smsaccid = 4;//预订单号,验证时请求需要回复
+}
+
+message BPGetSmsFCodeReq {
+    required uint32 pid = 1;
+    optional string mobile = 2; //手机号码 最大长度15字节
+    optional uint32 smschannel = 3; //短信下发渠道
+    optional uint32 smcprodid = 4;
+}
+
+message BPGetSmsFCodeAck {
+    optional uint32 result = 1; //返回结果码
+    optional string longcode = 2; //用户需要将一级验证码发往此长代码(手机号)
+    optional string fcode = 3; //一级验证码
+    optional uint32 orderid = 4; //SMS订单号
+}
+
+message BPGetMobileBindReq {
+    required uint32 pid = 1; //用户ID
+}
+
+message BPGetMobileBindAck {
+    optional uint32 result = 1; //返回结果码
+    optional string shieldmobile = 2; // 绑定的手机号(*屏蔽第5位-第9位)
+    optional string mobile = 3; //
+    optional uint32 changebindtimelimit = 4;
+}
+
+message BPBindSafeMobileReq {
+    required uint32 pid = 1; //用户ID
+    optional string mobile = 2; //手机号码 最大长度15字节
+    optional string fcode = 3; //一级验证码 最大长度4字节
+    optional string scode = 4; //二级验证码 最大长度4字节
+    optional uint32 smsorderid = 5; //SMS订单号
+    optional uint32 smcprodid = 6;
+}
+
+message BPBindSafeMobileAck {
+    optional uint32 result = 1; //返回结果码
+    optional string mobile = 2; //绑定的手机号
+}
+
+message BPGetMobileBindCountReq {
+    required string mobile = 1; //手机号码 最大长度15字节
+}
+
+message BPGetMobileBindCountAck {
+    optional uint32 result = 1; //返回结果码
+    optional uint32 bindcount = 2; //处于绑定此手机的状态
+    optional uint32 unbindcount = 3; //处于解除绑定此手机的状态
+}
+
+message GetAdvancedInfoReq {
+    required uint32 userid = 1;
+}
+
+message GetAdvancedInfoAck {
+    optional uint32 result = 1; //返回结果码
+    optional uint32 userid = 2;
+    optional uint32 sex = 3;
+    optional uint32 birthday = 4;
+    optional string phone = 5;
+    optional string im = 6;
+    optional uint32 nation = 7;
+    optional uint32 province = 8;
+    optional uint32 city = 9;
+    optional string county = 10;
+    optional string address = 11;
+    optional uint32 zip = 12;
+    optional uint32 industry = 13;
+    optional uint32 occupation = 14;
+    optional uint32 education = 15;
+    optional uint32 salary = 16;
+    optional uint32 favor = 17;
+}
+
+message ModifyAdvancedInfoReq {
+    required uint32 userid = 1;
+    optional uint32 sex = 2;
+    optional uint32 birthday = 3;
+    optional string phone = 4; //手机号码 最大长度15字节
+    optional string im = 5; //最大长度63字节
+    optional uint32 nation = 6;
+    optional uint32 province = 7;
+    optional uint32 city = 8;
+    optional string county = 9; //客户端为utf8编码，转换为gbk后最大长度不超过63字节
+    optional string address = 10; //客户端为utf8编码，转换为gbk后最大长度不超过127字节
+    optional uint32 zip = 11;
+    optional uint32 industry = 12;
+    optional uint32 occupation = 13;
+    optional uint32 education = 14;
+    optional uint32 salary = 15;
+    optional uint32 favor = 16;
+}
+
+message ModifyAdvancedInfoAck {
+    optional uint32 result = 1;
+    optional uint32 userid = 2;
+}
+
+message GetSingleWareReq {
+    optional uint32 userid = 1; //用户ID
+    optional uint32 watid = 2; //ware系统账号类型
+    optional uint32 wareid = 3; //物品ID
+}
+
+message GetSingleWareAck {
+    repeated TranWareBaseInfo warelist = 1;
+    optional uint32 wareid = 2;
+}
+
+message DeviceActiveReq {
+    required uint32 appver = 1; //游戏的当前版本号
+    required uint32 gameid = 2; //
+    optional string imsi = 3; //国际移动用户识别码 最大长度15
+    optional string iccid = 4; //集成电路卡识别码 最大长度23
+    optional string sysver = 5; //操作系统版本号 最大长度15
+    optional uint32 screenwidth = 6; //屏幕宽
+    optional uint32 screenheight = 7; //屏幕长
+    optional string processor = 8; //处理器类型 最大长度63
+    optional string model = 9; //机型 最大长度31
+    optional string nettype = 10; //网络类型 2G/3G/WIFI 最大长度7
+    optional string carrier =11; //运营商 CMCC/Telcom/Unicom/Unkown 最大长度15
+    optional string idfa = 12; //最大长度63
+}
+
+message DeviceActiveAck {
+    optional uint32 result = 1; //返回结果码
+    optional uint32 siteid = 2; //渠道ID
+}
+
+message UserRegNotifyReq {
+    optional uint32 siteid = 1;
+    optional uint32 appid = 2;
+    optional string idfa = 3; //最大长度63
+    optional uint32 promoterid = 4;
+    optional uint32 userid = 5;
+    optional uint32 partnerid = 6;
+    optional string imei = 7;
+}
+
+message UserRegNotifyAck {
+    optional uint32 result = 1; //返回结果码
+}
+
+message GeneralGetFCodeReq {
+    required uint32 userid = 1;
+    optional string mobile = 2; //手机号码，最大长度15
+    optional uint32 smschannel = 3;
+    optional uint32 smcprodid = 4;
+    optional uint32 checkcodetype = 5; //校验码类型，0表示短信，1表示语音
+}
+
+message GeneralGetFCodeAck {
+    optional uint32 result = 1;
+    optional string longcode = 2; //用户需要将一级验证码发往此长代码(手机号)
+    optional string fcode = 3; //一级验证码
+    optional uint32 orderid = 4; //SMS订单号
+}
+
+message GeneralBindMobileGetFCodeReq {
+    required uint32 userid = 1;
+    optional uint32 smschannel = 2;
+    optional uint32 smcprodid = 3;
+    optional uint32 checkcodetype = 4; //校验码类型，0表示短信，1表示语音
+}
+
+message GeneralBindMobileGetFCodeAck {
+    optional uint32 result = 1;
+    optional string longcode = 2; //用户需要将一级验证码发往此长代码(手机号)
+    optional string fcode = 3; //一级验证码
+    optional uint32 orderid = 4; //SMS订单号
+}
+
+message ReviseNickNameReq {
+    required string nick = 1; //修订昵称
+}
+
+message ReviseNickNameAck {
+    optional uint32 result = 1;
+    optional string revisenick = 2; //修订的推荐昵称
+}
+
+message GetRecommendNickNameReq {
+    required uint32 nicknum = 1; //获取昵称数量，最大支持5
+}
+
+message GetRecommendNickNameAck {
+    optional uint32 result = 1;
+    optional uint32 nicknum = 2; //返回推荐昵称数量
+    repeated string recommendnick = 3; //返回推荐昵称
+}
+
+message StartGameClientAck {
+    optional uint32 userid = 1;
+    required uint32 tourneyid = 2; //开赛的 Tourney Id
+    required uint32 matchid = 3; //开赛的 Match Id
+    optional uint32 matchpoint = 4; //开赛点
+    required uint32 gameid = 5; //比赛 Id
+    required uint32 productid = 6; //产品 Id
+    optional uint32 starttype = 7; //0=开赛启动,1=断线重启,2=疑似断线重启,3=GS跳转重启
+    optional uint32 gsnip = 8;
+    optional uint32 gsport = 9;
+    optional uint32 teamid = 10;
+    optional uint32 reserve = 11;
+    required string ticket = 12; //进入游戏Ticket(进入游戏的加密数据)
+}
+
+message UnBindSafeMobileReq {
+    optional string fcode = 1; //一级验证码
+    optional string scode = 2; //二级验证码
+    optional uint32 smsorderid = 3; //sms订单号
+    optional uint32 smcprodid = 4;
+}
+
+message UnBindSafeMobileAck {
+    optional uint32 result = 1; //返回结果码
+    optional string shieldmobile = 2; //绑定的手机号(*屏蔽第5位-第9位)
+}
+
+message ModifyOriginalEventReq {
+    required uint32 oeid = 1;            // 原生事件ID
+    required uint32 oevalue = 2;      // 原生事件值
+    optional uint32 reserve1 = 3;     // 签到奖励随机值
+    optional uint32 reserve2 = 4;     //备用
+    optional uint32 reserve3 = 5;    //备用
+}
+
+message ModifyOriginalEventAck {
+    optional uint32 nullvalue = 1;
+}
+
+message TeamReserve
+{
+    optional uint32 seat = 1;                   // 位置
+    optional string name = 2;                   // 呢称
+}
+
+message SnsId
+{
+    optional uint32 cid = 1;                    // 表示关系大类
+    optional uint32 tid = 2;                    // 表示关系种类
+    optional uint32 pid = 3;                    // 关系主id
+}
+
+message TeamOption
+{
+    optional string teamname = 1;           // 队名
+    optional string captainname = 2;        // 队长
+    optional uint32 mustfriend = 3;         // 只允许好友入队
+    optional uint32 nosubstitute = 4;           // 不要替补
+    optional uint32 restrictgrowid = 5;         // 成长值限制
+    optional uint32 restrictmin = 6;            // 最小值
+    optional uint32 restrictmax = 7;            // 最大值
+    optional string oppositecaptainname = 8;    // 对方队长名
+    optional uint32 hidearrangement = 9;        // 本方阵容是否可见
+    optional uint32 snsdisscussid = 10;         // 讨论组ID
+    optional uint32 optionflags = 11;               // 选项标记(加入队伍需要队长确认,队伍需要队长付费)
+    optional SnsId stsnsid = 12;                    // 关系ID
+    optional uint32 restrictgrowid2 = 13;           // 成长值限制2
+    optional uint32 restrictmin2 = 14;              // 限制最小值2
+    repeated TeamReserve teamreservelist = 15;
+    optional uint32 teamid = 16;
+    optional uint32 reserve1 = 17;
+    optional uint32 reserve2 = 18;
+}
+
+message TourneyCreateTeamReq {
+    optional uint32 userid = 1;
+    optional uint32 gameid = 2;
+    optional uint32 tourneyid = 3;
+    optional uint32 matchpoint = 4;
+    optional uint32 signuptype = 5;
+    optional string nickname = 6;
+    repeated DomainGrow growlist = 7;
+    optional TeamOption teamoption = 8;
+    optional uint32 signupplanid = 9; // 填写报名方案号，老的客户端不填，为0即可
+}
+
+message TourneyCreateTeamAck {
+    optional uint32 userid = 1;
+    optional uint32 tourneyid = 2;
+    optional uint32 matchpoint = 3;
+    optional string text = 4;
+}
+
+message TourneyAlterTeamReq {
+    optional uint32 userid = 1;
+    optional uint32 matchpoint = 2;
+    optional uint32 tourneyid = 3;
+    optional TeamOption teamoption = 4;
+}
+
+message TourneyAlterTeamAck {
+    optional uint32 userid = 1;
+    optional uint32 tourneyid = 2;
+    optional uint32 matchpoint = 3;
+    optional string text = 4;
+}
+
+message TourneyJoinTeamReq {
+    optional uint32 userid = 1;
+    optional string nickname = 2;       // 请求者呢称
+    optional string teamname = 3;       // 队名
+    optional uint32 targetseat = 4;     // 请求加入的位置
+    optional uint32 tourneyid = 5;
+    optional uint32 signuptype = 6;
+    optional uint32 gameid = 7;         // PC端的报名请求需要把gameid传上来
+    optional uint32 matchpoint = 8;     // 所报名比赛的开赛点
+    repeated DomainGrow growlist = 9;   // 玩家grow数值
+    optional uint32 signupplanid = 10; // 填写报名方案号，老的客户端不填，为0即可
+    optional uint32 teamid = 11;
+    optional uint32 reserved1 = 12;
+    optional uint32 reserved2 = 13;
+}
+
+message TourneyJoinTeamAck {
+    optional uint32 userid = 1;
+    optional uint32 tourneyid = 2;
+    optional uint32 matchpoint = 3;
+    optional string text = 4;
+}
+
+message TourneyLeaveTeamReq {
+    optional uint32 userid = 1;
+    optional uint32 tourneyid = 2;
+    optional uint32 matchpoint = 3;
+    optional string teamname = 4;
+    optional uint32 teamid = 5;
+}
+
+message TourneyLeaveTeamAck {
+    optional uint32 tourneyid = 1;
+    optional uint32 matchpoint = 2;
+}
+
+message TourneyDeleteTeamReq {
+    optional uint32 userid = 1;
+    optional uint32 tourneyid = 2;
+    optional uint32 matchpoint = 3;
+    optional string teamname = 4;
+    optional uint32 teamid = 5;
+}
+
+message TourneyDeleteTeamAck {
+    optional uint32 tourneyid = 1;
+    optional uint32 matchpoint = 2;
+}
+
+message TourneySignupReq {
+    required uint32 userid = 1;
+    optional string nickname = 2;
+    required uint32 tourneyid = 3;
+    required uint32 signuptype = 4;     // 报名条件的类型：在报名条件的消息中，有些比赛有多种报名条件，用户选择后，报名时告诉服务器
+    optional uint32 matchver = 5;
+    optional uint32 param = 6;
+    optional uint32 gamever = 7;
+    required uint32 matchpoint = 8;     // 报名那个开始时间点：只有多个开赛点的比赛才有用，其他比赛传 0 即可
+    required uint32 gameid = 9;         // 游戏 ID：目前只有斗地主和德州两个
+    repeated DomainGrow growlist = 10;   // 玩家grow数值
+    optional uint32 signupplanid = 11; // 填写报名方案号，老的客户端不填，为0即可
+}
+
+message GetMobileBindDetailReq {
+    required uint32 userid = 1;
+}
+
+message GetMobileBindDetailAck {
+    required uint32 result = 1;    // 返回结果码
+    required string  shieldmobile = 2;     //  绑定的手机号(*屏蔽第5位-第9位)
+    required uint32 vmobile = 3;                //  绑定状态：0-未绑定，1-绑定
+    required string  mdate = 4;                 //  最后修改时间
+    required string  cdate = 5;                 //  首次绑定时间
+}
+
+message CheckMdfNicknameReq {
+    required uint32 userid = 1;
+}
+
+message CheckMdfNicknameAck {
+    required uint32 result = 1;                     // 返回结果码 0为成功，其他如统一修改昵称错误码
+    required uint32  isfree= 2;                     // 是否免费
+    required uint32 paymoney = 3;               // 付费
+    required uint32 overplusmdfcount = 4; // 剩余修改次数
+    required uint32 levelid = 5;                   // 用户等级
+}
+
+message GeneralModifyNickNameReq {
+    required uint32 userid = 1;                         // 用户ID
+    required uint32 levelid = 2;                        // 用户等级
+    required uint32 platid = 3;                         // 平台ID，参见eDicPlatTypeID，TKUserUniversalDicSrv.h
+    required string  newnickname = 4;               // 新昵称
+    required uint32 newnicknametype = 5;        // 新昵称修改类型（自定义，随机，修订） 参见eModifyNickNameType，TKUserUniversalDicSrv.h
+}
+
+//返回码：
+//#define TK_LCMODIFYNICKNAME_USERNOTEXISTS           (14)  //用户不存在
+//#define TK_LCMODIFYNICKNAME_NICKNAMEEQUALLOGINNAME  (17)  //新昵称与登陆名相同
+//#define TK_LCMODIFYNICKNAME_OLDNICKNAMEERR          (18)  //旧昵称出错
+//#define TK_LCMODIFYNICKNAME_NOMONEY                 (19)  //金币不足
+//#define TK_LCMODIFYNICKNAME_NOMODIFYCOUNT           (20)  //修改次数不足
+//#define TK_LCMODIFYNICKNAME_OTHERERR                (21)  //其他错误
+//#define TK_LCMODIFYNICKNAME_NICKNAMEEXISTS          (103) //新昵称已存在
+//#define TK_LCMODIFYNICKNAME_NICKNAMELAWLESS         (104) //昵称非法
+message GeneralModifyNickNameAck {
+    required uint32 result = 1;                         // 返回结果码
+}
+
+message ReviseNickNameNewReq {
+    required string  nickname = 1;              //修订昵称
+}
+
+// 返回码
+//#define TK_RESUL_SUCCESS                  (0)  // 成功，昵称可用
+//#define TK_RESULT_NICK_LAWLESS                (18) // 昵称非法
+//#define TK_RESULT_AAA_NICK_ISEXIST          (19) // 昵称已存在
+//#define TK_RESULT_NICK_TOOLONGTORECOMMEND (48) // 昵称不可用；昵称太长，不予修订
+//#define TK_RESULT_NICK_RECOMMENDERROR     (49) // 昵称不可用；修订失败（修订三次未成功）
+//#define TK_RESULT_NICK_RECOMMENDSUCCESS       (50) // 昵称不可用；修订成功
+message ReviseNickNameNewAck {
+    required uint32 result = 1;                         // 返回结果码
+    required uint32 revisenicknamenum = 2;  //修订昵称数量，目前最大为3
+    repeated string  revisenickname = 3;            //修订昵称
+}
+message PushMsNotifyAck {
+    optional uint32 userid = 1;
+    optional uint32 notifyid = 2;
+    optional string xml = 3;
+}
+
+message MasterRoundReq {
+    optional uint32 gameid = 1;
+}
+
+message MasterRoundAck {
+    optional uint32 gameid = 1;
+    optional string xml = 2;
+}
+
+message NetTestReq {
+    optional uint32 param = 1; //客户端计数用
+    optional uint32 type = 2; //0:tcp,1:udp
+}
+
+message NetTestAck {
+    optional uint32 param = 1; //客户端计数用
+    optional uint32 type = 2; //0:tcp,1:udp
+}
+message PushUserMsgRemindAck
+{
+         optional uint32  userid =1;
+         required uint64  timestamp=2;
+         optional string  unittype=3;
+         optional string  devicename=4;
+         optional uint32  tostype =5;
+}
+
+message CreateTableReq
+{
+    optional uint32 userid = 1;
+    optional uint32 tourneyid = 2;
+    optional uint32 matchpoint = 3;
+    optional uint32 gameid = 4;
+    optional uint32 param = 5;
+    optional uint32 createplan = 6; // 建桌方案
+    optional int32 tabletime = 7; // 建桌时长(分钟)
+    optional int32 permitset = 8; // 0：审批功能关闭； 1：审批功能打开
+    optional int32 tablegamecount = 9;//局数
+    optional int32 appendinfooffsize = 10; //后缀xml信息数据的长度
+    optional string appendstring = 11; //后缀xml字符串
+    optional int32 tabletype = 12;// 0：保留；1：自建房间；2：自建桌
+}
+
+message CreateTableAck
+{
+    optional uint32 userid = 1;
+    optional uint32 tourneyid = 2;
+    optional uint32 matchpoint = 3;
+    optional uint32 param = 4;
+    optional uint32 tableid = 5;
+    optional uint32 createplan = 6; // 建桌方案
+    optional int32 tabletime = 7; // 建桌时长(分钟)
+    optional int32 permitset = 8; // 0：审批功能关闭； 1：审批功能打开
+    optional int32 tablegamecount = 9;//局数
+}
+
+message EnterTableReq
+{
+    optional uint32 userid = 1;
+    optional uint32 tourneyid = 2;
+    optional uint32 matchpoint = 3;
+    optional uint32 gameid = 4;
+    optional uint32 tableid = 5;
+    optional uint32 param = 6;
+    optional int32   tabletype = 7;// 0：保留；1：自建房间；2：自建桌
+}
+
+message EnterTableAck
+{
+    optional uint32 userid = 1;
+    optional uint32 tourneyid = 2;
+    optional uint32 matchpoint = 3;
+    optional uint32 param = 4;
+    optional uint32 tableid = 5;
+    optional uint32 createplan = 6; // 建桌方案
+    optional int32 tabletime = 7; // 建桌时长(分钟)
+    optional int32 permitset = 8; // 0：审批功能关闭； 1：审批功能打开
+}
+
+message GetMyTableReq
+{
+    optional uint32 userid = 1;
+    optional uint32 tourneyid = 2;
+    optional uint32 matchpoint = 3;
+    optional uint32 gameid = 4;
+    optional uint32 param = 5;
+    optional uint32 datatype = 6;  // 默认值为0，表示指定玩家的游戏桌信息，1-表示指定游戏的所有桌信息（此时的dwUserID不参与计算），2-表示全部的桌信息（此时的wGameID不参与计算）
+}
+
+message GetMyTableAck
+{
+    optional uint32 userid = 1;
+    optional uint32 tourneyid = 2;
+    optional uint32 matchpoint = 3;
+    optional uint32 param = 4;
+    optional uint32 tableid = 5;
+    optional uint32 createplan = 6; // 建桌方案
+    optional int32 tabletime = 7; // 建桌时长(分钟)
+    optional string xml = 8;
+}
+
+message UserExistPWDReq
+{
+    optional uint32 userid = 1;
+}
+
+message UserExistPWDAck
+{
+    optional int32 result = 1;              // 返回结果码,默认成功（0：已设）和失败（1：未设）
+}
+
+message BindSafeMobileNewReq
+{
+    optional uint32 userid = 1;
+    optional uint32 orderid = 2; // SMS订单号
+    optional string pwd = 3; // 密码，如果不需要设置，则填空
+    optional uint32 smcprodid = 4;
+    optional string mobile = 5;
+    optional string fcode = 6; // 一级验证码
+    optional string scode = 7; // 二级验证码
+}
+
+// 返回码结果值
+//#define TK_RESULT_SUCCESS                 (0)     // 成功
+//#define TK_RESULT_FAILED                  (1)     // 默认错误
+//#define TK_RESULT_FIVEMFAIL                   (7)     // 短信验证码5分钟失效
+//#define TK_RESULT_USERNOREG                   (63)    // 用户是免注账号，不可一键开通
+//#define TK_RESULT_USERNOSAFEMOBILE            (64)    // 用户无安保手机，不可一键开通
+//#define TK_RESULT_RLMOBILEOCCUPY          (66)    // 用户安保手机号已作为其他账号登录名，不可一键开通
+//#define TK_RESULT_ALREADYRLMOBILE         (67)    // 用户安保手机号已是本账号手机登录名，不需一键开通
+//#define TK_RESULT_HAVEPWDBUTSETPWD            (68)    // 失败，用户原有密码，却要求设置密码
+//#define TK_RESULT_NOPWDBUTNOTSETPWD           (69)    // 失败，用户原无密码，却没要求设置密码
+//#define TK_RESULT_NOTRELIABLEDEVTYPE      (70)    // 非可靠设备，不许换绑
+//#define TK_RESULT_UNBINDSAFEMOBILE            (71)    // 未绑手机，不许换绑
+//#define TK_RESULT_BINDTOCHANGEMOBILE      (72)    // 绑定间隔时间不足，不许换绑
+//#define TK_RESULT_CHANGESAMEMOBILE            (73)    // 换绑相同手机号
+//#define TK_RESULT_SAFEMOBILE_ISEXIST (78) // 密保手机已被其他账号占用
+//#define TK_RESULT_BINDED                  (110)   // 已绑定手机
+//#define TK_RESULT_MOBILENOERR             (130)   // 手机号码错误
+//#define TK_RESULT_SMSFAILED                   (140)   // SMS验证错误
+
+message BindSafeMobileNewAck
+{
+    optional string mobile = 1; //绑定的手机号
+    optional int32 result = 2; // 返回结果码
+}
+
+message ChangeBindMobileAck
+{
+    optional string mobile = 1; //绑定的手机号
+    optional int32 result = 2; // 返回结果码
+}
+
+message MayOpenUserRLMobileReq
+{
+    optional uint32 userid = 1;
+}
+
+message MayOpenUserRLMobileAck
+{
+    optional int32 result = 1;
+}
+
+message OpenUserRLMobileReq
+{
+    optional uint32 userid = 1;
+    optional string pwd = 2; // 密码，如果不需要设置，则填空
+}
+
+message OpenUserRLMobileAck
+{
+    optional int32 result = 1;
+}
+
+message GetAccountOpenStateReq
+{
+    optional uint32 userid = 1;
+}
+
+message GetAccountOpenStateAck
+{
+    optional uint32 mailopenstate = 1;
+    optional uint32 defaultopenstate = 2;
+    optional uint32 phoneopenstate = 3;
+}
+
+message MobileExistQueryReq
+{
+    optional uint32 userid = 1;
+    optional string mobile = 2;
+}
+
+message MobileExistQueryAck
+{
+    optional uint32 safemobileexist = 1;
+    optional uint32 rlmobileexist = 2;
+}
+
+//玩家请求修改的数据
+message LoobyUserDataUp
+{
+    required uint32 oriid = 1;
+    required int32 datatype = 2; //数据类型[1-整型,2-字符串,3-二进制]
+    optional uint32 datauint = 3; //整型数据
+    optional string datastring = 4;//字符串数据
+    optional bytes databinary = 5; //二进制数据
+}
+//服务器下发的玩家数据
+message LoobyUserDataDown
+{
+    required uint32 expiretime = 1;
+    optional uint32 oriid = 2;
+    required int32 datatype = 3; //数据类型[1-整型,2-字符串,3-二进制,4-int64]
+    optional uint32 datauint = 4; //整型数据
+    optional string datastring = 5;//字符串数据
+    optional bytes databinary = 6; //二进制数据
+    optional int64 dataint64 = 7; //int64数据
+}
+
+//每次只能获取一种数据
+message GetUserDataReq
+{
+    required uint32 userid = 1;
+    required uint32 oriid = 2;
+}
+
+message GetUserDataAck
+{
+    optional  LoobyUserDataDown data = 1;
+}
+
+//每次可以修改多个数据
+message ModifyUserDataReq
+{
+    required uint32 userid = 1;
+    required uint32 ncount = 2;
+    repeated LoobyUserDataUp data = 3;
+}
+
+message ModifyUserDataAck
+{
+    repeated LoobyUserDataDown data = 1;
+}
+
+message ConfirmTeamReq {
+    optional uint32 tourneyid = 1;
+    optional uint32 matchpoint = 2;
+    optional uint32 userid = 3;
+    optional string teamname = 4;
+    optional uint32 cnttid = 5;
+    optional uint32 clttid = 6;
+    optional uint32 param = 7;
+}
+
+message ConfirmTeamAck {
+    optional uint32 tourneyid = 1;
+    optional uint32 matchpoint = 2;
+}
+
+message TourneyLookOnReq {
+    optional uint32 userid = 1;
+    optional uint32 lookon_userid = 2;
+    optional uint32 tourneyid = 3;
+    optional uint32 matchpoint = 4;
+    optional uint32 gameid = 5;
+    optional uint32 paramclt = 6;
+    optional uint32 signupplanid = 7;
+}
+
+message TourneyLookOnAck {
+    optional uint32 tourneyid = 1;
+    optional uint32 matchpoint = 2;
+    optional uint32 productid = 3;
+    optional uint32 gameid = 4;
+    optional uint32 flag = 5; // 产品属性标记
+}
+
+//真实身份信息查询
+message GetRealIDInfoReq {
+    optional uint32 userid = 1;           //用户ID
+    optional uint32 idcardtype = 2;       //证件类型 eAAA_RealIDInfo_IDCardType
+    repeated LoobyUserDataUp data = 3;    //预留信息暂不用
+}
+
+//返回码结果值
+//#define TK_RESULT_USERNOEXIST                 (10) // 用户不存在
+//#define TK_RESULT_NOTINTEGRAL                 (79) // 上传实名信息不完整
+//#define TK_RESULT_NOTREAL                       (80) // 上传实名信息不真实
+//#define TK_RESULT_OLDNOTNOTREAL               (81) // 原实名信息完整且真实或真实性未校验
+//#define TK_RESULT_IDCARDTYPENOTSUPPORT(82) // 证件类型不支持
+//#define TK_RESULT_IDCARD_INVALID          (83) // 证件无效
+//#define TK_RESULT_REALNAME_INVALID        (84) // 真实姓名无效
+
+message GetRealIDInfoAck {
+    optional string realname = 1;         // 真实姓名[展示末位]
+    optional string idcard = 2;           // 身份证[展示首末位]
+    optional uint32 govv = 3;              // 真实身份信息官方认证状态 eAAA_RealIDInfo_GOVV
+    optional uint32 integrity = 4;        // 信息完整度 eAAA_RealIDInfo_Integrity
+    repeated LoobyUserDataDown data = 5;  // 预留信息，暂不用
+}
+
+//真实身份信息认证
+message AuthRealIDInfoReq {
+    optional string realname = 1;         // 真实姓名
+    optional uint32 idcardtype = 2;       // 证件类型 eAAA_RealIDInfo_IDCardType
+    optional string idcard = 3;           // 身份证
+    repeated LoobyUserDataUp data = 4;    // 预留信息，暂不用
+    optional uint32 cryptotype = 5; //加密类型: 1--aes
+}
+
+//返回码结果值 与协议"真实身份信息查询"相同
+message AuthRealIDInfoAck {
+    optional uint32 govv = 1;             // 真实身份信息官方认证状态 eAAA_RealIDInfo_GOVV
+    repeated LoobyUserDataDown data = 2;  // 预留信息，暂不用
+}
+
+//真实身份信息设置
+message SetRealIDInfoReq {
+    optional uint32 userid = 1;           // 用户ID
+    optional string realname = 2;         // 真实姓名
+    optional uint32 idcardtype = 3;       // 证件类型 eAAA_RealIDInfo_IDCardType
+    optional string idcard = 4;           // 身份证
+    optional uint32 acctype = 5;          // 账号类型
+    optional uint32 platid = 6;           // 平台类型
+    optional uint32 bizsrc = 7;           // 业务来源 eAAA_RealIDInfo_BizSrc
+    repeated LoobyUserDataUp data = 8;    // 预留信息，暂不用
+    optional uint32 cryptotype = 9; //加密类型: 1--aes
+}
+
+//返回码结果值 与协议"真实身份信息查询"相同
+message SetRealIDInfoAck {
+    repeated LoobyUserDataDown data = 1;  // 预留信息，暂不用
+}
+
+message GetCardDataSynReq{
+  optional uint32 userid = 1;      //用户ID
+  optional uint32 format = 2;      // eCardDataFormatType  in "TKDataUniversalDicSrv.h"
+  optional uint32 mpid   = 3;      // 产品ID
+  optional uint32 cardid = 4;      // 名片ID
+  repeated uint32 uid    = 5;      //被查询的userid数组
+}
+
+message GetCardDataSynAck{
+  optional uint32 userid = 1;      //用户ID
+  optional uint32 format = 2;      // eCardDataFormatType  in "TKDataUniversalDicSrv.h"
+  optional uint32 mpid   = 3;      // 产品ID
+  optional uint32 cardid = 4;      // 名片ID
+  repeated CardEntryIdx  card_entry_idx= 5;      // Format为TK_CARDDATA_FORMAT_TYPE_BINARY时，使用该属性
+  optional string json   = 6;      // Format为TK_CARDDATA_FORMAT_TYPE_JSON时，使用该属性
+}
+
+message GetCardDataAsynReq{
+  optional uint32 userid = 1;      //用户ID
+  optional uint32 format = 2;      // eCardDataFormatType  in "TKDataUniversalDicSrv.h"
+  optional uint32 mpid   = 3;      // 产品ID
+  optional uint32 cardid = 4;      // 名片ID
+  repeated uint32 uid    = 5;      //被查询的userid数组
+}
+
+message GetCardDataAsynAck{
+  optional uint32 userid = 1;      //用户ID
+  optional uint32 format = 2;      // eCardDataFormatType  in "TKDataUniversalDicSrv.h"
+  optional uint32 mpid   = 3;      // 产品ID
+  optional uint32 cardid = 4;      // 名片ID
+  repeated CardEntryIdx  card_entry_idx= 5;      // Format为TK_CARDDATA_FORMAT_TYPE_BINARY时，使用该属性
+  optional string json   = 6;      // Format为TK_CARDDATA_FORMAT_TYPE_JSON时，使用该属性
+}
+
+message PushCardDataAck{
+  optional uint32 userid = 1;      //用户ID
+  optional uint32 format = 2;      // eCardDataFormatType  in "TKDataUniversalDicSrv.h"
+  optional uint32 mpid   = 3;      // 产品ID
+  optional uint32 cardid = 4;      // 名片ID
+  repeated CardEntryIdx card_entry_idx = 5;      // Format为TK_CARDDATA_FORMAT_TYPE_BINARY时，使用该属性
+  optional string json   = 6;      // Format为TK_CARDDATA_FORMAT_TYPE_JSON时，使用该属性
+}
+
+message PushMarkerInfoAck{
+    required uint32 userid = 1; // 用户Id
+    required uint32 productid = 2; // 比赛的产品ID
+    required uint32 rank = 3; // 最好名次
+    required uint32 quantity = 4; // 比赛参赛人数
+    required uint32 markerstamp = 5; // 比赛开始时间，时间戳
+    required uint32 wincount = 6; // 如果最好名次是冠军，夺冠次数
+}
+
+//协议：查询历史记录的索引
+message QueryHisBrokerIndexReq{
+  required uint32 userid = 1;
+  optional uint32 hid = 2;       //历史数据ID
+  optional uint32 start = 3;     //开始索引
+  optional uint32 limit = 4;     //记录数量
+  optional bytes  condition = 5; //查询条件
+}
+
+message QueryHisBrokerIndexAck{
+  optional bytes hisindex= 1;    //查询历史记录的索引
+  optional uint32 hid = 2;       //历史数据ID
+}
+
+//协议：查询指定索引的历史数据
+message QueryHisBrokerDataReq{
+  optional string hisindex = 1;  //指定的历史索引
+  optional uint32 hid = 2;       //历史数据ID
+}
+
+message QueryHisBrokerDataAck{
+  optional uint32 hid = 1;       //历史数据ID
+  optional string hisindex = 2;  //指定的历史索引
+  optional bytes hisdata = 3;    //历史数据，json格式
+}
+
+//请求报备人员信息
+message RegisterUserToTeamReq {
+  optional uint32 tourneyid = 1;
+  optional uint32 matchpoint = 2; //报名比赛开赛点
+  optional uint32 paramclt = 3;
+  optional uint32 userid = 4;
+  optional uint32 teamid = 5;
+  optional string teamname = 6;
+  repeated TeamReserve teamreservelist = 7;
+}
+
+message RegisterUserToTeamAck {
+  optional uint32 tourneyid = 1;
+  optional uint32 matchpoint = 2; //报名比赛开赛点
+  optional uint32 paramclt = 3;
+}
+
+message PushGeneralDataAck {
+  required uint32 userid = 1;
+  repeated LoobyUserDataDown data =2;
+}
+
+message TourneyInviteReq {
+  required uint32 userid = 1;
+  required uint32 tourneyid = 2;
+  required uint32 matchpoint = 3;
+  required uint32 gameid = 4;
+  optional string  nickname = 5;
+  optional uint32 paramclt = 6;//客户端传过来的参数，原样传回
+  optional uint32 growinfo = 7;// 玩家grow数值
+  optional uint32 inviteruserid = 8; //邀请者的UserId
+  optional uint32 inviteeuserid = 9; //被邀请者的UserId
+  optional uint32 sessionid = 10;
+  optional uint32 timestamp = 11;
+  optional uint32 delay = 12;
+  optional uint32 reserve = 13; // 0:default(table) 1:room 2:table
+}
+
+message TourneyInviteAck {
+  required uint32 userid = 1;
+  required uint32 tourneyid = 2;
+  required uint32 matchpoint = 3;
+  optional uint32 paramclt = 4;
+  optional uint32 inviteruserid = 5; // 邀请者的UserID
+  optional uint32 inviteeuserid = 6; // 被邀请者的UserID
+  optional uint32 sessionid = 7;
+  optional uint32 gameid = 8;
+  optional uint32 timestamp = 9;
+  optional uint32 delay = 10; //
+  optional uint32 reserve = 11; //
+  optional string reservedata = 12; // 后缀保留信息
+}
+
+message PushInviteResultAck {
+  required uint32 userid = 1;
+  required uint32 tourneyid = 2;
+  required uint32 productid = 3; //比赛产品ID
+  optional uint32 paramclt = 4;
+  optional uint32 gameid = 5;
+  optional uint32 inviteruserid = 6;
+  optional uint32 inviteeuserid = 7;
+  optional uint32 sessionid = 8;
+  optional string suftxtdata = 9; //提示信息
+}
+
+// ACK中dwParam其他可能的返回值
+//#define TK_ACK_ERROR_LAWLESS                                (101)   // 请求非法
+//#define TK_ACK_ERROR_USERNOTEXIST                           (104)   // 用户ID不存在
+//#define TK_ACK_ERROR_JJNOTRELPARTNER                        (110)   // JJ帐号未关联该合作方
+
+message CheckPartnerUnbindCondReq
+{
+  required uint32 userid = 1;
+  required uint32 partnerid = 2;        // 合作方ID
+  required uint32 checktype = 3;        // 查询类型，见"TKAllyIDDBUniversalDicSrv.h"中对eAOS_WXUnbind_CheckType的定义
+}
+
+// 微信绑定解绑--客户端来源
+//enum eAOS_WX_CltSrc
+//{
+//    TK_AOS_ENUM_WX_CLTSRC_RESERVE        = 0,  // 保留
+//    TK_AOS_ENUM_WX_CLTSRC_ANDROIDMOB     = 1,  // 安卓手机
+//    TK_AOS_ENUM_WX_CLTSRC_IOSMOB         = 2,  // iOS手机
+//    TK_AOS_ENUM_WX_CLTSRC_PC             = 3,  // PC
+//    TK_AOS_ENUM_WX_CLTSRC_TV             = 4,  // TV
+//    TK_AOS_ENUM_WX_CLTSRC_OFCLACC        = 5,  // 公众号
+//    TK_AOS_ENUM_WX_CLTSRC_OFCLWEB        = 6,  // 官网
+//    TK_AOS_ENUM_WX_CLTSRC_5599           = 7,  // 5599
+//    TK_AOS_ENUM_WX_CLTSRC_JJBOX          = 8,  // JJ盒子
+//    TK_AOS_ENUM_WX_CLTSRC_GAMESDK        = 9,  // GAME SDK
+//    TK_AOS_ENUM_WX_CLTSRC_ALLYSDK        = 10, // 联运SDK
+//};
+
+// 微信绑定解绑--业务来源
+//enum eAOS_WX_BizSrc
+//{
+//    TK_AOS_ENUM_WX_BIZSRC_RESERVE        = 0, // 保留
+//    TK_AOS_ENUM_WX_BIZSRC_REGISTER       = 1, // 注册
+//    TK_AOS_ENUM_WX_BIZSRC_UPGRADE        = 2, // 帐号升级
+//    TK_AOS_ENUM_WX_BIZSRC_BIND           = 3, // 绑定微信
+//    TK_AOS_ENUM_WX_BIZSRC_UNBIND         = 4, // 解绑微信
+//};
+
+//微信绑定解绑
+//enum eAOS_WX_LoginType
+//{
+//    TK_AOS_ENUM_WX_LOGINTYPE_RESERVE    = 0,  //保留
+//    TK_AOS_ENUM_WX_LOGINTYPE_NOREG      = 1,  //来宾
+//    TK_AOS_ENUM_WX_LOGINTYPE_NAME       = 2,  //个性
+//    TK_AOS_ENUM_WX_LOGINTYPE_EMAIL      = 3,  //邮箱
+//    TK_AOS_ENUM_WX_LOGINTYPE_MOBILE     = 4,  //手机
+//    TK_AOS_ENUM_WX_LOGINTYPE_QQ         = 5,  //QQ
+//    TK_AOS_ENUM_WX_LOGINTYPE_WX         = 6,  //微信
+//    TK_AOS_ENUM_WX_LOGINTYPE_SINA       = 7,  //新浪
+//    TK_AOS_ENUM_WX_LOGINTYPE_SSO        = 8,  //SSO
+//};
+
+
+message UnbindPartnerAccReq
+{
+  required uint32 userid = 1;
+  optional uint32 partnerid = 2;       // 合作方ID
+  optional string checkcode = 3;       // 一级校验码
+  optional string verifycode = 4;      // 确认码，由手机下发并由用户填充到页面上
+  optional uint32 accid = 5;           // 预订单号
+  optional uint32 smcprodid = 6;       // 产品定义ID
+  optional uint32 cltsrc = 7;          // 客户端来源，见"TKAllyIDDBUniversalDicSrv.h"中对eAOS_WX_CltSrc的定义
+  optional uint32 bizsrc = 8;          // 业务来源，见TKAllyIDDBUniversalDicSrv.h中对eAOS_WX_BizSrc的定义
+  optional uint32 logintype = 9;       // 登录类型，见TKAllyIDDBUniversalDicSrv.h中对eAOS_WX_LoginType的定义
+}
+
+// ACK中dwParam其他可能的返回值
+//#define TK_ACK_ERROR_SMS_VERIFYFAIL                         (89)    // 短信码验证失败
+//#define TK_ACK_ERROR_SMS_EXPIRE                             (90)    // 超出有效期
+//#define TK_ACK_ERROR_SMS_MOBILENOERR                        (91)    // 手机号码不正确
+//#define TK_ACK_ERROR_SMS_SAFEMOBILEFAIL                     (93)    // 取安保手机失败
+//#define TK_ACK_ERROR_SMS_INFOINVALID                        (94)    // 信息无效
+//#define TK_ACK_ERROR_USERNOTEXIST                           (104)   // 用户ID不存在
+//#define TK_ACK_ERROR_JJNOTRELPARTNER                        (110)   // JJ帐号未关联该合作方
+
+message CheckPartnerUnbindCondAck
+{
+  required uint32 userid = 1;           //
+  required int32  timeleft = 2;          // 解绑剩余时间，单位为秒；>0，离解绑时间限制；<=0超解绑时间限制
+  required int32  safeflag = 3;          // 安保标记，0-没绑安保手机；1-已绑定安保手机
+  required int32  logincount = 4;        // 除当前Partner之外的登录方式个数
+  required string partnerinfo = 5;         // 后缀数据，合作方用户信息。如：{"Name":"%s","FigureURL":"%s"}，Name-昵称；FigureURL-头像url
+}
+
+message UnbindPartnerAccAck
+{
+  optional uint32 nullvalue = 1;//无意义
+}
+
+
+message QueryTableNumReq {
+  required uint32 userid = 1;   //用户ID
+  required uint32 tableid = 2;  // 桌号ID
+  optional string datetime = 3;  //请求时间，格式‘YYYYMMDDHHMISS’
+}
+
+message QueryTableNumAck {
+  required uint32 userid = 1;       // 用户ID
+  optional uint32 tableownerid = 2; // 桌主ID
+  optional uint32 gameid = 3;   // 游戏ID
+  optional uint32 tourneyid = 4;
+  optional uint32 matchid = 5;
+  optional uint32 matchpoint = 6;
+  optional string datetime = 7;     // 请求时间，格式‘YYYYMMDDHHMISS’
+  optional uint32 tableid = 8; // 桌号ID，与请求中的桌号ID一致
+}
+
+message RecommendTableReq {
+  required uint32 userid = 1;   //发起请求的用户ID
+  optional uint32 productid = 2;
+  optional uint32 tourneyid = 3;
+  optional uint32 matchpoint = 4;
+  optional uint32 gameid = 5;
+  optional uint32 paramclt = 6;   // 客户端传过来的参数，原样传回
+  optional uint32 dataformat = 7; //后缀信息格式：0-普通字符串，1-xml格式，2-json格式，3-二进制结构体
+  optional bytes reservedata = 8;  //后缀预留信息
+}
+
+message RecommendTableAck  {
+  required uint32 userid = 1;       // 发起请求的用户ID
+  optional uint32 matchpoint = 2;       // 所报名比赛的开赛点,不一定和REQ的相同
+  optional uint32 tablecount = 3;   // 推荐的桌子数量
+  optional uint32 paramclt = 4;   // 客户端传过来的参数，原样传回
+  optional uint32 dataformat = 5;   // 后缀信息格式：0-普通字符串，1-xml格式，2-json格式，3-二进制结构体
+  optional bytes tabledata = 6;     // 后缀桌子信息
+  optional bytes reservedata = 7;  // 后缀预留信息
+}
+
+
+message GetSpreadCodeReq {
+  required uint32 userid = 1; // 用户ID
+  optional uint32 businesstype = 2; // 业务类型
+  optional uint32 businessid = 3; // 业务ID
+  optional uint32 starttime = 4; // 传播发起时间
+  optional uint32 spreadmedium = 5; // 传播媒介，二维码，口令等,SPD::eSpreadMedium
+  optional uint32 spreadchannel = 6; // 传播渠道，QQ、微信等,SPD::eSpreadChannel
+  optional string topiccontent = 7; // 主题内容
+}
+message GetSpreadCodeAck {
+  required uint32 userid = 1; // 发起请求的用户ID
+  optional string code = 2; // 传播码
+}
+
+message SetSpreadRelReq {
+  required uint32 userid = 1; // 用户ID（接收者ID）
+  optional string code = 2; // 传播码
+  optional uint32 isreg = 3; // 用户是否注册：0-老用户，1-新注册用户
+}
+message SetSpreadRelAck {
+  required uint32 userid = 1; // 发起请求的用户ID
+  optional string topiccontent = 2; // 主题内容
+}
+
+message SetSpreadReceiptReq {
+  required uint32 userid = 1; // 用户ID
+  optional string code = 2; // 传播码
+  optional uint32 spreadchannel = 3; // 传播渠道，QQ、微信等,SPD::eSpreadChannel
+}
+message SetSpreadReceiptAck {
+  required uint32 userid = 1; // 发起请求的用户ID
+}
+
+message UpdateTopicContentReq {
+  required uint32 userid = 1; // 用户ID
+  optional string code = 2; // 传播码
+  optional string topiccontent = 3; // 主题内容
+}
+message UpdateTopicContentAck {
+  required uint32 userid = 1; // 发起请求的用户ID
+}
+
+message GetTableRuleReq {
+  required uint32 userid = 1; // 发起请求的用户ID
+  optional uint32 productid = 2; //
+  optional uint32 tourneyid = 3; //
+  optional uint32 matchpoint = 4; // 所报名比赛的开赛点
+  optional uint32 tableid = 5; // 桌号ID
+  optional uint32 gameid = 6; //
+  optional uint32 paramclt = 7; // 客户端传过来的参数，原样传回
+  optional string reservedata = 8; // 预留信息
+}
+
+message GetTableRuleAck {
+  required uint32 userid = 1; // 发起请求的用户ID
+  optional uint32 productid = 2; // 产品ID
+  optional uint32 tourneyid = 3; //
+  optional uint32 matchpoint = 4; // 所报名比赛的开赛点，不一定和REQ的相同
+  optional uint32 tableid = 5; //
+  optional uint32 gameid = 6; //
+  optional uint32 paramclt = 7; // 客户端传过来的参数，原样传回
+  optional string tableruledata = 8; // 后缀自定义规则信息
+  optional string reservedata = 9; // 后缀预留信息
+}
+
+message PartnerGameDeviceRegisterReq{
+  optional uint32 gameid = 1; //联运游戏ID，由平台分配
+  optional string deviceinfo = 2; //后缀数据，设备信息，按照现有登录控制信息格式传，包含IDFA、IMEI等
+  optional uint32 reserve1 = 3; //保留字段1
+  optional string reserve2 = 4; //保留字段2
+  optional string reserve3 = 5; //保留字段3
+}
+
+message PartnerGameDeviceRegisterAck{
+  optional uint32 nullvalue = 1;//无意义
+}
+
+message PSEBrokerCommonReq {
+  optional string strfunction = 1; //接口名称
+  optional uint32 protocolversion = 2; //协议版本
+  optional string reserve = 3; //后缀Json数据
+}
+
+message PSEBrokerCommonAck {
+  optional string strfunction = 1; //接口名称
+  optional uint32 protocolversion = 2; //协议版本
+  optional string reserve = 3; //后缀Json数据
+}
+
+message GetJsonAuthinfoReq {
+  optional string jsondata = 1;  //数据体采用JSON格式
+}
+
+message GetJsonAuthinfoAck {
+  optional string jsondata = 1;  //数据体采用JSON格式
+}
+
+message TranHisEvtEx {
+    optional uint32 evtid = 1;
+    optional uint32 evtvalue = 2;  // Evt值
+    optional uint32 mpid = 3;
+}
+
+message GetUserAllHisEvtExReq  {
+    optional uint32 userid = 1;
+    optional uint32 domainid = 2;    // 域ID
+    optional uint32 productid = 3;   // 产品ID
+    optional uint32 reserve = 4;     // 保留字段
+}
+
+message GetUserAllHisEvtExAck  {
+    optional uint32 userid = 1;
+    optional uint32 domainid = 2;    // 域ID
+    optional uint32 productid = 3;   // 产品ID
+    optional uint32 reserve = 4;     // 保留字段
+    repeated TranHisEvtEx growlist = 5;
+}
+
+message CommonLoginReq {
+  optional string jsondata = 1;   //数据体采用JSON格式
+  optional uint32 cryptotype = 2; //加密类型: 1--aes
+  optional uint32 msgtype = 3;    //消息id，lobby和中转确定后由客户端填入
+  optional uint32 reserve1 = 4;   // 保留字段
+  optional string reserve2 = 5;   // 保留字段
+}
+
+message CommonLoginAck {
+  optional string jsondata = 1;    //数据体采用JSON格式
+  optional uint32 cryptotype = 2;  //加密类型: 1--aes
+  optional LcUserInfoEx userinfo = 3;
+  optional uint32 msgtype = 4;     //消息id
+  optional uint32 reserve1 = 5;    // 保留字段
+  optional uint32 reserve2 = 6;    // 保留字段
+  optional uint32 reserve3 = 7;    // 保留字段
+}
+
+message GetSingleGrow64Req {
+  required uint32 userid = 1; //用户ID
+  required uint32 growid = 2; //积分ID
+  optional uint32 mpid = 3;   //  产品ID -- 当产品ID使为唯一附加ID时使用，不使用时设置成0
+  optional uint32 ts = 4;     //  查询时间戳，如果查本期数据，则可以传0
+}
+
+message GetSingleGrow64Ack {
+ required uint32 userid = 1; //用户ID
+ required uint32 growid = 2; //积分ID
+ optional uint32 mpid = 3;   //  产品ID -- 当产品ID使为唯一附加ID时使用，不使用时设置成0
+ optional uint32 ts = 4;     //  查询时间戳，如果查本期数据，则可以传0
+ optional uint64 value = 5;
+ optional string valuestr = 6;
+}
+
+message LcTranGrow64  {
+    required uint32 growid = 1; // 积分 ID
+    required uint32 mpid = 2;   // 产品 ID
+    required uint64 value = 3;  // 积分值
+    optional string valuestr = 4;  // 积分值string
+}
+
+message PushUserGrow64Ack {
+ optional uint32 userid = 1;
+ repeated LcTranGrow64 growlist = 2;
+}
+
+
+message USCData {
+    required uint32 oriid = 1;
+    required uint32 expiretime = 2;
+    required int32 datatype = 3;   //数据类型[1-整型,2-字符串,3-二进制,4-int64]
+    optional uint32 datauint = 4;  //整型数据
+    optional string datastring = 5;//字符串数据
+    optional bytes databinary = 6; //二进制数据
+    optional int64 dataint64 = 7;  // int64
+}
+message GetSingleDataReq {
+    required uint32 userid = 1; //用户ID
+    required uint32 oriid = 2;  //数据ID
+}
+
+message GetSingleDataAck {
+    optional USCData data = 1;
+}
+
+message PushSingleDataAck {
+    required uint32 userid = 1; //用户ID
+    optional USCData data = 2;
+}
+
+//服务器下发的玩家数据
+message LoobyUserDataDownEx
+{
+    optional uint32 expiretime = 1; //过期时间
+    optional uint32 oriid = 2; //源数据
+    optional uint32 dtid = 3; //数据类型
+    optional uint32 atid = 4; //账户类型
+    optional int32 datatype = 5; //数据类型[1-整型,2-字符串,3-二进制,4-int64]
+    optional uint32 datauint = 6; //整型数据
+    optional string datastring = 7;//字符串数据
+    optional bytes databinary = 8; //二进制数据
+    optional int64 dataint64 = 9; //int64数据
+}
+
+message PushGeneralDataExAck {
+    required uint32 userid = 1;
+    required uint32 domain = 2; //domain
+    repeated LoobyUserDataDownEx data =3;
+  }
+
+
+message ActivityChannelReq {
+   optional string jsondata = 1;  //数据体采用JSON格式
+   optional uint32 cryptotype = 2; //加密类型: 1--aes
+   optional uint32 version = 3; //协议版本
+   optional uint32 userid = 4;
+   optional uint32 pid = 5; //产品ID
+   optional uint32 msgid = 6; //消息ID,客户端和后台商定
+   optional uint32 sequenceid = 7; //序列ID
+   optional uint32 timestamp = 8; //时间戳
+   repeated uint32 reserve = 9; //备用，不用时，可以不传
+}
+
+message ActivityChannelAck {
+   optional string jsondata = 1;  //数据体采用JSON格式
+   optional uint32 cryptotype = 2; //加密类型: 1--aes
+   optional uint32 version = 3; //协议版本
+   optional uint32 userid = 4;
+   optional uint32 pid = 5; //产品ID
+   optional uint32 msgid = 6; //消息ID,客户端和后台商定
+   optional uint32 sequenceid = 7; //序列ID
+   optional uint32 timestamp = 8; //时间戳
+   repeated uint32 reserve = 9; //备用，不用时，可以不传
+}
+
+message GetDomainSPDReq {
+  required uint32 userid = 1;
+  required uint32 domainid = 2;
+  required uint32  formatid = 3;    //结果格式 1-Json 2-TLV,这里就填1，返回Json数据
+}
+
+message GetDomainSPDAck {
+  required string json = 1; //json数据
+}
+
+message NotifyUserADClickReq {
+  optional uint32 userid = 1;
+  optional string json   = 2;
+}
+
+message NotifyUserADClickAck {
+  optional string json   = 1;
+}
+
+message UDPAuthenticationReq {
+  optional string bindkey = 1;
+}
+
+message UDPDisconnectReq {
+  optional uint32 nullvalue = 1;
+}
+
+message UDPAuthenticationAck {
+}
+
+message UDPConfirmConnReq {
+  optional uint32 nullvalue = 1;
+}
+
+message FDTableInfoTransReq {
+    optional uint32 userid = 1; // 发起请求的用户ID
+    optional uint32 cnttid = 2;   // 大厅客户端链接类型
+    optional uint32 clttid = 3;  // 大厅客户端程序类型
+    optional uint32 actiontype = 4; // 消息类型ID
+    optional string trandata = 5;  //透传数据
+    optional uint32 tourneyid = 6; // tourneyid
+}
+
+message FDTableInfoTransAck {
+    optional uint32 userid = 1; // 发起请求的用户ID
+    optional uint32 cnttid = 2;   // 大厅客户端链接类型
+    optional uint32 clttid = 3;  // 大厅客户端程序类型
+    optional uint32 actiontype = 4; // 消息类型ID
+    optional string trandata = 5;  //透传数据
+    optional uint32 tourneyid = 6; // tourneyid
+}
+
+message MatchInfoTransReq {
+    optional uint32 userid = 1; // 用户ID
+    optional uint32 tid = 2;   // TourneyID
+    optional uint32 pid = 3;  // ProductID
+    optional uint32 mid = 4; // MatchID
+    optional uint32 mp = 5; // MatchPoint
+    optional uint32 gid = 6; // GameID
+    optional uint32 cnttid = 7;   // 大厅客户端链接类型
+    optional uint32 clttid = 8;  // 大厅客户端程序类型
+    optional uint32 submsgid = 9;  // 消息类型ID,不同ID后缀数据不同
+    optional string trandata = 10;  //透传数据
+    optional uint32 sysid = 11;  // 系统ID
+}
+
+message MatchInfoTransAck {
+    optional uint32 userid = 1; // 用户ID
+    optional uint32 tid = 2;   // TourneyID
+    optional uint32 pid = 3;  // ProductID
+    optional uint32 mid = 4; // MatchID
+    optional uint32 mp = 5; // MatchPoint
+    optional uint32 gid = 6; // GameID
+    optional uint32 cnttid = 7;   // 大厅客户端链接类型
+    optional uint32 clttid = 8;  // 大厅客户端程序类型
+    optional uint32 submsgid = 9;  // 消息类型ID,不同ID后缀数据不同
+    optional string trandata = 10;  //透传数据
+    optional uint32 sysid = 11;  // 系统ID
+}
+
+message TourneyNewSignupReq {
+    required uint32 userid = 1;
+    optional uint32 gameid = 2;
+    optional uint32 productid = 3;
+    optional uint32 tourneyid = 4;
+    optional uint32 matchid = 5;
+    optional uint32 matchpoint = 6;
+    optional string trandata = 7;  //透传数据
+}
+
+message TourneyNewSignupAck {
+    required uint32 userid = 1;
+    optional uint32 gameid = 2;
+    optional uint32 productid = 3;
+    optional uint32 tourneyid = 4;
+    optional uint32 matchid = 5;
+    optional uint32 matchpoint = 6;
+    optional string trandata = 7;  //透传数据
+}
+
+message VerifyCheckReq {
+    optional uint32 userid = 1;
+    optional uint32 anonid = 2; // 匿名登录后的ID
+    optional uint32 time = 3;   // 时间戳
+    optional string appid = 4;  // 分配给该验证码服务的appID
+    optional string token = 5;  // 需要校验的vToken
+}
+
+message VerifyCheckAck {
+    optional uint32 userid = 1;
+    optional uint32 anonid = 2;      // 匿名登录后的ID
+    optional uint32 errorcode = 3;   // 错误码
+}
+
+message GetRelattrSPDReq {
+    optional string json   = 1;
+}
+
+message GetRelattrSPDAck {
+    optional string json   = 1;
+}
+
+message RefreshRelattrSPDReq {
+    optional string json   = 1;
+}
+
+message RefreshRelattrSPDAck {
+    optional string json   = 1;
+}
+
+message TgpAsySendReceiptReq {
+    optional uint32 userid = 1;
+    optional string json   = 2;
+}
+
+message TgpAsySendReceiptAck {
+}
+
+message QueryOutsideDataSPDReq {
+    optional uint32 userid  = 1;    // 用户ID
+    optional uint32 dtid    = 2;    // 数据类型ID
+    optional uint32 atid    = 3;    // 账户ID
+    optional uint32 oriid   = 4;    // 数据来源ID
+    optional string json    = 5;    // 数据体采用JSON格式
+}
+
+message QueryOutsideDataSPDAck {
+    optional string json   = 1;     // 数据体采用JSON格式
+}
+
+message MatchIdentify {
+    optional uint32 mpid                    = 1;    // 产品ID
+    optional uint32 tourneyid               = 2;    // TourneyID
+    optional uint32 matchid                 = 3;    // 比赛ID
+    optional uint32 matchpoint              = 4;    // 开赛点
+    optional uint32 gameid                  = 5;    // 游戏ID
+}
+
+message GetMatchRankListReq {
+    optional MatchIdentify matchindex       = 1;    // 比赛索引
+    optional uint32 userid                  = 2;    // 用户ID
+    optional uint32 ip                      = 3;    // IP
+    optional uint32 port                    = 4;    // 端口
+    optional string sufrankdata             = 5;    // 缀排名数据，json格式
+}
+
+message GetMatchRankListAck {
+    optional MatchIdentify matchindex       = 1;    // 比赛索引
+    optional uint32 userid                  = 2;    // 用户ID
+    optional string sufrankdata             = 3;    // 缀排名数据，json格式
+}
+
+message SUploadCollectedDataReq {
+    optional uint32 userid                  = 1;    // 用户ID
+    optional uint32 type                    = 2;    // 数据类型
+    optional string json                    = 3;    // 缀数据，json格式
+}
+
+message SUploadCollectedDataAck {
+}
+
+message UnTourneySignUpNewReq {
+    optional uint32 userid                  = 1;    // 用户ID
+    optional uint32 gameid                  = 2;    // 游戏ID
+    optional uint32 productid               = 3;    // 产品ID
+    optional uint32 tourneyid               = 4;    // TID
+    optional uint32 matchid                 = 5;    // 比赛ID
+    optional uint32 matchpoint              = 6;    // MatchPoint
+    optional uint32 cnttid                  = 7;    // 大厅客户端链接类型 eLobbyConnetType
+    optional uint32 clttid                  = 8;    // 大厅客户端程序类型
+    optional uint32 param                   = 9;    // 客户端传过来的参数，原样传回
+    optional string suftransdata            = 10;   // 后缀透传数据
+}
+
+message UnTourneySignUpNewAck {
+    optional uint32 userid                  = 1;    // 用户ID
+    optional uint32 gameid                  = 2;    // 游戏ID
+    optional uint32 productid               = 3;    // 产品ID
+    optional uint32 tourneyid               = 4;    // TID
+    optional uint32 matchid                 = 5;    // 比赛ID
+    optional uint32 matchpoint              = 6;    // MatchPoint
+    optional uint32 cnttid                  = 7;    // 大厅客户端链接类型 eLobbyConnetType
+    optional uint32 clttid                  = 8;    // 大厅客户端程序类型
+    optional uint32 param                   = 9;    // 客户端传过来的参数，原样传回
+    optional string suftransdata            = 10;   // 后缀透传数据
+}
+
+message FamilyBizTransReq {
+    optional uint32 tourneytype             = 1;    // tourney类型
+    optional uint32 tourneyid               = 2;    // TID
+    optional uint32 gameid                  = 3;    // 游戏ID
+    optional uint32 protocoltype            = 4;    // 协议子类型
+    optional uint32 mpid                    = 5;    // 产品ID
+    optional uint32 userid                  = 6;    // 用户ID
+    optional uint32 familyid                = 7;    // 家族ID
+    optional string suffix                  = 8;    // 后缀透传数据
+}
+
+message FamilyBizTransAck {
+    optional uint32 tourneytype             = 1;    // tourney类型
+    optional uint32 tourneyid               = 2;    // TID
+    optional uint32 gameid                  = 3;    // 游戏ID
+    optional uint32 protocoltype            = 4;    // 协议子类型
+    optional uint32 mpid                    = 5;    // 产品ID
+    optional uint32 userid                  = 6;    // 用户ID
+    optional uint32 familyid                = 7;    // 家族ID
+    optional string suffix                  = 8;    // 后缀透传数据
+}
+
+message FamilyMatchTransReq {
+    optional uint32 gameid                  = 1;    // 游戏ID
+    optional uint32 productid               = 2;    // 产品ID
+    optional uint32 tourneyid               = 3;    // TID
+    optional uint32 matchid                 = 4;    // 比赛ID
+    optional uint32 matchpoint              = 5;    // MatchPoint
+    optional uint32 userid                  = 6;    // 用户ID
+    optional uint32 familyid                = 7;    // 家族ID
+    optional uint32 protocoltype            = 8;    // 消息类型ID,不同ID后缀数据不同
+    optional string suffix                  = 9;    // 后缀透传数据
+}
+
+message FamilyMatchTransAck {
+    optional uint32 gameid                  = 1;    // 游戏ID
+    optional uint32 productid               = 2;    // 产品ID
+    optional uint32 tourneyid               = 3;    // TID
+    optional uint32 matchid                 = 4;    // 比赛ID
+    optional uint32 matchpoint              = 5;    // MatchPoint
+    optional uint32 userid                  = 6;    // 用户ID
+    optional uint32 familyid                = 7;    // 家族ID
+    optional uint32 protocoltype            = 8;    // 消息类型ID,不同ID后缀数据不同
+    optional string suffix                  = 9;    // 后缀透传数据
+}
+
+// 助推服务推送数据 通用格式
+message RegistPushPushData
+{
+    required uint32 dtid                    = 1;    // 数据类型
+    required uint32 atid                    = 2;    // 账户类型
+    required uint32 oriid                   = 3;    // 源数据
+    required uint32 date                    = 4;    // 日期
+    required uint32 bankid                  = 5;    //
+    required uint32 expiretime              = 6;    // 过期时间
+    required uint32 datatype                = 7;    // 数据类型[1-整型,2-字符串,3-二进制,4-int64]
+    optional uint32 datauint                = 8;    // 整型数据
+    optional string datastring              = 9;    // 字符串数据
+    optional bytes  databinary              = 10;   // 二进制数据
+    optional int64  dataint64               = 11;   // int64数据
+}
+
+message DatRegistPushMpidDataAck {
+    required uint32 userid                  = 1;    // 用户ID
+    required uint32 mpid                    = 2;    // 产品ID
+    optional RegistPushPushData data        = 3;    // 推送数据
+}
+
+message SpectRoundInfoTransReq {
+    optional uint32 userid                  = 1;    // 用户ID
+    optional uint32 submsgtype              = 2;    // 子消息ID
+    optional string suffix                  = 3;    // 后缀透传数据，JSON格式
+}
+
+message SpectRoundInfoTransAck {
+    optional uint32 userid                  = 1;    // 用户ID
+    optional uint32 submsgtype              = 2;    // 子消息ID
+    optional string suffix                  = 3;    // 后缀透传数据，JSON格式
+}
+
+message GetUserDomainGrow64Req {
+    optional uint64 userid64                = 1;    // 64位用户ID
+    optional uint32 domainid                = 2;    // 积分域ID
+}
+
+message GetUserDomainGrow64Ack {
+    optional uint64 userid64                = 1;    // 64位用户ID
+    optional uint32 domainid                = 2;    // 积分域ID
+    repeated LcTranGrow64 growlist          = 3;    // Grow数据列表
+}
+
+message SNSPivotSvrTransReq {
+    optional uint32 reqtype                 = 1;    // 真实的请求类型
+    optional string suffix                  = 2;    // JSON数据
+}
+
+message SNSPivotSvrTransAck {
+    optional uint32 reqtype                 = 1;    // 真实的请求类型
+    optional string suffix                  = 2;    // JSON数据
+}
+
+message TransTeamReq {
+    optional uint32 userid                  = 1;    // 用户ID
+    optional uint32 gameid                  = 2;    // 游戏ID
+    optional uint32 productid               = 3;    // 产品ID
+    optional uint32 tourneyid               = 4;    // TID
+    optional uint32 matchid                 = 5;    // 比赛ID
+    optional uint32 matchpoint              = 6;    // MatchPoint
+    optional uint32 protocoltype            = 7;    // 消息类型ID,不同ID后缀数据不同
+    optional uint32 reserve1                = 8;    //保留字段
+    optional uint32 reserve2                = 9;
+    optional uint32 reserve3                = 10;
+    optional uint32 reserve4                = 11;
+    optional uint32 reserve5                = 12;
+    optional string suftransdata            = 13;   //后缀透传数据
+}
+
+message TransTeamAck {
+    optional uint32 userid                  = 1;
+    optional uint32 gameid                  = 2;
+    optional uint32 productid               = 3;
+    optional uint32 tourneyid               = 4;
+    optional uint32 matchid                 = 5;
+    optional uint32 matchpoint              = 6;
+    optional uint32 protocoltype            = 7;
+    optional uint32 reserve1                = 8;
+    optional uint32 reserve2                = 9;
+    optional uint32 reserve3                = 10;
+    optional uint32 reserve4                = 11;
+    optional uint32 reserve5                = 12;
+    optional string suftransdata            = 13;
+}
+
+message TransMsg2GIMSReq {
+    optional uint32 userid                  = 1;
+    optional uint32 submsgtype              = 2;
+    optional string suftransdata            = 3;
+}
+
+message TransMsg2GIMSAck{
+    optional uint32 userid                  = 1;
+    optional uint32 submsgtype              = 2;
+    optional string suftransdata            = 3;
+}
+

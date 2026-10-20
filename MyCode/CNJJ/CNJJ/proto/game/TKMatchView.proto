@@ -1,0 +1,147 @@
+ 
+package cn.jj.service.msg.protocol;
+//option optimize_for = CODE_SIZE;
+//option optimize_for = LITE_RUNTIME;
+message MatchViewReqMsg {
+	required uint32 matchid = 1;
+	optional GetUnitAttributeReq getunitattribute_req_msg = 2;
+	optional GetUnitListReq getunitlist_req_msg = 3;  //获取unit列表
+}
+
+message MatchViewAckMsg {
+	required uint32 matchid = 1;
+	optional MatchUpdateViewAck matchupdateview_ack_msg = 2; //比赛信息
+	optional MatchServiceTimeAck matchservicetime_ack_msg = 3; //服务器时间
+	optional PlayerPrivateAttrAck playerprivateattr_ack_msg = 4; //个人数据
+	optional MatchWinnerCountAttrAck matchwinnercount_ack_msg = 5; //晋级人数
+	optional RefreshMatchUnitInfoAck refreshmatchuintinfo_ack_msg = 6;
+	optional GetUnitAttributeAck getunitattribute_ack_msg = 7;
+	optional UpdateMatchUnitInfoAck updatematchunitinfo_ack_msg = 8; //更新参赛单元信息
+	optional UnitListChangedAck unitlistchanged_ack_msg = 9; //通知人员列表变化
+}
+
+message award_field {
+	optional uint32 classid = 1;
+	optional uint32 dtid = 2;
+	optional uint32 atid = 3;
+	optional uint32 oriid = 4;
+	optional uint32 accumulate = 5;
+}
+
+message award_attribute {
+	repeated award_field awardfield = 1;
+}
+
+message Attribute {
+	optional int32 attrtype = 1;
+	optional int32 attrvalue = 2;
+	optional string attrstr = 3;
+	optional award_attribute attrawardlist = 4;
+	optional sint64 attrint64 = 5;
+	optional uint64 attruint64 = 6;
+}
+
+message MatchUpdateViewAck {
+	optional int32 infotype = 1; //信息类型 3:match 4:phase 5:stage 6:bout 7:round 8:table
+	repeated Attribute attributes = 2; //各种属性值
+	optional int32 stageid = 3; //用于 match的UserReqHematinicReq消息
+}
+
+message MatchServiceTimeAck {
+	required int32 servicetime = 1; //服务器时间
+}
+
+message PlayerPrivateAttrAck {
+	repeated Attribute attributes = 1; //各种属性值
+}
+
+message MatchWinnerCountAttr {
+	optional uint32 phase = 1;
+	optional uint32 bout = 2;
+	optional uint32 winnercount = 3;
+	optional uint32 grouping = 4;
+	optional uint32 stagecount = 5;
+	optional uint32 unitcount = 6;
+	optional bytes	indivpromoteawardplan = 7;
+	optional uint32 phasetype = 8;
+}
+
+message MatchAllWinnerCountAttr {
+	repeated MatchPhaseWinnerCountAttr phases = 1;
+}
+
+message MatchPhaseWinnerCountAttr {
+	optional uint32 phase = 1;
+	optional uint32 winnercount = 2;
+	optional uint32 grouping = 3;
+	optional uint32 unitcount = 4;
+	repeated MatchStageWinnerCountAttr stages = 5;
+	optional uint32 phasetype = 6;
+}
+
+message MatchStageWinnerCountAttr {
+	optional uint32 winnercount = 1;
+	optional uint32 unitcount = 2;
+	optional uint32 stage = 3;
+	repeated MatchBoutWinnerCountAttr bouts = 4;
+}
+
+message MatchBoutWinnerCountAttr {
+	optional uint32 bout = 1;
+	optional uint32 winnercount = 2;
+	optional bytes	indivpromoteawardplan = 3;
+}
+
+message MatchWinnerCountAttrAck {
+	repeated MatchWinnerCountAttr winnercount = 1;
+	optional MatchAllWinnerCountAttr allwinnercount = 2;
+}
+
+message PlayerUnit {
+	required uint32 uid = 1;
+	repeated Attribute attributes = 2;//701:排名 722:猎杀数 732:赏金数
+	optional string name = 3;
+}
+
+message TeamUnit {
+	required uint32 uid = 1;
+	repeated PlayerUnit members = 2;
+	repeated Attribute attributes = 3;
+	optional string name = 4;
+}
+
+message RefreshMatchUnitInfoAck {
+	repeated PlayerUnit playerlist = 1;
+	optional uint32 alivecount = 2;
+	repeated TeamUnit teams = 3;
+	optional int32 id_type = 4;
+}
+
+message GetUnitAttributeReq {
+	optional uint32 uid = 1;
+	optional uint32 attribute_id = 2;
+}
+
+message GetUnitAttributeAck {
+	optional uint32 uid = 1;
+	optional uint32 req_attribute_id = 2;
+	repeated Attribute attributes = 3;
+}
+
+message GetUnitListReq {
+	optional int32 null = 1;
+}
+
+message UpdateMatchUnitInfoAck {
+	required uint32 uid = 1;
+	repeated PlayerUnit playerlist = 2;
+	repeated TeamUnit teams = 3;
+}
+
+message UnitListChangedAck {
+	optional int32 aliveunitcount = 1; // 本结点总unit数
+	optional int32 order = 2; // 名次
+	optional int32 unfinishedround = 3; // 剩余桌数
+	optional int32 matchState = 4; // 比赛状态，参加ePlayerMatchStatus
+}
+ 

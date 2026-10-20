@@ -1,0 +1,120 @@
+
+package cn.jj.service.msg.protocol;
+//option optimize_for = CODE_SIZE;
+//option optimize_for = LITE_RUNTIME;
+
+/* ****************************** 消息声明 ****************************** */
+
+message CagShopReqMsg {
+	optional CagRequestShopItemListReq cag_request_shop_item_list_req = 1; // 请求商店商品列表
+	optional CagBuyShopItemReq cag_buy_shop_item_req = 2; // 商店购买商品消息
+	optional CagChargePlaceOrderReq cag_charge_place_order_req = 3; // cag人民币充值下单请求
+}
+
+message CagShopAckMsg {
+	optional CagRequestShopItemListAck cag_request_shop_item_list_ack = 1; // 请求商店商品列表
+	optional CagBuyShopItemAck cag_buy_shop_item_ack = 2; // 商店购买商品消息
+	optional CagChargePlaceOrderAck cag_charge_place_order_ack = 3; // cag人民币充值下单响应
+}
+
+/* ****************************** 数据结构定义 ****************************** */
+
+// 购买商品的费用
+message PurchaseExpense {
+	optional uint32 pay_type = 1; // 支付货币类型
+	optional uint32 price = 2; // 商品价格
+	optional uint32 discount_price = 3; // 折扣价格（与原价相同表示没有折扣）
+	optional uint32 vip_discount_price = 4; // vip折扣价格
+}
+
+enum ComparisionType {
+	less = 0;
+	less_or_equal = 1;
+	greater = 2;
+	greater_or_equal = 3;
+	equal = 4;
+	not_equal = 5;
+}
+
+//购买条件
+message PurchaseCond {
+	optional uint32 purchase_cond_type = 1;   //购买条件类型 1：VIP 2：等级 3：成长基金
+	optional uint32 purchase_cond_value = 2;
+	optional ComparisionType comparision =3;           //比较类型 见ComparisionType
+}
+
+// 商品数据结构
+message ShopItem {
+	optional uint32 shop_item_id = 1; // 商品id
+	optional uint32 item_pile_count = 2; // 商品堆叠数量
+	repeated PurchaseExpense purchase_expense = 3; // 购买商品所需费用，支持多种支付方式
+	optional uint32 purchased_times = 4; // 购买次数
+	optional uint32 purchase_limit_times = 5; // 限购次数
+	optional bool purchased = 6; // false 未购买  true:已购买
+	repeated PurchaseCond purchase_conds = 7; //购买条件
+	optional uint32 item_id = 8; //物品id
+}
+
+
+// 商店货架
+message ShopRack {
+	optional uint32 rack_id = 1; // 货架id
+	repeated ShopItem item_list = 2; // 货架商品列表
+	optional uint32 refresh_left_time = 3; // 距下次刷新剩余时间
+	optional uint32 refresh_time_stamp = 4; // 下次刷新的时间戳
+}
+
+/* ****************************** 请求消息定义 ****************************** */
+
+// 请求商店商品列表
+message CagRequestShopItemListReq {
+	repeated uint32 rack_ids = 1; // 货架id列表
+}
+
+// 商店购买商品消息
+message CagBuyShopItemReq {
+	optional uint32 rack_id = 1; // 货架id
+	optional uint32 item_id = 2; // 商品id
+	optional uint32 purchase_count = 3; // 购买数量
+	optional uint32 pay_type = 4; // 支付类型
+}
+
+// cag人民币充值下订单请求
+message CagChargePlaceOrderReq {
+	optional uint32 tm_id = 1; // 商品id
+	optional uint32 tm_amount = 2; // 商品数量
+	optional uint32 rack_id = 3; // 货架id
+}
+
+/* ****************************** 响应消息定义 ****************************** */
+
+// 请求商店商品列表
+message CagRequestShopItemListAck {
+	repeated ShopRack rack_list = 1; // 货架列表
+	optional bool all_rack = 2; //true:整个货架 false:非整个货架
+}
+
+// 商店购买商品消息
+message CagBuyShopItemAck {
+	optional uint32 result = 1; // 操作结果：0--成功 非0--失败
+	optional uint32 rack_id = 2; // 货架id
+	optional uint32 item_id = 3; // 商品id
+	optional uint32 purchase_count = 4; // 商品数量
+	optional uint32 pay_type = 5; // 支付类型
+}
+
+// cag人民币充值下订单响应
+message CagChargePlaceOrderAck {
+	optional uint32 result = 1; // 结果码：0为成功；其它值对应失败
+	optional uint32 tm_id = 2; // 商品id，同请求消息中发送
+	optional uint32 tm_amount = 3; // 商品数量，同请求消息中发送
+	optional uint32 rack_id = 4; // 货架id，同请求消息中发送
+	optional string app_id = 5; // jj分配给合作方的值
+	optional string partner_order_id = 6; // 合作方订单号
+	optional uint32 req_time = 7; // 请求时间戳
+	optional uint32 sm_amount = 8; // 商品的人民币价格，单位为人民币"分"
+	optional string extend = 9; // 附加字段，透传
+	optional string sign = 10; // 校验码
+	optional string notify_url = 11; // 通知地址
+}
+

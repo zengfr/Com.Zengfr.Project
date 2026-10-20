@@ -10,7 +10,14 @@ namespace Com.Zengfr.Proj.Common.Pipeline.Impl
 {
     public class FuncPipelineProcessor<I, M, O> : IPipelineProcessor<I, M, O>
     {
-        public bool Enabled
+        public int Retry
+        {
+            get;
+
+            set;
+        }
+
+        public bool Disabled
         {
             get;
 
@@ -20,12 +27,11 @@ namespace Com.Zengfr.Proj.Common.Pipeline.Impl
         public string Name
         {
             get;
-
             set;
         }
+
         public FuncPipelineProcessor(Func<String,PipelineContext<I, M, O>, bool> func) {
             this.func = func;
-            this.Enabled = true;
         }
         Func<String, PipelineContext<I, M, O>, bool> func;
         

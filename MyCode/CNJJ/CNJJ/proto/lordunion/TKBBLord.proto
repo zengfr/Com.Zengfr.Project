@@ -1,0 +1,346 @@
+
+package cn.jj.service.msg.protocol;
+//option optimize_for = CODE_SIZE;
+//option optimize_for = LITE_RUNTIME;
+
+//请求消息 C -- > S
+message BBLordReqMsg{
+	required  uint32 			matchid 				= 1;
+	optional  BBExchangeReq		bb_exchange_req_msg		= 2; //请求换牌消息
+	optional  BBCallLordReq 	bb_calllord_req_msg 	= 3; //叫地主
+	optional  BBRobLordReq 		bb_roblord_req_msg 		= 4; //抢地主
+	optional  BBPutCardsReq 	bb_putcards_req_msg 	= 5; //出牌
+	optional  BBTrustInReq 		bb_trustin_req_msg 		= 6; //托管
+	optional  BBCallScoreReq	bb_callscore_req_msg	= 7; //叫分
+	optional  BBSelectCardReq	bb_selectcard_req_msg	= 8; //选牌
+	optional  BBKickLordReq		bb_kicklord_req_msg		= 9; //踢
+	optional  BBSelectBottomReq bb_selectbottom_req_msg	= 10;//选底牌
+	optional  BBSynCardReq	 	bb_syncard_req_msg		= 11;//同步牌张
+	optional  BBLordGiveUpReq   bb_lordgiveup_req_msg   = 12;//地主认输
+}
+
+//回应消息 S --> C
+message BBLordAckMsg{
+	required  uint32 					matchid 						= 1;
+	optional  BBGameStartAck 			bb_start_ack_msg 				= 2;  //开始游戏
+	optional  BBDispatchCardsAck 		bb_dispatchcards_ack_msg 		= 3;  //发牌
+	optional  BBSingleExchangeAck		bb_singleexchange_ack_msg		= 4;  //单个人换牌消息
+	optional  BBExchangeAck				bb_exchange_ack_msg				= 5;  //换牌结果消息
+	optional  BBStartCallLordAck 		bb_startcalllord_ack_msg 		= 6;  //开始叫地主
+	optional  BBCallLordAck 			bb_calllord_ack_msg 			= 7;  //叫地主
+	optional  BBStartRobLordAck 		bb_startroblord_ack_msg 		= 8;  //开始抢地主
+	optional  BBRobLordAck 				bb_roblord_ack_msg 				= 9;  //抢地主
+	optional  BBDeclareLordAck 			bb_declarelord_ack_msg 			= 10; //声明地主
+	optional  BBBottomCardsAck			bb_bottomcatds_ack_msg			= 11; //底牌信息（同时也可以用于流局后展示底牌）
+	optional  BBStartPlayAck 			bb_startplay_ack_msg 			= 12; //开始出牌
+	optional  BBPutCardsAck 			bb_putcards_ack_msg 			= 13; //出牌
+	optional  BBGameResultAck 			bb_gameresult_ack_msg 			= 14; //结果游戏
+	optional  BBTrustInAck 				bb_trustin_ack_msg 				= 15; //托管
+	optional  BBUpdateThinkTimeAck 		bb_updatethinktime_ack_msg 		= 16; //更新思考时间（连续托管*次之后，时间缩短）
+	optional  BBUpdateMultiAck 			bb_updatemulti_ack_msg 			= 17; //更新倍数
+	optional  BBUserNickNameAck			bb_nickname_ack_msg				= 18; //隐名赛玩家昵称
+	optional  BBStartCallScoreAck		bb_startcallscore_ack_msg		= 19; //开始叫分
+	optional  BBCallScoreAck			bb_callscore_ack_msg			= 20; //叫分
+	optional  BBStartSelectAck			bb_startselect_ack_msg			= 21; //开始选牌
+	optional  BBSelectCardAck			bb_selectcard_ack_msg			= 22; //选牌
+	optional  BBSelectResultAck			bb_selectresult_ack_msg			= 23; //选牌结束(附带手牌张数)
+	optional  BBStartKickAck			bb_startkick_ack_msg			= 24; //开始踢
+	optional  BBKickLordAck				bb_kicklord_ack_msg				= 25; //踢
+	optional  BBKickLordResultAck		bb_kicklordresult_ack_msg		= 26; //踢结束
+	optional  BBStartSelectBottomAck	bb_startselectbottom_ack_msg	= 27; //开始选底牌
+	optional  BBSelectBottomAck			bb_selectbottom_ack_msg			= 28; //选底牌
+	optional  BBSelectBottomResultAck	bb_selectbottomresult_ack_msg	= 29; //选底牌结束(附带手牌张数)
+	optional  BBSynCardAck				bb_syncard_ack_msg			= 30; //同步牌张
+	optional  BBStartExchangeAck		bb_startexchange_ack_msg		= 31; //开始选牌
+}
+
+//牌张定义
+message BBLordCard{
+	required uint32 cardcolor = 1; //花色
+	required uint32 cardpoint = 2; //点数
+}
+
+//玩家手牌数量
+message BBPlayerHandCard{
+	required	uint32	seat		=	1;	//座位号
+	required	uint32	cardssize	=	2;	//手牌数量
+}
+
+//***********************************************************************//
+// ******** REQ 消息
+//***********************************************************************//
+
+//换牌消息Req
+message BBExchangeReq{
+	required	uint32		seat			=	1;	//座位号
+	repeated	BBLordCard	exchangecards	=	2;	//所换牌张
+}
+
+//叫地主消息Req
+message BBCallLordReq{
+	required	uint32		seat		=	1;	//座位号
+	required	bool		call		=	2;	//是否叫地主
+}
+
+//抢地主消息Req
+message BBRobLordReq{
+	required	uint32		seat		=	1;	//座位号
+	required	bool		rob			=	2;	//是否抢地主
+}
+
+//出牌消息Req
+message BBPutCardsReq{
+	required 	uint32 		seat 		= 	1; 	//出牌玩家座位号
+	required	uint32		wildpoint	=	2;	//混牌代替的点数
+	repeated 	BBLordCard 	putcards 	= 	3;  //出牌牌张 空表示pass
+}
+
+//托管消息Req
+message BBTrustInReq{
+	required	uint32		seat		=	1;	//托管玩家座位号
+	required	bool		trustin		=	2;	//托管标记（0-取消托管，1-为托管）
+}
+
+//叫分消息Req
+message BBCallScoreReq{
+	required	uint32		seat		=	1;	//叫分人的座位号
+	required	uint32		score		=	2;	//所叫分数
+}
+
+//选牌消息Req
+message BBSelectCardReq{
+	required	uint32		seat	     = 	 1;	//选牌人的座位号
+	repeated	BBLordCard  cards	     =   2;	//所选牌张
+}
+
+//踢消息Req
+message BBKickLordReq{
+	required	uint32		seat	=	1;	//踢 的人座位号
+	required	bool		kick	= 	2;	//是否踢
+}
+
+//选底牌消息Req
+message BBSelectBottomReq{
+	required	uint32		seat			=	1;	//座位号
+	repeated	BBLordCard  cards			=   2;	//所选牌张
+}
+
+//间隔牌张同步消息Req
+message BBSynCardReq{
+	required	uint32		seat			=	1;	//座位号
+	repeated	BBLordCard  cards			=	2;	//牌张信息
+}
+
+message BBLordGiveUpReq
+{
+	optional uint32 null = 1;
+}
+
+//***********************************************************************//
+// ******** ACK 消息
+//***********************************************************************//
+//开始游戏Ack
+message BBGameStartAck{
+	required	uint32		basemulti		=	1;	//基础倍数
+}
+
+//发牌消息Ack
+message BBDispatchCardsAck{
+	required	uint64		timeStamp		=	1;	//时间戳
+	repeated 	BBLordCard 	handcards 		= 	2;  //发牌牌张
+	optional	uint32		exchangeorder	=	3;	//换牌的顺序（1-为顺时针，2-为逆时针）
+	repeated	BBLordCard	exchangecards	=	4;	//所到的牌张
+	repeated    BBLordCard  exchangeoutcards =  5;  //换出的牌张
+}
+
+//开始换牌消息Ack
+message BBStartExchangeAck{
+	required	uint64		timeStamp			=	1;	//时间戳
+}
+
+//单个人换牌消息Ack
+message BBSingleExchangeAck{
+	required	uint32		seat				=	1;	//座位号
+	repeated	BBLordCard	exchangeoutcards	=	2;	//换出的牌张
+}
+
+//换牌结果消息Ack
+message BBExchangeAck{
+	required	uint32		seat			=	1;	//座位号
+	required	uint32		exchangeseat	=	2;	//换到牌的座位号
+	required	uint32		exchangeorder	=	3;	//换牌的顺序（1-为顺时针，2-为逆时针）
+	repeated	BBLordCard	exchangecards	=	4;	//换到的牌张
+	repeated    BBLordCard  exchangeoutcards =  5;  //换出的牌张
+}
+
+//开始叫地主Ack
+message BBStartCallLordAck{
+	required	uint32		startcallseat		=	1;	//叫地主的座位号
+	required	uint64		timeStamp			=	2;	//时间戳
+}
+
+//叫地主Ack
+message BBCallLordAck{
+	required	uint32		seat			=	1;	//座位号
+	required	bool		call			=	2;	//是否叫地主
+	required	uint64		timeStamp		=	3;	//时间戳
+}
+
+//开始抢地主Ack
+message BBStartRobLordAck{
+	required	uint32		startrobseat	=	1;	//开始抢地主
+	required	uint64		timeStamp		=	2;	//时间戳
+}
+
+//抢地主Ack
+message BBRobLordAck{
+	required	uint32		seat			=	1;	//座位号
+	required	bool		rob				=	2;	//是否抢地主
+}
+
+//声明地主Ack
+message BBDeclareLordAck{
+	required	uint32		seat			=	1;	//座位号
+}
+
+//底牌消息Ack
+message BBBottomCardsAck{
+	repeated	BBLordCard	bottomcards		=	1;	//底牌
+	required	uint32		cardtypemulti	=	2;	//牌型倍数
+}
+
+//开始出牌Ack
+message BBStartPlayAck{
+	required	uint32		startputseat	=	1;	//座位号
+	required	uint64		timeStamp		=	2;	//时间戳
+}
+
+//出牌消息Ack
+message BBPutCardsAck{
+	required	uint32		seat			=	1;	//座位号
+	required	uint32		wildpoint		=	2;	//混牌代替的点数
+	required	uint32		cardtype		=	3;	//牌型
+	required	uint64		timeStamp		=	4;	//时间戳
+	repeated	BBLordCard	putcards		=	5;	//打出的牌
+	optional    bool        nextautogo      =   6;	//下一个玩家是否最后一手牌服务帮忙自动打出
+}
+
+message BBPlayerInfo
+{
+	required	uint32	 		seat			= 	1;	//座位号
+	required 	int32			score 			= 	2;	//得分
+	repeated 	BBLordCard 		remiancards 	= 	3;	//剩余的牌张（流局时全部手牌）
+}
+
+//结果消息
+message BBGameResultAck{
+	required	uint32			abort				=	1;	//是否流局
+	required 	uint32 			winseat 			=	2;  //获胜座位号
+	required 	uint32 			calllordmulti 		= 	3;  //叫地主倍数
+	required 	uint32 			roblordmulti 		= 	4;  //抢地主倍数
+	required	uint32			bottommulti			=	5;	//底牌倍数
+	required	uint32			bombmulti			=	6;	//炸弹倍数
+	required	uint32			springmulti			=	7;	//春天倍数
+	repeated	BBPlayerInfo	playerinfo			=	8;	//玩家信息
+	required    bool            islordgiveup        =   9;  //是否地主认输
+}
+
+//托管消息Ack
+message BBTrustInAck{
+	required	uint32		seat				=	1;	//座位号
+	required	bool		trustin				=	2;	//是否托管（0-取消托管，1-为托管）
+}
+
+
+//更新思考时间Ack
+message BBUpdateThinkTimeAck{
+	required 	uint32		seat 		= 	1; //座位号
+	required 	uint32 		timevalue 	= 	2; //思考时间
+}
+
+//倍数更新Ack
+message BBUpdateMultiAck{
+	required	uint32			gamemulti		=	1;	//游戏总倍数
+}
+
+message NickInfo{
+	required	uint32		seat		=	1;	//座位号
+	required	string 		nickname	=	2;	//昵称
+}
+
+//隐名赛玩家昵称
+message BBUserNickNameAck{
+	repeated  	NickInfo	playernick		=	1;	//玩家昵称
+}
+
+//开始叫分Ack
+message BBStartCallScoreAck{
+	required	uint32		seat		=	1;	//开始叫分的座位号
+	required	uint64		timeStamp	=	2;	//时间戳
+}
+
+//叫分Ack
+message BBCallScoreAck{
+	required	uint32		seat		=	1;	//叫分座位号
+	required	uint32		score		=	2;	//叫到的分数
+	required	uint64		timeStamp	=	3;	//时间戳
+	required	int32		nextseat	= 	4;	//下一个叫分的座位号（-1表示此轮叫分完毕，或者进入游戏或者重新发牌）
+}
+
+//开始选牌Ack
+message BBStartSelectAck{
+	required	uint64		timeStamp	=	1;	//时间戳
+}
+
+//选牌Ack
+message BBSelectCardAck{
+	required	uint32		seat		=	1;	//选牌人的座位号
+	repeated	BBLordCard  cards		=	2;	//所选牌张
+}
+
+//选牌结束Ack
+message BBSelectResultAck{
+	required	uint64				timeStamp	=	1;	//时间戳
+	repeated	BBPlayerHandCard 	cardsinfo	=	2;	//手牌数量
+}
+
+//开始踢Ack
+message BBStartKickAck{
+	repeated	uint32	seats		=	1;	//可以踢的玩家座位号列表
+	required	uint64	timeStamp	=	2;	//时间戳
+}
+
+//踢Ack
+message BBKickLordAck{
+	required	uint32	seat	=	1;	//踢的座位号
+	required	bool	kick	=	2;	//是否踢
+}
+
+//踢结束Ack
+message BBKickLordResultAck{
+	required	uint64		timeStamp	=	1;	//时间戳
+}
+
+//开始选底牌Ack
+message BBStartSelectBottomAck{
+	required	uint64		timeStamp	=	1;	//时间戳
+}
+
+//选底牌Ack
+message BBSelectBottomAck{
+	required	uint32		seat		=	1;	//选牌人的座位号
+	repeated	BBLordCard  cards		=	2;	//所选牌张
+}
+
+//选牌结束Ack
+message BBSelectBottomResultAck{
+	required	uint64				timeStamp	=	1;	//时间戳
+	repeated	BBPlayerHandCard 	cardsinfo	=	2;	//手牌数量
+}
+
+//间隔牌张同步消息ack
+message BBSynCardAck{
+	required	uint32		seat			=	1;	//座位号
+	repeated	BBLordCard  cards			=	2;	//牌张信息
+}
+

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+//
+// 创建标识:Copyright (C) 2014-2017 zengfr 版权所有
+// 创建描述:
+// 创建时间:2017/7/18 22:11:24
+// 功能描述:
+// 修改标识: 无
+// 修改描述: 无
+//
+-->
+<Response>
+    <Request>
+         <RequestTime>1.05041599273682</RequestTime>
+         <RequestId>18CZWZFXKSV8F601AGMF</RequestId>
+    </Request>
+    <Success>true</Success>
+	<Message>成功</Message>
+    <TotalCount>888</TotalCount>
+    <PageSize>10</PageSize>
+    <Items>
+                <Item>
+                    <DatabaseId>0DatabaseId</DatabaseId>
+                       <Company>0Company</Company>
+                       <DatabaseName>0DatabaseName</DatabaseName>
+                       <DatabaseDescription>0DatabaseDescription</DatabaseDescription>
+                       <DatabaseType>0DatabaseType</DatabaseType>
+                       <ConnctionString>0ConnctionString</ConnctionString>
+                       <DataItemIsDeleted>0DataItemIsDeleted</DataItemIsDeleted>
+                       <DataItemStatus>0DataItemStatus</DataItemStatus>
+                       <DataCreateLastTime>0DataCreateLastTime</DataCreateLastTime>
+                       <DataChangeLastTime>0DataChangeLastTime</DataChangeLastTime>
+                   </Item>        <Item>
+                    <DatabaseId>1DatabaseId</DatabaseId>
+                       <Company>1Company</Company>
+                       <DatabaseName>1DatabaseName</DatabaseName>
+                       <DatabaseDescription>1DatabaseDescription</DatabaseDescription>
+                       <DatabaseType>1DatabaseType</DatabaseType>
+                       <ConnctionString>1ConnctionString</ConnctionString>
+                       <DataItemIsDeleted>1DataItemIsDeleted</DataItemIsDeleted>
+                       <DataItemStatus>1DataItemStatus</DataItemStatus>
+                       <DataCreateLastTime>1DataCreateLastTime</DataCreateLastTime>
+                       <DataChangeLastTime>1DataChangeLastTime</DataChangeLastTime>
+                   </Item>        <Item>
+                    <DatabaseId>2DatabaseId</DatabaseId>
+                       <Company>2Company</Company>
+                       <DatabaseName>2DatabaseName</DatabaseName>
+                       <DatabaseDescription>2DatabaseDescription</DatabaseDescription>
+                       <DatabaseType>2DatabaseType</DatabaseType>
+                       <ConnctionString>2ConnctionString</ConnctionString>
+                       <DataItemIsDeleted>2DataItemIsDeleted</DataItemIsDeleted>
+                       <DataItemStatus>2DataItemStatus</DataItemStatus>
+                       <DataCreateLastTime>2DataCreateLastTime</DataCreateLastTime>
+                       <DataChangeLastTime>2DataChangeLastTime</DataChangeLastTime>
+                   </Item>        <Item>
+                    <DatabaseId>3DatabaseId</DatabaseId>
+                       <Company>3Company</Company>
+                       <DatabaseName>3DatabaseName</DatabaseName>
+                       <DatabaseDescription>3DatabaseDescription</DatabaseDescription>
+                       <DatabaseType>3DatabaseType</DatabaseType>
+                       <ConnctionString>3ConnctionString</ConnctionString>
+                       <DataItemIsDeleted>3DataItemIsDeleted</DataItemIsDeleted>
+                       <DataItemStatus>3DataItemStatus</DataItemStatus>
+                       <DataCreateLastTime>3DataCreateLastTime</DataCreateLastTime>
+                       <DataChangeLastTime>3DataChangeLastTime</DataChangeLastTime>
+                   </Item>        <Item>
+                    <DatabaseId>4DatabaseId</DatabaseId>
+                       <Company>4Company</Company>
+                       <DatabaseName>4DatabaseName</DatabaseName>
+                       <DatabaseDescription>4DatabaseDescription</DatabaseDescription>
+                       <DatabaseType>4DatabaseType</DatabaseType>
+                       <ConnctionString>4ConnctionString</ConnctionString>
+                       <DataItemIsDeleted>4DataItemIsDeleted</DataItemIsDeleted>
+                       <DataItemStatus>4DataItemStatus</DataItemStatus>
+                       <DataCreateLastTime>4DataCreateLastTime</DataCreateLastTime>
+                       <DataChangeLastTime>4DataChangeLastTime</DataChangeLastTime>
+                   </Item>        <Item>
+                    <DatabaseId>5DatabaseId</DatabaseId>
+                       <Company>5Company</Company>
+                       <DatabaseName>5DatabaseName</DatabaseName>
+                       <DatabaseDescription>5DatabaseDescription</DatabaseDescription>
+                       <DatabaseType>5DatabaseType</DatabaseType>
+                       <ConnctionString>5ConnctionString</ConnctionString>
+                       <DataItemIsDeleted>5DataItemIsDeleted</DataItemIsDeleted>
+                       <DataItemStatus>5DataItemStatus</DataItemStatus>
+                       <DataCreateLastTime>5DataCreateLastTime</DataCreateLastTime>
+                       <DataChangeLastTime>5DataChangeLastTime</DataChangeLastTime>
+                   </Item>        <Item>
+                    <DatabaseId>6DatabaseId</DatabaseId>
+                       <Company>6Company</Company>
+                       <DatabaseName>6DatabaseName</DatabaseName>
+                       <DatabaseDescription>6DatabaseDescription</DatabaseDescription>
+                       <DatabaseType>6DatabaseType</DatabaseType>
+                       <ConnctionString>6ConnctionString</ConnctionString>
+                       <DataItemIsDeleted>6DataItemIsDeleted</DataItemIsDeleted>
+                       <DataItemStatus>6DataItemStatus</DataItemStatus>
+                       <DataCreateLastTime>6DataCreateLastTime</DataCreateLastTime>
+                       <DataChangeLastTime>6DataChangeLastTime</DataChangeLastTime>
+                   </Item>        <Item>
+                    <DatabaseId>7DatabaseId</DatabaseId>
+                       <Company>7Company</Company>
+                       <DatabaseName>7DatabaseName</DatabaseName>
+                       <DatabaseDescription>7DatabaseDescription</DatabaseDescription>
+                       <DatabaseType>7DatabaseType</DatabaseType>
+                       <ConnctionString>7ConnctionString</ConnctionString>
+                       <DataItemIsDeleted>7DataItemIsDeleted</DataItemIsDeleted>
+                       <DataItemStatus>7DataItemStatus</DataItemStatus>
+                       <DataCreateLastTime>7DataCreateLastTime</DataCreateLastTime>
+                       <DataChangeLastTime>7DataChangeLastTime</DataChangeLastTime>
+                   </Item>        <Item>
+                    <DatabaseId>8DatabaseId</DatabaseId>
+                       <Company>8Company</Company>
+                       <DatabaseName>8DatabaseName</DatabaseName>
+                       <DatabaseDescription>8DatabaseDescription</DatabaseDescription>
+                       <DatabaseType>8DatabaseType</DatabaseType>
+                       <ConnctionString>8ConnctionString</ConnctionString>
+                       <DataItemIsDeleted>8DataItemIsDeleted</DataItemIsDeleted>
+                       <DataItemStatus>8DataItemStatus</DataItemStatus>
+                       <DataCreateLastTime>8DataCreateLastTime</DataCreateLastTime>
+                       <DataChangeLastTime>8DataChangeLastTime</DataChangeLastTime>
+                   </Item>        <Item>
+                    <DatabaseId>9DatabaseId</DatabaseId>
+                       <Company>9Company</Company>
+                       <DatabaseName>9DatabaseName</DatabaseName>
+                       <DatabaseDescription>9DatabaseDescription</DatabaseDescription>
+                       <DatabaseType>9DatabaseType</DatabaseType>
+                       <ConnctionString>9ConnctionString</ConnctionString>
+                       <DataItemIsDeleted>9DataItemIsDeleted</DataItemIsDeleted>
+                       <DataItemStatus>9DataItemStatus</DataItemStatus>
+                       <DataCreateLastTime>9DataCreateLastTime</DataCreateLastTime>
+                       <DataChangeLastTime>9DataChangeLastTime</DataChangeLastTime>
+                   </Item>    </Items>
+</Response>

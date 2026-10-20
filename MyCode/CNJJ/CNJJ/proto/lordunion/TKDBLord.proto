@@ -1,0 +1,213 @@
+
+package cn.jj.service.msg.protocol;
+//option optimize_for = CODE_SIZE;
+//option optimize_for = LITE_RUNTIME;
+
+message DBLordReqMsg{
+	required uint32 matchid = 1;
+	//optional uint32 gameid = 2;
+	optional DBLordClientReadyReq dblordclientready_req_msg = 3; //客户端准备好，通知游戏服务
+	optional DBLordOperateReq dblordoperate_req_msg = 4; //客户端操作请求
+	optional DBLordOperateEndReq dblordoperateend_req_msg = 5; //客户端操作完成（播完动画）请求
+	optional DBLordTouchCardReq dblordtouchcard_req_msg = 6; //客户端摸牌请求
+	optional DBLordTakeoutCardReq dblordtakeoutcard_req_msg = 7; //客户端出牌请求
+	optional DBLordTrustReq dblordtrust_req_msg = 8; //客户端托管请求
+	optional DBLordGiveUpReq dblordgiveup_req_msg = 9; //客户端认输请求
+}
+
+message DBLordAckMsg{
+	required uint32 matchid = 1;
+	//optional uint32 gameid = 2;
+	optional DBLordWaitClientReadyAck dblordwaitclientready_ack_msg = 3; //等待客户端准备好
+	optional DBLordInitCardAck dblordinitcard_ack_msg = 4; //发牌
+	optional DBLordTreasureCardAck dblordtreasurecacrd_ack_msg = 5; //宝牌
+	optional DBLordOperateStartAck dblordoperatestart_ack_msg = 6; //开始操作
+	optional DBLordTouchCardAck dblordtouchcard_ack_msg = 7; //摸牌
+	optional DBLordOperateResultAck dblordoperateresult_ack_msg = 8; //操作结果
+	optional DBLordTakeoutCardAck dblordtakeoutcard_ack_msg = 9; //出牌
+	optional DBLordTrustAck dblordtrust_ack_msg = 10; //托管
+	optional DBLordResultAck dblordresult_ack_msg = 11; //结算
+	optional DBLordGameRuleAck dblordgamerule_ack_msg = 12; //游戏规则
+	optional DBLordNeedHpAck dblordneedhp_ack_msg = 13; //破产充值消息
+	optional DBLordScoreChangeAck dblordscorechange_ack_msg = 14; //分数变化
+	optional DBLordGiveUpAck dblordgiveup_ack_msg = 15; //认输
+}
+
+//听牌信息
+message DBTingInfo{
+	required int32 cardpoint = 1;
+	required DBFantype fantype = 2;
+}
+
+//牌张定义
+message DBLordCard{
+	required int32 cardcolor = 1; //花色
+	required int32 cardpoint = 2; //点数
+	optional int32 type = 3; //特殊标记： 1-宝牌
+	optional int32 wildpoint = 4; //赖子点数
+}
+
+//操作定义
+//key 0:过,1:胡,2:破封胡,3:明牌,4:明炸
+
+//数据定义
+//key 100:牌张
+
+message Attribute{
+	required uint32 key = 1;
+	optional uint64 intvalue = 2;
+	repeated string strvalue = 3;
+	repeated DBLordCard cards = 4;
+	optional DBHuDetail hudetails = 5;
+}
+
+//番型详情
+message DBFantype{
+	required uint32 basefan = 1;		//基础番型值
+	optional uint32 specialfan = 2;		//特殊番型值
+	optional string fanvalue = 3;		//番数
+	repeated DBLordCard card = 4;		//牌张
+	optional uint32 maincolor = 5;		//主花色，同花顺使用
+}
+
+//胡牌详情
+message DBHuDetail{
+	//required uint32 seat = 1;			//胡牌玩家座位
+	optional uint32 hutype = 2;			//胡的类型 0-普通，1-自摸，2-一炮多响
+	required DBFantype fantype = 3;		//番型
+	repeated string checks = 4;			//本次胡牌各家分数变化
+	repeated string scores = 5;			//本次胡牌后各家剩余分数
+	optional uint32 showbomb = 6;		//明炸个数
+	optional uint32 blackbomb = 7;		//暗炸个数
+	optional uint32 jokerbomb = 8;		//王炸个数
+	optional uint32 doublecnt = 9;		//加倍牌个数
+	optional uint32 treasurecnt = 10;	//宝牌个数
+	optional DBLordCard keycard = 11; 	//胡的是哪张牌
+	optional uint32 extramulti = 12;	//附加倍数
+	optional uint32 hutag = 13;			//胡的标签 0-普通，1-天胡，2-地胡，3-妙手回春，4-海底捞月，5-硬胡，6-同花
+	repeated DBTingInfo tinglist = 14;		//听牌列表
+}
+
+
+message DBLordClientReadyReq{
+	required uint32 seat = 1;	//座位号
+}
+
+message DBLordWaitClientReadyAck{
+	optional uint64 timestamp = 1; //时间戳
+}
+
+message DBLordOperateStartAck{
+	optional uint64 timestamp = 1; //时间戳
+	optional uint32 seat = 2;
+	optional uint32 msgcnt = 3; //消息序号
+	optional uint32 type = 4; //类型 1-摸牌，2-加倍，3-出牌
+	optional uint32 cardcnt = 5; //加倍时几张
+}
+
+message DBLordOperateReq{
+	required uint32 seat = 1; //座位号
+	required Attribute operation = 2; //操作内容
+}
+
+message DBLordOperateResultAck{
+	optional uint32 seat = 1; //座位号
+	optional uint64 timestamp = 2; //时间戳
+	optional uint32 msgcnt = 3; //消息序号
+	repeated Attribute operations = 4; //内容,可包括流水
+}
+
+message DBLordOperateEndReq{
+	required uint32 seat = 1; //座位号
+	optional uint64 timestamp = 2; //时间戳
+	optional uint32 msgcnt = 3; //消息序号
+}
+
+message DBLordInitCardAck{
+	repeated DBLordCard cards = 1; //牌张
+	optional DBFantype recofantype = 2; //推荐番型 
+	optional uint32 firstinitseat = 3;
+	optional uint32 msgcnt = 4; //消息序号
+}
+
+message DBLordTreasureCardAck{
+	repeated DBLordCard cards = 1; //牌张
+	optional uint32 msgcnt = 2; //消息序号
+}
+
+message DBLordTouchCardReq{
+	required uint32 seat = 1; //座位号
+	required DBFantype recofantype = 2; //推荐番型
+	optional uint32 msgcnt = 3; //消息序号
+}
+
+message DBLordTouchCardAck{
+	required uint32 seat = 1; //座位号
+	repeated DBLordCard cards = 2; //牌张
+	optional uint32 msgcnt = 3; //消息序号
+	optional uint32 type = 4; // 0-普通、1-加倍牌补花、2-王炸补花、3-摸到加倍
+	optional uint32 cardcnt = 5; //摸牌个数
+}
+
+message DBLordTakeoutCardReq{
+	required uint32 seat = 1; //座位号
+	optional uint32 type = 2; //类型：0-普通，1-王炸，2-暗炸
+	repeated DBLordCard cards = 3; //牌张
+	optional uint32 msgcnt = 4; //消息序号
+	optional string multiple = 5; //倍数
+}
+
+message DBLordTakeoutCardAck{
+	required uint32 seat = 1; //座位号
+	optional uint32 type = 2; //类型：0-普通，1-王炸，2-暗炸
+	repeated DBLordCard cards = 3; //牌张
+	optional uint32 msgcnt = 4; //消息序号
+	optional string multiple = 5; //倍数
+	repeated uint32 opseat = 6; //接下来可以操作的玩家座位
+}
+
+message DBLordTrustReq{
+	required uint32 seat = 1; //座位号
+	required uint32 trust = 2; //托管,0取消托管 1托管
+	required uint32 userid = 3;
+}
+
+message DBLordTrustAck{
+	required uint32 seat = 1; //座位号
+	required uint32 trust = 2; //托管,0取消托管 1托管
+	optional uint32 userid = 3;
+}
+
+message DBLordResultAck{
+	optional uint32 seat = 1; //座位号
+	optional uint32 overtype = 2; //结束类型 0-正常，1-流局
+	repeated Attribute resultinfo = 3; //牌张
+	repeated string scorechanges = 4; //玩家变化分数
+	repeated string realchip = 5; //各家真实分数
+}
+
+message DBLordGameRuleAck{
+	required string gamerule = 1; //游戏番型json串
+}
+
+message DBLordNeedHpAck{
+	required uint32 seat = 1; //座位号
+	required uint32 maxchargetime = 2; //最大等待时间
+	optional uint64 timestamp = 3; //时间戳
+}
+
+message DBLordScoreChangeAck{
+	repeated string scorechanges = 1; //各家分数变化值
+    repeated string realchip = 2; //各家真实分数
+    //repeated string fanshu = 3; //各家番数
+    repeated uint32 changetype = 4;	//各家变化类型 1-胡牌，2-充值
+}
+
+message DBLordGiveUpReq{
+	required uint32 seat = 1; //认输座位
+}
+
+message DBLordGiveUpAck{
+	required uint32 seat = 1; //认输座位
+}
+

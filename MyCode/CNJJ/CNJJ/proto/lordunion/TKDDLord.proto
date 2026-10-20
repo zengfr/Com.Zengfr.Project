@@ -1,0 +1,213 @@
+
+package cn.jj.service.msg.protocol;
+//option optimize_for = CODE_SIZE;
+//option optimize_for = LITE_RUNTIME;
+
+message DDLordReqMsg  {
+	required uint32 matchid = 1;
+//	optional uint32 gameid = 2;
+	optional DDLordClientReadyReq ddlordclientready_req_msg = 3; //客户端准备好，通知游戏服务
+	optional DDLordCallScoreReq ddlordcallscore_req_msg = 4;
+	optional DDLordTakeoutCardReq ddlordtakeoutcard_req_msg = 5;
+	optional DDLordTrustReq ddlordtrust_req_msg = 6;
+	optional DDLordCheckTimeOutReq ddlordchecktimeout_req_msg = 7;
+	optional DDLordKickReq   ddlord_kick_req_msg   = 8; //踢
+	optional DDLordLordGiveUpReq ddlord_give_up_req_msg = 9; // 地主认输
+}
+
+message DDLordAckMsg  {
+	required uint32 matchid = 1;
+//	optional uint32 gameid = 2;
+	optional DDLordWaitClientReadyAck ddlordwaitclientready_ack_msg = 3;	//开始等待客户端准备好
+	optional DDLordInitCardAck ddlordinitcard_ack_msg = 4;	//发牌										
+	optional DDLordStartCallScoreAck ddlordstartcallscore_ack_msg = 5;	//开始叫分
+	optional DDLordCallScoreAck ddlordcallscore_ack_msg = 6;//叫分
+	optional DDLordCallScoreProcessAck ddlordcallscoreprocess_ack_msg = 7;	// 叫分过程
+	optional DDLordDeclareLordAck ddlorddeclarelord_ack_msg = 8;	// 宣布地主
+	optional DDLordSendLordCardAck ddlordsendlordcard_ack_msg = 9;	// 给出牌闲家发地主手牌
+	optional DDLordInitBottomCardAck ddlordinitbottomcard_ack_msg = 10;	//发底牌
+	optional DDLordTransferCardAck ddlordtransfercard_ack_msg = 11; // 转移手牌
+	optional DDLordExchangePlayerAck ddlordexchangeplayer_ack_msg = 12; // 交换玩家
+	optional DDLordTakeoutCardAck ddlordtakeoutcard_ack_msg = 13;	//出牌
+	optional DDLordTrustAck ddlordtrust_ack_msg = 14;	//托管
+	optional DDLordTipMsgAck ddlordtipmsg_ack_msg = 15;	//TIPS消息
+	optional DDLordChangeTakeoutTimeAck ddlordchangetakeouttime_ack_msg = 16; //出牌时间改变
+	optional DDLordUpdateMultiAck ddlordupdatemulti_ack_msg = 17; //更新倍数消息
+	optional DDLordEmptyAck ddlordempty_ack_msg = 18;	//流局
+	optional DDLordResultAck ddlordresult_ack_msg = 19;	//结果
+	optional DDLordOperateStartAck ddlordoperatestart_ack_msg = 20; //操作开始
+	optional DDLordKickAck ddlordkick_ack_msg	= 21;  //踢消息
+	optional DDLordOperateResultAck ddlordoperateresult_ack_msg = 22; //操作结果
+	optional DDLordNickNameAck ddlordnickname_ack_msg = 23;
+}
+
+//操作结果结构
+message DDOperateResult{
+	required 	uint32 	seat 			= 1;	//座位号
+	required 	uint32 	result 			= 2;	//结果
+}
+
+message DDLordCallScoreReq  {
+	required uint32 seat = 1;
+	required uint32 curscore = 2;
+}
+
+message DDLordCallScoreAck  {
+	required uint32 curcallseat = 1;
+	required uint32 curscore = 2;
+}
+
+//叫分过程结构
+message DDCallScoreProcess{
+	required 	uint32 	seat 			= 1;	//叫分座位号
+	required 	uint32 	callscore 		= 2;	//所叫分数
+}
+
+message DDLordCallScoreProcessAck  {
+	repeated DDCallScoreProcess ddcallscoreprocess = 1;	//叫分过程
+}
+
+message DDLordTakeoutCardReq  {
+	required uint32 seat = 1;
+	optional uint32 nextplayer = 2;
+	optional uint32 passplayer = 3;
+	optional uint32 multiple = 4;
+	required bool isover = 5;
+	required bytes cards = 6;
+	optional uint32 msgcnt = 7; //出牌消息的消息序号
+}
+
+message DDLordTakeoutCardAck  {
+	required uint32 seat = 1;
+	required uint32 nextplayer = 2;
+	required int32 passplayer = 3;
+	required uint32 multiple = 4;
+	required bool isover = 6;
+	required bytes cards = 7;
+	optional bool nextautogo = 8;	//下一个玩家是否最后一手牌服务帮忙自动打出
+	optional uint32 msgcnt = 9;	//出牌消息的消息序号
+}
+
+message DDLordTrustReq  {
+	required uint32 seat = 1;
+	required uint32 trust = 2;
+	required uint32 userid = 3;
+}
+
+message DDLordTrustAck  {
+	required uint32 seat = 1;
+	required uint32 trust = 2;
+	optional uint32 userid = 3;
+}
+
+message DDLordCheckTimeOutReq {
+	optional uint32 nullvalue = 1;
+}
+
+message DDLordStartCallScoreAck  {
+	required uint32 nextcallseat = 1; // 下一个叫分座位
+	required uint32 validscore = 2; // 当前合法叫分
+}
+
+message DDLordInitCardAck  {
+	required uint32 firstinitcardseat = 1; // 第一张牌发给谁
+	required bytes cards = 2;
+}
+
+message DDLordDeclareLordAck  {
+	required uint32 lordseat = 1;
+	required uint32 bottomscore = 2;
+	required uint32 freetakeoutseat = 3;
+}
+
+message DDLordSendLordCardAck  {
+	required uint32 freetakeoutseat = 1; // 出牌闲家座位号
+	required bytes cards = 2; // 地主手牌
+}
+
+message DDLordInitBottomCardAck  {
+	required bytes cards = 1;
+}
+
+message DDLordTransferCardAck  {
+	required uint32 srcseat = 1; //转移玩家座位号
+	required uint32 dstseat = 2; //被转移玩家座位号
+	required bytes cards = 3;	 //牌张
+}
+
+message DDLordExchangePlayerAck  {
+	required uint32 srcseat = 1; //交换玩家座位号
+	required uint32 dstseat = 2; //被交换玩家座位号
+	required bytes cards = 3;	 //牌张
+}
+
+message DDLordResultAck  {
+	repeated int32 score = 1 [packed=true];
+	required uint32 winseat = 2;
+	repeated uint32 cardcount = 3 [packed=true];
+	required uint32 spring = 4;
+	required bytes  cards = 5;
+	optional bool   islordgiveup = 6;
+	optional uint32 giveupfigure = 7;  //认输结果（无认输没有此项，1-地主认输， 2-农民认输）
+}
+
+message DDLordTipMsgAck  {
+	required string tip = 1;
+}
+
+message DDLordEmptyAck  {
+	repeated uint32 scores = 1[packed=true];
+}
+
+message DDLordChangeTakeoutTimeAck  {
+	required uint32 seat = 1;
+	required uint32 takeouttime = 2;
+}
+
+message DDLordUpdateMultiAck {
+	required int32 isspring = 1; //是否春天[1:是春天,0:不是]
+	required int32 bombcount = 2; //炸弹个数
+	required int32 rocketcount = 3; //火箭个数
+	required int32 curmulti = 4; //当前游戏总倍数
+}
+
+message DDLordLordGiveUpReq
+{
+	optional uint32 null = 1;
+}
+
+message DDLordWaitClientReadyAck{
+	required uint64 timestamp = 1; //时间戳
+	required uint32 freecallseat = 2; // 叫分闲家座位号
+}
+
+message DDLordClientReadyReq{
+	required uint32 seat = 1;	//座位号
+}
+
+message DDLordOperateStartAck{
+	required uint64 timeStamp =	1;	//时间戳
+	repeated uint32	operateType = 2;	//可操作的类型（1-加倍，2-选底牌，100-恢复牌局）
+	repeated uint32 seatlist = 3;	//对应可操作的座位列表
+	optional string gameAction = 4;	 //游戏数据（录像格式）
+}
+
+message DDLordKickReq{
+	required uint32 seat = 1;	//踢的人座位号
+	required bool kick = 2;		//是否踢
+}
+
+message DDLordKickAck{
+	required uint32 seat = 1;	//踢的人座位号
+	required bool kick = 2;		//是否踢
+}
+
+message DDLordOperateResultAck{
+	required uint64 timestamp = 1; //时间戳
+	repeated uint32	operateType = 2;	//可操作的类型
+	repeated DDOperateResult ddoperateResult = 3;	//操作结果
+}
+
+message DDLordNickNameAck {
+	repeated string nicks = 1;
+}

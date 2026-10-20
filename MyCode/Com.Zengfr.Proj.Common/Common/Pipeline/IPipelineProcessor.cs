@@ -7,18 +7,14 @@ using Com.Zengfr.Proj.Common.Pipeline;
 
 namespace Com.Zengfr.Proj.Common.Pipeline
 {
-    public interface IPipelinePreProcessor<I, M, O>
+  
+    public interface IPipelineProcessor<I, M, O>
     {
         bool PreProcess(PipelineContext<I, M, O> context);
-    }
-    public interface IPipelinePostProcessor<I, M, O>
-    {
         bool PostProcess(PipelineContext<I, M, O> context);
-    }
-    public interface IPipelineProcessor<I, M, O> : IPipelinePreProcessor<I, M, O>, IPipelinePostProcessor<I, M, O>
-    {
+        bool Disabled { get; set; }
+        int Retry { get; set; }
         String Name { get; set; }
-        bool Enabled { get; set; }
     }
    
 }

@@ -1,0 +1,10 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:scrcpy="clr-namespace:ScrcpyNet.Avalonia;assembly=RScreen">
+    <Style Selector="scrcpy|ScrcpyDisplay2">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Image Name="PART_RenderTargetImage"/>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</Styles>

@@ -1,0 +1,225 @@
+
+package cn.jj.service.msg.protocol;
+//option optimize_for = CODE_SIZE;
+//option optimize_for = LITE_RUNTIME;
+
+import "TKLord.proto";
+message LZLordReqMsg {
+    required uint32 matchid = 1;
+    optional uint64 time = 2;
+    optional LZCallScoreReq lz_call_score_req_msg = 3; //叫分
+    optional LZPresentReq lz_present_req_msg = 4; //出牌
+    optional LZPassReq lz_pass_req_msg = 5;//过牌[不要]
+    optional LZTrustInReq lz_trustin_req_msg = 6; //托管
+    optional LZForceDeclareLoadReq lz_forcedeclareload_req_msg = 7; //霸王叫确定叫地主
+    optional LordClientReadyReq lordclientready_req_msg = 12; //客户端准备好，通知游戏服务
+}
+
+message LZLordAckMsg {
+    required uint32 matchid = 1;
+    optional uint64 time = 2;
+    optional LZStartGameAck lz_start_game_ack_msg = 3; //开始游戏
+    optional LZSendConfigAck lz_send_config_ack_msg = 4; //发送配置
+    optional LZUpdateThinkTimeAck lz_update_thinktime_ack_msg = 5; //更新思考时间
+    optional LZCallScoreAck lz_call_score_ack_msg = 6; //叫分
+    optional LZDispatchSessionKeyAck lz_dispatch_sessionkey_ack_msg = 7; //分发密钥
+    optional LZDispatchCardsAck lz_dispatch_cards_ack_msg = 8; //发牌
+    optional LZDeclareLordAck lz_declare_lord_ack_msg = 9; //宣布地主
+    optional LZDeclareWildCardAck lz_declare_wildcard_ack_msg = 10; //宣布混牌
+    optional LZDeclareMatchScoreAck lz_declare_matchscore_ack_msg = 11; //宣布得分
+    optional LZDeclareFirstCallScoreSeatAck lz_declare_firstcallscore_seat_ack_msg = 12; //确定首叫
+    optional LZDeclareFirstPresentSeatAck lz_declare_firstpresent_seat_ack_msg = 13; //确定第一个出牌玩家座位
+    optional LZPresentAck lz_present_ack_msg = 14; //出牌
+    optional LZPassAck lz_pass_ack_msg = 15; //过牌
+    optional LZTrustInAck lz_trustin_ack_msg = 16; //托管
+    optional LZOnlineStateChangeAck lz_onlinestate_change_ack_msg = 17; //更新在线状态[上线/断线]
+    optional LZQuitOnOwnAck lz_quit_on_own_ack_msg = 19; //玩家故意关闭客户端伪消息
+    optional LZFinishGameAck lz_finish_game_ack_msg = 20; //结束游戏
+    optional LZCastDiceAck lz_cast_dice_ack_msg = 21; //投骰子
+    optional LZSendUnderCardsAndWildCardAck lz_send_undercard_wildcard_ack_msg = 22; //发底牌和混牌
+    optional LZUpdateMultiActionAck lz_update_multi_action_ack_msg = 23; //更新倍数
+    optional LZForceCallAck lz_forcecall_ack_msg = 24; //霸王叫
+    optional LZForceCallShowCardAck lz_forceshowcardcall_ack_msg = 25; //发霸王叫明牌消息
+    optional LZForceDeclareLoadAck lz_forcedeclareload_ack_msg = 26; //霸王叫确定叫地主
+    optional LordWaitClientReadyAck lordwaitclientready_ack_msg = 27;    //开始等待客户端准备好
+    optional LZGameRuleAck lz_gamerule_ack_msg = 28;  //癞斗游戏规则消息
+}
+
+message LZCallScoreReq {
+    required uint32 seat = 1; //座位编号
+    required uint32 score = 2; //分数
+}
+
+message LZPassReq {
+    required uint32 seat = 1; //座位编号
+}
+
+//牌型牌型: 1=单张; 2=对子;3=三张;4=三带单;5=三带对;6=炸弹（不是火箭）;7=火箭;8=单顺;9=双顺;10=三顺;11=飞机带单翅膀;12=飞机带对翅膀;13=四带一;14=四带单;15=四带对;
+//牌: int类型,由四个字节组成 0=牌花色;1=牌点数;2=是否混子;3=混子牌变换后的点数
+//牌花色: -1=无效; 0=方块;1=梅花;2=红桃;3=黑桃
+//牌点数: -1=无效;0-14;
+message LZPresentReq {
+    required uint32  seat = 1; //座位号
+    required uint32  type = 2; //牌型
+    optional bytes   cards =3; //牌
+}
+
+//托管
+message LZTrustInReq {
+    required uint32 seat = 1; //座位编号
+    required bool   trustin = 2; //请求or解除托管
+}
+
+//开始游戏
+message LZStartGameAck {
+    optional uint32 seat = 1; //座位号
+}
+
+message LZSendConfigAck {
+    optional uint32 seat = 1; //座位号
+    optional bool   hide_player_mode = 2; //是否隐藏玩家模式
+    optional string config = 3; // 配置
+}
+
+//更新思考时间
+message LZUpdateThinkTimeAck {
+    optional uint32 seat = 1; //座位号
+    repeated uint32 think_time = 2; //3个玩家思考时间
+}
+
+//发牌
+message LZDispatchCardsAck {
+    optional uint32 seat = 1; //座位号
+    optional bytes cards = 2;//发牌牌张
+}
+
+//分发密钥
+message LZDispatchSessionKeyAck {
+    optional uint32 seat = 1; //座位号
+    required bytes sessionkey = 2; //玩家的密钥[密钥长度+密钥]
+}
+
+//确定首叫
+message LZDeclareFirstCallScoreSeatAck {
+    optional uint32 seat = 1; //座位号
+}
+
+//叫分
+message LZCallScoreAck {
+    optional uint32 seat = 1; //座位编号
+    optional uint32 score = 2; //分数
+}
+
+//宣布地主
+message LZDeclareLordAck {
+    optional uint32 lord_seat = 1; //地主座位号
+    optional uint32 score = 2; //叫的分数
+    optional uint32 init_multiple = 3; //基础倍数
+    optional bytes  cards = 4;//三张底牌
+}
+
+//宣布混牌
+message LZDeclareWildCardAck {
+    optional uint32 seat = 1; //座位编号
+    optional bytes cards = 2;//一张 混子牌
+}
+
+//宣布得分
+message LZDeclareMatchScoreAck {
+    optional uint32 seat = 1; //座位号
+    repeated int32 score = 2; //玩家得分
+}
+
+//投骰子
+message LZCastDiceAck {
+    optional uint32 seat = 1; //座位编号
+    optional uint32 number = 2;//骰子数子
+}
+
+//确定第一个出牌玩家座位
+message LZDeclareFirstPresentSeatAck {
+    optional uint32 seat = 1; //座位号
+}
+
+//出牌
+message LZPresentAck {
+    optional uint32 seat = 1; //座位号
+    optional uint32 type = 2; //牌型
+    optional bytes cards =3; //牌
+    optional bool nextautogo = 4; //下一个玩家是否最后一手牌服务帮忙自动打出
+    optional bool nextautopass = 5; //下一个玩家是否游戏服务自动pass
+}
+
+//过牌
+message LZPassAck {
+    optional uint32 seat = 1; //座位号
+    optional bool nextautogo = 2; //下一个玩家是否最后一手牌服务帮忙自动打出
+    optional bool nextautopass = 3; //下一个玩家是否游戏服务自动pass
+}
+
+//托管
+message LZTrustInAck {
+    optional uint32 seat = 1; //座位编号
+    optional bool   trustin = 2; //请求or解除托管
+}
+
+//更新在线状态[上线/断线]
+message LZOnlineStateChangeAck {
+    optional uint32 seat = 1; //座位编号
+    optional bool   online = 2; //上线or下线
+}
+
+//结束游戏
+message LZFinishGameAck {
+    optional uint32 seat = 1; //座位编号
+    optional bytes  remain_cards = 2; //剩余的牌发牌[3家]
+    repeated bool   bot_instead = 3; //是否机器人替身
+    repeated string nick_name = 4; //昵称
+}
+
+//发底牌和混牌
+message LZSendUnderCardsAndWildCardAck {
+    optional uint32 seat = 1; //座位编号
+    optional bytes whild_card = 2;//混子1张
+    optional bytes under_cards = 3;//底牌 3张
+}
+
+//玩家故意关闭客户端伪消息
+message LZQuitOnOwnAck {
+    optional uint32 seat = 1; //座位编号
+}
+
+//更新倍数
+message LZUpdateMultiActionAck {
+    optional uint32 softbomcount = 1;
+    optional uint32 hardbomcount = 2;
+    optional uint32 puresoftbombcount = 3;
+    optional uint32 missilecount = 4;
+    optional uint32 curgamemulti = 5;
+}
+
+message LZForceDeclareLoadReq {
+    required int32 seat = 1; //霸王叫的玩家座位号
+    required int32 iscall = 2; //当前叫或不叫[1:叫; 0:不叫]
+}
+
+message LZForceDeclareLoadAck {
+    required int32 seat = 1; //霸王叫的玩家座位号
+    required int32 iscall = 2; //当前叫或不叫[1:叫; 0:不叫]
+}
+
+message LZForceCallAck {
+    required int32 seat = 1; //霸王叫的玩家座位号
+    required bytes cards = 2; //后缀牌
+}
+
+message LZForceCallShowCardAck{
+    required int32 seat = 1; //地主是谁,明的牌
+    required bytes cards = 2; //后缀牌
+}
+
+message LZGameRuleAck{
+    optional bool is_steadywild = 1;  //是不是固定癞子
+    optional bool is_missile_apart = 2; //火箭是否可以拆开
+}
+

@@ -1,0 +1,67 @@
+
+package cn.jj.service.msg.protocol;
+//option optimize_for = CODE_SIZE;
+//option optimize_for = LITE_RUNTIME;
+
+// 附件
+message Attachment {
+    optional uint32 item_id = 1; //物品ID
+    optional uint32 item_cnt = 2; //物品个数
+    optional uint32 item_type = 3; //物品大类
+}
+
+// 通用物品
+message Ware {
+    optional uint32 category = 1; // 大分类，可能是金融类、物品类、等等
+    optional uint32 type = 2; // 小分类，比如大分类是物品，小分类区分具体是哪个物品
+    optional uint32 count = 3; // 数量
+}
+
+// 电子邮件
+message Email {
+    optional string email_id = 1;
+    optional uint32 type = 2; //邮件类别
+    optional uint32 sub_type = 3; //邮件子类型
+    optional uint32 sender_id = 4; //发送者ID
+    optional string sender_name = 5; //发送者昵称
+    optional uint32 receiver_id = 6; //接收者ID
+    optional string receiver_name = 7; //接收者姓名
+    optional string title = 8; //邮件标题
+    optional string body = 9; //邮件内容
+    repeated Attachment attachment = 10; //附件
+    optional uint32 send_time_stamp = 11; //发送时间戳
+    optional uint32 expiry_time_stamp = 12; //失效时间戳
+    optional uint32 recv_dead_line = 13; //邮件接收截止时间
+    optional bool read = 14; //标注是否已读 1表示已读
+    optional bool received = 15; //标注是否已领奖 1表示已领取
+    optional uint32 email_type = 16; //客户端识别类型
+    optional string url = 17; //url信息
+    repeated uint32 batchids = 18; //ids，保留后台发多个玩家级邮件用
+    repeated int32 promoter_ids = 19; //[-1:大厅全渠道  >0:发放给指定渠道   空数组:全发]
+}
+
+// 游戏场次标识
+message GameIdentifierMsg {
+    optional uint32 game_mode = 1; // 游戏模式
+    optional uint32 game_sub_mode = 2; // 游戏子模式
+    optional uint32 game_serial = 3; // 游戏序列号
+}
+
+// 游戏模式标识
+message GameModeIdentifierMsg {
+    optional uint32 game_mode = 1; // 游戏模式
+    optional uint32 game_sub_mode = 2; // 游戏子模式
+}
+
+// 统计数据
+message CombatStatistics {
+    optional uint32 stat_type = 1; // 统计类型
+    optional uint32 stat_value = 2; // 统计值
+}
+
+// 时间周期
+message TimePeriod {
+    optional uint32 start_time = 1; // 起始时间：1970年1月1日 00:00:00 以来的秒数
+    optional uint32 end_time = 2; // 终止时间：1970年1月1日 00:00:00 以来的秒数
+}
+

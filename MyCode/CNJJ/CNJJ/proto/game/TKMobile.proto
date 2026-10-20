@@ -1,0 +1,64 @@
+
+// See README.txt for information and build instructions.
+
+package cn.jj.service.msg.protocol;
+//option optimize_for = CODE_SIZE;
+//option optimize_for = LITE_RUNTIME;
+
+import "TKLobby.proto";
+import "TKMatch.proto";
+import "TKTourney.proto";
+import "TKMobileAgent.proto";
+import "TKSMS.proto";
+import "TKHttp.proto";
+import "TKMatchInfo.proto";
+import "TKECAService.proto";
+import "TKMatchView.proto";
+import "TKHbase.proto";
+import "TKMatchInfoEx.proto";
+import "TKBroadcast.proto";
+import "TKMobileBroker.proto";
+import "TKCag.proto";
+import "TKMasterMatchInfo.proto";
+import "TKRoomInfo.proto";
+
+message TKMobileReqMsg  {
+    optional uint32 param = 1;
+    optional LobbyReqMsg lobby_req_msg = 2; //大厅消息
+    optional MatchReqMsg match_req_msg = 3; //比赛消息
+    optional TourneyReqMsg tourney_req_msg = 6; //tourney消息
+    optional MobileAgentReqMsg mobileagent_req_msg = 7; //手机自身服务器消息
+    optional SMSReqMsg sms_req_msg = 8; //充值消息
+    optional HttpReqMsg http_req_msg = 9;// 需要访问http服务的消息
+    optional MatchInfoReqMsg matchinfo_req_msg = 11; //matchinfo
+    optional ECAServiceReqMsg ecaservice_req_msg = 14; //合成炉
+    optional MatchViewReqMsg matchview_req_msg = 16; //比赛信息
+    optional HbaseReqMsg hbase_req_msg = 18; //访问hbase数据库相关消息
+    optional MatchInfoExReqMsg matchinfoex_req_msg = 47;
+    optional BroadcastReqMsg broadcast_req_msg = 51; //旁观系统
+    optional MobileBrokerReqMsg mobilebroker_req_msg = 77; //暂时捕鱼broker使用
+    optional CagReqMsg cag_req_msg = 100; // 休闲游戏协议
+    optional MasterMatchInfoReqMsg mastermatchinfo_req_msg = 108; //大师旁观系统
+    optional RoomInfoReqMsg roominfo_req_msg = 132; //roominfo
+}
+
+message TKMobileAckMsg  {
+    optional uint32 param = 1; // 为了节省流量，这个参数在很多消息中有特殊含义，具体见单独的消息注释
+    optional LobbyAckMsg lobby_ack_msg = 2; //大厅消息
+    optional MatchAckMsg match_ack_msg = 3; //比赛消息
+    optional TourneyAckMsg tourney_ack_msg = 6; //tourney消息
+    optional MobileAgentAckMsg mobileagent_ack_msg = 7; //手机自身服务器消息
+    optional SMSAckMsg sms_ack_msg = 8; //充值消息
+    optional HttpAckMsg http_ack_msg = 9; // 需要访问http服务的消息
+    optional MatchInfoAckMsg matchinfo_ack_msg = 11;
+    optional ECAServiceAckMsg ecaservice_ack_msg = 14; //合成炉
+    optional MatchViewAckMsg matchview_ack_msg = 16; //比赛信息
+    optional HbaseAckMsg hbase_ack_msg = 18; //访问hbase数据库相关消息
+    optional MatchInfoExAckMsg matchinfoex_ack_msg = 47;
+    optional BroadcastAckMsg broadcast_ack_msg = 51; //旁观系统
+    optional MobileBrokerAckMsg mobilebroker_ack_msg = 77; //暂时捕鱼broker使用
+    optional CagAckMsg cag_ack_msg = 100; // 休闲游戏协议
+    optional MasterMatchInfoAckMsg mastermatchinfo_ack_msg = 108; //大师旁观系统
+    optional RoomInfoAckMsg roominfo_ack_msg = 132; //roominfo
+}
+

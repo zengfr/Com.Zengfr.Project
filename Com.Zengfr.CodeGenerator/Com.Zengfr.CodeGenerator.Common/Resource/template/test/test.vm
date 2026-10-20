@@ -1,0 +1,80 @@
+﻿#set($outputConfig.OutputDir = "test")
+#set($outputConfig.OutputFileName = "${model.Name}.java")
+
+#foreach($p in $params) 
+    $p.Key $p.Value.GetType()
+#end
+
+#foreach($model in $models)
+ $model.Name
+#end
+$now
+$templatFileName
+$model.Name
+$logger.Info("Process:$model.Name")
+
+
+#foreach($model in $models)
+ $model.Name
+  #foreach($attr in $model.Attributes)
+               $attr.Name $attr.Description $attr.TypeName $attr.IsIndex $attr.IsUnique $attr.IsKey $attr.IsID
+  #end
+#end
+
+#set ($rr1 =$jpaUtil.buildOne($attrsMap))
+#foreach($r1 in $rr1)
+       $r1.Key $r1.Value
+#end
+
+#set ($rr2 =$jpaUtil.buildTwo($attrsMap))
+#foreach($r2 in $rr2)
+     $r2.Key $r2.Value
+#end
+
+
+$outputConfig.OutputDir
+$outputConfig.OutputFileName
+#set($outputConfig.OutputFileName = "t.java")
+
+#set( $criteria = ["name", "address"] )
+
+    #foreach( $criterion in $criteria )
+
+        #set( $result = false )  //先设置默认值
+
+        #set( $result = $query.criteria($criterion) )
+
+        #if( $result )
+
+                Query was successful
+
+        #end
+
+    #end
+
+
+	#if ($p.StrSex == "女")
+
+    #set($Sex = "女士")
+
+#elseif ($p.StrSex == "男")
+
+    #set($Sex = "先生")
+
+#elseif ($p.StrSex == "无")
+
+    #set($Sex = "人妖")
+
+#else
+
+    #set($Sex = "怪物")
+
+#end
+
+
+#set($str = "CNF")
+
+$str.SubString(0,1) 
+
+#set($a = 123)
+$a.GetType()

@@ -1,0 +1,29 @@
+
+package cn.jj.service.msg.protocol;
+//option optimize_for = CODE_SIZE;
+//option optimize_for = LITE_RUNTIME;
+
+message HttpReqMsg  {
+	optional CommonHttpReq commonhttp_req_msg = 14;//通用http请求
+}
+
+message HttpAckMsg  {
+	optional CommonHttpAck commonhttp_ack_msg = 14;//通用http请求
+}
+
+message CommonHttpReq {
+	required string type = 1; //argv格式
+	required string argv = 2; //上传请求
+	optional uint32 gameid = 3;
+	optional uint32 reqtype = 4; //lua or php
+	optional bool	isZip = 5; //是否是压缩
+	optional bool	isSupportZip = 6; //是否支持压缩
+	optional string	url = 7;
+}
+
+message CommonHttpAck {
+	optional string result = 1; //返回结果
+	optional int32 len = 2;
+	optional bytes zipresult = 3;
+}
+

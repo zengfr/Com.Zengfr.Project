@@ -1,0 +1,42 @@
+﻿#set($projectName = "restservice")
+#set($packageName = $javaUtil.getPackageName(${config.NamespacePrefix},$projectName))
+#set($outputDir = $javaUtil.getPackagePath("service\\${projectName}","resources"))
+#set($outputConfig.OutputDir = $outputDir)
+#set($outputConfig.OutputFileName = "logback.xml")
+<configuration scan="true" scanPeriod="30 seconds">
+	<contextName>spring-data-test</contextName>
+	<property name="ROOT_DIR" value="spring-data-test" />
+	<property name="MODULE_NAME" value="spring-data-test" />
+
+	<property name="PATTERN_DEFAULT"
+		value="[%date{dd.MM.yyyy HH:mm:ss.SSS}] : %-5level : %thread : %contextName : [%logger.%method:%line] : %message%n%exception" />
+
+	<appender class="ch.qos.logback.core.ConsoleAppender" name="RootConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>${PATTERN_DEFAULT}</pattern>
+		</layout>
+	</appender>
+
+	<root level="WARN" additivity="false">
+		<appender-ref ref="RootConsoleAppender" />
+	</root>
+	<logger name="com.github.zengfr" level="INFO" />
+
+	<logger name="org.springframework" level="INFO" />
+	<logger name="org.springframework.test.context" level="DEBUG" />
+	<logger name="org.springframework.beans" level="DEBUG" />
+
+	<logger name="org.hibernate.SQL" level="DEBUG" />
+	<logger name="org.hibernate.type" level="DEBUG" />
+	<logger name="org.hibernate.tool.hbm2ddl" level="info" />
+	<logger name="org.hibernate.type.descriptor.sql.BasicBinder"
+		level="TRACE" />
+	<logger name="org.hibernate.type.descriptor.sql.BasicExtractor"
+		level="DEBUG" />
+	<logger name="org.hibernate.engine.QueryParameters" level="DEBUG" />
+	<logger name="org.hibernate.engine.query.HQLQueryPlan" level="DEBUG" />
+	<logger name="org.hibernate.cache" level="DEBUG" />
+	<logger name="org.hibernate.transaction" level="DEBUG" />
+	<logger name="org.hibernate.stat" level="DEBUG" />
+</configuration>
+

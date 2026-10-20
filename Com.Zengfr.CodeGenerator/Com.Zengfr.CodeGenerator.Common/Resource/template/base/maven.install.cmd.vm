@@ -1,0 +1,8 @@
+﻿#set($outputConfig.OutputDir = "base\\")
+#set($outputConfig.OutputFileName = "maven.install.cmd")
+
+echo off
+cls
+echo on
+mvn install
+pause

@@ -27,4 +27,18 @@
         <mapping assembly="DataLayer" />
     </session-factory>
 
+    <session-factory name="jenze">
+    <property name="connection.provider">NHibernate.Connection.DriverConnectionProvider</property>
+    <property name="dialect">NHibernate.Dialect.MySQL57Dialect</property>
+    <property name="connection.driver_class">NHibernate.Driver.MySqlDataDriver</property>
+    <property name="connection.connection_string">
+      Server=121.196.198.184;Database=jenze_test;User ID=root;Password=C5OvsTXT6*qe^ZxF;charset=utf8
+    </property>
+     <!-- 端口号缺省值为3306 -->
+    <property name="command_timeout">120</property>
+    <property name="show_sql">true</property>
+
+      <!---mapping assembly="rr" /-->
+  </session-factory>
+
 </hibernate-configuration-x-factories>

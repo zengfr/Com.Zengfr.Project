@@ -1,0 +1,19 @@
+﻿#set($projectName = "dao")
+#set($packageName = $javaUtil.getPackageName(${config.NamespacePrefix},$projectName))
+#set($outputDir = $javaUtil.getPackagePath("service\\${projectName}",$packageName))
+#set($outputConfig.OutputDir = $outputDir)
+#set($outputConfig.OutputFileName = "${model.Name}JpaRepository.java")
+package $packageName;
+import java.lang.*;
+import java.util.*;
+import java.math.*;
+import org.springframework.stereotype.Repository;
+import $javaUtil.getPackageName(${config.NamespacePrefix},"daobase").*;
+/**
+* $model.Description
+*/
+@Repository
+public interface ${model.Name}JpaRepository extends ${model.Name}JpaRepositoryBase
+{
+   
+}

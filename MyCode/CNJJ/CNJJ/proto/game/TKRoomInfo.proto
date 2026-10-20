@@ -1,0 +1,195 @@
+
+package cn.jj.service.msg.protocol;
+
+message RoomInfoReqMsg {
+    optional GetRoomListReq getroomlist_req_msg = 2; // 获取 tourneyid 的 table List 信息
+    optional RoomInfoLoginReq roominfologin_req_msg = 3; //登录请求
+    optional EnterRoomReq enterroom_req_msg = 4; //进入房间请求
+    optional SitDownReq sitdown_req_msg = 5;     //请求坐下
+    optional RoomInfoLogoutReq roominfologout_req_msg = 6; //登出请求
+}
+
+message RoomInfoAckMsg {
+    optional GetRoomListAck getroomlist_ack_msg = 2;
+    optional PushAddMatchRoomAck pushaddmatchroom_ack_msg = 3;
+    optional PushDelMatchRoomAck pushdelmatchroom_ack_msg = 4;
+    optional RoomInfoLoginAck roominfologin_ack_msg = 5;         //登录ack
+    optional EnterRoomAck enterroom_ack_msg = 6; //进入房间ack
+    optional PushPlayerDynFieldDefineAck pushplayerdynfielddefine_ack_msg = 7; //用户信息动态字段
+    optional PushRoomChatInfoAck pushroomchatinfo_ack_msg = 8;
+    optional PushAddRoomTableAck pushaddroomtable_ack_msg = 9;
+    optional PushDelRoomTableAck pushdelroomtable_ack_msg = 10;
+    optional PushChgRoomTableStatusAck pushchgroomtablestatus_ack_msg = 11;
+    optional PushAddRoomPlayerAck pushaddroomplayer_ack_msg = 12;
+    optional PushDelRoomPlayerAck pushdelroomplayer_ack_msg = 13;
+    optional SitDownAck sitdown_ack_msg = 14; //坐下ack
+    optional PushChgRoomPlayerStatusAck pushchgroomplayerstatus_ack_msg = 15;
+    optional PushChgRoomPlayerDynInfoAck pushchgroomplayerdyninfo_ack_msg = 16;
+}
+
+message RoomData {
+    required uint32 roomid = 1; // 房间ID
+    required string name = 2;   // 房间名称
+    required uint32 type = 3; // 房间类型：系统房间，用户自定义的房间等
+    required uint32 flags = 4; // 房间标志信息：有密码的房间等
+    required uint32 curplayercnt = 5; // 房间当前在线人数
+    required uint32 maxplayercnt = 6; // 房间最大在线人数（如果nCurPlayerCount >= nMaxPlayerCount则表示房间已满）
+}
+
+message GetRoomListReq {
+    required uint32 tourneyid = 1;
+    required uint32 roomdllversion = 2; // 房间客户端版本号
+}
+
+message GetRoomListAck {
+    optional string tip = 1; // 错误提示
+}
+
+message PushAddMatchRoomAck {
+    required uint32 tourneyid = 1;
+    required uint32 servertime = 2;
+    repeated RoomData roomlist = 3;
+}
+
+message PushDelMatchRoomAck {
+    required uint32 roomid = 1; // 房间ID
+}
+
+message RoomInfoLogoutReq {
+    required uint32 tourneyid = 1;
+}
+
+message RoomInfoLoginReq {
+    required uint32 tourneyid = 1;
+    required uint32 userid = 2; // 玩家ID
+    required string ticket = 3; // 登录验证串
+}
+
+message RoomInfoLoginAck {
+    required uint32 userid = 1; // 玩家ID
+    optional string tip = 2;    // 错误提示
+}
+
+message EnterRoomReq {
+    required uint32 tourneyid = 1;
+    required uint32 roomid = 2;   // 房间ID
+    required string password = 3; // 房间进入密码
+}
+
+message EnterRoomAck {
+    required uint32 roomid = 1;         // 房间ID
+    required uint32 playerpertable = 2; // 每桌多少人
+    required uint32 maxtablecount = 3; // 房间的最大桌子数(用于客户端初始数据构造)
+    optional string tip = 4; // 错误提示
+}
+
+//用户信息动态字段定义
+message PlayerDynFieldDefine {
+    required uint32 fieldid = 1;   // 动态字段编号
+    required string fieldname = 2; // 动态字段显示名称
+    required uint32 growid = 3;    // 动态字段数值定义ID
+    required uint32 datatype = 4;  // 动态字段数据类型
+    required uint32 datelen = 5;   // 动态字段数据长度
+    required uint32 flags = 6;     // 动态字段数据标志信息
+}
+
+message PushPlayerDynFieldDefineAck {
+    required uint32 roomid = 1; // 房间ID
+    repeated PlayerDynFieldDefine datalist = 2;
+}
+
+message PushRoomChatInfoAck {
+    required uint32 roomid = 1; // 房间ID
+    required uint32 chatsvrip = 2;
+    required uint32 chatsvrport = 3;
+    required uint32 chatchanneltype = 4;
+    required uint32 chatchannelid = 5;
+    required uint32 chatchannelsubid = 6;
+    required uint32 chatusertype = 7;
+}
+
+message Tableinfo {
+    required uint32 tableid = 1;
+    required string tablename = 2;
+    required string tablenote = 3;
+    required uint32 status = 4;
+    required uint32 flags = 5;
+    required uint32 reserve = 6;
+}
+
+message PushAddRoomTableAck {
+    required uint32 roomid = 1; // 房间ID
+    repeated Tableinfo tables = 2;
+}
+
+message PushDelRoomTableAck {
+    required uint32 roomid = 1;  // 房间ID
+    required uint32 tableid = 2; // 桌子ID
+}
+
+message PushChgRoomTableStatusAck {
+    required uint32 roomid = 1;  // 房间ID
+    required uint32 tableid = 2; // 桌子ID
+    required uint32 status = 3;
+    required uint32 flags = 4;
+    required uint32 reserve = 5;
+}
+
+//用户基本信息
+message PlayerData {
+    required uint32 userid = 1;   // 用户ID
+    required string nickname = 2; // 昵称
+    required uint32 figureid = 3; // 头像ID
+    required uint32 tableid = 4;  // 桌号
+    required uint32 seat = 5;     // 座位号
+    required uint32 status = 6;   // 用户状态
+    required uint32 flags = 7; // 用户标志信息，如：是否桌主、是否设定了条件、是否不接受任何邀请等
+    required uint32 privilege = 8;    // 房间权限
+    required uint32 member = 9;       // 会员级别
+    required uint32 speed = 10;       // 用户网速
+    required uint32 honoriconid = 11; // 荣誉标志ID
+    required bytes  dyndata = 12;
+}
+
+message PushAddRoomPlayerAck {
+    required uint32 roomid = 1;         // 房间ID
+    repeated PlayerData memberlist = 2; //玩家列表
+}
+
+message PushDelRoomPlayerAck {
+    required uint32 roomid = 1; // 房间ID
+    required uint32 userid = 2; // 玩家ID
+}
+
+message SitDownReq {
+    required uint32 tourneyid = 1;
+    required uint32 roomid = 2;  // 房间ID
+    required uint32 userid = 3;  // 玩家ID
+    required uint32 tableid = 4; // 桌子ID
+    required uint32 seat = 5;    // 座位号
+}
+
+message SitDownAck {
+    required uint32 roomid = 1;  // 房间ID
+    required uint32 userid = 2;  // 玩家ID
+    required uint32 tableid = 3; // 桌子ID
+    required uint32 seat = 4;    // 座位号
+    optional string tip = 5;     // 错误提示
+}
+
+message PushChgRoomPlayerStatusAck {
+    required uint32 roomid = 1;  // 房间ID
+    required uint32 userid = 2;  // 玩家ID
+    required uint32 tableid = 3; // 桌子ID
+    required uint32 seat = 4;    // 座位号
+    required uint32 status = 5;  // 状态
+    required uint32 flags = 6;   //标识
+}
+
+message PushChgRoomPlayerDynInfoAck {
+    required uint32 roomid = 1; // 房间ID
+    required uint32 userid = 2; // 玩家ID
+    required uint32 fieldid = 3;
+    required bytes  dyndata = 4;
+}
+

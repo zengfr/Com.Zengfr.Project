@@ -1,0 +1,19 @@
+﻿<?xml version='1.0'?>
+<Obfuscator>
+	<Var name="InPath" value="." />
+	<Var name="OutPath" value=".\Obfuscator_Out" />
+	<Var name="KeepPublicApi" value="true" />
+	<Var name="HidePrivateApi" value="true" />
+	<Var name="HideStrings" value="true" />
+	<Var name="RenameFields" value="true" />
+	<Var name="RenameEvents" value="true" />
+	
+	<Var name="OptimizeMethods" value="true" />
+	<Var name="SuppressIldasm" value="true" />
+	<Var name="UseKoreanNames" value="true" />
+	<Var name="UseUnicodeNames" value="true" />
+	<Var name="KeyFile" value=".\test.snk" />
+
+	<Module file="$(InPath)\RScreen.dll" />
+	<Module file="$(InPath)\ScrcpyNet.dll" />
+</Obfuscator>

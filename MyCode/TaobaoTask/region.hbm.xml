@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="ConsoleTask"
+                   namespace="TaobaoTask">
+  <class name="region" table="region">
+    <id name="id" column="id" type="Int32">
+      <generator class="identity" /><!--https://nhibernate.info/doc/nhibernate-reference/mapping.html#mapping-declaration-id-generator-->
+    </id>
+    <property name="name" column="name" type="String"/>
+    <property name="pid" column="pid" type="Int32"/> 
+    <property name="longcode" column="longcode" type="String"/>
+    <property name="code" column="code" type="String"/>
+    <property name="level" column="level" type="short"/>
+    <property name="sort" column="sort" type="Int32"/>
+  </class>
+
+</hibernate-mapping>

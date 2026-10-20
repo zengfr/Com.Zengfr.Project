@@ -201,3 +201,6 @@ E:\project\fundAndStock\ConsoleApplication3\bin\Debug\Accord.Math.Core.xml
 E:\project\fundAndStock\ConsoleApplication3\bin\Debug\Accord.Statistics.dll
 E:\project\fundAndStock\ConsoleApplication3\bin\Debug\Accord.Statistics.xml
 E:\project\fundAndStock\ConsoleApplication3\obj\x86\Debug\ConsoleApplication3.csprojResolveAssemblyReference.cache
+E:\csharpproject\Com.Zengfr.Project\MyCode\fundAndStock\ConsoleApplication3\bin\Debug\ConsoleApplication3.exe.config
+E:\csharpproject\Com.Zengfr.Project\MyCode\fundAndStock\ConsoleApplication3\obj\x86\Debug\ConsoleApplication3.exe
+E:\csharpproject\Com.Zengfr.Project\MyCode\fundAndStock\ConsoleApplication3\obj\x86\Debug\ConsoleApplication3.pdb

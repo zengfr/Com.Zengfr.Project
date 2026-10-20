@@ -1,0 +1,78 @@
+
+package cn.jj.service.msg.protocol;
+//option optimize_for = CODE_SIZE;
+//option optimize_for = LITE_RUNTIME;
+
+message CagRankingReqMsg {
+    optional CagGetRankingListReqMsg cag_get_ranking_list_req_msg = 1; // 获取排行榜列表请求
+    optional CagGetSelfRankingReqMsg cag_get_self_ranking_req_msg = 2; // 获取玩家自己排行榜数据请求
+    optional CagGetHistoryRankingReqMsg cag_get_history_ranking_req_msg = 3; // 获取玩家排行榜历史数据请求
+}
+
+message CagRankingAckMsg {
+    optional CagGetRankingListAckMsg cag_get_ranking_list_ack_msg = 1; // 获取排行榜列表响应
+    optional CagGetSelfRankingAckMsg cag_get_self_ranking_ack_msg = 2; // 获取玩家自己排行榜数据响应
+    optional CagGetHistoryRankingAckMsg cag_get_history_ranking_ack_msg = 3; // 获取玩家排行榜历史数据响应
+}
+
+message RankingMap {
+    optional uint32 player_id = 1; // 玩家id
+    optional uint32 rank = 2; // 榜单排名
+    optional uint32 value = 3; // 榜单数值
+}
+
+message RankingData {
+    repeated RankingMap datas = 1;  // 排行榜数据
+}
+
+message HistoryRankingData {
+    optional uint32 season_id = 1; // 赛季id
+    optional uint32 rank = 2; // 榜单排名
+    optional uint32 value = 3; // 榜单数值
+    optional uint32 start_time = 4; // 榜单开始时间，单位：秒
+    optional uint32 end_time = 5; // 榜单结束时间，单位：秒
+}
+
+// 获取排行榜列表请求
+message CagGetRankingListReqMsg {
+    optional uint32 ranking_type = 1; // 排行榜类型
+    optional uint32 ranking_version = 2; // 排行榜版本
+    optional bool is_paging = 3; // 是否分页
+    repeated uint32 params = 4;
+}
+
+// 获取玩家自己排行榜数据请求
+message CagGetSelfRankingReqMsg {
+    optional uint32 ranking_type = 1; // 排行榜类型
+    optional uint32 player_id = 2; // 玩家id
+    optional uint32 list_param = 3; // 排行榜参数
+}
+
+// 获取玩家排行榜历史数据请求
+message CagGetHistoryRankingReqMsg {
+    optional uint32 ranking_type = 1; // 排行榜类型
+    optional uint32 player_id = 2; // 玩家id
+}
+
+// 获取排行榜列表响应
+message CagGetRankingListAckMsg {
+    optional uint32 ranklist_type = 1; // 排行榜类型
+    optional uint32 ranking_version = 2; // 排行榜版本
+    optional RankingData data_list = 3;
+}
+
+// 获取玩家自己排行榜数据响应
+message CagGetSelfRankingAckMsg {
+    optional uint32 player_id = 1; // 玩家id
+    optional int32 rank = 2; // 玩家排名 若不在榜单内传值 -1
+    optional uint32 list_type = 3; // 排行榜类型
+    optional uint32 list_param = 4; // 排行榜参数
+}
+
+// 获取排行榜列表历史数据响应
+message CagGetHistoryRankingAckMsg {
+    optional uint32 ranking_type = 1; // 排行榜类型，同请求参数
+    optional uint32 player_id = 2; // 玩家id，同请求参数
+    repeated HistoryRankingData data_list = 3; // 玩家历史数据列表
+}
+

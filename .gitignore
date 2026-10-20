@@ -22,3 +22,8 @@ Temp/
 *.zip
 *.7z
 *.rar
+bin/
+*.vs/
+*/*.pdb
+*.pdb
+bin/*

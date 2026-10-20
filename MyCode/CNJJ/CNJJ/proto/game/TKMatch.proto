@@ -1,0 +1,1137 @@
+
+package cn.jj.service.msg.protocol;
+//option optimize_for = CODE_SIZE;
+//option optimize_for = LITE_RUNTIME;
+message MatchReqMsg  {
+	required uint32 matchid = 1;
+//	optional uint32 gameid = 2;
+	optional EnterMatchReq entermatch_req_msg = 3; // 确认进入比赛
+	optional EnterRoundReq enterround_req_msg = 4; // 确认进入局制
+	optional ExitGameReq exitgame_req_msg = 5; // 请求退出比赛
+	optional PushUserPlaceOrderPositionReq pushuserplaceorderposition_req_msg = 6; // 请求获得当前玩家排名：这个只会告诉 当前名次 和 玩家总数
+	optional GetStagePlayerOrderReq getstageplayerorder_req_msg = 7; // 请求获得 Stage 里面的排名信息：这个会获得一个 xml，里面有很多人的信息（昵称、名次、积分、是否出局），已按名次排序
+	optional ContinueReq continue_req_msg = 8; // 请求岛屿赛继续
+	optional LeaveReq leave_req_msg = 9; // 请求离开岛屿赛
+	optional HematinicReq hematinic_req_msg = 10; // 请求加血（岛屿赛）
+	optional PlayerReliveReq playerrelive_req_msg = 11; // 请求复活
+	optional RegisterAutoReq registerauto_req_msg = 12; // 请求注册
+	optional PlayerSitDownReq playersitdown_req_msg = 13; // 请求坐下（散桌赛，斗地主没有，德州有）
+	optional AddHPReq addhp_req_msg = 14; // 请求补充筹码（散桌赛）
+	optional MarkPlayerIdleReq markplayeridle_req_msg = 15; // 请求下一局旁观（散桌赛）
+	optional MarkAutoAddHPReq markautoaddhp_req_msg = 16; // 请求自动补充筹码（散桌赛）
+	optional StartableAcceptInviteReq startableacceptinvite_req_msg = 17; // 目前无用
+	optional ExitMatchReq exitmatch_req_msg = 20; // 请求进入并退出比赛：用于在斗地主的客户端里面，收到了德州扑克的开赛消息时
+	optional StageBoutResultReq stageboutresult_req_msg = 21; // 请求获取当前剩余桌数（锦标赛）
+	optional GameSimpleActionReq gamesimpleaction_req_msg = 22; // 请求发送表情或文字ID
+	optional GetRoundPlayerOrderReq getroundplayerorder_req_msg = 23; // 获取玩家在round中的排名
+	optional LockDownReq lockdown_req_msg = 24; //岛屿赛锁定对手请求
+	optional PlayerChangeTableReq playerchangetable_req_msg = 25; //游戏桌切换
+	optional GameAutoAddhpTouchedReq gameautoaddhptouched_req_msg = 26; //上传用户是否点过"自动补充筹码"
+	optional PlayerReceivedMatchAwardReq playerreceivedmatchaward_req_msg = 27; //玩家确认收到奖状消息
+	optional UserReqreliveReq userreqrelive_req_msg = 28;  // 用户请求复活
+	optional UserReqAddonReq userreqaddon_req_msg = 29; //用户请求add on
+	optional UserReqHematinicReq userreqhematinic_req_msg = 30; // 用户请求补血
+	optional GamePlayerScanReq gameplayerscan_req_msg = 31; // 用户上传位置信息搜索附近玩家
+	optional GameEnterTableReq gameentertable_req_msg = 32; // 用户请求进入指定桌
+	optional GameLeaveTableReq gameleavetable_req_msg = 33; // 用户请求离开桌子
+	optional GameLBSGetBillReq gamelbsgetbill_req_msg = 34; // lbs用户请求帐单
+	optional SaveHPReq savehp_req_msg = 35; // 自由桌 请求保存筹码（回兑部分筹码）
+	optional GameFdTableBillReq gamefdtablebill_req_msg = 36; // 自建桌结算账单
+	optional GameFdTableFinalBillReq gamefdtablefinalbill_req_msg = 37; // 自建桌结算最终账单
+	optional GameRoomHostKickReq gameroomhostkick_req_msg = 38; // 自建桌踢人
+	optional GameFdTablePermitSetReq gamefdtablepermitset_req_msg = 39; // 自建桌审批
+	optional GamePlayerReadyReq gameplayerready_req_msg = 40; // 约战桌用户准备开始游戏
+	optional GameOpenStageBoutResultReq gameopenstageboutresult_req_msg = 41;
+	optional GameFdTablePreEndReq gamefdtablepreend_req_msg = 42;//牌桌提前解散
+	optional GameMatchArchiveReq  gamematcharchive_req_msg = 43;  //用户请求比赛进度存档
+	optional GameGetSeatRankInfoReq  gamegetseatrankinfo_req_msg = 44; //用户请求排名信息
+	optional FDRoomTransferReq  fdroomtransfer_req_msg = 45;  //自建桌房间转换
+	optional FdtableManualbeginReq  fdtablemanualbegin_req_msg = 46;  //自建桌手动开赛
+	optional GamePaymentCostReq  gamepaymentcost_req_msg = 47;  //客户端对服务器下发消息的回馈 ack
+	optional HDLInfoReq hdlinfo_req_msg = 48; // GC通知用户操作信息
+	optional OpenRedpacketReq openredpacket_req_msg = 49; // GC通知MS拆红包
+	optional GetCardRightReq getcardright_req_msg = 50; // 用户请求交换牌权
+	optional ConfirmAardinfoReq confirmaardinfo_req_msg = 51; //拆红包请求-批量
+	optional CommonProtocolReq commonprotocol_req_msg = 52; //通用协议
+	optional LuckCardUserOptReq luckcarduseropt_req_msg = 53; //用户LuckCard选项
+	optional AddLuckReq addluck_req_msg = 54; //请求金币兑换幸运点
+	optional GameCommonProtocolReq gamecommonprotocol_req_msg = 55; //游戏通用协议
+}
+
+message MatchAckMsg  {
+	required uint32 matchid = 1;
+//	optional uint32 gameid = 2;
+	optional EnterMatchAck entermatch_ack_msg = 3;
+	optional EnterRoundAck enterround_ack_msg = 4;
+	optional ExitGameAck exitgame_ack_msg = 5;
+	optional PushUserPlaceOrderPositionAck pushuserplaceorderposition_ack_msg = 6;
+	optional ContinueAck continue_ack_msg = 8;
+	optional LeaveAck leave_ack_msg = 9;
+	optional HematinicAck hematinic_ack_msg = 10;
+	optional PlayerReliveAck playerrelive_ack_msg = 11;
+	optional RegisterAutoAck registerauto_ack_msg = 12;
+	optional PlayerSitDownAck playersitdown_ack_msg = 13;
+	optional AddHPAck addhp_ack_msg = 14;
+	optional MarkPlayerIdleAck markplayeridle_ack_msg = 15;
+	optional MarkAutoAddHPAck markautoaddhp_ack_msg = 16;
+	optional StartableAcceptInviteAck startableacceptinvite_ack_msg = 17;
+	optional TipMsgAck tipmsg_ack_msg = 18; // 服务器下发的提示信息
+	optional PushMatchStagePositionAck pushmatchstageposition_ack_msg = 19;
+	optional StagePlayerOrderAck stageplayerorder_ack_msg = 20;
+	optional RoundPlayerOrderAck roundplayerorder_ack_msg = 21;
+	optional PushMatchPlayerInfoAck pushmatchplayerinfo_ack_msg = 22; // 下发此桌的参赛人物信息（3人 PK 的战绩等，目前用于判断是否处于晋级等待了）
+	optional AddGamePlayerInfoAck addgameplayerinfo_ack_msg = 23; // 下发此桌的玩家信息
+	optional PushRoundRulerInfoAck pushroundrulerinfo_ack_msg = 24; // 局制信息：赛制等的 xml
+	optional BeginHandAck beginhand_ack_msg = 25; // 一把开始了
+	optional RulerInfoAck rulerinfo_ack_msg = 26; // 游戏时间、JJ 炸弹规则等
+	optional StagePlayerOrderChangedAck stageplayerorderchanged_ack_msg = 27;
+	optional NoQueryExitGameAck noqueryexitgame_ack_msg = 28; // 比赛已经结束
+	optional PushMatchAwardAck pushmatchaward_ack_msg = 29; // 奖状信息
+	optional ScoreBaseRaiseAck scorebaseraise_ack_msg = 30; // 游戏基数增加
+	optional ChangeGameRulerNoteAck changegamerulernote_ack_msg = 31;
+	optional RestAck rest_ack_msg = 32; // 岛屿赛休息
+	optional ReliveCostAck relivecost_ack_msg = 34; // 服务器下发复活条件
+	optional PushGameCountAwardInfoAck pushgamecountawardinfo_ack_msg = 35;
+	optional PushPlayerGameDataAck pushplayergamedata_ack_msg = 36;
+	optional NotifyGuestRegisterAck notifyguestregister_ack_msg = 37; // 提示玩家注册
+	optional NetBreakAck netbreak_ack_msg = 38;
+	optional NetResumeAck netresume_ack_msg = 39;
+	optional HistoryMsgBeginAck historymsgbegin_ack_msg = 40; // 历史消息开始：历史消息这一段会把这一局之前的消息都重新发送一次
+	optional HistoryMsgEndAck historymsgend_ack_msg = 41; // 历史消息结束
+	optional HandOverAck handover_ack_msg = 42; // 一把结束
+	optional OverGameAck overgame_ack_msg = 43; // 一局结束
+	optional InitGameTableAck initgametable_ack_msg = 44; // 初始化桌子上的玩家信息（散桌赛）
+	optional VIPModeAck vipmode_ack_msg = 45;
+	optional StageBoutResultAck stageboutresult_ack_msg = 46;
+	optional GameSimpleActionAck gamesimpleaction_ack_msg = 47;
+	optional GameCVAwardInfoAck gamecvawardinfo_ack_msg = 48;
+	optional GameCVAwardAck gamecvaward_ack_msg = 49;
+	optional LockDownAck lockdown_ack_msg = 50; //岛屿赛锁定对手
+	optional MarkLockDownAck marklockdown_ack_msg = 51; //通知客户端锁定了本局选手
+	optional RulerInfoExAck rulerinfoex_ack_msg = 52; // 游戏时间、JJ 炸弹规则等
+	optional GameJackPotAck gamejackpot_ack_msg = 53; // 通知客户端当前奖池描述
+	optional GameJackPotCountAck gamejackpotcount_ack_msg = 54; // 通知客户端当前奖池大小
+	optional GameJackPotWinnerAck gamejackpotwinner_ack_msg = 55; // 通知客户端当前中奖玩家列表
+	optional GamePlayerArrivedAck gameplayerarrived_ack_msg = 56; // Player到达（用户进入游戏）
+	optional ExchangeislandAck exchangeisland_ack_msg = 57;			//岛屿赛的加血设置
+	optional MatchOptionAck matchoption_ack_msg = 58; //换桌
+	optional PushMatchActionAck pushmatchaction_ack_msg = 59;
+	optional GameOpenStageBoutResultAck gameopenstageboutresult_ack_msg = 60;
+	optional UserReliveSelectexAck userreliveselectex_ack_msg = 61; //通知让玩家复活
+	optional UserAddonSelectAck useraddonselect_ack_msg = 62; //通知让玩家add on
+	optional UserAddonSelectExAck useraddonselectex_ack_msg = 63; //通知让玩家add on ex
+	optional GameEnterTableAck gameentertable_ack_msg = 64; // 用户请求进入指定桌
+	optional GameLeaveTableAck gameleavetable_ack_msg = 65; // 用户请求离开桌子
+	optional GameLBSGetBillAck gamelbsgetbill_ack_msg = 66; // lbs用户请求帐单
+	optional GameFdTableBillAck gamefdtablebill_ack_msg = 67; // 自建桌结算账单
+	optional GameFdTableFinalBillAck gamefdtablefinalbill_ack_msg = 68; // 自建桌结算最终账单
+	optional GameFdTableScoreAck gamefdtablescore_ack_msg = 69; // 自建桌得分数据
+	optional GameRoomHostKickAck gameroomhostkick_ack_msg = 70; // 自建桌踢人
+	optional GameFdTablePermitSetAck gamefdtablepermitset_ack_msg = 71; // 自建桌审批
+	optional GameFdTableInfoAck gamefdtableinfo_ack_msg = 72; // 推送自建桌信息
+	optional GamePlayerReadyAck gameplayerready_ack_msg = 73; // 约战桌用户准备开始游戏
+	optional GameFdTablePreEndAck gamefdtablepreend_ack_msg = 74; //牌桌提前解散
+	optional GameMatchArchiveAck gamematcharchive_ack_msg = 75; //用户请求比赛存档
+	optional GameGetSeatRankInfoAck gamegetseatrankinfo_ack_msg = 76; //用户请求排名信息
+	optional FDRoomTransferAck  fdroomtransfer_ack_msg = 77;  //自建桌房间转换
+	optional FDRoomHostInheritAck  fdroomhostinherit_ack_msg = 78;  //自建桌房主移交
+	optional PushSuperBankerListAck  pushsuperbankerlist_ack_msg = 79;
+	optional PushFdtableScoreexAck  pushfdtablescoreex_ack_msg = 80; //自建桌局间数据扩展
+	optional FdtableManualbeginAck  fdtablemanualbegin_ack_msg = 81; //自建桌手动开赛
+	optional GamePaymentCostAck  gamepaymentcost_ack_msg = 82;  //通知客户端，让玩家选择支付业务扣费
+	optional GamePaymentResultAck  gamepaymentresult_ack_msg = 83;  //通知客户端，玩家选择支付业务扣费 的结果
+	optional ProcessAwardPushAck  processawardpush_ack_msg = 84;  //MS通知客户端过程奖励内容 推送消息
+	optional OpenRedpacketAck openredpacket_ack_msg = 85; // GC通知MS拆红包 响应
+	optional GetCardRightAck getcardright_ack_msg = 86; // 用户请求交换牌权 响应
+	optional ConfirmAardinfoAck confirmaardinfo_ack_msg = 87; //拆红包请求-批量 响应
+	optional CommonProtocolAck commonprotocol_ack_msg = 88; //通用协议
+	optional LuckCardInfoAck luckcardinfo_ack_msg = 89; //通知让玩家LuckCard配置信息
+	optional ConsumeLuckyAck consumelucky_ack_msg = 90; //通知幸运使用结果
+	optional LuckCardAck luckcard_ack_msg = 91; //通知本场游戏有幸运点功能
+	optional LuckCardUserOptAck luckcarduseropt_ack_msg = 92; //用户LuckCard选项
+	optional AddLuckAck addluck_ack_msg = 93; //请求金币兑换幸运点 响应
+	optional OpenAccountInterfaceAck openaccountinterface_ack_msg = 94; //打开结算界面
+	optional UpdateAccountInforAck updateaccountinfor_ack_msg = 95; //更新结算信息
+	optional GameCommonProtocolAck gamecommonprotocol_ack_msg = 96; //游戏通用协议
+	optional RoomPlayerChgFlagsAck roomplayerchgflags_ack_msg = 97; //自由房间用户标志变更（比如是否桌主标志）
+}
+
+message EnterMatchReq  {
+	optional uint32 matchclientver = 1;
+	required bytes ticket = 2; // 比赛开始那条消息里面的 鉴权串
+	optional uint32 gameclientver = 3;
+	required uint32 gameid = 4;
+}
+
+message EnterMatchAck  {
+	optional uint32 tourneyid = 1;
+	required uint32 matchid = 2;
+	required string matchname = 3;
+	optional uint32 userid = 4;
+	optional string nickname = 5;
+	optional uint32 figureid = 6;
+	optional uint32 matchrank = 7;
+	optional uint32 totalmatchplayer = 8;
+	required uint64 matchstarttime = 9;
+	optional uint32 matchelapsesec = 10;
+	optional uint32 titlestyle = 11;
+	optional uint32	formid = 12;
+}
+
+message EnterRoundReq  {
+	optional uint32 version = 1;
+	required bytes ticket = 2; // 比赛开始那条消息里面的 鉴权串
+	required uint32 gameid = 3;
+}
+
+message EnterRoundAck  {
+	optional uint32 userid = 1;
+	required uint32 seatorder = 2;
+	required uint32 usertype = 3;
+	optional int32 maxplayerspertable = 4;
+}
+
+message ExitGameReq  {
+  optional uint32 nullvalue = 1;
+}
+
+message ExitGameAck  {
+  optional uint32 nullvalue = 1;
+}
+
+message PushUserPlaceOrderPositionReq  {
+  optional uint32 nullvalue = 1;
+}
+
+message PushUserPlaceOrderPositionAck  {
+	required uint32 playercurplaceorder = 1;
+	required uint32 totalplayercount = 2;
+}
+
+
+
+message GetStagePlayerOrderReq  {
+  optional uint32 nullvalue = 1;
+}
+
+message GetRoundPlayerOrderReq {
+	repeated uint32 userid = 1;
+}
+
+message ContinueReq  {
+	required uint32 userid = 1;
+}
+
+message ContinueAck  {
+	optional uint32 userid = 1;
+}
+
+message LeaveReq  {
+	required uint32 userid = 1;
+	optional uint32	noexchange = 2;		// 不兑换金币，0-表示兑换金币，1表示不兑换。默认值为0，兼容线上版本。
+	optional uint32	savearchive = 3;	// 数据存档，0-表示不存档，1表示存档。默认值为1
+}
+
+message LeaveAck  {
+	optional uint32 userid = 1;
+}
+
+message HematinicReq  {
+	required uint32 userid = 1;
+	required uint32 hematinic = 2;
+}
+
+message HematinicAck  {
+	optional uint32 userid = 1;
+	required uint32 hematinic = 2;
+}
+
+message PlayerReliveReq  {
+	required uint32 userid = 1;
+	required int32  relive = 2; //relive 0; else 1
+}
+
+message PlayerReliveAck  {
+	optional uint32 userid = 1;
+}
+
+message RegisterAutoReq  {
+	required uint32 partnerid = 1; // 目前固定 3,
+	optional uint32 agent = 2;
+	optional string agentmark = 3;
+	optional bool bregister = 4;
+	optional string nickname = 5;
+	optional string username = 6;
+	required string password = 7;
+	optional uint32 figureid = 8;
+}
+
+message RegisterAutoAck  {
+	optional uint32 userid = 1;
+	required string nickname = 2;
+	required string username = 3;
+	required string password = 4;
+	optional uint32 figureid = 5;
+	optional uint32 bankaccid = 6;
+}
+
+message SeatPlayerInfo  {
+	required uint32 userid = 1;
+	required string nickname = 2;
+	optional uint32 figureid = 3;
+	optional uint32 ready = 4;
+}
+
+message PlayerSitDownReq  {
+	required sint32 seat = 1;
+}
+
+message PlayerSitDownAck  {
+	required SeatPlayerInfo playerinfo = 1;
+	required sint32 seat = 2;
+	optional int32 score = 3;
+}
+
+message AddHPReq  {
+	required uint32 hp = 1;
+}
+
+message AddHPAck  {
+	optional uint32 userid = 1;
+	required uint32 hpadded = 2;
+	required uint32 cost = 3;
+}
+
+message MarkPlayerIdleReq  {
+	required bool idle = 1;
+}
+
+message MarkPlayerIdleAck  {
+	required bool idle = 1;
+}
+
+message MarkAutoAddHPReq  {
+	required bool autoaddhp = 1;
+}
+
+message MarkAutoAddHPAck  {
+	required bool autoaddhp = 1;
+}
+
+message StartableAcceptInviteReq  {
+	required bool accepted = 1;
+}
+
+message StartableAcceptInviteAck  {
+	required bool accepted = 1;
+}
+
+message TipMsgAck  {
+	required uint32 type = 1; // 提示的类型
+	optional uint32 second = 2;
+	required uint32 nextoper = 3;
+	required string text = 4;
+	optional int32  id = 5;
+	optional string xml = 6;
+}
+
+message PushMatchStagePositionAck  {
+	required uint32 stageid = 1;
+	required uint32 boutid = 2;
+	required string stageboutname = 3;
+	required string stagename = 4;
+	required string boutname = 5;
+}
+
+message GamePlayerOrderInfo  {
+	required uint32 userid = 1;
+	required string nickname = 2;
+	required int32 score = 3;
+	required uint32 placeorder = 4;
+	required uint32 outroundstate = 5;
+}
+
+message StagePlayerOrderAck  {
+	optional uint32 serial = 1;
+	optional uint32 flags = 2;
+	optional uint32 scoretype = 3;
+	optional uint32 minwinnerorder = 4;
+	repeated GamePlayerOrderInfo orderlist = 5;
+}
+
+message RoundPlayerOrderAck  {
+	optional uint32 serial = 1;
+	optional uint32 flags = 2;
+	repeated GamePlayerOrderInfo orderlist = 3;
+}
+
+message PushMatchPlayerInfoAck  {
+	optional string playerinfo = 1;
+}
+
+message GamePlayerInfo  {
+	required uint32 seatorder = 1;
+	required uint32 userid = 2;
+	required string nickname = 3;
+	optional uint32 figureid = 4;
+	optional uint32 matchrank = 5;
+	required int32 score = 6;
+	required bool arrived = 7;
+	required uint32 netstatus = 8;
+	optional uint32 formid = 9;
+	optional uint64 userid64 = 10; // 用户ID 64位
+	optional string scorestr = 11; // 分数 string
+}
+
+message AddGamePlayerInfoAck  {
+	required GamePlayerInfo playerinfo = 1;
+}
+
+message PushRoundRulerInfoAck  {
+	required string rulerinfo = 1;
+}
+
+message BeginHandAck  {
+	optional uint32 gamehand = 1;
+	optional uint32 round = 2;
+	optional uint32 table = 3;
+}
+
+message RulerInfoAck  {
+	optional uint32 gametotalplayer = 1;
+	optional uint32 tablenumber = 2;
+	optional uint32 scoretype = 3;
+	required uint32 scorebase = 4; // 游戏基数
+	optional string roundrulername = 5;
+	optional uint32 reserve = 6;
+	required string property = 7; // 一些参数：用 , 分隔的，目前 第 2 个表示 每手牌的时间 ，第 3 个表示第一手牌的时间，第 7 个表示是否使用 JJ 炸弹规则
+	required string titlename = 8; // 比赛名称
+	required string rulernote = 9; // 3 人 PK 界面显示局制信息
+	optional uint32 roundruler = 10;
+}
+
+message StagePlayerOrderChangedAck  {
+	optional uint32 serial = 1;
+	optional uint32 flags = 2;
+	optional uint32 updatesecond = 3;
+}
+
+message NoQueryExitGameAck  {
+	required bool noqueryexitgame = 1;
+}
+
+message PushMatchAwardAck  {
+	required string awardtext = 1;
+}
+
+message ScoreBaseRaiseAck  {
+	required uint32 newscorebase = 1;
+}
+
+message ChangeGameRulerNoteAck  {
+	required string rulernote = 1;
+}
+
+message Hematinic  {
+	required uint32 blood = 1;
+	required uint32 cost = 2;
+}
+
+message RestAck  {
+	required uint32 resttime = 1; // 剩余时间：岛屿赛等待是有时长限制的，时间到了不继续，就主动离开了
+	required uint32 hematiniccount = 2; // 可购买的血瓶数量
+	repeated Hematinic hematiniclist = 3; // 血瓶规则
+	required uint32 life = 4; // 剩余血量（筹码）
+	required uint32 coin = 5; // 能换多少金币
+	required uint32 gamescount = 6; // 玩了几把了
+	required uint32 multi = 7; // 当前积分倍数
+	required uint32 nextlevelgames = 8; // 到下一个级别还有几把
+	required uint32 nextlevelmulti = 9; // 到下一个级别积分倍数是多少
+	required uint32 exchangerate = 10; // 金币和筹码的兑换比例
+	required sint32 awardtimespan = 11; // 颁奖间隔
+	required uint32 nextawardleftsecond = 12; // 距离下次颁奖时间还有多久
+	optional int32 lasthandscore = 13; // 最后一局得分
+	optional int32 gameresult = 14; // 游戏结果，0 == 未知， 1 == 胜利， 2 == 和， 3 == 负
+}
+
+message ExchangeislandAck
+{
+	repeated Hematinic hematiniclist = 1; // 血瓶规则
+}
+
+message WareReliveAck  {
+	required uint32 wareid = 1;
+	required uint32 warecount = 2;
+	required uint32 score = 3;
+	required uint32 liveplayercount = 4;
+	required uint32 timeout = 5;
+}
+
+message ReliveCostAck  {
+	required uint32 costtype = 1;
+	required uint32 costid = 2;
+	required uint32 amount = 3;
+	required uint32 score = 4;
+	required uint32 liveplayercount = 5;
+	required uint32 timeout = 6;
+}
+
+message PushGameCountAwardInfoAck  {
+	required string text = 1;
+}
+
+message PushPlayerGameDataAck  {
+	optional uint32 userid = 1;
+	required uint32 exchangerate = 2; // 兑换比例
+	required uint32 leftchip = 3; // 剩余筹码
+	optional uint32 curgamehand = 4;
+	required uint32 totalfinishedgamecount = 5; // 总共完成了几局
+	optional uint32 curfinishedgamecount = 6;
+	optional uint64 userid64 = 7; // 用户ID 64位
+	optional string leftchipstr = 8; // 剩余筹码或者当前生命值 string
+}
+
+message NotifyGuestRegisterAck  {
+	required uint32 order = 1;
+	required bool autoregister = 2; // 是否允许注册：如果不允许的话，就是把用户提出这个比赛了
+}
+
+message NetBreakAck  {
+	required uint32 userid = 1;
+	required uint32 seatorder = 2;
+}
+
+message NetResumeAck  {
+	required uint32 userid = 1;
+	required uint32 seatorder = 2;
+}
+
+message HistoryMsgBeginAck  {
+  optional uint32 nullvalue = 1;
+}
+
+message HistoryMsgEndAck  {
+  optional uint32 nullvalue = 1;
+}
+
+message HandOverAck  {
+  optional uint32 nullvalue = 1;
+}
+
+message OverGameAck  {
+  optional uint32 nullvalue = 1;
+}
+
+message SeatPlayerInfoEx  {
+	optional uint32 userid = 1;
+	optional int32 score = 2;
+	optional uint32 firstbuyin = 3;
+}
+
+message InitGameTableAck  {
+	repeated SeatPlayerInfo playerinfolist = 1;
+	optional uint32 chatsvrip = 2;
+	optional uint32 chatsvrport = 3;
+	optional uint32 chatchannelid = 4;
+	required uint32 maxaddtohp = 5;
+	required uint32 minaddtohp = 6;
+	required uint32 exchangerate = 7;
+	required uint32 hpmode = 8;
+	optional uint32 chatchannelsubid = 9;
+	optional uint32 chatchanneltype = 10;
+	optional uint32 chatusertype = 11;
+	optional bytes tabledata = 12;
+	repeated SeatPlayerInfoEx playerinfoexlist = 13;
+}
+
+message VIPModeAck  {
+	required bool vipmode = 1;
+}
+
+//zhh
+message ExitMatchReq  {
+	optional uint32 matchclientver = 1;
+	required bytes ticket = 2;
+	optional uint32 gameclientver = 3; //游戏动态库版本
+	required uint32 gameid = 4;
+}
+
+message StageBoutResultReq  {
+	optional uint32 nullvalue = 1;
+	repeated uint32 userid = 2;
+}
+
+message OrderInfo {
+	optional uint32 userid = 1;
+	optional int32 order = 2;
+	optional int32 status = 3;
+}
+
+message StageBoutResultAck  {
+	required string text = 1;
+	repeated OrderInfo orderinfo = 2;
+}
+
+message GameSimpleActionReq {
+	required uint32 useridfrom = 1; //发送者userid
+	required uint32 useridto = 2; //接收者userid 0表示桌上所有人
+	optional uint32 emotionid = 3; //表情ID
+	optional uint32 textid = 4; //文字ID
+	optional uint32 reserve1 = 5; //保留
+	optional uint32 reserve2 = 6; //保留
+}
+
+message GameSimpleActionAck {
+	required uint32 useridfrom = 1; //发送者userid
+	required uint32 useridto = 2; //接收者userid 0表示桌上所有人
+	optional uint32 emotionid = 3; //表情ID
+	optional uint32 textid = 4; //文字ID
+	optional uint32 reserve1 = 5; //保留
+	optional uint32 reserve2 = 6; //保留
+}
+
+message LockDownReq {
+	required int32 seat = 1;
+	required bool unlock = 2; //是否取消锁定
+}
+
+message LockDownAck {
+	required bool allow = 1; //是否允许
+}
+
+message GameCVAwardInfoAck {
+	optional string awardinfo = 1; //奖励信息
+}
+
+message GameCVAwardAck {
+	optional int32 win = 1; //连胜局数
+}
+
+message MarkLockDownAck {
+	optional uint32 nullvalue = 1;
+}
+
+message RulerInfoExAck {
+	optional string propertyex = 1;
+}
+
+message GameJackPotAck {
+  optional int32 jackpotcount = 1; //当前奖池大小
+  optional string jackpotinfo = 2; //当前奖池描述
+}
+
+message GameJackPotCountAck {
+  optional int32 jackpotcount = 1; //当前奖池大小
+}
+
+message GameJackPotWinnerAck {
+  optional int32 winnercount = 1; //中奖玩家个数
+  optional string desc = 2;  //描述字符串,用","隔开
+}
+
+message GamePlayerArrivedAck {
+  optional uint32 userid = 1;
+  optional int32  seatorder = 2; //座位编号
+}
+
+message PlayerChangeTableReq {
+
+}
+
+message MatchOptionAck {
+	required uint32 flags = 1;
+	optional uint32 maxaddhp = 2; //只是rush poker
+	optional uint32 minaddhp = 3; //只是rush poker
+	optional uint32 exchangerate = 4; //只是rush poker
+}
+
+message GameAutoAddhpTouchedReq {
+	optional int32  istouched = 1; //0: 没点过 1: 点过了
+}
+
+message PushMatchActionAck {
+	required uint32 action = 1;
+  optional string desc = 2;
+}
+
+message PlayerReceivedMatchAwardReq {
+}
+
+message GameOpenStageBoutResultAck {
+	optional int32  openstyle = 1; ////0关闭，1列表框方式打开，2面板框方式打开
+	optional bool		iswaitplayoff = 2;//是否处于加赛等待中 wuqy add 2015.4.28(没有加赛配置或已经完成加赛的，bInWaitPlayoff为FALSE)
+}
+
+message UserReqreliveReq {
+	optional int32  nSecondUsed = 1; // 用时
+	optional int32  nReliveCase = 2; // 选择的复活方案
+	optional int32  relive = 3; // 0 不复活, 1,复活
+}
+
+message UserReqAddonReq {
+	optional int32  nAddonCase = 1; // 选择的addon方案
+}
+
+message UserReqHematinicReq {
+	optional uint32  tourneyid = 1;
+	optional int32  stageid = 2;
+	optional uint32 userid = 3;
+	optional int32  nHematinic = 4; // 补血量
+}
+
+message UserReliveSelectexAck {
+  required uint32 jackpot = 1;//总奖金池
+  required uint32 liveplayer = 2;// 当前存活人数
+  required uint32 averagechip = 3;// 平均筹码
+  required uint32 scorebase = 4;// 当前盲注
+  required uint32 relivelimittime = 5;// 复活时限
+  required uint32 elapsedtime = 6;// 已进行秒数
+  required uint32 timeout = 7;// 倒计时
+  required string xml = 8; //<select><case id = "0" tip = "花费100金币获得1000筹码"><case id = "1" tip = "花费200金币获得2000筹码"><case id = "2" tip = "花费10奠基石获得1000筹码"></select>
+}
+
+message UserAddonSelectAck {
+	 required uint32 timeout = 1;// 倒计时
+	 required string xml = 2; // <select><case id = "0" tip = "花费100金币获得1000筹码"><case id = "1" tip = "花费200金币获得2000筹码"><case id = "2" tip = "花费10奠基石获得1000筹码"></select>
+}
+
+message UserAddonSelectExAck {
+  required uint32 timeout = 1;// 倒计时
+  required uint32 jackpot = 2;// 总奖金池
+  required uint32 liveplayer = 3;// 当前存活人数
+  required uint32 averagechip = 4;// 平均筹码
+  required uint32 scorebase = 5;// 当前盲注
+  repeated uint32 scorebasearray = 6[packed=true];// 下阶段盲注
+  required string xml = 7; // <select><case id = "0" tip = "花费100金币获得1000筹码"><case id = "1" tip = "花费200金币获得2000筹码"><case id = "2" tip = "花费10奠基石获得1000筹码"></select>
+}
+
+message GamePlayerScanReq {
+	required double lat = 1;
+	required double lng = 2;
+}
+
+message GameEnterTableReq {
+	required uint32 tableid = 1;
+}
+
+message GameLeaveTableReq {
+}
+
+message GameEnterTableAck {
+	required uint32 tableid = 1;
+	required uint32 failreason = 2;	// 1 == 没有这个桌号		2 == 指定的桌已坐满
+}
+
+message GameLeaveTableAck {
+	optional uint32 nullvalue = 1;
+}
+
+message GameLBSGetBillReq {
+	optional uint32 nullvalue = 1;
+}
+
+message LBSPlayerBill {
+	required uint32 userid = 1;
+	required int32 initchip = 2; // 初始筹码
+	required int32 rebuychip = 3; // 补充筹码
+	required int32 chip = 4; // 当前筹码
+}
+
+message GameLBSGetBillAck {
+	 repeated LBSPlayerBill playerbill = 1;
+}
+
+message SaveHPReq {
+	required uint32 buyin = 1; //保存到的buy-in倍数
+}
+
+message GameFdTableBillReq {
+	optional uint32 tableid = 1;
+}
+
+message GameFdPlayerBill {
+	optional uint32 userid = 1;
+	optional uint32 buyinchip = 2; //买入积分
+	optional int32 matchscore = 3; // 积分输赢
+	optional int32 totalscore = 4; //总积分
+	optional string nickname = 5;
+	optional uint32 status = 6; // 用户状态(1、就座    2、站起    3、离开    4、旁观)
+}
+
+message GameFdTableBillAck {
+	optional uint32 grade = 1;  // 级别
+	repeated GameFdPlayerBill billlist = 2;
+}
+
+message GameFdTableFinalBillReq {
+	optional uint32 tableid = 1;
+}
+
+message GameFdTableFinalBillAck {
+	optional uint32 grade = 1;  // 级别
+	optional uint32 tabletime = 2;
+	optional uint32 totalgamecount = 3; // 总局数
+	repeated GameFdPlayerBill billlist = 4;
+}
+
+message GameFdPlayerScore {
+	optional uint32 userid = 1;
+	optional string nickname = 2;
+	optional int32 matchscore = 3; // 积分输赢
+	optional int32 totalscore = 4; //总积分
+}
+
+message GameFdTableScoreAck {
+	repeated GameFdPlayerScore scorelist = 1;
+}
+
+message GameFdTablePermitSetReq
+{
+	optional uint32 userid = 1;
+	optional uint32 cancel = 2; //1:取消
+	optional uint32 agree = 3; //0: 不同意 1: 同意
+	optional uint32 seat = 4;
+}
+
+message GameFdTablePermitSetAck
+{
+	optional uint32 userid = 1;
+	optional string nickname = 2;
+	optional uint32 seat = 3;
+	optional int32 waitpermitset = 4;
+}
+
+message GameRoomHostKickReq
+{
+	optional int32 seat = 1;
+	optional uint32 guestuserid = 2;
+	optional uint32 notagainenter = 3;  //1=禁止再次进入
+	optional int32 ok = 4; //被踢者确认
+}
+
+message GameRoomHostKickAck
+{
+	optional uint32 notagainenter = 1;  //1=禁止再次进入
+	optional int32 errorcode = 2;
+}
+
+message GameFdTableInfoAck {
+	optional uint32 tableid = 1;
+	optional uint32 grade = 2;
+	optional int32 	initscore = 3;
+	optional int32 	base = 4;
+	optional int32 	gametime = 5;
+	optional uint32 permitset = 6;
+	optional uint64 createtime = 7;
+	optional uint32 tablehostuserid = 8;
+	optional int32 	buyincost = 9;
+	optional int32 	minchip = 10;
+	optional string hostnickname = 11;
+	optional int32 	gamecount = 12;
+	optional bytes  xml = 13;
+}
+
+message GamePlayerReadyReq {
+	optional int32 ready = 1;	// 1准备 0取消
+}
+
+message GamePlayerReadyAck {
+	optional int32 ready = 1;	// 1准备 0取消
+	optional uint32 userid = 2;
+}
+message GameOpenStageBoutResultReq {
+   optional int32 isopen = 1; //1:打开,0:关闭
+}
+
+message GameFdTablePreEndReq {
+	optional int32 tableid = 1;
+}
+
+message GameFdTablePreEndAck {
+	optional int32 tableid = 1;
+}
+
+//用户请求比赛进度存档
+message GameMatchArchiveReq {
+  optional bool archive = 1; //存档标记， 0表示取消存档， 1表示存档
+}
+
+message GameMatchArchiveAck {
+}
+
+//用户请求排名信息
+message GameGetSeatRankInfoReq{
+}
+
+message GameGetSeatRankInfoAck{
+  optional uint32 gamecnt = 1;
+  optional bytes  xml = 2;
+}
+
+message FDRoomHostInheritAck {
+	optional uint32 roomid = 1;
+	optional uint32 roomhostid = 2;
+	optional uint32 inheritroomhostid = 3;
+	optional int32 reason = 4;
+}
+
+message FDRoomTransferReq {
+	optional uint32 roomid = 1;
+	optional int32 reserve = 2;
+}
+
+message FDRoomTransferAck {
+	optional uint32 roomid = 1;
+	optional int32 reserve = 2;
+}
+
+message PushFdtableScoreexAck {
+	repeated PlayerScoreInfo playerscoreinfo = 1;
+}
+
+message PlayerScoreInfo {
+	optional uint32	userid = 1;
+	optional string nickname = 2;     //玩家昵称
+	optional int32 matchscore = 3;   // 本局得分
+	optional int32 totalscore = 4;   // 总积分
+	optional int32 wincount = 5;     // 获胜局数
+	optional int32 totalcount = 6;   // 总局数
+}
+
+
+message PushSuperBankerListAck {
+	repeated BankerInfo bankerinfo = 1;
+}
+
+message BankerInfo {
+	optional uint32 userid = 1;
+	optional uint32	formid = 2;    // 用户形象ID
+	optional uint32 figureid = 3;   // 头像ID
+	optional string nickname = 4;
+}
+
+
+message FdtableManualbeginReq{
+	optional uint32 nullvalue = 1;
+}
+
+message FdtableManualbeginAck{
+	optional uint32 nullvalue = 1;
+}
+
+message CostUnit {
+	optional uint32 dcid = 1;	// 数据类型，如1-Money,2-Ware,3-Grow，具体参见:eDicTKSTGDCDef
+	optional uint32 acctype = 2; // 目前只有Money在用，如0-默认账户，10-保险箱，100-幸运卡，1000-公社基金，具体参见：eDicMynsAccNumType
+	optional uint32 dtid = 3; // 数据子类型
+	optional uint32 dvalue = 4; // 数值
+	optional uint32 reserve1 = 5; // 保留字段1
+	optional uint32 reserve2 = 6; // 保留字段2
+}
+
+message CostPlan {
+	optional uint32 castplanid = 1;	// 扣费方案ID
+	optional uint32 score = 2;	// 购买后的积分
+	optional uint32 rank = 3; // 购买后的排名, 0表示名次无效
+	optional uint32 reserve1 = 4; // 保留字段，购买游戏道具可能会有用
+	optional uint32 reserve2 = 5; // 保留字段
+	optional uint32 reserve3 = 6; // 保留字段
+	optional uint32 reserve4 = 7;  // 保留字段
+	repeated CostUnit data = 8;
+}
+
+message GamePaymentCostAck  {
+	optional uint32 userid = 1;
+	optional uint32 tourneyid = 2;
+	optional uint32 matchid = 3;
+	optional uint32 stageid = 4;
+	optional int32 timeout = 5; // 购买倒计时
+	optional int32 liveplayer = 6;  // 当前存活人数
+	optional uint32 paytypeid = 7; // 扣费业务类型 参见: eDicPaymentBusinessTypeDef, 参见 TKComitUniversalDicSrv.h
+	repeated CostPlan data = 8; // 后缀数据，TK_COSTPLAN，参见 TKMatchUniversalDicSrv.h
+	optional string taskdata = 9; // 后缀任务数据（xml）
+}
+
+message GamePaymentCostReq  {
+	optional uint32 userid = 1;
+	optional uint32 tourneyid = 2;
+	optional uint32 matchid = 3;
+	optional uint32 stageid = 4;
+	optional uint32 result = 5; // 业务执行结果，0-失败，1-表示成功
+	optional uint32 paytypeid = 6; // 扣费业务类型 参见: eDicPaymentBusinessTypeDef, 参见 TKComitUniversalDicSrv.h
+	optional uint32 planid = 7; // 复活的方案ID
+}
+
+message GamePaymentResultAck  {
+	optional uint32 userid = 1;
+	optional uint32 tourneyid = 2;
+	optional uint32 matchid = 3;
+	optional uint32 stageid = 4;
+	optional uint32 paytypeid = 5; // 扣费业务类型 参见: eDicPaymentBusinessTypeDef,
+	optional uint32 result = 6; // 支付业务扣费的结果，eDicTypeTKPaymentResult
+}
+
+
+// GC通知用户操作信息
+message HDLInfoReq {
+	optional uint32 result = 1; // 操作结果
+	optional string data = 2; // 后缀过程数据数据（xml）
+}
+
+message ProcessAwardData {
+	optional uint32 userid = 1; //用户ID
+	optional uint32 bizid = 2; //颁奖业务ID（对应过程奖励内容）
+	optional uint32 awardid = 3; // 红包业务中为红包ID
+	optional string jsondata = 4; //过程奖励的json串
+}
+
+//MS通知客户端过程奖励内容
+message ProcessAwardPushAck {
+	repeated ProcessAwardData datas = 1;
+}
+
+// GC通知MS拆红包
+message OpenRedpacketReq {
+	optional uint32 rpid = 1; //红包ID
+	optional uint32 bizid = 2; //过程奖励业务ID
+	optional uint32 planid = 3;//过程奖励方案ID
+	optional int32 final = 4;//是否最后一个红包
+}
+
+// GC通知MS拆红包响应- rpid有效，标识哪个红包的奖励实际到账，后3个字段保留未用上
+message OpenRedpacketAck {
+	optional uint32 rpid = 1; //红包ID
+	optional uint32 bizid = 2; //过程奖励业务ID
+	optional uint32 planid = 3;//过程奖励方案ID
+	optional int32 final = 4;//是否最后一个红包
+}
+
+message GetCardRightReq {
+	optional uint32 userid = 1; //
+	optional uint32 watcheeid = 2; //
+	optional int32 operationmode = 3;// 0-旁观者请求，1-Player同意，2-Player拒绝
+}
+
+message GetCardRightAck {
+	optional uint32 userid = 1; //
+	optional uint32 watcheeid = 2; //
+	optional int32 operationmode = 3;// 0-旁观者请求，1-Player同意，2-Player拒绝
+	optional int32 figureid = 4;
+	optional int32 watcherfigureid = 5;
+	optional string nickname = 6;
+	optional string watchernickname = 7;
+}
+
+message ConfirmAardinfoData {
+	optional uint32 awardid = 1; //红包ID
+	optional uint32 bizid = 2; //过程奖励业务ID
+	optional uint32 planid = 3;//过程奖励方案ID
+}
+
+// 拆红包请求-批量 GC->MS
+message ConfirmAardinfoReq {
+	repeated ConfirmAardinfoData infodata = 1;
+}
+
+// 拆红包请求-批量 响应 MS->GC
+message ConfirmAardinfoAck {
+	repeated uint32 awardids = 1; //红包ID
+}
+
+
+//通用协议
+message CommonProtocolReq {
+   optional string jsondata = 1;  //数据体采用JSON格式
+   optional uint32 msgtype = 2; //消息id，由客户端填入
+}
+message CommonProtocolAck {
+  optional string jsondata = 1;  //数据体采用JSON格式
+  optional uint32 msgtype = 2; //消息id
+}
+
+//用户LuckCard选项
+message LuckCardUserOptReq {
+  optional int32 usemin = 1;       //  单次使用下限（低于该值不应用）
+  optional int32 usemax = 2;     //  单次使用上限（高于该值按该值应用）
+}
+message LuckCardUserOptAck {
+  optional int32 usemin = 1;       //  单次使用下限（低于该值不应用）
+  optional int32 usemax = 2;     //  单次使用上限（高于该值按该值应用）
+}
+
+//请求金币兑换幸运点
+message AddLuckReq {
+   optional uint32 point = 1;  //要补充的幸运点数
+}
+
+message AddLuckAck {
+  optional uint32 point = 1;  //成功补充的幸运点数(0为失败)
+  optional string  reason = 2;  //失败原因
+}
+
+//通知让玩家LuckCard配置信息
+//xml，格式如下:
+// <LuckCard>
+// 	<!--AddCfg幸运点补充配置，Item为可选档，Def为默认档-->
+// 	<AddCfg Item="10000,20000,50000,100000,200000" Def="100000"/>
+//
+// 	<!--UseMin幸运点应用最小限制（低于此数值不应用幸运点），Item为可选档，Def为默认档-->
+// 	<UseMin Item="0,10000" Def="10000"/>
+//
+// 	<!--UseMin幸运点应用最大限制（大于此数值时限定为此数值），Item为可选档，Def为默认档-->
+// 	<UseMax Item="20000,50000" Def="20000"/>
+// </LuckCard>
+message LuckCardInfoAck {
+   optional string  info = 1;  //后跟xml
+}
+
+//通知幸运使用结果
+message ConsumeLuckyAck{
+  optional uint32 point = 1;  // 消耗的幸运点数
+}
+
+//通知本场游戏有幸运点功能
+message LuckCardAck{
+  optional uint32 balance = 1;  //剩余金额
+}
+
+//打开结算界面
+message OpenAccountInterfaceAck {
+  optional uint32 mpid              = 1;
+  optional uint32 tourneyid         = 2;
+  optional uint32 matchid           = 3;
+  optional uint32 userid            = 4;
+  optional uint32 reserve1          = 5;   // 保留字段1
+  optional uint32 reserve2          = 6;   // 保留字段2
+  optional string sufdata           = 7;   // 后缀数据
+}
+
+//更新结算信息
+message UpdateAccountInforAck {
+  optional uint32 mpid              = 1;
+  optional uint32 tourneyid         = 2;
+  optional uint32 matchid           = 3;
+  optional uint32 userid            = 4;
+  optional uint32 reserve1          = 5;   // 保留字段1
+  optional uint32 reserve2          = 6;   // 保留字段2
+  optional string sufdata           = 7;   // 后缀数据
+}
+
+// 游戏通用协议
+message GameCommonProtocolReq {
+	optional uint32 msgid           = 1;   // 协议id
+	optional uint32 submsgid        = 2;   // 子协议id
+	optional string jsondata        = 3;   // 数据体采用JSON格式
+}
+
+// 游戏通用协议
+message GameCommonProtocolAck {
+	optional uint32 msgid           = 1;   // 协议id
+	optional uint32 submsgid        = 2;   // 子协议id
+	optional string jsondata        = 3;   // 数据体采用JSON格式
+}
+
+message RoomPlayerChgFlagsAck  {
+	required uint32 userid = 1;
+	required uint32 flags = 2;
+}
+

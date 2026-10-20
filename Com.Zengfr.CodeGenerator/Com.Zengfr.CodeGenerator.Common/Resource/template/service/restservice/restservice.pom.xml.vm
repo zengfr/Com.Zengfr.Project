@@ -1,0 +1,59 @@
+﻿#set($outputConfig.OutputDir = "service\\restservice\\")
+#set($outputConfig.OutputFileName = "pom.xml")
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>service</artifactId>
+	<packaging>war</packaging>
+	<properties>
+	</properties>
+	<parent>
+		<groupId>com.github.zengfr.project</groupId>
+		<artifactId>com.github.zengfr.project.servicepom</artifactId>
+		<version>0.0.2</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+	<build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+	<dependencies>
+	   <dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+		</dependency>
+		 <dependency>
+			<groupId>com.github.zengfr.project</groupId>
+			<artifactId>restservicebase</artifactId>
+			<version>${projectversion}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<!-- spring boot -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+			<version>2.0.3.RELEASE</version>
+        </dependency>
+        <!-- 引入 spring-boot -swagger 并生成优美的API文档-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+        </dependency>
+	</dependencies>
+</project>

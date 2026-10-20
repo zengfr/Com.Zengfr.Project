@@ -1,0 +1,361 @@
+
+package cn.jj.service.msg.protocol;
+//option optimize_for = CODE_SIZE;
+//option optimize_for = LITE_RUNTIME;
+
+import "TKLord.proto";
+
+message HLLordReqMsg {
+	required uint32 matchid = 1;
+	optional uint64 time = 2;
+	optional DispatchCompleteReq dispatchcomplete_req_msg = 3; //发牌完成
+	optional ShowCardsReq showcards_req_msg = 4; //明牌
+	optional CallLordReq calllord_req_msg = 5; //叫地主
+	optional RobLordReq roblord_req_msg = 6; //抢地主
+	optional DeclareLordCompleteReq declarelordcomplete_req_msg = 7; //地主动画完成
+	optional DoubleReq double_req_msg = 8; //加倍
+	optional PutCardsReq putcards_req_msg = 9; //出牌
+	optional TrustInReq trustin_req_msg = 10; //托管
+	optional GiveUpReq	giveup_req_msg	= 11; //认输
+	optional LordClientReadyReq lordclientready_req_msg = 12; //客户端准备好，通知游戏服务
+	optional LordGiveUpReq lordgiveup_req_msg = 13; // 地主认输
+    optional uint32 triggertype = 14;    //客户端触发类型
+    optional SelectBottomReq selectbottom_req_msg    = 15;//选底牌
+	optional LordCallScoreReq lordcallscore_req_msg = 16; //叫分
+
+}
+
+message HLLordAckMsg {
+	required uint32 matchid = 1;
+	optional uint64 time = 2;
+	optional StartGameAck startgame_ack_msg = 3; //开始游戏
+	optional HonorAck honor_ack_msg = 4; //荣誉称号
+	optional BaseMultiAck basemulti_ack_msg = 5; //基础倍数
+	optional UpdateThinkTimeAck updatethinktime_ack_msg = 6; //更新思考时间
+	optional DispatchCardsAck dispatchcard_ack_msg = 7; //发牌
+	optional DispatchStageFinishedAck dispatchstagefinished_ack_msg = 8; //发牌阶段完成
+	optional ShowCardsAck showcards_ack_msg = 9; //明牌
+	optional HandCardsAck handcards_ack_msg = 10; //手中牌张
+	optional StartCallLordAck startcalllord_ack_msg = 11; //开始叫地主
+	optional CallLordAck calllord_ack_msg = 12; //叫地主
+	optional WaitRobLordAck waitroblord_ack_msg = 13; //开始抢地主
+	optional RobLordAck roblord_ack_msg = 14; //抢地主
+	optional DeclareLordAck declarelord_ack_msg = 15; //宣布地主
+	optional WaitLordShowCardAck waitlordshowcard_ack_msg = 16; //等待地主明牌
+	optional StartDoubleAck startdouble_ack_msg = 17; //开始加倍
+	optional DoubleAck double_ack_msg = 18; //加倍
+	optional StartPlayAck startplay_ack_msg = 19; //开始出牌
+	optional PutCardsAck putcards_ack_msg = 20; //出牌
+	optional FinishGameAck finishgame_ack_msg = 21; //结束游戏
+	optional MaxDoubleAck maxdouble_ack_msg = 22; //最大加倍倍数
+	optional TrustInAck trustin_ack_msg = 23; //托管
+	optional OnlineStateAck onlinestate_ack_msg = 24; //更新在线状态
+	optional AbortAck abort_ack_msg = 25; //流局
+	optional UpdateMultiAck updatemulti_ack_msg = 26; //更新倍数
+	optional QuitOnOwnAck quitonown_ack_msg = 27; //玩家故意关闭客户端伪消息
+	optional LordHLTaskAck lordhltask_ack_msg = 28; //任务描述信息
+	optional LordHLTaskFinishedAck lordhltaskfinished_ack_msg = 29; //任务完成
+	optional LordHLTimeLimitAck lordhltimelimit_ack_msg = 30; //通知客户端时间
+	optional EachPlayerInfoAck eachplayerinfo_ack_msg = 31; //玩家昵称、头像
+	optional FirstCallSeatAck firstcallseat_ack_msg = 32; //发牌阶段发送首叫牌玩家座位号
+	optional StartDispatchCardAck startdispatchcard_ack_msg = 33; //前7张有效牌张发送消息
+	optional ShowFunderCardsAck showfundercards_ack_msg = 34; //游戏结束显示底牌
+	optional DoubleConfirmAck doubleconfirm_ack_msg = 35; //同伙加倍确认
+	optional UpdatePlayerMultiAck updateplayermulti_ack_msg = 36; //个人倍数更新
+	optional StartHideShowAck starthideshow_ack_msg = 37;//开始闷明
+	optional DispatchCardsHideShowAck dispatchcardshideshow_ack_msg = 38; //闷明发牌
+	optional GiveUpAck giveup_ack_msg	= 39;	//认输
+	optional LordWaitClientReadyAck lordwaitclientready_ack_msg = 40;	//开始等待客户端准备好
+    optional LordOperateStartAck  lordoperatestart_ack_msg = 41; //操作开始, 选底牌
+    optional SelectBottomAck      selectbottom_ack_msg  = 42; //选底牌
+	optional LordCallScoreAck lordcallscore_ack_msg = 43; //叫分
+}
+
+message DispatchCompleteReq {
+	optional uint32 nullvalue = 1;//与J2ME统一用，无意义
+}
+
+message ShowCardsReq {
+	required bool show = 1; //是否明牌
+	optional bool supershow = 2; //是否超级明牌
+}
+
+message CallLordReq {
+	required bool call = 1; //是否叫地主
+}
+
+message RobLordReq {
+	required bool rob = 1; //是否抢地主
+}
+
+message DeclareLordCompleteReq {
+	optional uint32 nullvalue = 1;//与J2ME统一用，无意义
+}
+
+message DoubleReq {
+	required bool double = 1; //是否加倍
+	optional bool superdouble = 2;//是否超级加倍
+}
+
+message HLCard {
+	required uint32 cardclass = 1; //花色
+	required uint32 cardpoint = 2; //点数
+}
+
+message UnitInfo {
+	required int32 unittype = 1; //牌型:单张、单顺、三带单...
+	required uint32 cardcount = 2; //牌张数
+	optional uint32 point = 3; //点数
+}
+
+message PutCardsReq {
+	required uint32 seat = 1; //出牌玩家座位号
+	repeated HLCard hlcards = 2; //所出牌张 空表示pass
+	optional UnitInfo unit = 3; //所出牌张相关信息
+	optional uint32 msgcnt = 4; //出牌消息的消息序号
+}
+
+message TrustInReq {
+	required bool trustin = 1; //请求or解除托管
+}
+
+message StartGameAck {
+	optional string gameconfig = 1; //游戏相关信息
+	required uint64 timestamp  = 2;	//时间戳
+}
+message LordHLScore {
+	optional int32 seat = 1; //座位号
+	optional int32 score = 2; //积分
+}
+
+message LordHLMaster {
+	optional int32 seat = 1; //座位号
+	optional int32 master = 2; //大师分
+}
+
+message HonorAck {
+	repeated LordHLScore lordhlscore = 1; //欢乐斗地主积分
+	repeated LordHLMaster lordhlmaster = 2; //欢乐斗地主大师分
+}
+
+message BaseMultiAck {
+	optional uint32 basemulti = 1; //基础倍数
+}
+
+message ThinkTime {
+	optional int32 seat = 1; //座位号
+	optional int32 timevalue = 2; //思考时间
+}
+
+message UpdateThinkTimeAck {
+	repeated ThinkTime thinktime = 1; //思考时间
+}
+
+message DispatchCardsAck {
+	repeated HLCard hlcards = 1; //发牌牌张
+	optional uint32 multi = 2; //倍数
+	optional bool allowshowcard = 3; //是否允许明牌
+}
+
+message DispatchStageFinishedAck {
+	optional uint32 nullvalue = 1;//与J2ME统一用，无意义
+}
+
+message ShowCardsAck {
+	optional uint32 seat = 1; //明牌玩家座位号
+	optional bool show = 2; //是否明牌
+	optional uint32 multi = 3; //加倍倍数
+	optional bool supershow = 4; //是否超级明牌
+}
+
+message HandCardsAck {
+	optional uint32 seat = 1; //玩家座位号
+	repeated HLCard hlcards = 2; //手中牌张
+}
+
+message StartCallLordAck {
+	optional uint32 beginseat = 1; //开始叫地主的玩家座位号
+	required uint64 timestamp = 2; //时间戳
+}
+
+message CallLordAck {
+	optional uint32 seat = 1; //叫地主玩家座位号
+	optional bool call = 2; //是否叫地主
+}
+
+message WaitRobLordAck {
+	optional uint32 seat = 1;
+	required uint64 timestamp = 2; //时间戳
+}
+
+message RobLordAck {
+	optional uint32 seat = 1; //抢地主玩家座位号
+	optional bool rob = 2; //是否抢地主
+}
+
+message DeclareLordAck {
+	optional uint32 seat = 1; //地主座位号
+	repeated HLCard fundcards = 2; //底牌牌张
+	required uint64 timestamp = 3; //时间戳
+}
+
+message WaitLordShowCardAck {
+	optional uint32 nullvalue = 1;//与J2ME统一用，无意义
+	required uint64 timestamp = 2; //时间戳
+}
+
+message StartDoubleAck {
+	optional uint32 nullvalue = 1;//与J2ME统一用，无意义
+	repeated uint32 seatlist  = 2;//能加倍的座位号列表
+	required uint64 timestamp = 3; //时间戳
+}
+
+message DoubleAck {
+	optional uint32 seat = 1; //加倍玩家座位号
+	optional bool double = 2; //是否加倍
+	optional bool superdouble = 3;//是否超级加倍
+}
+
+message StartPlayAck {
+	optional uint32 nullvalue = 1;//与J2ME统一用，无意义
+	required uint64 timestamp = 2; //时间戳
+	required uint32 seat = 3;	//首出座位号
+}
+
+message PutCardsAck {
+	required uint32 seat = 1; //出牌玩家座位号
+	repeated HLCard hlcards = 2; //出牌牌张 空表示pass
+	optional UnitInfo unit = 3; //出牌相关信息
+	required uint64 timestamp = 4; //时间戳
+	optional bool nextautogo = 5;	//下一个玩家是否最后一手牌服务帮忙自动打出
+	optional uint32 msgcnt = 6;	//出牌消息的消息序号
+	optional bool nextautopass = 7; //下一个玩家是否游戏服务自动pass
+}
+
+message PlayerInfo
+{
+	optional uint32 double = 1; //加倍倍数
+	optional int32 score = 2; //得分
+	repeated HLCard remiancards = 3;
+	repeated HLCard dispatchcards = 4;
+}
+
+message FinishGameAck {
+	optional uint32 winseat = 1; //获胜玩家座位号
+	optional uint32 showcardsmulti = 2; //明牌加倍倍数
+	optional uint32 roblordmulti = 3; //抢地主加倍倍数
+	optional uint32 bombmulti = 4; //炸弹倍数
+	optional uint32 springmulti = 5; //春天倍数
+	optional uint32 fundcardsmulti = 6; //底牌倍数
+	optional uint32 giveupfigure = 7;  //认输结果（无认输没有此项，1-地主认输， 2-农民认输）
+	repeated PlayerInfo playinfo = 8; //各玩家结果信息
+	optional bool   lordgiveup = 9; // 地主认输
+}
+
+message MaxDoubleAck {
+	optional uint32 nullvalue = 1;//与J2ME统一用，无意义
+}
+
+message TrustInAck {
+	optional uint32 seat = 1; //托管操作的玩家座位号
+	optional bool trustin = 2; //托管or解除
+}
+
+message OnlineStateAck {
+	optional uint32 seat = 1; //玩家座位号
+	optional bool online = 2; //是否断线
+}
+
+message AbortAck {
+	optional uint32 nullvalue = 1; //与J2ME统一用，无意义
+}
+
+message UpdateMultiAck {
+	optional uint32 multi = 1; //加倍倍数
+}
+
+message QuitOnOwnAck {
+	optional string exittime = 1;
+	optional string curtime = 2;
+	optional string seat = 3;
+	optional string playerid = 4;
+	optional string nick = 5;
+}
+
+message LordHLTaskAck {
+	optional string taskcontent = 1; //任务描述信息
+}
+
+message LordHLTaskFinishedAck {
+	optional uint32 seat = 1; //玩家座位号
+	optional uint32 taskid = 2; //任务ID
+	optional uint32 bounus = 3; //任务奖励
+}
+
+message LordHLTimeLimitAck {
+	optional int64 timelimit = 1; //玩家剩余思考时间
+	optional uint32 minputcardstime = 2; //最小思考时间
+}
+
+message EachPlayerInfoAck {
+	repeated int32 figureid = 1; //玩家真实头像
+	repeated string nickname = 2; //玩家真实昵称
+}
+
+message FirstCallSeatAck {
+	required uint32 firstcallseat = 1; //首叫牌玩家座位号
+}
+
+message HLInvaildCard {
+	required int32 cardclass = 1; //花色[可能为-1]
+	required int32 cardpoint = 2; //点数[可能为-1]
+}
+
+message StartDispatchCardAck {
+	required uint32 seat = 1; //玩家座位号
+	required int32 iscanshowindex = 2; //-1表示不够明牌条件；非-1表示第X张达到明牌条件
+	repeated HLInvaildCard cards = 3; //前7张有效牌张
+}
+
+message ShowFunderCardsAck {
+	repeated HLCard fundcards = 1; //底牌牌张
+}
+
+message DoubleConfirmAck {
+	optional uint32 seat = 1; //玩家座位号
+	optional uint32 thinktime = 2;
+}
+
+message UpdatePlayerMultiAck{
+	optional uint32 seat = 1; //玩家座位号
+	optional uint32 multi = 2; //加倍倍数
+	optional uint32 score = 3; //总分
+}
+
+message StartHideShowAck{
+	repeated uint32 multi = 1; //明牌倍数
+	repeated float timevalue = 2; //明牌时间
+}
+
+message DispatchCardsHideShowAck {
+	repeated HLCard hlcards = 1; //发牌牌张
+	required uint32 stage = 2;//发牌阶段，第一阶段10张，第二阶段7张
+}
+
+message LordGiveUpReq
+{
+	optional uint32 null = 1;
+}
+
+//选底牌消息Req
+message SelectBottomReq{
+    required    uint32  seat            =    1;    //座位号
+    repeated    HLCard  cards            =   2;    //所选牌张
+}
+
+//选底牌Ack
+message SelectBottomAck{
+    required    uint32        seat        =    1;    //选牌人的座位号
+    repeated    HLCard  cards        =    2;    //所选牌张
+}
+

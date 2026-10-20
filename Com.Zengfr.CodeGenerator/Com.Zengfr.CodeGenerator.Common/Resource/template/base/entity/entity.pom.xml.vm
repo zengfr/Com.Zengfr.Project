@@ -1,0 +1,47 @@
+﻿#set($outputConfig.OutputDir = "base\\entity\\")
+#set($outputConfig.OutputFileName = "pom.xml")
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>entity</artifactId>
+	<packaging>jar</packaging>
+	<properties>
+	</properties>
+	<parent>
+		<groupId>com.github.zengfr.project</groupId>
+		<artifactId>com.github.zengfr.project.basepom</artifactId>
+		<version>0.0.2</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+	<build>
+		<defaultGoal>process-resources:process</defaultGoal>
+	 <plugins>
+	   <plugin>
+				<groupId>com.mysema.maven</groupId>
+				<artifactId>apt-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>default-gen</id>
+						<phase>process-resources</phase>
+						<goals>
+						    <!--goal>generate-sources</goal-->
+							<goal>process</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>src/generated-sources/java</outputDirectory>
+							<processors>
+								<processor>com.querydsl.apt.jpa.JPAAnnotationProcessor</processor>
+							</processors>
+							<options>
+								<querydsl.entityAccessors>true</querydsl.entityAccessors>
+								<querydsl.createDefaultVariable>true</querydsl.createDefaultVariable>
+							</options>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+	</dependencies>
+</project>

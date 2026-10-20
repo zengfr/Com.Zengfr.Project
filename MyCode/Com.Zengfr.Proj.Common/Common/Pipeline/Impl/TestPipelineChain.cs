@@ -13,30 +13,31 @@ namespace Com.Zengfr.Proj.Common.Pipeline.Impl
         public static void Main()
         {
             Console.BufferHeight = 3000;
-            PipelineChain<long, long, long> pc = new PipelineChain<long, long, long>();
-            pc.SetInput(1);
-            pc.SetProcessorHander(new LogPipelineProcessorHander<long, long, long>());
-            PutStage(pc, 0, 0, 20);
-            PutStage(pc, 2, 20, 20);
+            PipelineContext<long, long, long> context = new PipelineContext<long, long, long>();
+            context.Hander = new LogPipelineHander<long, long, long>();
 
-            var funcs2 = BuildFuncs<long, long, long>(40, 20);
-            pc.PutStage(funcs2, "A", 2);
+            var pf= PipelineFactory.Instance;
+            IPipelineChain <long, long, long> pc = pf.CreateChain<long, long, long>();
+          
+            PutStep<long, long, long>(pf,pc, "A", 0, 15);
+ 
+            var funcs2 = BuildFuncs<long, long, long>(30, 15);
+            pc.Put(pf.BuildStep(funcs2,"B", 2));
 
-            var funcs3 = BuildFuncs<long, long, long>(60, 20);
-            pc.PutStage(funcs3, "B", 1);
+            var funcs3 = BuildFuncs<long, long, long>(45, 15);
+            pc.Put(pf.BuildStep(funcs3, "C", 1));
 
-            pc.Process();
-
-            pc.GetOutput();
+            pc.PreProcess(context);
+            pc.PostProcess(context);
             Console.ReadLine();
 
         }
-        private static void PutStage<I, M, O>(PipelineChain<I, M, O> pc, int parallelism, int index, int count)
+        private static void PutStep<I, M, O>(PipelineFactory pf, IPipelineChain<I, M, O> pc,string name, int index, int count)
         {
             Func<String, PipelineContext<I, M, O>, bool> func = BuildFunc<I, M, O>();
             for (int i = index; i < index + count; i++)
             {
-                pc.PutStage(func, "" + i, parallelism);
+                pc.Put(pf.BuildStep(func,string.Format("{0}-{1}", name, i)));
             }
 
         }

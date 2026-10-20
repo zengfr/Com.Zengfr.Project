@@ -1,0 +1,587 @@
+
+package cn.jj.service.msg.protocol;
+//option optimize_for = CODE_SIZE;
+//option optimize_for = LITE_RUNTIME;
+
+message ECAServiceReqMsg {
+    optional ECAComposeReq ecacompose_req_msg = 1; // 合成请求
+    optional SSOLoginReq ssologin_req_msg = 2; //登录sso请求
+    optional GetFSMStateReq getfsmstate_req_msg = 3; //获取FSM状态
+    optional GetFSMSignReq getfsmsign_req_msg = 4; //获取FSM时间戳
+    optional GetObjStateReq getobjstate_req_msg = 5; //
+    optional RuleFinishReq rulefinish_req_msg = 6;
+    optional PushProgressAck pushprogress_ack_msg = 7;
+    optional NotifyUserSpecObjCondFinishReq notifyuserspecobjcondfinish_req_msg = 8;
+    optional LoadSAskForParamECAReq loadsaskforparameca_req_msg = 9; // 向TGPLoadSrv请求进行带参数的ECA操作
+    optional LoadSGetSchemInfoReq loadsgetscheminfo_req_msg = 10; // 向TGPLoadSrv请求查询方案配置信息
+    optional LoadSGetSchemInfoByDomainReq loadsgetscheminfobydomain_req_msg = 11; // 向TGPLoadSrv按域请求查询方案配置信息
+    optional TGPGetFSMMapRelationReq tgpgetfsmmaprelation_req_msg = 12; // TGP: 获取任务映射关系
+    optional TGPGetFSMDicVersionReq tgpgetfsmdicversion_req_msg = 13; // TGP: 获取字典版本号
+    optional TGPGetFSMDicInfoReq tgpgetfsmdicinfo_req_msg = 14; // TGP: 获取任务字典表信息
+    optional TGPGetUsrFsmProgressInfoReq tgpgetusrfsmprogressinfo_req_msg = 15; // TGP: 根据域、类别等获取任务进度信息
+    optional TGPGetUsrOneFsmInfoBasedFSMIDReq tgpgetusronefsminfobasedfsmid_req_msg = 16; // TGP: 根据任务ID获取任务信息
+    optional TGPGetUsrMetaDataInfoReq tgpgetusrmetadatainfo_req_msg = 17; // TGP: 获取用户通用数据信息
+    optional TGPGetFSMStatInfoReq tgpgetfsmstatinfo_req_msg = 18; // TGP: 获取任务统计信息
+    optional TGPReqManualOperationReq tgpreqmanualoperation_req_msg = 19; // TGP: 请求人工操作处理
+    optional TGPPushUsrFsmInfoReq tgppushusrfsminfo_req_msg = 20; // TGP: 推送用户任务进度信息
+    optional TGPDoRegisterInfoReq tgpdoregisterinfo_req_msg = 21; // TGP: 注册反注册信息
+    optional TGPGetAreaClassProbReq tgpgetareaclassprob_req_msg = 22; // TGP: 获取AreaID，ClassID属性
+    optional TGPPushProRemindInfoReq tgppushproremindinfo_req_msg = 23; // TGP: 通过Broker向前端推送进度提醒
+    optional TGPGetMapRelationVersionReq tgpgetmaprelationversion_req_msg = 24; // TGP: 根据用户注册信息获取相应ClassID+版本等信息（查询类接口）
+    optional TGPAsynGetFSMProByAreaIDClassIDReq tgpasyngetfsmprobyareaidclassid_req_msg = 25; // TGP: 根据AreaID、ClassID异步获取任务进度信息（查询类接口）
+    optional TGPPushUsrFSMSReq tgppushusrfsms_req_msg = 26; // TGP: 推送用户的多个任务进度信息（推送类接口）
+    optional TGPGetFSMClassProbsReq tgpgetfsmclassprobs_req_msg = 27; // TGP: 获取指定的多个ClassID属性 GetFsmClasProbs（查询类接口）
+    optional TGPAsyGetFSMProbsReq tgpasygetfsmprobs_req_msg = 28; // TGP: 获取指定的多个FSMID状态数据（查询类接口）
+    optional TGPLSGetFSMDataReq tgplsgetfsmdata_req_msg = 29; //TGP:获取任务状态数据请求（系统和用户维度）
+        optional TGPLSManualOperationMultiReq tgplsmanualoperationmulti_req_msg = 30; //TGP:请求人工操作处理多任务 ManualOperationMulti		(操作类接口)
+}
+
+message ECAServiceAckMsg {
+    optional ECAComposeAck ecacompose_ack_msg = 2;
+    optional SSOLoginAck ssologin_ack_msg = 3;
+    optional GetFSMStateAck getfsmstate_ack_msg = 4;
+    optional GetFSMSignAck getfsmsign_ack_msg = 5;
+    optional GetObjStateAck getobjstate_ack_msg = 6;
+    optional RuleFinishAck rulefinish_ack_msg = 7;
+    optional PushProgressReq pushprogress_req_msg = 8;
+    optional NotifyUserSpecObjCondFinishAck notifyuserspecobjcondfinish_ack_msg = 9;
+    optional LoadSAskForParamECAAck loadsaskforparameca_ack_msg = 10; // 向TGPLoadSrv请求进行带参数的ECA操作 响应
+    optional LoadSGetSchemInfoAck loadsgetscheminfo_ack_msg = 11; // 向TGPLoadSrv请求查询方案配置信息 响应
+    optional LoadSGetSchemInfoByDomainAck loadsgetscheminfobydomain_ack_msg = 12; // 向TGPLoadSrv按域请求查询方案配置信息 响应
+    optional TGPGetFSMMapRelationAck tgpgetfsmmaprelation_ack_msg = 13; // TGP: 获取任务映射关系 响应
+    optional TGPGetFSMDicVersionAck tgpgetfsmdicversion_ack_msg = 14; // TGP: 获取字典版本号 响应
+    optional TGPGetFSMDicInfoAck tgpgetfsmdicinfo_ack_msg = 15; // TGP: 获取任务字典表信息 响应
+    optional TGPGetUsrFsmProgressInfoAck tgpgetusrfsmprogressinfo_ack_msg = 16; // TGP: 根据域、类别等获取任务进度信息 响应
+    optional TGPGetUsrOneFsmInfoBasedFSMIDAck tgpgetusronefsminfobasedfsmid_ack_msg = 17; // TGP: 根据任务ID获取任务信息 响应
+    optional TGPGetUsrMetaDataInfoAck tgpgetusrmetadatainfo_ack_msg = 18; // TGP: 获取用户通用数据信息 响应
+    optional TGPGetFSMStatInfoAck tgpgetfsmstatinfo_ack_msg = 19; // TGP: 获取任务统计信息 响应
+    optional TGPReqManualOperationAck tgpreqmanualoperation_ack_msg = 20; // TGP: 请求人工操作处理 响应
+    optional TGPPushUsrFsmInfoAck tgppushusrfsminfo_ack_msg = 21; // TGP: 推送用户任务进度信息 响应
+    optional TGPDoRegisterInfoAck tgpdoregisterinfo_ack_msg = 22; // TGP: 注册反注册信息 响应
+    optional TGPGetAreaClassProbAck tgpgetareaclassprob_ack_msg = 23; // TGP: 获取AreaID，ClassID属性 响应
+    optional TGPPushProRemindInfoAck tgppushproremindinfo_ack_msg = 24; // TGP: 通过Broker向前端推送进度提醒 响应
+    optional TGPGetMapRelationVersionAck tgpgetmaprelationversion_ack_msg = 25; // TGP: 根据用户注册信息获取相应ClassID+版本等信息（查询类接口）
+    optional TGPAsynGetFSMProByAreaIDClassIDAck tgpasyngetfsmprobyareaidclassid_ack_msg = 26; // TGP: 根据AreaID、ClassID异步获取任务进度信息（查询类接口）
+    optional TGPPushUsrFSMSAck tgppushusrfsms_ack_msg = 27; // TGP: 推送用户的多个任务进度信息（推送类接口）
+    optional TGPGetFSMClassProbsAck tgpgetfsmclassprobs_ack_msg = 28; // TGP: 获取指定的多个ClassID属性 GetFsmClasProbs（查询类接口）
+    optional TGPAsyGetFSMProbsAck tgpasygetfsmprobs_ack_msg = 29; // TGP: 获取指定的多个FSMID状态数据（查询类接口）
+    optional TGPLSGetFSMDataAck tgplsgetfsmdata_ack_msg = 30; //TGP:获取任务状态数据应答（系统和用户维度）
+    optional TGPLSManualOperationMultiAck tgplsmanualoperationmulti_ack_msg = 31; //TGP:请求人工操作处理Json ManualOperationJson
+
+}
+
+message ECAComposeReq {
+    required uint32 userid = 1; // 用户ID
+    required int32 schemeid = 2; // 方案ID
+    optional int32 multiple = 3; // 倍数
+}
+
+message ECAComposeAck {
+    optional int32 retvalue = 1; // 执行结果
+    optional int32 resultid = 2; // 执行的结果ID
+}
+
+message SSOLoginReq {
+    required uint32 userid = 1; //用户ID
+    optional int32 time = 2;
+    optional string mac = 3; //客户端mac地址
+}
+
+message SSOLoginAck {
+    optional int32 param = 1; //登录结果返回值
+}
+
+message GetFSMStateReq {
+    required uint32 userid = 1;
+    optional uint32 fsmclass = 2; //FSM类
+    optional uint32 fsmarea = 3; //FSM区
+}
+
+message FSMProgressState {
+    optional uint32 pid = 1;
+    optional string fsmonlysign = 2; //统领进度的标识号
+    optional uint32 fsmid = 3; //状态机ID
+    optional uint32 fsmcurstateid = 4; //状态机当前状态
+    optional uint32 fsmexetimes = 5; //本次执行次数
+    optional uint32 fsmtotalexetimes = 6; //总共执行次数
+    optional uint32 fsmnextlevelfinishcount = 7; //次级对象完成数
+    optional int32 btime = 8; //开始时间
+    optional int32 etime = 9; //结束时间
+    optional int32 mtime = 10; //修改时间
+    optional int32 ctime = 11; //创建时间
+}
+
+message FSMProgressComplete {
+    optional uint32 pid = 1;
+    optional string fsmonlysign = 2; //统领进度的标识号
+    optional uint32 fsmid = 3; //状态机ID
+    optional uint32 fsmcompstate = 4; //状态机完成状态
+    optional uint32 fsmexetimes = 5; //本次执行次数
+    optional uint32 fsmtotalexetimes = 6; //总共执行次数
+    optional uint32 fsmnextlevelfinishcount = 7; //次级对象完成数
+    optional int32 completetime = 8; //当前状态机完成时间
+    optional int32 deletetime = 9; //记录保留到最后时间
+}
+
+message GetFSMStateAck {
+    optional uint32 fsmarea = 1; //FSM区
+    repeated FSMProgressState progressstate = 2; //状态机状态进度
+    repeated FSMProgressComplete progresscomplete = 3; //状态机已完成记录
+}
+
+message GetFSMSignReq {
+    required uint32 userid = 1;
+    optional uint32 fsmclass = 2; //FSM类
+    optional uint32 fsmarea = 3; //FSM区
+}
+
+message FSMProgressSign {
+    optional uint32 pid = 1;
+    optional uint32 fsmid = 2;
+    optional uint32 signtime = 3;
+}
+
+message GetFSMSignAck {
+    optional uint32 fsmarea = 1; //FSM区
+    repeated FSMProgressSign progresssign = 2; //状态机最后修改时间戳
+}
+
+message RelProgress {
+    optional uint32 id = 1;
+    optional uint32 pid = 2;
+    optional string fsmonlysign = 3;
+    optional uint32 fsmid = 4;
+    optional string pobjonlysign = 5;
+    optional uint32 pobjid = 6;
+    optional string objonlysign = 7;
+    optional uint32 fsmcurobjid = 8;
+    optional uint32 curobjjumpxfg = 9;
+    optional uint32 curobjjumpyfg = 10;
+    optional uint32 curobjdelfg = 11;
+    optional int32 btime = 12;
+    optional int32 etime = 13;
+    optional int32 mtime = 14;
+    optional int32 ctime = 15;
+}
+
+message RelComplete {
+    optional uint32 pid = 1;
+    optional uint32 pathid = 2;
+    optional string beffsmonlysign = 3;
+    optional uint32 beffsmid = 4;
+    optional string befpobjonlysign = 5;
+    optional uint32 befpobjid = 6;
+    optional string befobjonlysign = 7;
+    optional uint32 befobjid = 8;
+    optional uint32 aftobjid = 9;
+    optional int32 completetime = 10;
+    optional int32 deletetime = 11;
+}
+
+message ObjProgressState {
+    optional uint32 pid = 1;
+    optional string fsmonlysign = 2;
+    optional uint32 fsmid = 3;
+    optional string pobjonlysign = 4;
+    optional uint32 pobjid = 5;
+    optional string objonlysign = 6;
+    optional uint32 objid = 7;
+    optional uint32 objcurstateid = 8;
+    optional uint32 objexetimes = 9;
+    optional uint32 objtotalexetimes = 10;
+    optional uint32 objnextlevelfinishcount = 11;
+    optional int32 btime = 12;
+    optional int32 etime = 13;
+    optional int32 mtime = 14;
+    optional int32 ctime = 15;
+}
+
+message ObjProgressComplete
+{
+    optional uint32 pid = 1;
+    optional string fsmonlysign = 2;
+    optional uint32 fsmid = 3;
+    optional string pobjonlysign = 4;
+    optional uint32 pobjid = 5;
+    optional string objonlysign = 6;
+    optional uint32 objid = 7;
+    optional uint32 objcompstate = 8;
+    optional uint32 objexetimes = 9;
+    optional uint32 objtotalexetimes = 10;
+    optional uint32 objnextlevelfinishcount = 11;
+    optional int32 completetime = 12;
+    optional int32 deletetime = 13;
+}
+
+message GetObjStateReq {
+    required uint32 userid = 1;
+    optional uint32 fsmid = 2;
+}
+
+message GetObjStateAck {
+    optional uint32 fsmid = 1;
+    repeated RelProgress relprogress = 2;
+    repeated RelComplete relcomplete = 3;
+    repeated ObjProgressState objprogressstate = 4;
+    repeated ObjProgressComplete objprogresscomplete = 5;
+}
+
+message RuleFinishReq {
+    required uint32 userid = 1;
+    optional uint32 jumpmode = 2; //跳转方式，0默认无含义，1状态机状态，2关联跳转，3对象状态跳转
+    optional string fsmonlysign = 3;
+    optional uint32 fsmid = 4;
+    optional string pobjonlysign = 5;
+    optional uint32 pobjid = 6; //父对象ID
+    optional string objonlysign = 7;
+    optional uint32 objid = 8; //对象ID
+    optional uint32 jumppathid = 9;
+    optional uint32 ishaveeca = 10; //是否有ECA方案(0:无 1:有)
+    optional uint32 ecaid = 11; //如无填0
+}
+
+message RuleFinishAck {
+    optional int32 param = 1;
+}
+
+message PushProgressReq {
+    optional uint32 fsmid = 1;
+    optional FSMProgressSign fsmprogresssign = 2;
+    optional FSMProgressState fsmstateitem = 3;
+    optional FSMProgressComplete fsmcomplete = 4;
+    optional uint32 relcount = 5;
+    optional uint32 relcomcount = 6;
+    optional uint32 objprocount = 7;
+    optional uint32 objcomcount = 8;
+    optional string relprogress = 9;
+    optional string relcomplete = 10;
+    optional string objprogressstate = 11;
+    optional string objprogresscomplete = 12;
+    optional int32 resultid = 13;    // 动作执行的结果ID（成功时，奖励结果）
+}
+
+message PushProgressAck {
+
+}
+
+message NotifyUserSpecObjCondFinishReq {
+    optional uint32 userid = 1;
+    optional uint32 stgpoid = 2; //对象ID
+    optional uint32 ptgpoid = 3; //当前对象的父主ID
+    optional uint32 roottgpoid = 4; //当前对象的根ID
+    optional uint32 ecaid = 5; //条件ECAID
+    optional uint32 acctid = 6; //帐号类别ID
+    optional uint32 ecasourcetype = 7; //ECA源类型：定义ECA各种应用源类型，每个单独的ECAService对应一个类型
+    optional uint32 srvcip = 8; //与用户连接的服务器地址
+    optional uint32 cltcip = 9; //用户IP
+}
+
+message NotifyUserSpecObjCondFinishAck {
+    optional uint32 stgpoid = 1; //对象ID
+}
+
+message LoadSAskForParamECAReq {
+    optional uint32 pid = 1; // 用户ID
+    optional int32 schemeid = 2;  // 方案ID
+    optional int32 multiple = 3;  // 倍数(如果该方案允许倍数，则取值>=1)
+    optional string srvcip = 4; // 与用户连接的服务器地址
+    optional string cltcip = 5; // 用户IP
+    optional uint32 reserve1 = 6;
+    optional uint32 reserve2 = 7;
+    optional string suffixdata = 8;
+}
+
+message LoadSAskForParamECAAck {
+    optional int32 retvalue = 1;  // 执行结果 参见eECAReqResult定义
+    optional int32 resultid = 2;  // 执行的结果ID（成功时）
+    optional uint32 reserve1 = 3;
+    optional uint32 reserve2 = 4;
+    optional string suffixdata = 5;
+}
+
+message LoadSGetSchemInfoReq {
+    optional uint32 pid = 1; // 用户ID
+    optional uint32 schemeid = 2;  // 方案ID
+    optional uint32 vernumber = 3; // 时间戳版本号
+    optional uint32 reserve1 = 4;
+}
+
+message LoadSGetSchemInfoAck {
+    optional uint32 vernumber = 1; // 时间戳版本号
+    optional uint32 reserve1 = 2;
+    optional uint32 reserve2 = 3;
+    optional string scheminfo = 4; // 方案信息
+}
+
+message LoadSGetSchemInfoByDomainReq {
+    optional uint32 pid = 1; // 用户ID
+    optional uint32 domainid = 2;  // 域ID
+    optional uint32 vernumber = 3; // 时间戳版本号
+    optional uint32 reserve1 = 4;
+    optional uint32 reserve2 = 5;
+}
+
+message LoadSGetSchemInfoByDomainAck {
+    optional uint32 domainid = 1;  // 域ID
+    optional uint32 vernumber = 2; // 时间戳版本号
+    optional uint32 reserve1 = 3;
+    optional uint32 reserve2 = 4;
+    optional string scheminfo = 5; // 方案信息
+}
+
+// enum eTGPUsrRegistInfoIdDef
+// {
+//   TK_TGP_USRINFO_ENUM_ID_RESERVE     = 0,        //保留
+//   TK_TGP_USRINFO_ENUM_ID_PLATFORM    = 1,        //平台类型
+//   TK_TGP_USRINFO_ENUM_ID_SYSTEM      = 2,        //系统(设备)类型 
+//   TK_TGP_USRINFO_ENUM_ID_VARICLASS   = 3,        //品类区
+//   TK_TGP_USRINFO_ENUM_ID_COLLECS     = 4,        //合集区
+//   TK_TGP_USRINFO_ENUM_ID_GAME        = 5,        //游戏类型(游戏区)
+//   TK_TGP_USRINFO_ENUM_ID_PRODS       = 6,        //产品区    
+//   TK_TGP_USRINFO_ENUM_ID_CHANNEL     = 7,        //渠道类型 
+//   // ... ... 其它取值定义，待增加
+// };
+
+message TGPUserRegisterInfo {
+    optional uint32 usrreginfoid = 1; // 标识类型，具体参见 eTGPUsrRegistInfoIdDef
+    optional uint32 value = 2; // 
+}
+
+message TGPFsmMapRelationDef {
+    optional uint32 channelid = 1; // 
+    optional uint32 gameid = 2; // 
+    optional uint32 areaid = 3; // 
+    optional uint32 classid = 4; // 
+}
+
+message TGPGetFSMMapRelationReq {
+    optional uint32 userid = 1; // 用户ID
+    optional uint32 version = 2; // 版本号
+    repeated TGPUserRegisterInfo usrinfoidx = 3; //后缀用户信息TGP_USERREGISTER_INFO, 是个数组, 根据注册信息获取相应的任务Map信息
+}
+
+message TGPGetFSMMapRelationAck {
+    optional uint32 userid = 1; // 用户ID
+    optional uint32 version = 2; // 版本号
+    repeated TGPFsmMapRelationDef fsmmapidx = 3; // 后缀任务映射信息TGP_FSM_MAP_RELATION, 是个数组
+}
+
+message TGPGetFSMDicVersionReq {
+    optional uint32 userid = 1; // 用户ID
+    optional uint32 areaid = 2; // 任务的域ID
+    optional uint32 classid = 3; // 任务的分类ID
+    optional uint32 version = 4; // 前端记录的任务域ID的版本号，当dwAreaID!=0时生效，会请求该AreaID下的、若dwClassID!=0时也符合ClassID要求的，所有任务的小版本号
+}
+
+message TGPFSMIDAndVersionInfo {
+    optional uint32 fsmid = 1; // 任务FsmID
+    optional uint32 version = 2; // 版本号
+}
+
+message TGPGetFSMDicVersionAck {
+    optional uint32 userid = 1; // 用户ID
+    optional uint32 areaid = 2; // 任务的域ID
+    optional uint32 classid = 3; // 任务的分类ID，同请求
+    optional uint32 version = 4; // 最新的任务域ID的版本号
+    repeated TGPFSMIDAndVersionInfo versionandfsmid = 5; // 后缀任务FsmID和对应小版本号Version
+}
+
+message TGPGetFSMDicInfoReq {
+    optional uint32 userid = 1; // 用户ID
+    optional uint32 maxfsmid = 2; // 已经接收的FsmID 任务ID最大值，首次请求填0
+    repeated uint32 fsmidsuf = 3; // 后缀需要更新的任务ID
+}
+
+message TGPGetFSMDicInfoAck {
+    optional uint32 userid = 1; // 用户ID
+    optional uint32 endflag = 2; // 数据拆包时使用，如果不为0表示期望下次请求的最大FsmID; 如果为0，表示数据全部传输完成
+    optional string fsmdicinfosuff = 3; // 后缀字典信息数据，json格式
+}
+
+message TGPGetUsrFsmProgressInfoReq {
+    optional uint32 userid = 1; // 用户ID
+    optional uint32 maxfsmid = 2; // 已经接收的FsmID 任务ID最大值，首次请求填0
+    optional uint32 classid = 3; // 任务的分类ID，为0时表示ClassID不做限制
+    optional uint32 areaid = 4; // 任务的域ID，为0时表示AreaID不做限制
+}
+
+message TGPGetUsrFsmProgressInfoAck {
+    optional uint32 userid = 1; // 用户ID
+    optional uint32 endflag = 2; // 数据拆包时使用，如果不为0表示期望下次请求的最大FsmID; 如果为0，表示数据全部传输完成
+    optional uint32 classid = 3; // 同请求
+    optional uint32 areaid = 4; // 任务的域ID，为0时表示AreaID不做限制
+    optional uint32 count = 5; // 任务数量
+    optional string processinfo = 6; // 后缀json数据，以数组形式
+}
+
+message TGPGetUsrOneFsmInfoBasedFSMIDReq {
+    optional uint32 userid = 1; // 用户ID
+    optional uint32 fsmid = 2; // FsmID 任务ID
+}
+
+message TGPGetUsrOneFsmInfoBasedFSMIDAck {
+    optional uint32 userid = 1; // 用户ID
+    optional uint32 fsmid = 2; //  FsmID 任务ID
+    optional string fsminfo = 3; //后缀json数据，以数组形式
+}
+
+message TGPGetUsrMetaDataInfoReq {
+    optional uint32 userid = 1; // 用户ID
+    optional uint32 fsmid = 2; // FsmID 任务ID
+    optional uint32 objectid = 3; //ObjiectID 对象ID
+    optional uint32 did = 4; //FsmID 任务ID
+    optional uint32 oid = 5; //OriID  ID
+}
+
+message TGPGetUsrMetaDataInfoAck {
+    optional uint32 userid = 1; // 用户ID
+    optional uint32 fsmid = 2; // FSM区 （AreaID可以表示的任务数量有限制）
+    optional uint32 objectid = 3; //ObjiectID 对象ID
+    optional uint32 did = 4; //FsmID 任务ID
+    optional uint32 oid = 5; //OriID  ID
+    optional int32 value = 6; //
+}
+
+message TGPGetFSMStatInfoReq {
+    optional uint32 userid = 1; // 用户ID
+    optional uint32 fsmid = 2; // FsmID 任务ID
+}
+
+message TGPGetFSMStatInfoAck {
+    optional uint32 userid = 1; // 用户ID
+    optional uint32 fsmid = 2; // FsmID 任务ID
+    optional uint32 protimes = 3; // 进行中个数
+    optional uint32 cmptimes = 4; // 完成个数
+}
+
+message TGPReqManualOperationReq {
+    optional uint32 userid = 1; // 用户ID
+    optional uint32 fsmid = 2; // FsmID 任务ID
+    optional uint32 objectid = 3; // ObjiectID 对象ID
+    optional uint32 operationid = 4; // 操作ID; 1手动领取; 2手动领奖; 3选择放弃
+    optional uint32 reserve = 5; // 保留
+}
+
+message TGPReqManualOperationAck {
+    optional uint32 userid = 1; // 用户ID
+    optional uint32 fsmid = 2; // FsmID 任务ID
+    optional uint32 objectid = 3; // ObjiectID 对象ID
+    optional uint32 operationid = 4; // 操作ID; 1手动领取; 2手动领奖; 3选择放弃
+    optional uint32 reserve = 5; // 保留
+}
+
+//接收推送消息后 客户端反馈
+message TGPPushUsrFsmInfoReq {
+}
+
+//服务器主动推送消息
+message TGPPushUsrFsmInfoAck {
+    optional uint32 userid = 1; // 用户ID
+    optional uint32 fsmid = 2; // FsmID 任务ID
+    optional string fsmdic = 3; //后缀json信息
+}
+
+message TGPDoRegisterInfoReq {
+    optional uint32 userid = 1; // 用户ID
+    optional uint32 regtype = 2; // 注册类型. 1:用户信息注册(比如客户端登录时，进入游戏时); 2:删除用户信息(比如用户退出客户端时)
+    repeated TGPUserRegisterInfo usrinfoid = 3; //后缀用户信息TGP_USERREGISTER_INFO
+}
+
+message TGPDoRegisterInfoAck {
+}
+
+message TGPGetAreaClassProbReq {
+    optional uint32 userid = 1; // 用户ID
+    optional uint32 areaid = 2; // 
+    optional uint32 classid = 3; //
+}
+
+message TGPGetAreaClassProbAck {
+    optional uint32 userid = 1; // 用户ID
+    optional uint32 areaid = 2; // 
+    optional uint32 classid = 3; //
+    optional string caprobidx = 4; // json字符串
+}
+
+message TGPPushProRemindInfoReq {
+}
+
+message TGPPushProRemindInfoAck {
+    optional uint32 uid = 1; //
+    optional uint32 fsmid = 2; //
+    optional uint32 objid = 3; //
+    optional uint32 percent = 4; //
+}
+
+//{"game_id":1, "area_id" : 100001, "class_id" : 111, "version" : 2, "syn_get_flag" : 0, "FSMs" : [{"fsm_id":219810000, "version" : 5}, { "fsm_id":219820000,"version" : 7 }, { "fsm_id":224070000,"version" : 6 }]}]
+message TGPGetMapRelationVersionReq {
+    optional uint32 userid = 1; //
+    optional uint32 version = 2; // 大版本号
+    repeated TGPUserRegisterInfo usrinfoidx = 3; //后缀用户信息TGP_USERREGISTER_INFO, 是个数组, 根据注册信息获取相应的任务Map信息
+}
+
+message TGPGetMapRelationVersionAck {
+    optional uint32 userid = 1; //
+    optional uint32 version = 2; // 大版本号
+    optional string info = 3; //后缀任务映射信息和各ClassID版本号，Json形式
+}
+
+message TGPAsynGetFSMProByAreaIDClassIDReq {
+    optional uint32 userid = 1; //
+    optional string info = 2; //后缀的AreaID、ClassID，Json形式,举例 [{"area_id":2517,"class_id":2517},{"area_id":100001,"class_id":111}]
+}
+
+message TGPAsynGetFSMProByAreaIDClassIDAck {
+    optional uint32 null = 1; //
+}
+
+message TGPPushUsrFSMSReq {
+  optional uint32 null = 1; //
+}
+
+message TGPPushUsrFSMSAck {
+  optional uint32 uid = 1; // 用户ID
+  optional uint32 minfsmid = 2; // 这批任务中最小的任务ID
+  optional uint32 maxfsmid = 3; // 这批任务中最大的任务ID
+  optional string  json = 4; // 任务进度信息，json数组形式
+}
+
+message TGPGetFSMClassProbsReq {
+  optional uint32 uid = 1; // 用户ID
+  repeated uint32 classids = 2; //升序排序的ClassID
+}
+
+message TGPGetFSMClassProbsAck {
+  optional uint32 uid = 1; // 用户ID
+  optional uint32 maxclassid = 2; // 后端遍历过的、请求中的最大ClassID；当该值不为请求中最后一个ClassID时，表示消息过长，需要MB使用该协议继续取
+  optional string  json = 3; // Class属性数据，json数组形式
+}
+
+message TGPAsyGetFSMProbsReq {
+  optional uint32 uid = 1; // 用户ID
+  repeated uint32 fsmids = 2; //升序排序的FSMID
+}
+
+message TGPAsyGetFSMProbsAck {
+}
+
+message TGPLSGetFSMDataReq {
+    required uint32 uid = 1; // 用户ID
+    optional uint32 dimension = 2; // 维度 0:系统维度 1:用户维度
+    optional string suffixdata = 3;
+}
+
+message TGPLSGetFSMDataAck {
+    required uint32 uid = 1; // 用户ID
+    optional uint32 dimension = 2; // 维度 0:系统维度 1:用户维度
+    optional string suffixdata = 3;
+}
+
+message TGPLSManualOperationMultiReq {
+    optional string jsonsuff = 1; // Json数据
+}
+
+message TGPLSManualOperationMultiAck {
+    optional string jsonsuff = 1; // Json数据
+}
+

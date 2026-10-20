@@ -1,0 +1,153 @@
+
+package cn.jj.service.msg.protocol;
+
+// [Client->Server] 请求消息
+message BroadcastReqMsg {
+	optional BroadcastRegisterReqMsg register_req_msg = 1;
+	optional BroadcastBreakReqMsg break_req_msg = 2;
+	optional BroadcastCheckAnchorReqMsg	   checkanchor_req_msg = 3;
+	optional BroadcastAnchorVerifyReqMsg   anchorverify_req_msg = 4;
+	optional BroadcastAnchorSwitchReqMsg   anchorswitch_req_msg = 5;
+	optional BroadcastTeamMateRegisterReqMsg teammate_register_req_msg = 6;
+	optional BroadcastGetOnlookerListReqMsg getonlookerlist_req_msg = 7;
+	optional GeneralLookonReqMsg   generallookon_req_msg = 8;
+}
+
+// [Server->Client] 应答消息
+message BroadcastAckMsg{
+	optional uint32 gameid = 1;
+	optional BroadcastCheckAnchorAckMsg   checkanchor_ack_msg = 2;
+	optional BroadcastAnchorVerifyAckMsg  anchorverify_ack_msg = 3;
+	optional BroadcastAnchorSwitchAckMsg   anchorswitch_ack_msg = 4;
+	optional GeneralLookonAckMsg   generallookon_ack_msg = 5;
+	optional BroadcastTeamMateRegisterAckMsg teammate_register_ack_msg = 6;
+	optional BroadcastBreakAckMsg break_ack_msg = 7;
+	optional BroadcastGetOnlookerListAckMsg getonlookerlist_ack_msg = 8;
+}
+
+message BroadcastRegisterReqMsg {
+	optional uint32 userid = 1;
+	required uint32 tourneyid = 2; // 开赛的 Tourney Id
+	required uint32 matchid = 3; // 开赛的 Match Id
+	optional string nick = 4;
+	required uint32 gameid = 5; // 游戏 Id
+	required uint32 productid = 6; // 产品 Id
+	required int32 looknertype = 7;
+	optional uint32 playerid = 8;
+	required int32 watchdsttype = 9;
+	required int32 tableid = 10;
+	required TKAddrInfo addrinfo = 11;
+	optional int32 watchtype = 12; // 旁观类型： 1（按局旁观）；2（按轮旁观）；3（按比赛旁观）
+}
+
+message TKAddrInfo {
+	required string broadcastip = 1;
+	required string broadcastport = 2;
+	required string gameip = 3;
+	required string gameport = 4;
+}
+
+message BroadcastBreakReqMsg {
+   optional int32 nobreakmv = 1; //发送这个字段就表示服务器不断掉matchview连接
+}
+
+message BroadcastAnchorVerifyReqMsg  {
+	required uint32 time = 1; //获取票证时间
+	required uint32 ticketlen = 2; //票证长度
+	required string ticketverify = 3; //票证
+}
+
+message BroadcastAnchorVerifyAckMsg  {
+	required uint32 param = 1;
+}
+
+message BroadcastAnchorSwitchReqMsg   {
+	required uint32 infolen = 1;//后缀信息长度
+	required string info = 2; //后缀信息
+}
+
+//enum
+//	{
+//		/**
+//		 *@Synopsis 打开解说成功
+//		 **/
+//		ANCHORSWITCHSUCCESS = 0,
+//		/**
+//		 *@Synopsis 打开解说失败
+//		 **/
+//		ANCHORSWITCHFAILED = 1
+//	};
+
+message BroadcastAnchorSwitchAckMsg   {
+	required uint32 param = 1;
+}
+
+message BroadcastCheckAnchorReqMsg   {
+
+}
+
+//enum
+//	{
+//		/**
+//		 *@Synopsis 目前可以主播，但需要票证验证
+//		 **/
+//		NEEDVERIFY = 0,
+//		/**
+//		 *@Synopsis 是主播身份，但是目前有其他人正在主播
+//		 **/
+//		ANCHORING = 1,
+//		/**
+//		 *@Synopsis 不是主播身份
+//		 **/
+//		NOTANCHOR = 2
+//	};
+message BroadcastCheckAnchorAckMsg  {
+    required uint32 param = 1;
+}
+
+
+message BroadcastTeamMateRegisterReqMsg {
+    optional uint32 userid = 1;
+	required uint32 tourneyid = 2; // 开赛的 Tourney Id
+	required uint32 matchid = 3; // 开赛的 Match Id
+	optional string nick = 4;
+	required uint32 gameid = 5; // 游戏 Id
+	required uint32 productid = 6; // 产品 Id
+	required int32 looknertype = 7;
+	optional uint32 playerid = 8;
+	required int32 watchdsttype = 9;
+	required int32 tableid = 10;
+	required TKAddrInfo addrinfo = 11;
+	optional uint32 time = 12;  //票证获取时间
+	optional string ticket = 13; //票证 startclientex里面的票证
+	optional int32 watchtype = 14; // 旁观类型： 1（按局旁观）；2（按轮旁观）；3（按比赛旁观）
+}
+
+message GeneralLookonAckMsg {
+    optional uint32 gameid = 1; //游戏id，match消息不赋值，游戏透传消息赋上实际游戏id
+    optional bytes   datas = 2; //旁观通用消息字节数据
+}
+
+message BroadcastTeamMateRegisterAckMsg   {
+	required int32 success = 1;  // 是否成功，1 成功，0失败
+	required uint32 matchid = 2; // 开赛的 Match Id
+	optional int32 watchtype = 3; // 旁观类型： 1（按局旁观）；2（按轮旁观）；3（按比赛旁观）
+}
+
+message BroadcastBreakAckMsg   {
+	required uint32 matchid = 1; // 开赛的 Match Id
+}
+
+message BroadcastGetOnlookerListReqMsg {
+	optional uint32 userid = 1;
+}
+
+message BroadcastGetOnlookerListAckMsg {
+	optional uint32 userid = 1;
+	optional string suffix = 2;    // 后缀透传数据
+}
+
+message GeneralLookonReqMsg {
+    optional bytes   datas = 1; //旁观通用消息字节数据
+}
+

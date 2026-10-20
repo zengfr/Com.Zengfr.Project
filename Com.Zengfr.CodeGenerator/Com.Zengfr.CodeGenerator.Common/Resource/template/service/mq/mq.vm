@@ -1,0 +1,22 @@
+﻿#set($projectName = "mq")
+#set($packageName = $javaUtil.getPackageName(${config.NamespacePrefix},$projectName))
+#set($outputDir = $javaUtil.getPackagePath("service\\${projectName}",$packageName))
+#set($outputConfig.OutputDir = $outputDir)
+#set($outputConfig.OutputFileName = "${model.Name}Mq.java")
+package $packageName;
+import java.lang.*;
+import java.util.*;
+import java.math.*;
+import $javaUtil.getPackageName(${config.NamespacePrefix},"mqbase").*;
+/**
+* $model.Description
+*/
+public class ${model.Name}Mq extends ${model.Name}MqBase
+{
+   #foreach($attr in $model.Attributes)
+    /**
+    * $attr.Description
+    */
+     private $javaUtil.getTypeName($attr.TypeName) $attr.Name;
+   #end
+}

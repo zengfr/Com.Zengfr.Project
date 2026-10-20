@@ -1,0 +1,8 @@
+﻿#set($outputConfig.OutputDir = "service\\")
+#set($outputConfig.OutputFileName = "maven.compile.cmd")
+
+echo off
+cls
+echo on
+mvn clean compile 
+pause

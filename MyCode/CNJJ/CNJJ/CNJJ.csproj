@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="proto\lordunion\TKDBLord.cs" />
+    <Compile Remove="proto\lordunion\TKMatch.cs" />
+    <Compile Remove="proto\lordunion\TKMobileLordUnion.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.22.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="proto\test2\" />
+    <Folder Include="hash\" />
+  </ItemGroup>
+
+</Project>

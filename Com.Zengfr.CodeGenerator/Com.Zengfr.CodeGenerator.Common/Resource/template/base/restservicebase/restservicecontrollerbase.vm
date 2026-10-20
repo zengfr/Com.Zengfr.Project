@@ -1,0 +1,37 @@
+﻿#set($projectName = "restservicebase")
+#set($packageName = $javaUtil.getPackageName(${config.NamespacePrefix},$projectName))
+#set($outputDir = $javaUtil.getPackagePath("base\\${projectName}",$packageName))
+#set($outputConfig.OutputDir = $outputDir)
+#set($outputConfig.OutputFileName = "${model.Name}RestServiceControllerBase.java")
+package $packageName;
+import java.lang.*;
+import java.util.*;
+import java.math.*;
+import java.sql.*;
+import org.joda.time.DateTime;
+import org.springframework.beans.factory.annotation.Autowired;
+import $javaUtil.getPackageName(${config.NamespacePrefix},"entity").*;
+import $javaUtil.getPackageName(${config.NamespacePrefix},"daobase").*;
+/**
+* $model.Description
+*/
+public class ${model.Name}RestServiceControllerBase
+{
+    @Autowired
+   protected ${model.Name}JpaRepositoryBase ${model.Name}JpaRepositoryBase;
+
+    #set ($rr1 =$jpaUtil.buildOne($attrsMap))
+	#foreach($r1 in $rr1)
+	protected Collection<${model.Name}> findBy$r1.Key.Replace(",","")($r1.Value){
+	  return ${model.Name}JpaRepositoryBase.findBy$r1.Key.Replace(",","")($jpaUtil.buildArgsWithoutType($r1.Value));
+	}
+	#end
+
+	#set ($rr2 =$jpaUtil.buildTwo($attrsMap))
+	#foreach($r2 in $rr2)
+	protected Collection<${model.Name}> findBy$r2.Key.Replace(",","")($r2.Value){
+	  return ${model.Name}JpaRepositoryBase.findBy$r2.Key.Replace(",","")($jpaUtil.buildArgsWithoutType($r2.Value));
+	}
+	#end
+    
+}

@@ -1,0 +1,94 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>False</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+	  <PublishAot>false</PublishAot>
+	  <StartupObject>ScrcpyNet.Sample.Avalonia.Program</StartupObject>
+	  <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Ex\ScrcpyEx.cs" />
+    <Compile Remove="Ex\ScriptRecorder.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Assets\avalonia-logo.ico" />
+    <None Remove="Assets\console-svgrepo-com.svg" />
+    <None Remove="Assets\ic_apps.svg" />
+    <None Remove="Assets\ic_arrow_back.svg" />
+    <None Remove="Assets\ic_arrow_upward.svg" />
+    <None Remove="Assets\ic_close.svg" />
+    <None Remove="Assets\ic_fullscreen.svg" />
+    <None Remove="Assets\ic_home.svg" />
+    <None Remove="Assets\ic_menu.svg" />
+    <None Remove="Assets\ic_power_settings_new.svg" />
+    <None Remove="Assets\ic_refresh.svg" />
+    <None Remove="Assets\restart-svgrepo-com.svg" />
+    <None Remove="Assets\terminal-svgrepo-com.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="11.0.1" />
+    <PackageReference Include="Avalonia.Controls.ItemsRepeater" Version="11.0.1" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.0.1" />
+    <PackageReference Include="Avalonia.Diagnostics" Version="11.0.1" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.1" />
+    <PackageReference Include="Avalonia.Svg" Version="11.0.0" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Obfuscar" Version="2.2.38">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="ReactiveUI.Fody" Version="19.4.1" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" />
+    <PackageReference Include="Serilog.Sinks.Debug" Version="2.0.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="FFmpeg.AutoGen">
+      <HintPath>..\..\..\..\..\javaproject\example\ScrcpyNet\src\ScrcpyNet.Sample.Avalonia\bin\Debug\net7.0\win-x64\FFmpeg.AutoGen.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\..\javaproject\example\ScrcpyNet\src\ScrcpyNet.Sample.Avalonia\bin\Debug\net7.0\win-x64\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="ScrcpyNet">
+      <HintPath>..\..\..\..\..\javaproject\example\ScrcpyNet\src\ScrcpyNet.Sample.Avalonia\bin\Debug\net7.0\win-x64\ScrcpyNet.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpAdbClient">
+      <HintPath>..\..\..\..\..\javaproject\example\ScrcpyNet\src\ScrcpyNet.Sample.Avalonia\bin\Debug\net7.0\win-x64\SharpAdbClient.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Include="Assets\avalonia-logo.ico" />
+    <AvaloniaResource Include="Assets\console-svgrepo-com.svg" />
+    <AvaloniaResource Include="Assets\ic_apps.svg" />
+    <AvaloniaResource Include="Assets\ic_arrow_back.svg" />
+    <AvaloniaResource Include="Assets\ic_arrow_upward.svg" />
+    <AvaloniaResource Include="Assets\ic_close.svg" />
+    <AvaloniaResource Include="Assets\ic_fullscreen.svg" />
+    <AvaloniaResource Include="Assets\ic_home.svg" />
+    <AvaloniaResource Include="Assets\ic_menu.svg" />
+    <AvaloniaResource Include="Assets\ic_power_settings_new.svg" />
+    <AvaloniaResource Include="Assets\ic_refresh.svg" />
+    <AvaloniaResource Include="Assets\restart-svgrepo-com.svg" />
+    <AvaloniaResource Include="Assets\terminal-svgrepo-com.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="obfuscar.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="obfuscar.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="test.snk">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

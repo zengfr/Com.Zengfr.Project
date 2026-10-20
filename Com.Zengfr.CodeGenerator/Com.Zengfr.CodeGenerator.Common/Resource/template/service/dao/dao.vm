@@ -1,0 +1,17 @@
+﻿#set($projectName = "dao")
+#set($packageName = $javaUtil.getPackageName(${config.NamespacePrefix},$projectName))
+#set($outputDir = $javaUtil.getPackagePath("service\\${projectName}",$packageName))
+#set($outputConfig.OutputDir = $outputDir)
+#set($outputConfig.OutputFileName = "${model.Name}Dao.java")
+package $packageName;
+import java.lang.*;
+import java.util.*;
+import java.math.*;
+import $javaUtil.getPackageName(${config.NamespacePrefix},"daobase").*;
+/**
+* $model.Description
+*/
+public class ${model.Name}Dao extends ${model.Name}DaoBase
+{
+   
+}

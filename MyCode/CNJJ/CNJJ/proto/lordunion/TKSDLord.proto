@@ -1,0 +1,84 @@
+
+package cn.jj.service.msg.protocol;
+//option optimize_for = CODE_SIZE;
+//option optimize_for = LITE_RUNTIME;
+
+import "TKLord.proto";
+
+message SDLordReqMsg  {
+	required uint32 matchid = 1;
+	optional LordCallScoreReq lordcallscore_req_msg = 3;
+	optional LordTakeoutCardReq lordtakeoutcard_req_msg = 4;
+	optional LordTrustReq lordtrust_req_msg = 5;
+	optional LordCancelRoundReq lordcancelround_req_msg = 6;
+	optional LordCheckTimeOutReq lordchecktimeout_req_msg = 7;
+	optional SDLRobLordReq sdlroblord_req_msg = 8; //抢地主
+	optional LordForceDeclareLoadReq lordforcedeclareload_req_msg = 9; //霸王叫确定叫地主
+	optional LordLordGiveUpReq lordgiveup_req_msg = 10; // 地主认输
+    optional LordKickReq   lord_kick_req_msg   = 11; //踢
+    optional LordClientReadyReq lordclientready_req_msg = 12; //客户端准备好，通知游戏服务
+    optional GiveUpReq giveup_req_msg = 13; //农民认输 GC->GS
+}
+
+message SDLordAckMsg  {
+	required uint32 matchid = 1;
+	optional LordCallScoreAck lordcallscore_ack_msg = 3;
+	optional LordTakeoutCardAck lordtakeoutcard_ack_msg = 4;
+	optional LordTrustAck lordtrust_ack_msg = 5;
+	optional LordInitCardAck lordinitcard_ack_msg = 6;
+	optional LordInitBottomCardAck lordinitbottomcard_ack_msg = 7;
+	optional LordResultAck lordresult_ack_msg = 8;
+	optional LordTipMsgAck lordtipmsg_ack_msg = 9;
+	optional LordEmptyAck lordempty_ack_msg = 10;
+	optional LordChangeTakeoutTimeAck lordchangetakeouttime_ack_msg = 11;
+	optional LordChangeInfoAck lordchangeinfo_ack_msg = 12;
+	optional LordNickNameAck lordnickname_ack_msg = 13;
+	optional SDLRobLordAck sdlroblord_ack_msg = 14; //抢地主
+	optional LordUpdateMultiAck lordupdatemulti_ack_msg = 15; //更新倍数消息
+	optional LordShowBottomAck  lordshowbottom_ack_msg = 16;  //地主底牌叫地主前明牌消息
+	optional LordInitBottomCardTwoOneAck lordinitbottomcardtwoone_ack_msg = 17; //2加1模式发底牌消息,增加字段指定哪个农民得到底牌
+	optional LordForceCallAck lordforcecall_ack_msg = 18; //霸王叫
+	optional LordForceCallShowCardAck lordforceshowcardcall_ack_msg = 19; //发霸王叫明牌消息
+	optional LordForceDeclareLoadAck lordforcedeclareload_ack_msg = 20; //霸王叫确定叫地主
+	optional LordGameStartAck	lordgamestart_ack_msg	= 21;	//游戏开始
+	optional LordWaitClientReadyAck lordwaitclientready_ack_msg = 22;    //开始等待客户端准备好
+	optional LordOperateStartAck    lordoperatestart_ack_msg = 23; //操作开始
+	optional LordKickAck   lordkick_ack_msg    = 24;  //踢消息
+	optional LordOperateResultAck lordoperateresult_ack_msg = 25; //操作结果
+	optional uint64 timeStamp = 26; //时间戳, 下面这些消息会带时间戳LordCallScoreAck,LordTakeoutCardAck,LordInitCardAck
+                                        // LordForceCallAck,LordOperateStartAck,LordOperateResultAck
+					                    // LordGameStartAck,LordWaitClientReadyAck
+	optional GiveUpAck giveup_ack_msg = 27;	//认输
+}
+
+message SDLRobLordReq {
+	required int32 curseat = 1; //当前询问的人的座位号
+	optional int32 preseat = 2; //之前询问的人的座位号
+	optional int32 nextseat = 3;
+	required int32 state = 4;   //玩家在抢地主阶段做的选择:HLIROBLORD = 18, 叫地主；HLINOTROBLORD = 19, 不叫地主；HLIKICK = 20, 抢地主；HLINOTKICK = 21不抢地主
+	required int32 schedule = 5; //当前的阶段:3-出牌阶段;14-类似欢乐斗叫地主阶段; 15-类似欢乐斗抢地主的阶段
+	optional int32 bottomscore = 6; //游戏的底分,叫地主倍数
+	optional int32 multiple = 7; //游戏的倍分,抢地主倍数
+}
+
+message SDLRobLordAck {
+	required int32 curseat = 1; //当前询问的人的座位号
+	required int32 preseat = 2; //之前询问的人的座位号
+	required int32 nextseat = 3;
+	required int32 state = 4;   //玩家在抢地主阶段做的选择:HLIROBLORD = 18, 叫地主；HLINOTROBLORD = 19, 不叫地主；HLIKICK = 20, 抢地主；HLINOTKICK = 21不抢地主
+	required int32 schedule = 5; //当前的阶段:3-出牌阶段;14-类似欢乐斗叫地主阶段; 15-类似欢乐斗抢地主的阶段
+	required int32 bottomscore = 6; //游戏的底分,叫地主倍数
+	required int32 multiple = 7; //游戏的倍分,抢地主倍数
+}
+
+message LordShowBottomAck{
+  required bytes cards = 1;               //底牌
+}
+
+message LordInitBottomCardTwoOneAck{
+	required uint32 lordseat = 1;           //地主是谁,把底牌发给地主了
+	optional uint32 firstfarmerseat = 2;    //第一个农民的座位号
+	required uint32 bottomscore = 3;        //底分
+	required bytes cards = 4;               //底牌
+    required int32 getbottomfarmerseat = 5; //获得底牌的农民座位号
+}

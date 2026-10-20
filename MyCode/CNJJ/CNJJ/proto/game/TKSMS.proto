@@ -1,0 +1,457 @@
+
+package cn.jj.service.msg.protocol;
+//option optimize_for = CODE_SIZE;
+//option optimize_for = LITE_RUNTIME;
+
+message SMSReqMsg  {
+    optional SMSOrderReq smsorder_req_msg = 1; // 短信充值
+    optional JJCardPayReq jjcardpay_req_msg = 2; // JJ 充值卡充值
+    optional PayCommonOrderReq paycommonorder_req_msg = 3; // 下订单请求：和第三方交互时，需要先在我方的支付服务器下订单
+    optional AppleOrderReq appleorder_req_msg = 4; // 苹果的订单请求
+    optional PurchaseCardOrderReq purchasecardorder_req_msg = 5; //手机充值卡充值
+    optional ApplePreOrderReq applepreorder_req_msg = 6; // 苹果预下单
+    optional PayPosApplePreOrderReq payposapplepreorder_req_msg = 7; // 苹果预下单(实际不生成订单号,只返回允许充值的额度范围)
+    optional PayPosAppleOrderReq payposappleorder_req_msg = 8; //苹果下单请求
+    optional PaySisSyncAppleOrderReq paysissyncappleorder_req_msg = 9; //苹果商店同步订单状态
+    optional QueryOrderStateReq queryorderstate_req_msg = 10; //查询订单
+    optional PayPosCommonOrderReq payposcommonorder_req_msg = 11; // PayPO接口
+    optional PurchaseCardOrderReq pospurchasecardorder_req_msg = 12; //手机充值卡充值
+    optional PayPCPBrokerSPayOrderReq paypcpbrokerspayorder_req_msg = 13; //PCBBroker 支付下单
+    optional PayPCPBrokerSQueryPaymentConfigReq paypcpbrokersquerypaymentconfig_req_msg = 14; //PCBBroker支付配置查询
+    optional PayOTSVirtualPayReq payotsvirtualpay_req_msg = 15; // PayOT支付下单
+    optional MoneyExchangeReq moneyexchange_req_msg = 16; // 货币兑换
+    optional PayPOSCommonProcReq payposcommonproc_req_msg = 17; // 手机端通用协议
+    optional SyncCommonInfoReq synccommoninfo_req_msg = 18; //通用信息同步接口
+    optional QueryPayCHDiscountReq querypaychdiscount_req_msg = 19; //通用支付渠道补贴、营销业务查询协议
+}
+
+message SMSAckMsg  {
+    optional SMSOrderAck smsorder_ack_msg = 1;
+    optional JJCardPayAck jjcardpay_ack_msg = 2;
+    optional PayCommonOrderAck paycommonorder_ack_msg = 3;
+    optional AppleOrderAck appleorder_ack_msg = 4;
+    optional PurchaseCardOrderAck purchasecardorder_ack_msg = 5;
+    optional ApplePreOrderAck applepreorder_ack_msg = 6;
+    optional PayPosApplePreOrderAck payposapplepreorder_ack_msg = 7; // 苹果预下单(实际不生成订单号,只返回允许充值的额度范围)
+    optional PayPosAppleOrderAck payposappleorder_ack_msg = 8;
+    optional PaySisSyncAppleOrderAck paysissyncappleorder_ack_msg = 9;
+    optional QueryOrderStateAck queryorderstate_ack_msg = 10; //查询订单
+    optional PayPosCommonOrderAck paypocommonorder_ack_msg = 11; // PayPO接口
+    optional PurchaseCardOrderAck pospurchasecardorder_ack_msg = 12;
+    optional PayPCPBrokerSPayOrderAck paypcpbrokerspayorder_ack_msg = 13; //PCBBroker 支付下单
+    optional PayPCPBrokerSQueryPaymentConfigAck paypcpbrokersquerypaymentconfig_ack_msg = 14; // PCBBroker支付配置查询
+    optional PayOTSVirtualPayAck  payotsvirtualpay_ack_msg = 15; // PayOT支付下单
+    optional MoneyExchangeAck  moneyexchange_ack_msg = 16; // 货币兑换
+    optional PayPOSCommonProcAck  payposcommonproc_ack_msg = 17; // 手机端通用协议
+    optional SyncCommonInfoAck synccommoninfo_ack_msg = 18; //通用信息同步接口
+    optional QueryPayCHDiscountAck querypaychdiscount_ack_msg = 19; //通用支付渠道补贴、营销业务查询协议
+}
+
+message SMSOrderReq  {
+    required uint32 pid = 1; // UserId
+    required string mobileno = 2; // 手机号
+    required uint32 rmbcent = 3; // 充值金额：目前支持 2/5/10
+    required uint32 vmoneytype = 4; // 目前填 1
+    required uint32 vmoneyamount = 5; // 买到元宝的数量：对应是 10/20/50
+    required uint32 vtmoneyamount = 6; // 真是买到元宝的数量：对应是 10/20/50
+    optional string note = 7;
+    optional uint32 ordersite = 8;
+}
+
+message SMSOrderAck  {
+    required string longcode = 1;
+    required string listenlongcode = 2;
+    required string verifycode = 3;
+}
+
+message JJCardPayReq  {
+    required uint32 userid = 1;
+    required string cardnum = 2;
+    required string cardpassword = 3;
+    required uint32 parvalue = 4;
+    required uint32 vmoneytype = 5;
+    required uint32 vmoneyamount = 6;
+    required uint32 vtmoneyamount = 7;
+    required string userip = 8;
+    required string note = 9;
+}
+
+message JJCardPayAck  {
+    required uint32 bankid = 1;
+    required uint32 parvalue = 2;
+    required uint32 vmoneytype = 3;
+    required uint32 vmoneyamount = 4;
+    required uint32 vtmoneyamount = 5;
+    required string note = 6;
+}
+
+message PayCommonOrderReq  {
+    required uint32 userid = 1;
+    optional uint32 rmb = 2;
+    optional uint32 coin = 3;
+    optional uint32 endmid = 4;
+    required uint32 agentid = 5;
+    required uint32 zoneid = 6;
+    required uint32 paytypeid = 7;
+    required uint32 paytypesubid = 8;
+    required uint32 packageid = 9;
+    optional string ip = 10;
+    optional uint32 ecaschemeid = 11;
+    optional string note = 12;
+    optional string mobileno = 13;
+    optional uint32 gameid = 14;
+    optional uint32 appver = 15;
+}
+
+message PayCommonOrderAck  {
+    required uint32 userid = 1;
+    required uint32 rmb = 2;
+    required uint32 paytypeid = 3;
+    required uint32 paytypesubid = 4;
+    required string orderid = 5;
+    required string syncurl = 6;
+    optional string param = 7;
+}
+
+message AppleOrderReq  {
+    required uint32 userid = 1;         // 用户ID
+    required string productid = 2;          // 产品ID [32]
+    required string transactionid = 3;          // 苹果商店订单 [64]
+    required  bytes receiptdata = 4;
+    required  bytes purchasedata = 5;
+    optional string orderid = 6;                    //JJ订单ID[64]
+}
+
+message AppleOrderAck  {
+    required int32  ret = 1;
+    required string orderid = 2;        //[64]
+    optional string transactionid = 3; //[64]
+}
+
+message PurchaseCardOrderReq  {
+    required uint32 userid = 1;         // 用户ID
+    required string mobileno = 2;   // 手机号
+    required uint32 packid = 3;         // 安装包ID
+    required uint32 cardtype = 4;       // 充值卡类型：   移动神州行:0、联通充值卡:1、电信充值卡:2
+    required uint32 cardamount = 5; // 充值卡面额(单位:分)
+    required uint32 payamount = 6;  // 充值金额(单位:分。要求必须与充值卡面额相同)
+    required uint32 coin = 7;               // 购买元宝数量(与PayIn计算值做校验)
+    required string cardserialno = 8;// 充值卡序列号
+    required string cardpassword = 9;// 充值卡密码
+    required uint32 endmid = 10;         // 对于需要系统自动转换的支付交易，最终转换的货币类型，比如手机游戏充值需要系统自动将元宝转换成金币,定义详见eDicMynsCurrencyType
+    optional uint32 reserve1 = 11;
+    optional uint32 reserve2 = 12;
+    optional uint32 ecaschemeid = 13;// 活动方案号
+    optional string note = 14;           // 备注
+
+}
+
+message PurchaseCardOrderAck  {
+    required uint32 userid = 1;         // 用户ID
+    required string ordertime = 2;
+    required string ordeID = 3;
+    required int32 result = 4;
+    optional string note = 5;
+
+}
+
+message ApplePreOrderReq  {
+    required uint32 userid = 1;         // 用户ID
+    required string productid = 2;          // 产品ID [32]
+}
+
+message ApplePreOrderAck  {
+    required int32  ret = 1;
+    required string orderid = 2;        //[64]
+}
+
+message PayPosApplePreOrderReq {
+    required uint32 userid = 1;         // 用户ID
+    required string productid = 2;      // 产品ID [32]
+    required string iosdeviceid = 3;        // 苹果设备唯一Id(keychain)[64]
+    optional string mobile = 4;    // 手机号[32]
+}
+
+message PayPosApplePreOrderAck {
+    optional string orderid = 1;                // 如果成功JJ订单[64]
+    optional uint32 result = 2;                 // 是否可以购买
+    optional uint32 maxamount = 3;      // 最大购买额度
+    optional uint32 minamount = 4;      // 最小购买额度
+}
+
+message PaySisSyncAppleOrderReq {
+    optional uint32 status = 1;
+    optional string orderid = 2;
+    optional string productid = 3;
+    optional string transactionid = 4;
+    optional bytes receipt = 5;
+}
+
+message PaySisSyncAppleOrderAck {
+    optional string orderid = 1;
+    optional string productid = 2;
+    optional string transactionid = 3;
+    optional uint32 result = 4;
+}
+
+message PayPosAppleOrderReq {
+    optional string productid = 1;
+    optional string transactionid = 2;
+    optional bytes receipt = 3;
+    optional bytes purchase = 4;
+}
+
+message PayPosAppleOrderAck {
+    optional string orderid = 1;
+    optional string transactionid = 2;
+}
+
+message QueryOrderStateReq {
+    required uint32 userid = 1;         // 用户ID
+    required string orderid = 2;        // JJ订单号
+}
+
+message QueryOrderStateAck {
+    required uint32 orderstate = 1; // 订单状态
+}
+
+message PayPosCommonOrderReq {
+    required uint32 userid = 1;
+    optional uint32 smid = 2;    // 充值货币类型(默认100人民币分)
+    optional uint32 smamount = 3;    // 充值金额（默认单位人民币分）
+    optional uint32 coin = 4;       // 购买元宝数量(JJ充值必经的中间记账货币)
+    optional uint32 tmid = 5;      // 最终货币类型(比如手机端自动转金币、WebGame自动转游戏币账单)
+    optional uint32 tmamount = 6;  // 最终货币数量
+    optional uint32 ecaschemeid = 7; // 活动方案号
+    optional uint32 ecaschemeidex = 8; // 扩展活动方案号(如WebGame的游戏内优惠方案)
+    required uint32 pwagentid = 9;                      // 支付渠道商：   易宝、高阳、神州付 定义详情ePayAgent
+    required uint32 pwzoneid = 10;                          // 支付区域：JJ充值主区、百度充值区、JJWebGame充值区、JJMobileGame充值区
+    required uint32 pwtypeid = 11;                          // 银行类型：    网银充值（工商银行、招商银行...)、手机充值卡充值(神州行充值卡、联通充值卡充值)、短信充值(移动短信、联通短信)、声讯充值（V币充值）、其他游戏平台虚拟货币（盛大币、Q币、骏网一卡通.....）定义详情ePayBankType
+    optional uint32 pwbankid = 12;                          // 充值银行名： 工商银行、招商银行、神州行充值卡、联通充值卡充值、移动短信、联通短信、V币充值、百度币、盛大币、Q币、骏网一卡通.....定义详情ePayBank
+    optional uint32 paplaceid = 13;                     // 充值发生地，接入的服务ID
+    optional uint32 paclttypeid = 14;                       // 终端类型：客户端、网页、手机....
+    optional uint32 pacltpackid = 15;                       // 安装包ID、
+    optional uint32 paordersiteid = 16;                 // 用户下单地：JJ充值主页、webgame充值主页、mobilegame充值主页、百度充值主页...定义见TKPayUniversal
+    optional uint32 gameid = 17;                            // WebGame的游戏编号
+    optional uint32 gamezoneid = 18;                        // WebGame的游戏区号、服务器编号
+    optional uint32 exchangerate = 19;                      // 元宝兑换比率,用于校验.(100jj元宝能兑换的游戏币数量.如5元宝:1一球成名金币,则ExchangeRate为20)
+
+    optional string  productname = 20;                  // 支付页面显示的产品名,由5599传入
+    optional string  partneruserid1 = 21;               // 联运方用户ID或用户名
+    optional string  partneruserid2 = 22;               // 联运方用户ID或用户名(多方合作联运时的其他用户名)
+    optional string  partnerorderid1 = 23;              // 联运方订单号(WebGame订单号也可看作外部联运订单号)
+    optional string  partnerorderid2 = 24;              // 联运方订单号(多方合作联运时的其他订单号)
+
+    optional string  deviceid1 = 25;                    // 手机号(PC版如果传入手机号也可以入库存储,如短信充值)
+    optional string  deviceid2 = 26;                    // IMEI号(用于标识手机)
+    optional string  deviceid3 = 27;                    // IMSI号(用于标识手机卡)
+    optional string  deviceid4 = 28;                    // 手机操作系统平台类型
+    optional string  deviceid5 = 29;                    // Mac地址
+
+    // 卡类参数(卡密、手机充值卡等)
+    required uint32 cardtype = 30;                          // 卡类型
+    optional string  cardserialno = 31;                 // 卡序号
+    optional string  cardpassword = 32;                 // 卡密码
+    optional uint32 cardamount = 33;                        // 卡面值(dwSMAmount充值金额、dwCardAmount卡面值)
+
+    // 其他信息
+    optional string ip = 34;                           // 用户IP,用户下单IP（手机用户、外部充值用户可能没有）
+    optional string  note = 35;             // 备注
+    optional uint32 appversion = 36;
+}
+
+message PayPosCommonOrderAck {
+    required uint32 userid = 1;
+    required uint32 rmb = 2;
+    required uint32 paytypeid = 3;
+    required uint32 paytypesubid = 4;
+    required string orderid = 5;
+    required string syncurl = 6;
+    optional string param = 7;
+}
+
+message PayPCPBrokerSPayOrderReq {
+    optional int32 mchid = 1;           //商户号
+    optional string sign = 2;           //签名
+    optional string signtype = 3;       //签名类型 MD5
+    optional string goodsdesc = 4;      //商品描述
+    optional string mchtradeno = 5;     //商户支付订单号
+    optional string moneytype = 6;      //货币类型 CNY:人民币分  GLD:金币  ATC:秋卡
+    optional int32 moneyamount = 7;     //货币数量
+    optional string mchordertime = 8;   //商户下单时间
+    optional string notifyurl = 9;      //通知地址
+    optional string paymentmethod = 10; //支付方式 alipay:支付宝  wxpay:微信  jjpay:JJ支付
+    optional int32 banktype = 11;           //银行类型 1301:支付宝    1318:微信   1505:JJ支付
+    optional int32 paymentmode = 12;        //支付手段 1:APP支付
+    optional int32 groupmode = 13;        //组合模式 0：非组合 1：现金秋卡组合
+    optional string expiretime = 14;        //交易失效时间
+    optional string returnurl = 15;     //回跳地址
+    optional string proversion = 16;        //协议版本
+    optional string passbackparams = 17;    //回传参数
+    optional string mobileno = 18;      //终端手机号
+    optional string ostype = 19;            //终端操作系统类型和版本
+    optional string hardwaretype = 20;  //终端设备厂商和型号
+    optional int32 devicetype = 21;         //终端类型 1:手机  2:PC  3:平板  4:智能电视  5:电视盒子
+    optional int32 clientversion = 22;      //客户端版本号
+    optional int32 packageid = 23;          //安装包ID
+    optional int32 zoneid = 24;             //支付域 1:商户域
+    optional int32 sourceid = 25;           //来源ID 填11
+    optional int32 siteid = 26;             //推广媒体ID 没有则填0
+    optional int32 businesstype = 27;       //1:支付
+    optional string deviceinternetip = 28;  // 终端外网IP
+}
+
+message PayPCPBrokerSPayOrderAck {
+    optional int32 mchid = 1;                  //商户号
+    optional string resultcode = 2;         //业务结果SUCCESS/FAIL
+    optional int32 errcode = 3;             //错误码
+    optional string errcodedesc = 4;            //错误码描述
+    optional int32 paymentchannel = 5;      //支付渠道 1025:支付宝手机端  1035:微信  1001:JJ支付
+    optional string mchtradeno = 6;         //商户支付订单号
+    optional string paytransactionid = 7;       //JJ支付交易号
+    optional string ordertime = 8;          // 生成JJ支付订单时间 格式：2018-01-06 16:12:59
+    optional string param = 9;                  // 调用支付渠道SDK参数 json数据
+}
+
+message PayPCPBrokerSQueryPaymentConfigReq {
+    optional int32 mchid = 1;               //商户号
+    optional int32 sourceid = 2;            //来源ID 填11
+    optional int32 clientversion = 3;       //客户端版本号
+}
+message PayPCPBrokerSQueryPaymentConfigAck {
+    optional int32 mchid = 1;                   //商户号
+    optional int32 result = 2;              //0:成功
+    optional string param = 3;                  //支付配置后缀数据 json串
+}
+
+message PayOTSVirtualPayReq {
+    optional string mobileno = 1;       //手机号
+    optional string checkcode = 2;      //一级校验码
+    optional string verifycode = 3;     //确认码
+    optional int32 accid = 4;           //预订单号
+    optional int32 smcprodid = 5;       //产品定义ID
+    optional string param = 6;          //后缀 支付信息后缀内容 json串
+}
+message PayOTSVirtualPayAck {
+    optional int32 payresult = 1;       //支付结果 0：成功
+}
+
+//后缀json串 范例
+/*
+  {"PID":123456,          //用户ID
+   "DeviceInfo":"",       //设备ID，最大256位
+   "UserIP":"",           //用户IP
+   "PackageID":1,         //包ID
+   "SiteID":123,          //推广媒体ID
+   "TerminalDevice":2,   //终端设备类型 0 默认；1 PC； 2 手机；3 TV
+   "SystemType":3,    //操作系统  1 Windows; 2 Android;  3 IOS; 4 Windows Phone; 5 Android TV
+   "ZoneID":2002,         //跟充值的Zone一致
+   "EntranceCode":""      //业务入口编码32 “0” 默认
+   "SMID":1,              //源货币ID  1 元宝
+   "SMAmount":10,         //源货币数量
+   "TMID":2,              //目标货币ID 2 金币
+   "TMAmount":1000        //目标货币数量
+    }
+*/
+message MoneyExchangeReq {
+    optional uint32 version = 1;   //当前为1
+    optional string param = 2;     //后缀数据，Json格式
+}
+
+//后缀json串 范例
+/*
+{
+  "Result":0，          //0 成功
+  "Describe":"",       //结果描述 最大长度128
+  "OrderID":""
+}
+*/
+message MoneyExchangeAck {
+    optional uint32 version = 1;   //当前为1
+    optional string param = 2;     //后缀数据，Json格式
+}
+
+//请求Function：Fun_ChargePreOrder_Apple 苹果充值预下单,苹果内购 Json格式 范例
+/*
+{"PID":12345677,                   //用户ID
+ "PackageID"：23,                   //包ID
+ "SiteID"：123，                 //推广ID
+ "idfa":"",                    //idfa 最大长度63
+ "SystemType":3,                  //操作系统：  1 Windows; 2 Android;  3 IOS; 4 Windows Phone; 5 Android TV
+ "MobieType":"",                   //手机类型  最大长度31
+ "SystemVersion":"",               //操作系统版本： 最大长度15位
+ "PayChannelProductID":"lord.99"，//渠道产品ID 最大长度63
+ "SMID":201,                       //源货币类型ID  201 美分  100 人民币分，目前用的美元
+ "SMAmount":99                     //源货币数量
+ "TMID":2                          //目标货币ID  1 元宝，2 金币
+ "TMID":6000                       //目标货币数量
+}
+*/
+message PayPOSCommonProcReq {
+    optional uint32 version = 1;   //协议版本 版本1：支持苹果充值预下单协议
+    optional string funcname = 2; //函数名"Fun_ChargePreOrder_Apple" 移动苹果预下单函数
+    optional string param = 3;     //后缀数据，Json格式
+}
+
+//后缀  范例
+/*Fun_ChargePreOrder_Apple 的回复结果
+{
+  "Result":0，              //0 成功
+  "Describe":"",            //结果描述 最大长度128
+  "ChargeOrderID":""，       //充值订单号
+}
+*/
+message PayPOSCommonProcAck {
+    optional uint32 version = 1;   //协议版本 1
+    optional string funcname = 2; //函数
+    optional string param = 3;     //返回后缀数据
+}
+
+message SyncCommonInfoReq {
+   optional string info = 1;       //后缀数据，Json格式
+}
+
+//后缀格式：
+/*
+{
+(String)    "result":"......"    // 如果同步成功，值为success;同步失败，返回失败原因描述
+}
+*/
+message SyncCommonInfoAck{
+   optional string info = 1;       //后缀数据，Json格式
+}
+
+//  后缀JSON请求内容：
+//{
+//      "pid" : 100287060                                   -- 用户ID
+//      "pay_type" : "Alipay"                               -- 支付类型  AliPay: 支付宝  WxPay: 微信支付，目前只支持AliPay
+//      "pay_channel" : 1025                                -- 支付渠道  1025 支付宝，1035 微信
+//      "biz_scene": "DETAIL_PAGE",                         -- 业务场景     DETAIL_PAGE: 详情页营销咨询  OPENING_PAGE: 开屏页营销咨询
+//      "out_trade_no" : "50001000001001",                  -- 订单号，可选
+//      "total_amount" : 12.34,                             -- 订单总金额
+//      "undiscountable_amount" : "12.34"                   -- 不参与优惠计算的金额
+//}
+message QueryPayCHDiscountReq {
+   optional string info = 1;       //后缀数据，Json格式
+}
+
+//  后缀JSON应答内容：
+//{
+//      "errcode": 0,                                       -- 返回码
+//      "errmsg":"Success",                                 -- 返回描述
+//      "pid" : 100287060                                   -- 用户ID
+//      "pay_channel" : 1025                                -- 支付渠道  1025 支付宝，1035 微信
+//      channel_subsidy: {                                  -- 渠道补贴
+//          "device_label" : "L00002"                       -- 用户类型, L00002: 新用户   L00016: 低活人群
+//          "content": "8元提现红包/10元消费红包"             -- 用户权益
+//      },
+//      marketing_consult: {                                -- 营销咨询
+//          "text": "使用支付宝支付笔笔享优惠",               -- 营销文案内容
+//          "image" : "http://www.xxx.com",                 -- 营销图片地址
+//          "pre_pay_token" : "xxxxxxxx",                   -- 营销联动唯一标识，商户在后续调收单接口时，需将此字段透传带入
+//          "ext_info" : "{\"icon\":\"http:xxx\"}"          -- 扩展信息，json格式
+//     }
+//}
+message QueryPayCHDiscountAck {
+   optional string info = 1;       //后缀数据，Json格式
+}

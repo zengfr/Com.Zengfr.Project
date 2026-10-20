@@ -1,0 +1,54 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:scrcpy="clr-namespace:ScrcpyNet.Avalonia;assembly=RScreen">
+	<Style Selector="scrcpy|ScrcpyDisplay3">
+		<Setter Property="Template">
+			<ControlTemplate>
+				<ScrollViewer  AllowAutoHide="false" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+					<ItemsRepeater ItemsSource="{Binding DeviceViews}">
+						<ItemsRepeater.Layout>
+							<UniformGridLayout Orientation="Horizontal"
+									MinColumnSpacing="1"
+									MinRowSpacing="1"
+									MinItemHeight="{Binding ItemMinHeight}"
+									MinItemWidth="{Binding ItemMinWidth}"
+									ItemsStretch="Uniform" />
+						</ItemsRepeater.Layout>
+						<ItemsRepeater.ItemTemplate>
+							<DataTemplate>
+								<Grid ShowGridLines="true">
+									<Border Margin="0,1,1,0" Padding="1" Background="AliceBlue">
+										<StackPanel Orientation="Vertical" >
+											<scrcpy:ScrcpyDisplay2 Device="{Binding Device}" MaxWidth="376" MaxHeight="680"/>
+
+											<DockPanel MinWidth="60">
+
+												<Button DockPanel.Dock="Left" IsVisible="{Binding IsConnected}" Margin="0,0" Padding="1,1" Command="{Binding RebootDeviceCommand}">
+													<Svg  Width="22" Height="22" Name="restart" Path="/Assets/restart-svgrepo-com.svg" />
+												</Button>
+												<Button DockPanel.Dock="Left" IsVisible="{Binding IsConnected}" Margin="0,0" Padding="1,1" Command="{Binding ShellDeviceCommand}">
+													<Svg  Width="22" Height="22" Name="console" Path="/Assets/console-svgrepo-com.svg" />
+												</Button>
+												<Button DockPanel.Dock="Right"  IsVisible="{Binding IsConnected}" Margin="0,0" Padding="1,1" Command="{Binding OpenDeviceCommand}">
+													<Svg  Width="22" Height="22" Name="ic_fullscreen" Path="/Assets/ic_fullscreen.svg" />
+												</Button>
+
+												<StackPanel DockPanel.Dock="Left" Orientation="Horizontal" >
+													<TextBlock Text="{Binding Idx}"/>
+													<TextBlock Text="|"/>
+													<TextBlock Text="{Binding SerialSuffix}" />
+													<!--<TextBlock Text="|"/>
+													<TextBlock Text="{Binding Device.State}"  FlowDirection="LeftToRight"/>-->
+												</StackPanel>
+											</DockPanel>
+										</StackPanel>
+									</Border>
+								</Grid>
+
+							</DataTemplate>
+						</ItemsRepeater.ItemTemplate>
+					</ItemsRepeater>
+				</ScrollViewer>
+			</ControlTemplate>
+		</Setter>
+	</Style>
+</Styles>

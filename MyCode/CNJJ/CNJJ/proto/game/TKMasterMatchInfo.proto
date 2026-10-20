@@ -1,0 +1,55 @@
+
+package cn.jj.service.msg.protocol;
+
+// [Client->Server] 请求消息
+message MasterMatchInfoReqMsg {
+    optional MMIConnectReq mmiconnect_req_msg = 1;
+    optional MMIDisconnectReq mmidisconnect_req_msg = 2;
+    optional MMITransReq mmitrans_req_msg = 3;
+}
+
+// [Server->Client] 应答消息
+message MasterMatchInfoAckMsg{
+    optional uint32 gameid = 1;
+    optional MMIConnectAck  mmiconnect_ack_msg = 2;
+    optional MMIDisconnectAck mmidisconnect_ack_msg = 3;
+    optional MMITransAck mmitrans_ack_msg = 4;
+}
+
+message MMIConnectReq {
+
+}
+
+message MMIConnectAck {
+   optional int32 result = 1; //0成功 1失败
+}
+
+message MMIDisconnectReq {
+
+}
+
+message MMIDisconnectAck {
+   optional int32 result = 1; //0成功 1失败
+}
+
+message MMITransReq {
+    optional uint32 userid = 1; // 用户ID
+    optional uint32 gid = 2; // GameID
+    optional uint32 cnttid = 3;   // 大厅客户端链接类型
+    optional uint32 clttid = 4;  // 大厅客户端程序类型
+    optional uint32 submsgid = 5;  // 消息类型ID,不同ID后缀数据不同
+    optional uint32 sysid = 6;  // 系统ID
+    optional string trandata = 7;  //透传数据
+
+}
+
+message MMITransAck {
+    optional uint32 userid = 1; // 用户ID
+    optional uint32 gid = 2; // GameID
+    optional uint32 cnttid = 3;   // 大厅客户端链接类型
+    optional uint32 clttid = 4;  // 大厅客户端程序类型
+    optional uint32 submsgid = 5;  // 消息类型ID,不同ID后缀数据不同
+    optional uint32 sysid = 6;  // 系统ID
+    optional string trandata = 7;  //透传数据
+}
+

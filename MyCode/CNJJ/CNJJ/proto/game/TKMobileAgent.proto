@@ -1,0 +1,64 @@
+
+package cn.jj.service.msg.protocol;
+//option optimize_for = CODE_SIZE;
+//option optimize_for = LITE_RUNTIME;
+
+message MobileAgentReqMsg  {
+	optional PhoneInfoReq phoneinfo_req_msg = 1; // 这条消息是一些统计信息，在连接上服务器以后发送
+
+}
+
+message MobileAgentAckMsg  {
+  optional uint32 nullvalue = 1;
+  optional AgentControlAck agentcontrol_ack_msg = 2;
+}
+
+//commondata 新加字段要更新这个注释
+//{"OAID":"111","huawei":{"packageName":"华为分包测试001","referrer":"归因信息","clickTime":"1","installTime":"1"}}
+message PhoneInfoReq  {
+	optional string imei = 1;
+	optional string promoter = 2;
+	optional string appver = 3;
+	optional string sysver = 4;
+	optional string model = 5;
+	optional string gameid = 6;
+	optional string platform = 7;
+	optional string type = 8;
+	optional string carrier = 9; //运营商:移动、联通等
+	optional string nettype = 10; //网络类型:2G、3G、wifi
+	optional string imsi = 11;
+	optional uint32 cryptotype = 12; //加密类型: 1--aes
+	optional string realimei = 13;
+	optional string realmac = 14;
+	optional string keychain = 15;
+	optional string sdkversion = 16;
+	optional string devicename = 17; //终端设备名称
+	optional string gpslon = 18;	//GPS经度
+	optional string gpslat = 19;	//GPS纬度
+	optional string language = 20;	//语言版本: 0-简体中文,1-繁体中文,2-英文
+	optional string ram = 21;//内存
+	optional string cpu = 22;//cpu
+	optional string resolution_h = 23;	//分辨率高
+	optional string resolution_w = 24;	//分辨率宽
+	optional string ssid = 25;	//wifi名称
+	optional string localip = 26;	//客户端网络本机ip
+	optional string newrealmac = 27; //客户端真实mac地址
+	optional string plattypeid = 28;	//参见注释eDicPlatTypeID
+	optional string idfa = 29;	// IOS广告标识
+	optional string androidid = 30;	//AndroidID
+	optional string commondata = 31;	//通用json数据，后需新加字段，都加到这个json串里面
+	optional string jlichtv = 32;	//jlichtv
+	optional string customid = 33; //自定义渠道标识
+	optional string attribution = 34; //广告归因数据（json格式）-最长2048位
+	optional string  appbit = 35; // app位数
+	optional string  cpubit = 36; // 设备位数
+	optional string  diskserial = 37; // 系统盘的硬盘序列号 (小程序自己生成)
+	optional string  clientserial = 38; // 由客户端生成的字符串(PC客户端在取不到其他设备信息时,生成一个字符串并保存在本地)(小程序自己生成)
+    optional string  productlineid = 39; //产品线ID
+    optional string  businesslineid = 40; //业务线ID
+}
+
+message AgentControlAck {
+	required uint32 actiontype = 1;    // 控制动作类型
+}
+

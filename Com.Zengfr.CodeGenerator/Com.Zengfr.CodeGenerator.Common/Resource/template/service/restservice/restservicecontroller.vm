@@ -1,0 +1,21 @@
+﻿#set($projectName = "restservice")
+#set($packageName = $javaUtil.getPackageName(${config.NamespacePrefix},$projectName))
+#set($outputDir = $javaUtil.getPackagePath("service\\${projectName}",$packageName))
+#set($outputConfig.OutputDir = $outputDir)
+#set($outputConfig.OutputFileName = "${model.Name}RestServiceController.java")
+package $packageName;
+import java.lang.*;
+import java.util.*;
+import java.math.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import $javaUtil.getPackageName(${config.NamespacePrefix},"restservicebase").*;
+/**
+* $model.Description
+*/
+@RestController
+@RequestMapping("/${model.Name}")
+public class ${model.Name}RestServiceController  extends ${model.Name}RestServiceControllerBase
+{
+    
+}

@@ -1,0 +1,13 @@
+﻿#set($outputConfig.OutputDir = "app\\job\\src\\main\\java\\job")
+#set($outputConfig.OutputFileName = "${model.Name}.java")
+package job;
+import java.lang.*;
+import java.util.*;
+import java.math.*;
+/**
+* $model.Description
+*/
+public class ${model.Name} extends ${model.Name}Base
+{
+    
+}
